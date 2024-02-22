@@ -5,10 +5,10 @@ from collections import Counter
 import ast
 import spacy
 from threads import *
-#from whitespace_correction import WhitespaceCorrector
+from whitespace_correction import WhitespaceCorrector
 
 nlp = spacy.load('en_core_web_sm')
-#cor = WhitespaceCorrector.from_pretrained()
+cor = WhitespaceCorrector.from_pretrained()
 quantity_units = {'tsp', 'teaspoon', 'teaspoons', 'tbsp', 'tablespoon', 'tablespoons', 'cup', 'cups', 'c', 'ml', 'milliliter', 'milliliters', 'liter', 'liters', 'l', 'gram', 'grams', 'g', 'kilogram', 'kilograms', 'kg', 'oz', 'ounce', 'lb', 'pound'}
 non_ingredient_keywords = {'ripe', 'softened', 'room', 'temperature', 'ground', 'fresh', 'dried', 'chopped', 'sliced', 'of', 'at', 'with', 'for', 'and'}
 ingredient_counter = Counter()
