@@ -1,3 +1,4 @@
+print("Loading Recipe-Scraper...", end='')
 # Importing required libraries
 import requests
 from bs4 import BeautifulSoup, Tag
@@ -9,6 +10,8 @@ from datetime import datetime
 from urllib.parse import urlparse
 import mimetypes
 import threading
+from util import create_directory
+from threads import *
 
 def find_next_tag(tag, target_tags):
     while tag is not None:
@@ -102,11 +105,11 @@ def get_recipe_info(url):
         }
 
         # Assuming images are in <img> tags with a specific class
-        out['images'] = list(set(img['src'] for img in soup.find_all('img') 
-                    if 'src' in img.attrs 
-                    and img['src'].endswith(('.jpg', '.jpeg', '.png'))
-                    and 'logo' not in img['src']
-                    and 'placeholder' not in img['src']))
+        #out['images'] = list(set(img['src'] for img in soup.find_all('img') 
+        #            if 'src' in img.attrs 
+        #            and img['src'].endswith(('.jpg', '.jpeg', '.png'))
+        #            and 'logo' not in img['src']
+        #            and 'placeholder' not in img['src']))
 
         # Grabbing recipe name
         try:
@@ -135,41 +138,18 @@ def get_recipe_info(url):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching URL {url}: {e}")
         return None
-    
-def create_directory(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
-    return path
 
 # Function to generate a simple, random ID
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
-data = 'data/urls-2024-02-20-1712.csv' #urls file
-c = 0
-
-# Create a base directory for today's date
-date_str = datetime.now().strftime('%Y-%m-%d-%H%M')
-base_dir = os.path.join('data/', date_str)
-create_directory(base_dir)
-
-try:
-    with open(data, newline='', encoding='utf-8') as csvfile:
-        url_reader = csv.reader(csvfile)
-
-        #Generate new recipes file
-        output_file = ''.join([base_dir, "/", datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
-        with open(output_file, mode='w', newline='', encoding='utf-8') as file:
-            csv_writer = csv.writer(file)
-            csv_writer.writerow(infoHeaders)
-
-        for row in url_reader:
-            url = row[0]
-            c += 1
-            print(c, "|", url)
+def recipe_scrape(file_path, exception_event):
+    while not exception_event.is_set():
+        try:
+            url = url_queue.get()
             res = get_recipe_info(url)
-            
             if res is not None:
+                #print(str(url), res.get('name'))
                 try:
                     website_id = generate_id()
 
@@ -177,21 +157,29 @@ try:
                     assert res.get('ingredients') != []
                     assert res.get('instructions') != []
 
-                    with open(output_file, mode='a', newline='', encoding='utf-8') as file:
+                    with open(file_path, mode='a', newline='', encoding='utf-8') as file:
                         csv_writer = csv.writer(file)
-                        # Write the processed data to the CSV file
                         csv_writer.writerow([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions')])
 
-                    #download all images
-                    try:
-                        download_all_images(res.get('images'),base_dir,website_id)
-                    except Exception as e:
-                        print(e)
-                    
+                    recipe_scraping_queue.put([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions')])
+
                 except AssertionError as e:
                     pass
 
             time.sleep(0.05)
+            url_queue.task_done()
+        except Exception as e:
+            exception_event.set()
+            print(e)
+    
+    print("-- RECIPE SCRAPE THREAD EXITING --")
 
-except Exception as e:
-    print("ERROR:", e)
+# Creates a CSV file to store recipe scraping
+def createRecipesFile():
+    file_path = ''.join(['data/recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+    with open(file_path, mode='w', newline='', encoding='utf-8') as file:
+        csv_writer = csv.writer(file)
+        csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions'])
+    return file_path
+
+print("COMPLETE!")
