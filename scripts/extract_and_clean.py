@@ -85,9 +85,7 @@ def recipe_clean(event):
         try:
             recipe = recipe_scraping_queue.get()
             try:
-                ingredients = ast.literal_eval(recipe[3])
-                #print("THREAD: ", ingredients)
-                update_ingredient_counter(ingredients, ingredient_counter)
+                update_ingredient_counter(recipe[3], ingredient_counter)
 
             except Exception as e:
                 print(e)
