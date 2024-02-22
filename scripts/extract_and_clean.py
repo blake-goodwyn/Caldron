@@ -36,10 +36,10 @@ def split_quantity_units(phrase):
     return ' '.join(words)
 
 def extract_ingredient(phrase):
-    print("RAW: ", phrase)
+    #print("RAW: ", phrase)
     phrase = preprocess_phrase(phrase)
     phrase = split_quantity_units(phrase)
-    print("INPUT: ", phrase)
+    #print("INPUT: ", phrase)
     doc = nlp(phrase)
     main_ingredient = ''
     ingredient_started = False
@@ -55,14 +55,13 @@ def extract_ingredient(phrase):
                 break  # Stop after finding the first main ingredient
 
     main_ingredient = main_ingredient.strip().lower()
-    print("OUTPUT: ", main_ingredient)
+    #print("OUTPUT: ", main_ingredient)
     return main_ingredient
 
 def process_ingredient_list(ingredients_list):
     processed_ingredients = []
 
     for ingredient in ingredients_list:
-        
         main_ingredient = extract_ingredient(ingredient)
         processed_ingredients.append(main_ingredient)
 
@@ -77,6 +76,9 @@ def clean_and_extract_ingredients(ingredient_str):
 def update_ingredient_counter(ingredient_list, ingredient_counter):
     cleaned = clean_and_extract_ingredients(ingredient_list)
     ingredient_counter.update(cleaned)
+    os.cls('os')
+    print("Most Common Ingredients:")
+    print(ingredient_counter.most_common(20))
 
 def recipe_clean(event):
     while not event.is_set():
