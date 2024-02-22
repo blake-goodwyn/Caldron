@@ -176,7 +176,7 @@ def recipe_scrape(file_path, exception_event):
 
 # Creates a CSV file to store recipe scraping
 def createRecipesFile():
-    file_path = ''.join(['data/recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+    file_path = ''.join(['ebakery/data/recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions'])

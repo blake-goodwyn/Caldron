@@ -85,7 +85,7 @@ def createURLFile():
     Returns:
         str: The file path of the created CSV file.
     """
-    file_path = ''.join(['data/urls-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+    file_path = ''.join(['ebakery/data/urls-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(["URL"])

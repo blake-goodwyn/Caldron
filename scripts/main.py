@@ -71,9 +71,7 @@ random.shuffle(descriptors)
 if ACTIVE:
     # Create Data Files
     url_file = createURLFile()
-    os.path.join('ebakery', url_file)
     recipe_file = createRecipesFile()
-    os.path.join('ebakery', recipe_file)
 
     # Thread 1: URL Aggregation
     print("Starting URL Aggregation")
