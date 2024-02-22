@@ -8,7 +8,7 @@ from extract_and_clean import recipe_clean
 import csv
 import random
 
-ACTIVE = True  # Set to True to run the URL Aggregation and Recipe Scraping threads
+ACTIVE = False  # Set to True to run the URL Aggregation and Recipe Scraping threads
 
 ##### Multi-Threaded Approach to Asynchronous/Simulatanous URL Scraping & Aggregation #####
 # Define recipe keywords

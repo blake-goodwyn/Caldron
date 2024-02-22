@@ -13,41 +13,41 @@ quantity_units = {'tsp', 'teaspoon', 'teaspoons', 'tbsp', 'tablespoon', 'tablesp
 non_ingredient_keywords = {'ripe', 'softened', 'room', 'temperature', 'ground', 'fresh', 'dried', 'chopped', 'sliced', 'of', 'at', 'with', 'for', 'and'}
 ingredient_counter = Counter()
 
+def preprocess_phrase(phrase):
+    # Insert space before and after digits and special characters
+    return cor.correct_text(phrase)
+
 def extract_ingredient(phrase):
     
-    # Tokenize the phrase using spaCy
-    phrase = cor.correct_text(phrase)
-    print(phrase)
+    # Tokenize the phrase using whitespace-correction
+    phrase = preprocess_phrase(phrase)
+    print("INPUT: ", phrase)
     doc = nlp(phrase)
     
     # Initialize variables
     main_ingredient = ''
     quantity = ''
     
-    # Iterate over the tokens in the phrase
     for token in doc:
-        # Check if the token is a quantity unit
-        if token.text.lower() in quantity_units:
-            quantity = token.text
-        # Check if the token is an ingredient keyword
-        elif token.text.lower() not in non_ingredient_keywords and not token.text.isdigit() and not '/' in token.text and not token.text.endswith(' ') and not re.search(r',', token.text):
+        # Start capturing the ingredient after encountering a number or measure word
+        if token.pos_ in ['NUM', 'NOUN'] or token.text.lower() in quantity_units:
+            ingredient_started = True
+        if ingredient_started and token.pos_ in ['NOUN', 'ADJ']:
             main_ingredient += token.text + ' '
-    
-    # Remove trailing whitespace
+
     main_ingredient = main_ingredient.strip().lower()
+    print("OUTPUT: ", main_ingredient)
     
     return main_ingredient
 
 def process_ingredient_list(ingredients_list):
     processed_ingredients = []
-    print (ingredients_list)
 
     for ingredient in ingredients_list:
         
         main_ingredient = extract_ingredient(ingredient)
         processed_ingredients.append(main_ingredient)
 
-    print(processed_ingredients)
     return processed_ingredients
 
 def clean_and_extract_ingredients(ingredient_str):
@@ -65,10 +65,9 @@ def recipe_clean(event):
         try:
             recipe = recipe_scraping_queue.get()
             try:
-                #print(recipe[3])
-                print(ast.literal_eval(recipe[3]))
-                #print()
-                #x = process_ingredient_list(ingredients)
+                ingredients = ast.literal_eval(recipe[3])
+                print("THREAD: ", ingredients)
+                x = process_ingredient_list(ingredients)
 
             except Exception as e:
                 print(e)
