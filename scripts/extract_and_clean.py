@@ -2,7 +2,7 @@ print("Loading Extract-and-Clean...", end='')
 import re
 import pandas as pd
 from collections import Counter
-import pprint
+from IPython.display import clear_output
 import ast
 import spacy
 import os
@@ -78,7 +78,7 @@ def clean_and_extract_ingredients(ingredient_str):
 def update_ingredient_counter(ingredient_list, ingredient_counter):
     cleaned = clean_and_extract_ingredients(ingredient_list)
     ingredient_counter.update(cleaned)
-    os.system('clear') if os.name == 'posix' else os.system('cls')
+    clear_output(wait=True)
     print("Most Common Ingredients:")
     for i in ingredient_counter.most_common(20):
         print(i)
