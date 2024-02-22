@@ -24,21 +24,23 @@ def preprocess_phrase(phrase):
 def split_quantity_units(phrase):
     words = []
     for word in phrase.split():
-        # Check if the word starts or ends with a quantity unit
-        if any(word.lower().startswith(unit) or word.lower().endswith(unit) for unit in quantity_units):
-            # Split the word into two parts: quantity unit and the rest
-            for unit in quantity_units:
-                if word.lower().startswith(unit):
-                    words.append(unit)
-                    word = word[len(unit):]
-                    break
-                elif word.lower().endswith(unit):
-                    word = word[:-len(unit)]
-                    words.append(word)
-                    words.append(unit)
-                    word = ''
-                    break
-        if word:
+        # Identify and separate quantity units from the rest of the words
+        separated = False
+        for unit in quantity_units:
+            if word.lower().startswith(unit):
+                # Separate unit from start of the word
+                words.append(unit)
+                word = word[len(unit):]
+                separated = True
+                break
+            elif word.lower().endswith(unit):
+                # Separate unit from end of the word
+                index = word.lower().find(unit)
+                words.append(word[:index])
+                words.append(unit)
+                separated = True
+                break
+        if not separated:
             words.append(word)
     return ' '.join(words)
 
