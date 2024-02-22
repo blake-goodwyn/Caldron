@@ -34,7 +34,7 @@ def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklist
             for start_num in range(1, 91, 10):  # increment by 10 as API allows max 10 results at a time
                 check2 = time.time()
                 if (check2 - check1) < 2:
-                    time.sleep(2 - (check2 - check1))  # rate limit safeguard
+                    time.sleep(2)  # rate limit safeguard
                 search_results = google_search(term, api_key, cse_id, start_num)
                 for result in search_results.get('items', []):
                     if event.is_set():
