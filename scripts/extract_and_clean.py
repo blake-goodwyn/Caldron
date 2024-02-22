@@ -19,21 +19,24 @@ def preprocess_phrase(phrase):
 
 def extract_ingredient(phrase):
     
-    # Tokenize the phrase using whitespace-correction
     phrase = preprocess_phrase(phrase)
     print("INPUT: ", phrase)
     doc = nlp(phrase)
-    
-    # Initialize variables
+
     main_ingredient = ''
-    quantity = ''
-    
+    ingredient_started = False
+
     for token in doc:
-        # Start capturing the ingredient after encountering a number or measure word
-        if token.pos_ in ['NUM', 'NOUN'] or token.text.lower() in quantity_units:
+        # Start capturing the ingredient after encountering a quantity unit or a number
+        if token.text.lower() in quantity_units or token.pos_ == 'NUM':
             ingredient_started = True
-        if ingredient_started and token.pos_ in ['NOUN', 'ADJ']:
-            main_ingredient += token.text + ' '
+        elif ingredient_started and (token.pos_ in ['NOUN', 'ADJ']) and (token.text.lower() not in non_ingredient_keywords):
+            # Check for compound nouns or adjectives forming a compound name with a noun
+            if (token.dep_ in ['compound', 'amod'] or token.head.pos_ in ['NOUN']) and not main_ingredient:
+                main_ingredient += token.text + ' '
+            elif token.pos_ == 'NOUN' and not main_ingredient:
+                main_ingredient += token.text + ' '
+                break  # Stop after finding the first main ingredient
 
     main_ingredient = main_ingredient.strip().lower()
     print("OUTPUT: ", main_ingredient)
