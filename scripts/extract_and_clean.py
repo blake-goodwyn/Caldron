@@ -76,7 +76,7 @@ def clean_and_extract_ingredients(ingredient_str):
 def update_ingredient_counter(ingredient_list, ingredient_counter):
     cleaned = clean_and_extract_ingredients(ingredient_list)
     ingredient_counter.update(cleaned)
-    os.cls('os')
+    os.system('clear') if os.name == 'posix' else os.system('cls')
     print("Most Common Ingredients:")
     print(ingredient_counter.most_common(20))
 
@@ -86,7 +86,7 @@ def recipe_clean(event):
             recipe = recipe_scraping_queue.get()
             try:
                 ingredients = ast.literal_eval(recipe[3])
-                print("THREAD: ", ingredients)
+                #print("THREAD: ", ingredients)
                 x = process_ingredient_list(ingredients)
 
             except Exception as e:
