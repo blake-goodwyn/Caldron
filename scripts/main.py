@@ -83,7 +83,7 @@ if ACTIVE:
     thread2 = threading.Thread(target=recipe_scrape, args=(recipe_file, exception_event,))
     thread2.start()
 else:
-    recipe_file = "data/recipes-2024-02-22-1551.csv"
+    recipe_file = "content/ebakery/data/recipes-2024-02-22-1551.csv"
     # Read through recipe_file CSV and create entries in the recipe_scraping_queue
     with open(recipe_file, 'r') as file:
         reader = csv.reader(file)
