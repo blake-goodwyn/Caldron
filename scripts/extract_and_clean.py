@@ -46,6 +46,7 @@ def extract_ingredient(phrase):
     
     phrase = preprocess_phrase(phrase)
     phrase = split_quantity_units(phrase)
+    print("INPUT: ", phrase)
     doc = nlp(phrase)
     main_ingredient = ''
     ingredient_started = False
@@ -61,7 +62,7 @@ def extract_ingredient(phrase):
                 break  # Stop after finding the first main ingredient
 
     main_ingredient = main_ingredient.strip().lower()
-    
+    print("OUTPUT: ", main_ingredient)
     return main_ingredient
 
 def process_ingredient_list(ingredients_list):
