@@ -5,10 +5,10 @@ from collections import Counter
 import ast
 import spacy
 from threads import *
-from whitespace_correction import WhitespaceCorrector
+#from whitespace_correction import WhitespaceCorrector
 
 nlp = spacy.load('en_core_web_sm')
-cor = WhitespaceCorrector.from_pretrained()
+#cor = WhitespaceCorrector.from_pretrained()
 quantity_units = {'tsp', 'teaspoon', 'teaspoons', 'tbsp', 'tablespoon', 'tablespoons', 'cup', 'cups', 'c', 'ml', 'milliliter', 'milliliters', 'liter', 'liters', 'l', 'gram', 'grams', 'g', 'kilogram', 'kilograms', 'kg', 'oz', 'ounce', 'lb', 'pound'}
 non_ingredient_keywords = {'ripe', 'softened', 'room', 'temperature', 'ground', 'fresh', 'dried', 'chopped', 'sliced', 'of', 'at', 'with', 'for', 'and'}
 ingredient_counter = Counter()
@@ -16,32 +16,22 @@ ingredient_counter = Counter()
 def preprocess_phrase(phrase):
     # Insert space before and after digits and special characters
     phrase = cor.correct_text(phrase)
-    #phrase = re.sub(r"([0-9]+)", r" \1 ", phrase)
-    #phrase = re.sub(r"([^\w\s])", r" \1 ", phrase)
-    #phrase = re.sub(r"(\d+\s?⁄\s?\d+)", r" \1 ", phrase)
+    phrase = re.sub(r"([0-9]+)", r" \1 ", phrase)
+    phrase = re.sub(r"([^\w\s-])", r" \1 ", phrase)
+    phrase = re.sub(r"(\d+\s?⁄\s?\d+)", r" \1 ", phrase)
     return phrase
 
 def split_quantity_units(phrase):
     words = []
+    # Sort the quantity units by length in descending order
+    sorted_units = sorted(quantity_units, key=len, reverse=True)
     for word in phrase.split():
-        # Identify and separate quantity units from the rest of the words
-        separated = False
-        for unit in quantity_units:
+        for unit in sorted_units:
             if word.lower().startswith(unit):
-                # Separate unit from start of the word
-                words.append(unit)
+                # Remove the longest matching quantity unit
                 word = word[len(unit):]
-                separated = True
                 break
-            elif word.lower().endswith(unit):
-                # Separate unit from end of the word
-                index = word.lower().find(unit)
-                words.append(word[:index])
-                words.append(unit)
-                separated = True
-                break
-        if not separated:
-            words.append(word)
+        words.append(word)
     return ' '.join(words)
 
 def extract_ingredient(phrase):
