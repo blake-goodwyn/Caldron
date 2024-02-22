@@ -2,6 +2,7 @@ print("Loading Extract-and-Clean...", end='')
 import re
 import pandas as pd
 from collections import Counter
+import pprint
 import ast
 import spacy
 import os
@@ -79,7 +80,8 @@ def update_ingredient_counter(ingredient_list, ingredient_counter):
     ingredient_counter.update(cleaned)
     os.system('clear') if os.name == 'posix' else os.system('cls')
     print("Most Common Ingredients:")
-    print(ingredient_counter.most_common(20))
+    for i in ingredient_counter.most_common(20):
+        print(i)
 
 def recipe_clean(event):
     while not event.is_set():
