@@ -16,9 +16,9 @@ ingredient_counter = Counter()
 def preprocess_phrase(phrase):
     # Insert space before and after digits and special characters
     phrase = cor.correct_text(phrase)
-    phrase = re.sub(r"([0-9]+)", "", phrase)
-    phrase = re.sub(r"([^\w\s])", "", phrase)
-    phrase = re.sub(r"(\d+\s?⁄\s?\d+)", "", phrase)
+    #phrase = re.sub(r"([0-9]+)", "", phrase)
+    #phrase = re.sub(r"([^\w\s])", "", phrase)
+    #phrase = re.sub(r"(\d+\s?⁄\s?\d+)", "", phrase)
     return phrase
 
 def extract_ingredient(phrase):
