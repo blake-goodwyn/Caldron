@@ -71,7 +71,7 @@ def process_ingredient_list(ingredients_list):
 
 def clean_and_extract_ingredients(ingredient_str):
     # Splitting the ingredient string into a list (assuming comma-separated)
-    ingredient_list = ast.literal_eval(ingredient_str)
+    ingredient_list = ingredient_str
     return process_ingredient_list(ingredient_list)
 
 # Analyzing ingredient frequency
