@@ -87,7 +87,7 @@ def recipe_clean(event):
             try:
                 ingredients = ast.literal_eval(recipe[3])
                 #print("THREAD: ", ingredients)
-                x = process_ingredient_list(ingredients)
+                update_ingredient_counter(ingredients, ingredient_counter)
 
             except Exception as e:
                 print(e)
