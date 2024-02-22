@@ -11,6 +11,7 @@ nlp = spacy.load('en_core_web_sm')
 cor = WhitespaceCorrector.from_pretrained()
 quantity_units = {'tsp', 'teaspoon', 'teaspoons', 'tbsp', 'tablespoon', 'tablespoons', 'cup', 'cups', 'c', 'ml', 'milliliter', 'milliliters', 'liter', 'liters', 'l', 'gram', 'grams', 'g', 'kilogram', 'kilograms', 'kg', 'oz', 'ounce', 'lb', 'pound'}
 non_ingredient_keywords = {'ripe', 'softened', 'room', 'temperature', 'ground', 'fresh', 'dried', 'chopped', 'sliced', 'of', 'at', 'with', 'for', 'and'}
+removals = {'cups', 'cup'}
 ingredient_counter = Counter()
 
 def preprocess_phrase(phrase):
@@ -24,7 +25,7 @@ def preprocess_phrase(phrase):
 def split_quantity_units(phrase):
     words = []
     # Sort the quantity units by length in descending order
-    sorted_units = sorted(quantity_units, key=len, reverse=True)
+    sorted_units = sorted(removals, key=len, reverse=True)
     for word in phrase.split():
         for unit in sorted_units:
             if word.lower().startswith(unit):
