@@ -8,7 +8,7 @@ from extract_and_clean import recipe_clean
 import csv
 import random
 
-ACTIVE = False  # Set to True to run the URL Aggregation and Recipe Scraping threads
+ACTIVE = True  # Set to True to run the URL Aggregation and Recipe Scraping threads
 
 ##### Multi-Threaded Approach to Asynchronous/Simulatanous URL Scraping & Aggregation #####
 # Define recipe keywords
@@ -71,7 +71,9 @@ random.shuffle(descriptors)
 if ACTIVE:
     # Create Data Files
     url_file = createURLFile()
+    os.path.join('ebakery', url_file)
     recipe_file = createRecipesFile()
+    os.path.join('ebakery', recipe_file)
 
     # Thread 1: URL Aggregation
     print("Starting URL Aggregation")
