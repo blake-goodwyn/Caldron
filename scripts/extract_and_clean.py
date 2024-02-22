@@ -16,8 +16,9 @@ ingredient_counter = Counter()
 def preprocess_phrase(phrase):
     # Insert space before and after digits and special characters
     phrase = cor.correct_text(phrase)
-    phrase = re.sub(r"([0-9]+)", r" \1 ", phrase)
-    phrase = re.sub(r"([^\w\s])", r" \1 ", phrase)
+    phrase = re.sub(r"([0-9]+)", "", phrase)
+    phrase = re.sub(r"([^\w\s])", "", phrase)
+    phrase = re.sub(r"(\d+\s?⁄\s?\d+)", "", phrase)
     return phrase
 
 def extract_ingredient(phrase):
@@ -30,14 +31,8 @@ def extract_ingredient(phrase):
     ingredient_started = False
 
     for token in doc:
-        if token.text.lower() in quantity_units or token.pos_ == 'NUM':
-            ingredient_started = True
-        elif ingredient_started and (token.pos_ in ['NOUN', 'ADJ']) and (token.text.lower() not in non_ingredient_keywords):
-            if token.dep_ == 'compound' or (token.head.pos_ == 'NOUN' and token.head.dep_ != 'appos'):
-                main_ingredient += token.text + ' '
-            elif token.pos_ == 'NOUN' and not main_ingredient:
-                main_ingredient += token.text + ' '
-                break  # Stop after finding the first main ingredient
+        if token.pos_ == "NOUN" and (token.dep_ == "dobj" or token.dep_ == "compound" or token.dep_ == "nsubj"):
+            return token.text
 
     main_ingredient = main_ingredient.strip().lower()
     print("OUTPUT: ", main_ingredient)
