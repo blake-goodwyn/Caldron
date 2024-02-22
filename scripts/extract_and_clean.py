@@ -15,7 +15,7 @@ ingredient_counter = Counter()
 
 def preprocess_phrase(phrase):
     # Insert space before and after digits and special characters
-    phrase = cor.correct_text(phrase)
+    phrase = cor.correct_text(phrase).lower()
     phrase = re.sub(r"([0-9]+)", r" \1 ", phrase)
     phrase = re.sub(r"([^\w\s-])", r" \1 ", phrase)
     phrase = re.sub(r"(\d+\s?⁄\s?\d+)", r" \1 ", phrase)
@@ -35,7 +35,7 @@ def split_quantity_units(phrase):
     return ' '.join(words)
 
 def extract_ingredient(phrase):
-    
+    print("RAW: ", phrase)
     phrase = preprocess_phrase(phrase)
     phrase = split_quantity_units(phrase)
     print("INPUT: ", phrase)
