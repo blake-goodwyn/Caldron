@@ -11,7 +11,7 @@ from threads import *
 api_key = "AIzaSyBqffLzRrNKUQX-nZiU8NEp1ocB1P9MeHI"
 cse_id = "6373f179be4354964"
 
-urlThreshold = 10000  # total number of URLs you want
+urlThreshold = 30000  # total number of URLs you want
 urls = set()
 
 def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event):
