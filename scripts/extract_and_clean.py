@@ -1,85 +1,27 @@
 print("Loading Extract-and-Clean...", end='')
-import re
 import pandas as pd
 from collections import Counter
-import ast
-import spacy
 import os
 from threads import *
-from whitespace_correction import WhitespaceCorrector
+from openai_tools import *
+from datetime import datetime
 
-nlp = spacy.load('en_core_web_sm')
-cor = WhitespaceCorrector.from_pretrained()
-quantity_units = {'tsp', 'teaspoon', 'teaspoons', 'tbsp', 'tablespoon', 'tablespoons', 'cup', 'cups', 'c', 'ml', 'milliliter', 'milliliters', 'liter', 'liters', 'l', 'gram', 'grams', 'g', 'kilogram', 'kilograms', 'kg', 'oz', 'ounce', 'lb', 'pound'}
-non_ingredient_keywords = {'ripe', 'softened', 'room', 'temperature', 'ground', 'fresh', 'dried', 'chopped', 'sliced', 'of', 'at', 'with', 'for', 'and'}
-removals = {'cups', 'cup', 'teaspoon'}
 ingredient_counter = Counter()
-
-def preprocess_phrase(phrase):
-    # Insert space before and after digits and special characters
-    phrase = cor.correct_text(phrase).lower()
-    phrase = re.sub(r"([0-9]+)", r" \1 ", phrase)
-    phrase = re.sub(r"([^\w\s-])", r" \1 ", phrase)
-    phrase = re.sub(r"(\d+\s?⁄\s?\d+)", r" \1 ", phrase)
-    return phrase
-
-def split_quantity_units(phrase):
-    words = []
-    # Sort the quantity units by length in descending order
-    sorted_units = sorted(removals, key=len, reverse=True)
-    for word in phrase.split():
-        for unit in sorted_units:
-            if word.lower().startswith(unit):
-                # Remove the longest matching quantity unit
-                word = word[len(unit):]
-                break
-        words.append(word)
-    return ' '.join(words)
-
-def extract_ingredient(phrase):
-    #print("RAW: ", phrase)
-    phrase = preprocess_phrase(phrase)
-    phrase = split_quantity_units(phrase)
-    #print("INPUT: ", phrase)
-    doc = nlp(phrase)
-    main_ingredient = ''
-    ingredient_started = False
-
-    for token in doc:
-        if token.text.lower() in quantity_units or token.pos_ == 'NUM':
-            ingredient_started = True
-        elif ingredient_started and (token.pos_ in ['NOUN', 'ADJ']) and (token.text.lower() not in non_ingredient_keywords):
-            if token.dep_ == 'compound' or (token.head.pos_ == 'NOUN' and token.head.dep_ != 'appos'):
-                main_ingredient += token.text + ' '
-            elif token.pos_ == 'NOUN' and not main_ingredient:
-                main_ingredient += token.text + ' '
-                break  # Stop after finding the first main ingredient
-
-    main_ingredient = main_ingredient.strip().lower()
-    #print("OUTPUT: ", main_ingredient)
-    return main_ingredient
-
-def process_ingredient_list(ingredients_list):
-    processed_ingredients = []
-
-    for ingredient in ingredients_list:
-        main_ingredient = extract_ingredient(ingredient)
-        processed_ingredients.append(main_ingredient)
-
-    return processed_ingredients
-
-def clean_and_extract_ingredients(ingredient_str):
-    # Splitting the ingredient string into a list (assuming comma-separated)
-    ingredient_list = ingredient_str
-    return process_ingredient_list(ingredient_list)
 
 # Analyzing ingredient frequency
 def update_ingredient_counter(ingredient_list, ingredient_counter):
-    cleaned = clean_and_extract_ingredients(ingredient_list)
-    ingredient_counter.update(cleaned)
+    cleaned = re.sub(r'[\r\n]+', ' ', normalize_ingredients(ingredient_list).lower().strip())
+    return increment_counter(cleaned, ingredient_counter)
+
+def increment_counter(processed, ingredient_counter, threshold=10):
+    for i in eval(processed.strip()):
+        ingredient_counter[i[0]] += 1
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("Most Common Ingredients:")
-    for i in ingredient_counter.most_common(20):
+    for i in ingredient_counter.most_common(threshold):
         print(i)
+
+    return processed
 
 def recipe_clean(event):
     while not event.is_set():
@@ -98,3 +40,27 @@ def recipe_clean(event):
     print("-- RECIPE CLEAN THREAD EXITING --")
 
 print("COMPLETE!")
+
+#Test: determine malformed processed ingredient lists
+#data = '/data/banana-bread-combined-recipes-2024-02-27-1338.csv'
+#df = pd.read_csv(data)
+#file_path = ''.join(['data/processed-banana-bread-recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+#ID_file = 'data/malformed-processed-ingredient-IDs.txt'
+#if not os.path.exists(ID_file):
+#    with open(ID_file, mode='w', newline='', encoding='utf-8') as file:
+#        file.write("Malformed Processed Ingredient Lists:\n")
+
+#df['Processed_Ingredients'] = pd.Series([None]*len(df['Ingredients']), index=df.index)
+#c = 0
+#for i in df['Ingredients']:
+#    print("Processing Recipe", c+1, "of", len(df['Ingredients']))
+#    try:
+#        #add result of update_ingredient_counter to df in selected row
+#        df.loc[c, "Processed_Ingredients"] = update_ingredient_counter(i, ingredient_counter)
+#    except Exception as e:
+#        print(e)
+#        print(df.loc[c,'ID'])
+#        with open(ID_file, 'a') as file:
+#            file.write(str(df.loc[c,'ID']) + '\n')
+#    c += 1
+#    df.to_csv(file_path, index=False)
