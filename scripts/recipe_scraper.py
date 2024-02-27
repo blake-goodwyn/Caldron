@@ -93,7 +93,7 @@ def get_recipe_info(url):
             'Accept': '*/*',  # This accepts any content type
         }
 
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()  # Check that the request was successful
         soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -149,7 +149,7 @@ def recipe_scrape(file_path, exception_event):
             url = url_queue.get()
             res = get_recipe_info(url)
             if res is not None:
-                #print(str(url), res.get('name'))
+                print(res.get('name'))
                 try:
                     website_id = generate_id()
 
@@ -169,14 +169,14 @@ def recipe_scrape(file_path, exception_event):
             time.sleep(0.05)
             url_queue.task_done()
         except Exception as e:
-            exception_event.set()
+            #exception_event.set()
             print(e)
     
     print("-- RECIPE SCRAPE THREAD EXITING --")
 
 # Creates a CSV file to store recipe scraping
 def createRecipesFile():
-    file_path = ''.join(['ebakery/data/recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+    file_path = ''.join(['data/recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions'])

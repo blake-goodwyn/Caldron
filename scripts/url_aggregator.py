@@ -11,7 +11,7 @@ from threads import *
 api_key = "AIzaSyBqffLzRrNKUQX-nZiU8NEp1ocB1P9MeHI"
 cse_id = "6373f179be4354964"
 
-urlThreshold = 1000  # total number of URLs you want
+urlThreshold = 10000  # total number of URLs you want
 urls = set()
 
 def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event):
@@ -85,7 +85,7 @@ def createURLFile():
     Returns:
         str: The file path of the created CSV file.
     """
-    file_path = ''.join(['ebakery/data/urls-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+    file_path = ''.join(['data/urls-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(["URL"])

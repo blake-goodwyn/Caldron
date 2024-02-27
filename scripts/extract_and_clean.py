@@ -2,7 +2,6 @@ print("Loading Extract-and-Clean...", end='')
 import re
 import pandas as pd
 from collections import Counter
-from google.colab import output
 import ast
 import spacy
 import os
@@ -13,7 +12,7 @@ nlp = spacy.load('en_core_web_sm')
 cor = WhitespaceCorrector.from_pretrained()
 quantity_units = {'tsp', 'teaspoon', 'teaspoons', 'tbsp', 'tablespoon', 'tablespoons', 'cup', 'cups', 'c', 'ml', 'milliliter', 'milliliters', 'liter', 'liters', 'l', 'gram', 'grams', 'g', 'kilogram', 'kilograms', 'kg', 'oz', 'ounce', 'lb', 'pound'}
 non_ingredient_keywords = {'ripe', 'softened', 'room', 'temperature', 'ground', 'fresh', 'dried', 'chopped', 'sliced', 'of', 'at', 'with', 'for', 'and'}
-removals = {'cups', 'cup'}
+removals = {'cups', 'cup', 'teaspoon'}
 ingredient_counter = Counter()
 
 def preprocess_phrase(phrase):
@@ -78,7 +77,6 @@ def clean_and_extract_ingredients(ingredient_str):
 def update_ingredient_counter(ingredient_list, ingredient_counter):
     cleaned = clean_and_extract_ingredients(ingredient_list)
     ingredient_counter.update(cleaned)
-    output.clear()
     print("Most Common Ingredients:")
     for i in ingredient_counter.most_common(20):
         print(i)

@@ -4,7 +4,7 @@
 from threads import *
 from url_aggregator import createURLFile, url_aggregate, urlThreshold
 from recipe_scraper import createRecipesFile, recipe_scrape
-from extract_and_clean import recipe_clean
+#from extract_and_clean import recipe_clean
 import csv
 import random
 
@@ -83,7 +83,7 @@ if ACTIVE:
     thread2 = threading.Thread(target=recipe_scrape, args=(recipe_file, exception_event,))
     thread2.start()
 else:
-    recipe_file = "ebakery/data/recipes-2024-02-22-1551.csv"
+    recipe_file = "data/recipes-2024-02-22-1551.csv"
     # Read through recipe_file CSV and create entries in the recipe_scraping_queue
     with open(recipe_file, 'r') as file:
         reader = csv.reader(file)
@@ -92,9 +92,9 @@ else:
             recipe_scraping_queue.put(row)
 
 # Thread 3: Recipe Cleaning
-print("Starting Recipe Cleaning")
-thread3 = threading.Thread(target=recipe_clean, args=(exception_event,))
-thread3.start()
+#print("Starting Recipe Cleaning")
+#thread3 = threading.Thread(target=recipe_clean, args=(exception_event,))
+#thread3.start()
 
 # Wait for queues to be processed
 url_queue.join()
