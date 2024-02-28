@@ -24,7 +24,7 @@ def descriptor_generate(key_term):
     return text_complete(descriptor_prompt)
 
 def normalize_ingredients(ingredients):
-    normalize_prompt = "Given the following string representing a Python list, extract the core ingredients from the string expressed as one or two word items. Then, return ONLY a string representing a Python list of tuples of the form (core ingredients, quantity number, quantity unit). The quantity number should be in decimal form and no fractions should be present. The quantity unit is optional and should only be used for ingredients measured in quantities such as grams, milliliters, tablespoons, cups, etc. If no quantity unit is present, return None. : " + ingredients
+    normalize_prompt = "Given the following string representing a list of ingredients, extract the core ingredients from the string. These ingredients should be expressed in one or two word without extra descriptors. Then, return ONLY a string representing a Python list of tuples of the form (core ingredients, quantity number, quantity unit). The tuple should follow the format: ('ingredient', QTY, 'quantity unit'). The quantity number should be a floating-point number. No fractions should be present. The quantity unit is optional and should only be used for ingredients measured in quantities such as grams, milliliters, tablespoons, cups, etc. If no quantity unit is present, return None. : " + ingredients
     return text_complete(normalize_prompt)
 
 def action_extraction(instructions):

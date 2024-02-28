@@ -8,9 +8,20 @@ from datetime import datetime
 
 ingredient_counter = Counter()
 
+
+def add_quotation_marks(s):
+    # Check if the string is already quoted
+    if not (s.startswith('"') and s.endswith('"')) and not (s.startswith("'") and s.endswith("'")):
+        # Add quotation marks
+        s = '"' + s + '"'
+    return s
+
+def clean(string):
+    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', normalize_ingredients(string).lower().strip()))
+
 # Analyzing ingredient frequency
 def update_ingredient_counter(ingredient_list, ingredient_counter):
-    cleaned = re.sub(r'[\r\n]+', ' ', normalize_ingredients(ingredient_list).lower().strip())
+    cleaned = clean(ingredient_list)
     return increment_counter(cleaned, ingredient_counter)
 
 def increment_counter(processed, ingredient_counter, threshold=10):
