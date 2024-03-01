@@ -3,8 +3,8 @@ import openai
 import re
 import aiohttp
 import json
-
-OAclient = openai.OpenAI(api_key="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")
+from google.colab import userdata
+OAclient = openai.OpenAI(api_key=userdata.get('openai_key'))
 
 def text_complete(prompt, client=OAclient):
     chat_completion = client.chat.completions.create(

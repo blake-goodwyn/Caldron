@@ -12,9 +12,6 @@ import threading
 from util import create_directory
 from threads import *
 from extract_and_clean import clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
-import asyncio
-import aiofiles
-import aiohttp
 
 def find_next_tag(tag, target_tags):
     while tag is not None:
