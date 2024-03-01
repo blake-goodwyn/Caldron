@@ -26,7 +26,7 @@ def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklist
             try:
                 search_results = google_search(term, api_key, cse_id, start_num)
                 for result in search_results.get('items', []):
-                    url = result.get('link')
+                    url = result.get('link').replace("\n","")
                     if not any(domain in url for domain in blacklisted_domains) and url not in urls:
                         urls.add(url)
                         url_queue.put(url)

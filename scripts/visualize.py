@@ -219,5 +219,5 @@ def visualize(file, recipe_type):
 
 #visualize('C:/Users/blake/Documents/GitHub/ebakery/data/tart/processed-tart-recipe-2024-02-29-2229.csv', "Tart")
 #visualize('C:/Users/blake/Documents/GitHub/ebakery/data/banana-bread/processed-banana-bread-recipes-2024-02-27-1547.csv', "Banana Bread")
-visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cinnamon-rolls/processed-cinnamon-bun-recipe-2024-02-28-1227.csv', "Cinnamon Bun")
-#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1242.csv', "Cake")
+#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cinnamon-rolls/processed-cinnamon-rolls-recipe-2024-02-28-1227.csv', "Cinnamon Bun")
+visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1336.csv', "Cake")

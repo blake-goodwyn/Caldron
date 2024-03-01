@@ -1,10 +1,9 @@
 print("Loading Recipe-Scraper...", end='')
 # Importing required libraries
 import requests
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup, Tag
 import os
 import csv
-import time
 import uuid
 from datetime import datetime
 import mimetypes
@@ -12,36 +11,23 @@ import threading
 from util import create_directory
 from threads import *
 from extract_and_clean import ing_clean, instr_clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
+import recipe_scrapers
 
-def get_text_between_headers(start_header, end_header):
-    """ Extracts all text between two headers """
-    text_content = ''
-    element = start_header.find_next_sibling()
+### Identified Information Vectors ###
 
-    while element and element != end_header:
-        text_content += ' ' + element.get_text(" ", strip=True)
-        element = element.find_next_sibling()
+## Core Info
+# Name of the Recipe: Essential for identifying and referencing the dish.
+# Ingredients: Critical for understanding the components and quantities needed.
+# Instructions: Vital for the step-by-step process of preparing the dish.
 
-    return text_content.strip()
+## Secondary Info
+# Images: Finalized images of the dish
+# Prep and Cook Time: Critical for planning and understanding the time commitment required.
 
-def get_containers(start_header, end_header, soup):
-    # Collect all containers between the start and end headers recursively
-    containers = []
-
-    def recurse_through_siblings(element):
-        nonlocal containers
-        while element and element != end_header:
-            if element.name in ['ul', 'ol']:
-                containers.append(element)
-            elif element.find(['ul', 'ol']):
-                containers.extend(element.find_all(['ul', 'ol'], recursive=False))
-            # Recurse through child elements
-            for child in element.find_all(recursive=False):
-                recurse_through_siblings(child)
-            element = element.find_next_sibling()
-
-    recurse_through_siblings(start_header.find_next_sibling())
-    return containers
+# Tertiary Info
+# User Ratings and Reviews: Offers valuable insights into the popularity and success of the recipe among other cooks.
+# Allergen Information: Crucial for those with food allergies or intolerances.
+# Dietary Labels: Essential for individuals following specific dietary guidelines (e.g., vegan, gluten-free).
 
 def find_next_tag(tag, target_tags):
     while tag is not None:
@@ -59,9 +45,9 @@ def find_next_tag(tag, target_tags):
 def find_following_list(tag):
     return find_next_tag(tag, ['ul', 'ol'])
 
-def get_text_list(elements):
+def get_text_list(ul_or_ol):
     """ Extract text from a list of li tags """
-    return [element.get_text(strip=True) for element in elements if element.text]
+    return [li.get_text(strip=True).replace("\n","") for li in ul_or_ol.find_all("li") if li.text]
 
 infoHeaders = ['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions', 'Processed Ingredients']
 
@@ -101,72 +87,83 @@ def download_all_images(image_urls, base_dir, website_id):
         thread.join()
 
 def get_recipe_info(url):
-    try:
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-            'Accept': '*/*',  # This accepts any content type
-        }
-
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()  # Check that the request was successful
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        out = {
+    
+    out = {
             'name': "",
             'ingredients': [],
-            'instructions': [],
-            'images': []
+            'instructions': []
         }
-
-        # Grabbing recipe name
-        try:
-            recipe_name = soup.find('h1').get_text(strip=True)
-            out['name'] = recipe_name
-        except:
-            pass
-
-        # Find positions of Ingredients and Instructions headers
-        ingredients_header, instructions_header = None, None
-
-        # Locate Ingredients and Instructions Headers
-        for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-            header_text = header.get_text(strip=True).lower()
-            if 'ingredient' in header_text and not ingredients_header:
-                ingredients_header = header
-            elif ('instruction' in header_text or 'direction' in header_text) and not instructions_header:
-                instructions_header = header
-
-        # Extract Ingredients and Instructions
-        if ingredients_header and instructions_header:
-            out['ingredients'] = get_text_between_headers(ingredients_header, instructions_header).replace("\n","")
-            out['instructions'] = get_text_between_headers(instructions_header, soup).replace("\n","")
-
+    
+    try:
+        scraper = recipe_scrapers.scrape_me(url, wild_mode=True)
+        out['name'] = scraper.title()
+        out['ingredients'] = scraper.ingredients()
+        out['instructions'] = scraper.instructions_list()
+        print("recipe_scraper: ", out['name'])
         return out
-        
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching URL {url}: {e}")
-        return None
+
+    except:
+        try:
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+                'Accept': '*/*',  # This accepts any content type
+            }
+
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()  # Check that the request was successful
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            # Grabbing recipe name
+            try:
+                recipe_name = soup.find('h1').get_text(strip=True)
+                out['name'] = recipe_name
+            except Exception as e:
+                print(e)
+
+            # Search for the ingredients and instructions
+            ingredients, instructions = [], []
+            for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+                if 'ingredient' in header.get_text(strip=True).lower():
+                    ingredients_list = find_following_list(header)
+                    if ingredients_list:
+                        ingredients = get_text_list(ingredients_list)
+                        out['ingredients'] = ingredients
+
+                elif 'instruction' in header.get_text(strip=True).lower() or 'direction' in header.get_text(strip=True).lower() or 'process' in header.get_text(strip=True).lower():
+                    instructions_list = find_following_list(header)
+                    if instructions_list:
+                        instructions = get_text_list(instructions_list)
+                        out['instructions'] = instructions
+
+            # Add list items that have 'ingredient' in their class attribute
+            for li in soup.find_all('li', class_='ingredient'):
+                if li.get_text(strip=True) not in ingredients:
+                    ingredients.append(li.get_text(strip=True).replace("\n", ""))
+
+            print("Default: ", out['name'])
+            return out
+            
+        except Exception as e:
+            print(f"Error fetching URL {url}: {e}")
+            return None
     
 # Function to generate a simple, random ID
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
 def process(url, file_path):
-    res = get_recipe_info(url)
     print("Processing: ", url)
+    res = get_recipe_info(url)
     if res is not None:
         try:
             website_id = generate_id()
 
             #filter for empty entries
-            assert res.get('ingredients') != ""
-            assert res.get('instructions') != ""
+            assert res.get('ingredients') != []
+            assert res.get('instructions') != []
             assert res.get('name') != ""
 
-            processed_ingredients = ing_clean(res.get('ingredients'))
-            processed_instructions = instr_clean(res.get('instructions'))
-            print(processed_ingredients)
-            print(processed_instructions)
+            processed_ingredients = ing_clean(str(res.get('ingredients')))
             print("Processed: ", res.get('name'))
             print("URL Queue Size: ", url_queue.qsize())
 
@@ -176,10 +173,9 @@ def process(url, file_path):
                     website_id, 
                     url, 
                     res.get('name'), 
-                    res.get('ingredients'), 
-                    res.get('instructions'), 
-                    processed_ingredients,
-                    processed_instructions
+                    ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'), 
+                    ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'), 
+                    ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
                 ]
                 writer.writerow(row_data)
                 
@@ -197,8 +193,7 @@ def recipe_scrape(file_path, exception_event):
             process(url, file_path)
             url_queue.task_done()
         except Exception as e:
-            pass
-            #print(e)
+            print(e)
     
     print("-- RECIPE SCRAPE THREAD EXITING --")
 
@@ -207,7 +202,7 @@ def createRecipesFile(search_term, folder_path):
     file_path = ''.join([folder_path,'/processed-', search_term.strip().replace(" ","-"), '-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
-        csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions', 'Processed Ingredients', 'Processed'])
+        csv_writer.writerow(infoHeaders)
     return file_path
 
 def createMalformedFile():
