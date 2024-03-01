@@ -3,9 +3,8 @@ import openai
 import re
 import aiohttp
 import json
-openai.api_key = "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"
 
-OAclient = openai.OpenAI()
+OAclient = openai.OpenAI(api_key="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")
 
 def text_complete(prompt, client=OAclient):
     chat_completion = client.chat.completions.create(
