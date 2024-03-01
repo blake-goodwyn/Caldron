@@ -4,7 +4,7 @@ import re
 import aiohttp
 import json
 from google.colab import userdata
-openai.api_key = userdata.get("OPENAI_API_KEY")
+openai.api_key = userdata.get('OPENAI_API_KEY')
 
 OAclient = openai.OpenAI()
 
