@@ -5,6 +5,8 @@ import os
 from threads import *
 from genai_tools import *
 from datetime import datetime
+import aiohttp
+import json
 
 ingredient_counter = Counter()
 
@@ -17,8 +19,9 @@ def add_quotation_marks(s):
         s = '"' + s + '"'
     return s
 
-def clean(string):
-    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', normalize_ingredients(string).lower().strip()))
+async def clean(string):
+    normalized_ingredients = await normalize_ingredients(string)
+    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', normalized_ingredients.lower().strip()))
 
 # Analyzing ingredient frequency
 def update_ingredient_counter(ingredient_list, ingredient_counter):

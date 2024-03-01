@@ -12,6 +12,9 @@ import threading
 from util import create_directory
 from threads import *
 from extract_and_clean import clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
+import asyncio
+import aiofiles
+import aiohttp
 
 def find_next_tag(tag, target_tags):
     while tag is not None:
@@ -49,7 +52,7 @@ def get_text_list(ul_or_ol):
 # Allergen Information: Crucial for those with food allergies or intolerances.
 # Dietary Labels: Essential for individuals following specific dietary guidelines (e.g., vegan, gluten-free).
 
-infoHeaders = ['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions']
+infoHeaders = ['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions', 'Processed Ingredients']
 
 def download_image(image_url, folder_name, image_name):
     try:
@@ -86,16 +89,19 @@ def download_all_images(image_urls, base_dir, website_id):
     for thread in threads:
         thread.join()
 
-def get_recipe_info(url):
+async def get_recipe_info(url):
     try:
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
             'Accept': '*/*',  # This accepts any content type
         }
 
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()  # Check that the request was successful
-        soup = BeautifulSoup(response.content, 'html.parser')
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=headers, timeout=10) as response:
+                response.raise_for_status()  # Check that the request was successful
+                content = await response.text()
+
+        soup = BeautifulSoup(content, 'html.parser')
 
         out = {
             'name': "",
@@ -136,11 +142,11 @@ def get_recipe_info(url):
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
-def recipe_scrape(file_path, exception_event):
+async def recipe_scrape(file_path, exception_event, url_queue):
     while not exception_event.is_set() or not url_queue.empty():
         try:
-            url = url_queue.get()
-            res = get_recipe_info(url)
+            url = url_queue.get_nowait()
+            res = await get_recipe_info(url)
             if res is not None:
                 try:
                     website_id = generate_id()
@@ -149,18 +155,22 @@ def recipe_scrape(file_path, exception_event):
                     assert res.get('ingredients') != []
                     assert res.get('instructions') != []
                     assert res.get('name') != ""
-                    processed_ingredients = clean(str(res.get('ingredients')))
+
+                    processed_ingredients = await clean_async(str(res.get('ingredients')))
                     print("Processed: ", res.get('name'))
                     print("URL Queue Size: ", url_queue.qsize())
-                    with open(file_path, mode='a', newline='', encoding='utf-8') as file:
-                        csv_writer = csv.writer(file)
-                        csv_writer.writerow([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions'), eval(processed_ingredients)])
+
+                    async with aiofiles.open(file_path, mode='a', newline='', encoding='utf-8') as file:
+                        writer = csv.writer(file)
+                        await writer.writerow(','.join([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions'), eval(processed_ingredients)]) + '\n')
 
                 except Exception as e:
                     print(e)
 
-            time.sleep(0.05)
+            await asyncio.sleep(0.05)
             url_queue.task_done()
+        except asyncio.QueueEmpty:
+            await asyncio.sleep(0.1)  # Sleep briefly if the queue is empty
         except Exception as e:
             print(e)
     
