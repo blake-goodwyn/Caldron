@@ -2,7 +2,6 @@ print("Loading URL-Aggregator...", end='')
 from googleapiclient.discovery import build
 import pandas as pd
 from datetime import datetime
-import random
 import time
 import csv
 from threads import *
@@ -12,7 +11,7 @@ import uuid
 api_key = "AIzaSyBqffLzRrNKUQX-nZiU8NEp1ocB1P9MeHI"
 cse_id = "6373f179be4354964"
 
-urlThreshold = 30000  # total number of URLs you want
+urlThreshold = 3000  # total number of URLs you want
 urls = set()
 
 def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event):
@@ -29,17 +28,15 @@ def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklist
         None
     """
     check1 = time.time()
-    try:
-        for d in recipe_descriptors:
-            term = f"{core_search_term} {d}"
-            for start_num in range(1, 91, 10):  # increment by 10 as API allows max 10 results at a time
-                check2 = time.time()
-                if (check2 - check1) < 2:
-                    time.sleep(2)  # rate limit safeguard
+    for d in recipe_descriptors:
+        term = f"{core_search_term} {d}"
+        for start_num in range(1, 91, 10):  # increment by 10 as API allows max 10 results at a time
+            check2 = time.time()
+            if (check2 - check1) < 2:
+                time.sleep(2)  # rate limit safeguard
+            try:
                 search_results = google_search(term, api_key, cse_id, start_num)
                 for result in search_results.get('items', []):
-                    if event.is_set():
-                        break
                     url = result.get('link')
                     if not any(domain in url for domain in blacklisted_domains) and url not in urls:
                         urls.add(url)
@@ -48,17 +45,18 @@ def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklist
                             csv_writer = csv.writer(file)
                             csv_writer.writerow([url])
 
-                    if len(urls) >= desired_number_of_urls or event.is_set():
+                    if len(urls) >= desired_number_of_urls:
                         break
+            except Exception as e:
+                print(e)        
 
-                if len(urls) >= desired_number_of_urls or event.is_set():
-                    break
-            if len(urls) >= desired_number_of_urls or event.is_set():
+            if len(urls) >= desired_number_of_urls:
                 break
-    except Exception as e:
-        event.set()
-        print(e)
-        return
+        if len(urls) >= desired_number_of_urls:
+            break
+    
+    print(f"URL Aggregation Complete: {len(urls)} URLs found")
+    event.set()
 
 def google_search(search_term, api_key, cse_id, start_num, **kwargs):
     """
@@ -79,14 +77,14 @@ def google_search(search_term, api_key, cse_id, start_num, **kwargs):
     res = service.cse().list(q=search_term, cx=cse_id, start=start_num, **kwargs).execute()
     return res
 
-def createURLFile():
+def createURLFile(search_term, folder_path):
     """
     Creates a CSV file for storing URLs with a unique name based on the current date and time.
     
     Returns:
         str: The file path of the created CSV file.
     """
-    file_path = ''.join(['data/urls-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+    file_path = ''.join([folder_path,'/', search_term.strip().replace(" ","-"), "-urls-", datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(["URL"])

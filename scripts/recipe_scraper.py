@@ -7,11 +7,11 @@ import csv
 import time
 import uuid
 from datetime import datetime
-from urllib.parse import urlparse
 import mimetypes
 import threading
 from util import create_directory
 from threads import *
+from extract_and_clean import clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
 
 def find_next_tag(tag, target_tags):
     while tag is not None:
@@ -33,7 +33,7 @@ def get_text_list(ul_or_ol):
     """ Extract text from a list of li tags """
     return [li.get_text(strip=True) for li in ul_or_ol.find_all("li") if li.text]
 
-### TODO: Identified Information Factors ###
+### Identified Information Vectors ###
 
 ## Core Info
 # Name of the Recipe: Essential for identifying and referencing the dish.
@@ -104,13 +104,6 @@ def get_recipe_info(url):
             'images': []
         }
 
-        # Assuming images are in <img> tags with a specific class
-        #out['images'] = list(set(img['src'] for img in soup.find_all('img') 
-        #            if 'src' in img.attrs 
-        #            and img['src'].endswith(('.jpg', '.jpeg', '.png'))
-        #            and 'logo' not in img['src']
-        #            and 'placeholder' not in img['src']))
-
         # Grabbing recipe name
         try:
             recipe_name = soup.find('h1').get_text(strip=True)
@@ -135,7 +128,7 @@ def get_recipe_info(url):
 
         return out
         
-    except requests.exceptions.RequestException as e:
+    except Exception as e:
         print(f"Error fetching URL {url}: {e}")
         return None
 
@@ -144,42 +137,49 @@ def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
 def recipe_scrape(file_path, exception_event):
-    while not exception_event.is_set():
+    while not exception_event.is_set() or not url_queue.empty():
         try:
             url = url_queue.get()
             res = get_recipe_info(url)
             if res is not None:
-                print(res.get('name'))
                 try:
                     website_id = generate_id()
 
                     #filter for empty entries
                     assert res.get('ingredients') != []
                     assert res.get('instructions') != []
-
+                    assert res.get('name') != ""
+                    processed_ingredients = clean(str(res.get('ingredients')))
+                    print("Processed: ", res.get('name'))
+                    print("URL Queue Size: ", url_queue.qsize())
                     with open(file_path, mode='a', newline='', encoding='utf-8') as file:
                         csv_writer = csv.writer(file)
-                        csv_writer.writerow([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions')])
+                        csv_writer.writerow([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions'), eval(processed_ingredients)])
 
-                    recipe_scraping_queue.put([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions')])
-
-                except AssertionError as e:
-                    pass
+                except Exception as e:
+                    print(e)
 
             time.sleep(0.05)
             url_queue.task_done()
         except Exception as e:
-            #exception_event.set()
             print(e)
     
     print("-- RECIPE SCRAPE THREAD EXITING --")
 
 # Creates a CSV file to store recipe scraping
-def createRecipesFile():
-    file_path = ''.join(['data/recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
+def createRecipesFile(search_term, folder_path):
+    file_path = ''.join([folder_path,'/processed-', search_term.strip().replace(" ","-"), '-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions'])
     return file_path
 
+def createMalformedFile():
+    ID_file = 'data/malformed-processed-ingredient-IDs.txt'
+    if not os.path.exists(ID_file):
+        with open(ID_file, mode='w', newline='', encoding='utf-8') as file:
+            file.write("Malformed Processed Ingredient Lists:\n")
+    return ID_file
+
+ID_file = createMalformedFile()
 print("COMPLETE!")

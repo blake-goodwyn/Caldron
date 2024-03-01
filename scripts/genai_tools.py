@@ -20,7 +20,7 @@ def text_complete(prompt, client=OAclient):
     return chat_completion.choices[0].message.content
 
 def descriptor_generate(key_term):
-    descriptor_prompt = "Generate a list of 25 descriptors that could be appended onto the phrase: " + key_term + ". The descriptors should be related to the phrase and should be unique from one another. The list should be printed as a Python list."
+    descriptor_prompt = "Generate a list of 25 descriptors that could be appended onto the phrase: " + key_term + ". The descriptors should be related to the phrase and should be unique from one another. It is required that the list should be a Python list of strings."
     return text_complete(descriptor_prompt)
 
 def normalize_ingredients(ingredients):

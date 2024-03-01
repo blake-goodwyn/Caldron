@@ -3,13 +3,14 @@ import pandas as pd
 from collections import Counter
 import os
 from threads import *
-from openai_tools import *
+from genai_tools import *
 from datetime import datetime
 
 ingredient_counter = Counter()
 
 
 def add_quotation_marks(s):
+    assert type(s) == str, "Input must be a string"
     # Check if the string is already quoted
     if not (s.startswith('"') and s.endswith('"')) and not (s.startswith("'") and s.endswith("'")):
         # Add quotation marks
@@ -27,7 +28,6 @@ def update_ingredient_counter(ingredient_list, ingredient_counter):
 def increment_counter(processed, ingredient_counter, threshold=10):
     for i in eval(processed.strip()):
         ingredient_counter[i[0]] += 1
-    os.system('cls' if os.name == 'nt' else 'clear')
     print("Most Common Ingredients:")
     for i in ingredient_counter.most_common(threshold):
         print(i)
@@ -53,8 +53,6 @@ def recipe_clean(event):
 print("COMPLETE!")
 
 #Test: determine malformed processed ingredient lists
-#data = '/data/banana-bread-combined-recipes-2024-02-27-1338.csv'
-#df = pd.read_csv(data)
 #file_path = ''.join(['data/processed-banana-bread-recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
 #ID_file = 'data/malformed-processed-ingredient-IDs.txt'
 #if not os.path.exists(ID_file):
