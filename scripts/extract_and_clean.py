@@ -16,13 +16,17 @@ def add_quotation_marks(s):
         s = '"' + s + '"'
     return s
 
-def clean(string):
-    normalized_ingredients = normalize_ingredients(string)
-    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', normalized_ingredients.lower().strip()))
+def ing_clean(string):
+    standardized_ingredients = standardize_ingredients(string)
+    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', standardized_ingredients.lower().strip()))
+
+def instr_clean(string):
+    standardized_instructions = standardize_instructions(string)
+    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', standardized_instructions.lower().strip()))
 
 # Analyzing ingredient frequency
 def update_ingredient_counter(ingredient_list, ingredient_counter):
-    cleaned = clean(ingredient_list)
+    cleaned = ing_clean(ingredient_list)
     return increment_counter(cleaned, ingredient_counter)
 
 def increment_counter(processed, ingredient_counter, threshold=10):

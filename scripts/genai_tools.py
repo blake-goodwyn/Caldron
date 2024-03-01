@@ -48,8 +48,12 @@ def descriptor_generate(key_term):
     descriptor_prompt = "Generate a list of 25 descriptors that could be appended onto the phrase: " + key_term + ". The descriptors should be related to the phrase and should be unique from one another. It is required that the list should be a Python list of strings."
     return text_complete(descriptor_prompt)
 
-def normalize_ingredients(ingredients):
+def standardize_ingredients(ingredients):
     normalize_prompt = "Given the following string representing a list of ingredients (and potentially utensils or supplies), extract the core ingredients from the string. These ingredients should be expressed in one or two word phrases without extra descriptors. Then, return ONLY a string representing a Python list of tuples of the form (core ingredients, quantity number, quantity unit). The tuple should follow the format: ('ingredient', QTY, 'quantity unit'). The quantity number should be a floating-point number. No fractions should be present. The quantity unit is optional and should only be used for ingredients measured in quantities such as grams, milliliters, tablespoons, cups, etc. If no quantity unit is present, return None. : \n\n" + ingredients
+    return text_complete(normalize_prompt)
+
+def standardize_instructions(ingredients):
+    normalize_prompt = "Given the following string representing a list of instructions (and potentially utensils or supplies), extract the core instructions from the string. Then, return ONLY a string representing a Python list of strings with each string representing a discrete action. : \n\n" + ingredients
     return text_complete(normalize_prompt)
 
 def action_extraction(instructions):

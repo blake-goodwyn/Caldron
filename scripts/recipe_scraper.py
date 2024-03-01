@@ -11,7 +11,18 @@ import mimetypes
 import threading
 from util import create_directory
 from threads import *
-from extract_and_clean import clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
+from extract_and_clean import ing_clean, instr_clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
+
+def get_text_between_headers(start_header, end_header):
+    """ Extracts all text between two headers """
+    text_content = ''
+    element = start_header.find_next_sibling()
+
+    while element and element != end_header:
+        text_content += ' ' + element.get_text(" ", strip=True)
+        element = element.find_next_sibling()
+
+    return text_content.strip()
 
 def get_containers(start_header, end_header, soup):
     # Collect all containers between the start and end headers recursively
@@ -125,19 +136,10 @@ def get_recipe_info(url):
             elif ('instruction' in header_text or 'direction' in header_text) and not instructions_header:
                 instructions_header = header
 
-        # Extract Ingredients from Containers
+        # Extract Ingredients and Instructions
         if ingredients_header and instructions_header:
-            ingredients_containers = get_containers(ingredients_header, instructions_header, soup)
-            for container in ingredients_containers:
-                out['ingredients'].extend([li.get_text(strip=True) for li in container.find_all("li")])
-
-        # Search for the ingredients and instructions
-        for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-            if 'instruction' in header.get_text(strip=True).lower() or 'direction' in header.get_text(strip=True).lower():
-                instructions_list = find_following_list(header)
-                if instructions_list:
-                    instructions = get_text_list(instructions_list)
-                    out['instructions'] = instructions
+            out['ingredients'] = get_text_between_headers(ingredients_header, instructions_header).replace("\n","")
+            out['instructions'] = get_text_between_headers(instructions_header, soup).replace("\n","")
 
         return out
         
@@ -157,11 +159,14 @@ def process(url, file_path):
             website_id = generate_id()
 
             #filter for empty entries
-            assert res.get('ingredients') != []
-            assert res.get('instructions') != []
+            assert res.get('ingredients') != ""
+            assert res.get('instructions') != ""
             assert res.get('name') != ""
 
-            processed_ingredients = clean(str(res.get('ingredients')))
+            processed_ingredients = ing_clean(res.get('ingredients'))
+            processed_instructions = instr_clean(res.get('instructions'))
+            print(processed_ingredients)
+            print(processed_instructions)
             print("Processed: ", res.get('name'))
             print("URL Queue Size: ", url_queue.qsize())
 
@@ -171,9 +176,10 @@ def process(url, file_path):
                     website_id, 
                     url, 
                     res.get('name'), 
-                    ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'), 
-                    ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'), 
-                    ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
+                    res.get('ingredients'), 
+                    res.get('instructions'), 
+                    processed_ingredients,
+                    processed_instructions
                 ]
                 writer.writerow(row_data)
                 
@@ -181,6 +187,8 @@ def process(url, file_path):
             print(e)
         except Exception as e:
             print(e)
+    else:
+        print("Error fetching URL: ", url)
 
 def recipe_scrape(file_path, exception_event):
     while not exception_event.is_set() or not url_queue.empty():
@@ -199,7 +207,7 @@ def createRecipesFile(search_term, folder_path):
     file_path = ''.join([folder_path,'/processed-', search_term.strip().replace(" ","-"), '-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
-        csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions', 'Processed Ingredients'])
+        csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions', 'Processed Ingredients', 'Processed'])
     return file_path
 
 def createMalformedFile():

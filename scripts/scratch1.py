@@ -1,4 +1,4 @@
-from extract_and_clean import clean
+from extract_and_clean import ing_clean
 import pandas as pd
 
 # Example DataFrame
@@ -11,7 +11,7 @@ column_name = 'Processed_Ingredients'
 # Loop through each row and check for NaN in the specified column
 for index, row in df.iterrows():
     if pd.isna(row[column_name]):
-        row[column_name] = clean(row['Ingredients'])
+        row[column_name] = ing_clean(row['Ingredients'])
         try:
             eval(row[column_name])
             print(row['ID'], " | PASS | ", row[column_name])
