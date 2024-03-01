@@ -8,13 +8,16 @@ from recipe_scraper import createRecipesFile, recipe_scrape, add_quotation_marks
 import random
 from datetime import datetime
 from genai_tools import *
+import asyncio
 
 ##### Multi-Threaded Approach to Asynchronous/Simulatanous URL Scraping & Aggregation #####
 # Define recipe keywords
 def recipe_collector(core_search_term, folder, urlThreshold):
 
     blacklist = ["reddit.com", "facebook.com", "instagram.com", "pinterest.com"]
-    descriptors = eval(re.sub(r'[\r\n]+', ' ', descriptor_generate(core_search_term).lower().strip()))
+
+    descriptors = asyncio.run(descriptor_generate(core_search_term))
+    descriptors = eval(re.sub(r'[\r\n]+', ' ', descriptors.lower().strip()))
     print("Selected Descriptors: ", descriptors)
     random.shuffle(descriptors)
 
@@ -29,7 +32,7 @@ def recipe_collector(core_search_term, folder, urlThreshold):
 
     # Thread 2: Recipe Scraping & Cleaning
     print("Starting Recipe Scraping")
-    thread2 = threading.Thread(target=recipe_scrape, args=(recipe_file, exception_event,))
+    thread2 = threading.Thread(target=recipe_scrape, args=(recipe_file, exception_event, url_queue))
     thread2.start()
 
     # Wait for queues to be processed
@@ -43,7 +46,7 @@ logger.addHandler(logging.StreamHandler())
 logger.addHandler(logging.FileHandler(''.join(["logs/recipe-collector-", datetime.now().strftime('%Y-%m-%d-%H%M'), ".log"])))
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 
-search_terms = ["tart"] #, "cardamom bun", "cake", "mincemeat pie"]
+search_terms = ["cake"] #, "cardamom bun", "cake", "mincemeat pie"]
 data_path = "C:/Users/blake/Documents/GitHub/ebakery/data"
 for folder_name in search_terms:
     folder_path = os.path.join(data_path, folder_name.replace(" ", "-"))

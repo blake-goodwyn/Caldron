@@ -142,35 +142,36 @@ async def get_recipe_info(url):
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
-async def recipe_scrape(file_path, exception_event, url_queue):
+async def process(url, file_path, url_queue):
+    res = await get_recipe_info(url)
+    print("Processing: ", url)
+    if res is not None:
+        try:
+            website_id = generate_id()
+
+            #filter for empty entries
+            assert res.get('ingredients') != []
+            assert res.get('instructions') != []
+            assert res.get('name') != ""
+
+            processed_ingredients = await clean(str(res.get('ingredients')))
+            print("Processed: ", res.get('name'))
+            print("URL Queue Size: ", url_queue.qsize())
+
+            async with aiofiles.open(file_path, mode='a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                await writer.writerow(','.join([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions'), eval(processed_ingredients)]) + '\n')
+
+        except Exception as e:
+            print(e)
+
+def recipe_scrape(file_path, exception_event, url_queue):
     while not exception_event.is_set() or not url_queue.empty():
         try:
             url = url_queue.get_nowait()
-            res = await get_recipe_info(url)
-            if res is not None:
-                try:
-                    website_id = generate_id()
-
-                    #filter for empty entries
-                    assert res.get('ingredients') != []
-                    assert res.get('instructions') != []
-                    assert res.get('name') != ""
-
-                    processed_ingredients = await clean_async(str(res.get('ingredients')))
-                    print("Processed: ", res.get('name'))
-                    print("URL Queue Size: ", url_queue.qsize())
-
-                    async with aiofiles.open(file_path, mode='a', newline='', encoding='utf-8') as file:
-                        writer = csv.writer(file)
-                        await writer.writerow(','.join([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions'), eval(processed_ingredients)]) + '\n')
-
-                except Exception as e:
-                    print(e)
-
-            await asyncio.sleep(0.05)
+            asyncio.run(process(url, file_path, url_queue))
+            asyncio.sleep(0.05)
             url_queue.task_done()
-        except asyncio.QueueEmpty:
-            await asyncio.sleep(0.1)  # Sleep briefly if the queue is empty
         except Exception as e:
             print(e)
     
