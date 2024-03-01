@@ -139,40 +139,44 @@ def get_recipe_info(url):
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
+def process(url, file_path):
+    res = get_recipe_info(url)
+    print("Processing: ", url)
+    if res is not None:
+        try:
+            website_id = generate_id()
+
+            #filter for empty entries
+            assert res.get('ingredients') != []
+            assert res.get('instructions') != []
+            assert res.get('name') != ""
+
+            processed_ingredients = clean(str(res.get('ingredients')))
+            print("Processed: ", res.get('name'))
+            print("URL Queue Size: ", url_queue.qsize())
+
+            with open(file_path, mode='a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                row_data = [
+                    website_id, 
+                    url, 
+                    res.get('name'), 
+                    ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'), 
+                    ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'), 
+                    ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
+                ]
+                writer.writerow(row_data)
+                
+        except AssertionError as e:
+            print(e)
+        except Exception as e:
+            print(e)
+
 def recipe_scrape(file_path, exception_event):
     while not exception_event.is_set() or not url_queue.empty():
         try:
             url = url_queue.get()
-            res = get_recipe_info(url)
-            print("Processing: ", url)
-            if res is not None:
-                try:
-                    website_id = generate_id()
-
-                    #filter for empty entries
-                    assert res.get('ingredients') != []
-                    assert res.get('instructions') != []
-                    assert res.get('name') != ""
-
-                    processed_ingredients = clean(str(res.get('ingredients')))
-                    print("Processed: ", res.get('name'))
-                    print("URL Queue Size: ", url_queue.qsize())
-
-                    with open(file_path, mode='a', newline='', encoding='utf-8') as file:
-                        writer = csv.writer(file)
-                        row_data = [
-                            website_id, 
-                            url, 
-                            res.get('name'), 
-                            ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'), 
-                            ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'), 
-                            ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
-                        ]
-                        writer.writerow(row_data)
-                except AssertionError as e:
-                    print(e)
-                except Exception as e:
-                    print(e)
+            process(url, file_path)
             url_queue.task_done()
         except Exception as e:
             pass
