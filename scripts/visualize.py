@@ -76,7 +76,7 @@ def update_co_occurrence(ing_list, co_occurrence):
 
     return co_occurrence
 
-def visualize(file):
+def visualize(file, recipe_type):
     # Load the data
     df = normalize_ingredients(pd.read_csv(file))
     co_occurrence = Counter()
@@ -118,7 +118,7 @@ def visualize(file):
     plt.xlabel('Relative Quantity (Cups)')
     plt.ylabel('Recipe Prevalence')
     plt.xticks(rotation=45)
-    plt.title('Ingredient Prevalence and Quantity in Tart Recipes')
+    plt.title(''.join(['Ingredient Prevalence and Quantity in ', recipe_type, ' Recipes']))
 
     ing_pos={}
 
@@ -128,7 +128,7 @@ def visualize(file):
         plt.annotate(txt, (quantities[i], prevalences[i]), rotation=45)
 
     # Draw lines based on co-occurrence
-    min_co_occurrence = 20  # Set your threshold
+    min_co_occurrence = 0.1*max(prevalences)  # Set your threshold
 
     # Find the maximum co-occurrence count
     max_co_occurrence = max(co_occurrence.values())
@@ -148,4 +148,7 @@ def visualize(file):
 
     plt.show()
 
-visualize('C:/Users/blake/Documents/GitHub/ebakery/data/tart/processed-tart-recipe-2024-02-29-2229.csv')
+visualize('C:/Users/blake/Documents/GitHub/ebakery/data/tart/processed-tart-recipe-2024-02-29-2229.csv', "Tart")
+visualize('C:/Users/blake/Documents/GitHub/ebakery/data/banana-bread/processed-banana-bread-recipes-2024-02-27-1547.csv', "Tart")
+visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cinnamon-rolls/processed-cinnamon-bun-recipe-2024-02-28-1227.csv', "Cinnamon Bun")
+visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1242.csv', "Cake")

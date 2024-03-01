@@ -5,8 +5,6 @@ import os
 from threads import *
 from genai_tools import *
 from datetime import datetime
-import aiohttp
-import json
 
 ingredient_counter = Counter()
 

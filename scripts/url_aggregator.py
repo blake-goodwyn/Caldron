@@ -6,6 +6,7 @@ import time
 import csv
 from threads import *
 import uuid
+from bs4 import Tag
 
 ## URL Aggregation Functions ##
 api_key = "AIzaSyBqffLzRrNKUQX-nZiU8NEp1ocB1P9MeHI"

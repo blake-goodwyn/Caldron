@@ -189,7 +189,7 @@ def createRecipesFile(search_term, folder_path):
     file_path = ''.join([folder_path,'/processed-', search_term.strip().replace(" ","-"), '-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         csv_writer = csv.writer(file)
-        csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions'])
+        csv_writer.writerow(['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions', 'Processed Ingredients'])
     return file_path
 
 def createMalformedFile():
