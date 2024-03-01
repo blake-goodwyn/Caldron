@@ -3,9 +3,8 @@ import openai
 import re
 import aiohttp
 import json
-from dotenv import load_dotenv
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from google.colab import userdata
+openai.api_key = userdata.get("OPENAI_API_KEY")
 
 OAclient = openai.OpenAI()
 
