@@ -45,7 +45,7 @@ logger.addHandler(logging.StreamHandler())
 logger.addHandler(logging.FileHandler(''.join(["logs/recipe-collector-", datetime.now().strftime('%Y-%m-%d-%H%M'), ".log"])))
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 
-search_terms = ["cake"] #, "cardamom bun", "cake", "mincemeat pie"]
+search_terms = ["cinnamon rolls"] #, "cardamom bun", "cake", "mincemeat pie"]
 data_path = "C:/Users/blake/Documents/GitHub/ebakery/data"
 for folder_name in search_terms:
     folder_path = os.path.join(data_path, folder_name.replace(" ", "-"))

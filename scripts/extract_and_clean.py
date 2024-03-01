@@ -8,7 +8,6 @@ from datetime import datetime
 
 ingredient_counter = Counter()
 
-
 def add_quotation_marks(s):
     assert type(s) == str, "Input must be a string"
     # Check if the string is already quoted

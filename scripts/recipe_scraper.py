@@ -1,7 +1,7 @@
 print("Loading Recipe-Scraper...", end='')
 # Importing required libraries
 import requests
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, NavigableString, Tag
 import os
 import csv
 import time
@@ -12,9 +12,25 @@ import threading
 from util import create_directory
 from threads import *
 from extract_and_clean import clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
-import asyncio
-import aiofiles
-import aiohttp
+
+def get_containers(start_header, end_header, soup):
+    # Collect all containers between the start and end headers recursively
+    containers = []
+
+    def recurse_through_siblings(element):
+        nonlocal containers
+        while element and element != end_header:
+            if element.name in ['ul', 'ol']:
+                containers.append(element)
+            elif element.find(['ul', 'ol']):
+                containers.extend(element.find_all(['ul', 'ol'], recursive=False))
+            # Recurse through child elements
+            for child in element.find_all(recursive=False):
+                recurse_through_siblings(child)
+            element = element.find_next_sibling()
+
+    recurse_through_siblings(start_header.find_next_sibling())
+    return containers
 
 def find_next_tag(tag, target_tags):
     while tag is not None:
@@ -32,25 +48,9 @@ def find_next_tag(tag, target_tags):
 def find_following_list(tag):
     return find_next_tag(tag, ['ul', 'ol'])
 
-def get_text_list(ul_or_ol):
+def get_text_list(elements):
     """ Extract text from a list of li tags """
-    return [li.get_text(strip=True) for li in ul_or_ol.find_all("li") if li.text]
-
-### Identified Information Vectors ###
-
-## Core Info
-# Name of the Recipe: Essential for identifying and referencing the dish.
-# Ingredients: Critical for understanding the components and quantities needed.
-# Instructions: Vital for the step-by-step process of preparing the dish.
-
-## Secondary Info
-# Images: Finalized images of the dish
-# Prep and Cook Time: Critical for planning and understanding the time commitment required.
-
-# Tertiary Info
-# User Ratings and Reviews: Offers valuable insights into the popularity and success of the recipe among other cooks.
-# Allergen Information: Crucial for those with food allergies or intolerances.
-# Dietary Labels: Essential for individuals following specific dietary guidelines (e.g., vegan, gluten-free).
+    return [element.get_text(strip=True) for element in elements if element.text]
 
 infoHeaders = ['ID','URL', 'Recipe Name', 'Ingredients', 'Instructions', 'Processed Ingredients']
 
@@ -114,16 +114,26 @@ def get_recipe_info(url):
         except:
             pass
 
-        # Search for the ingredients and instructions
-        ingredients, instructions = [], []
-        for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-            if 'ingredient' in header.get_text(strip=True).lower():
-                ingredients_list = find_following_list(header)
-                if ingredients_list:
-                    ingredients = get_text_list(ingredients_list)
-                    out['ingredients'] = ingredients
+        # Find positions of Ingredients and Instructions headers
+        ingredients_header, instructions_header = None, None
 
-            elif 'instruction' in header.get_text(strip=True).lower() or 'direction' in header.get_text(strip=True).lower():
+        # Locate Ingredients and Instructions Headers
+        for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+            header_text = header.get_text(strip=True).lower()
+            if 'ingredient' in header_text and not ingredients_header:
+                ingredients_header = header
+            elif ('instruction' in header_text or 'direction' in header_text) and not instructions_header:
+                instructions_header = header
+
+        # Extract Ingredients from Containers
+        if ingredients_header and instructions_header:
+            ingredients_containers = get_containers(ingredients_header, instructions_header, soup)
+            for container in ingredients_containers:
+                out['ingredients'].extend([li.get_text(strip=True) for li in container.find_all("li")])
+
+        # Search for the ingredients and instructions
+        for header in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+            if 'instruction' in header.get_text(strip=True).lower() or 'direction' in header.get_text(strip=True).lower():
                 instructions_list = find_following_list(header)
                 if instructions_list:
                     instructions = get_text_list(instructions_list)

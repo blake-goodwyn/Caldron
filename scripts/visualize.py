@@ -2,6 +2,56 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from collections import Counter
 from itertools import combinations
+import nltk
+import sys
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import wordnet
+
+def display_loading_bar(current, total, bar_length=50):
+    """
+    Display a loading bar in the console.
+
+    :param current: Current progress (current index).
+    :param total: Total count.
+    :param bar_length: Length of the loading bar (default 50 characters).
+    """
+    progress = float(current) / total
+    arrow = '#' * int(round(progress * bar_length) - 1) + '>'
+    spaces = ' ' * (bar_length - len(arrow))
+
+    sys.stdout.write("\r[{0}] {1}%".format(arrow + spaces, int(round(progress * 100))))
+    sys.stdout.flush()
+
+def get_wordnet_pos(word):
+    tag = nltk.pos_tag([word])[0][1][0].upper()
+    tag_dict = {"J": wordnet.ADJ,
+                "N": wordnet.NOUN,
+                "V": wordnet.VERB,
+                "R": wordnet.ADV}
+
+    return tag_dict.get(tag, wordnet.NOUN)
+
+def lemmatize_ingredient(phrase):
+    
+    known_compounds = {'brown sugar', 'vanilla extract', 'baking powder', 'baking soda', 'chocolate chip'}
+
+    # Check if the entire phrase is a known compound noun
+    if phrase.lower() in known_compounds:
+        return phrase
+
+    lemmatizer = WordNetLemmatizer()
+    words = word_tokenize(phrase)
+    pos_tags = nltk.pos_tag(words)
+
+    # Filter out words that are not nouns
+    nouns = [word for word, pos in pos_tags if pos.startswith('NN')]
+
+    # Lemmatize the nouns
+    lemmatized_nouns = [lemmatizer.lemmatize(noun, get_wordnet_pos(noun)) for noun in nouns]
+
+    # Return the last noun (usually the main ingredient)
+    return lemmatized_nouns[-1] if lemmatized_nouns else ''
 
 # Define a conversion function to standardize measurements to cups
 def normalize_to_flour(quantity, unit):
@@ -30,32 +80,49 @@ def normalize_to_flour(quantity, unit):
 def normalize_ingredients(df):
     # Process each recipe
     for index, row in df.iterrows():
+        display_loading_bar(index, len(df))
         try:
             ingredients = eval(row['Processed Ingredients'])
             flour_cups = 0
             normalized_ingredients = []
 
-            # First, find the quantity of flour in cups
+            # Accumulate the quantity of flour in cups
             for ingredient in ingredients:
                 name, quantity, unit = ingredient
-                if "all purpose flour" or "flour" in name.lower():
-                    flour_cups = normalize_to_flour(quantity, unit)
-                    break
+                if "flour" in name.lower():
+                    flour_cups += normalize_to_flour(quantity, unit)
 
             # Skip normalization if flour is not found or has zero quantity
             if flour_cups == 0:
                 continue
 
-            # Normalize other ingredients against the quantity of flour
+            # Add the total flour quantity to the normalized ingredients
+            normalized_ingredients.append(("flour", 1, 'cup'))
+
+            # Normalize other ingredients against the total quantity of flour
             for ingredient in ingredients:
                 name, quantity, unit = ingredient
-                if name != "all purpose flour":
+                if "flour" not in name.lower():
+                    # Lemmatize ingredient name
+                    name = lemmatize_ingredient(name)
+                    # Convert ingredient name to its singular form
                     quantity_in_cups = normalize_to_flour(quantity, unit)
                     normalized_quantity = quantity_in_cups / flour_cups
                     normalized_ingredients.append((name, normalized_quantity, 'cups'))
 
+            #Combine ingredients that are now identical after lemmatization
+            combined_ingredients = {}
+            for name, quantity, unit in normalized_ingredients:
+                if name in combined_ingredients:
+                    combined_ingredients[name] = (combined_ingredients[name][0] + quantity, unit)
+                else:
+                    combined_ingredients[name] = (quantity, unit)
+
+            normalized_ingredients = [(name, qty, unit) for name, (qty, unit) in combined_ingredients.items()]
+
             # Store the normalized ingredients
             df.at[index, 'Normalized Ingredients'] = str(normalized_ingredients)
+            
         except Exception as e:
             pass
             #print(e)
@@ -80,6 +147,7 @@ def visualize(file, recipe_type):
     # Load the data
     df = normalize_ingredients(pd.read_csv(file))
     co_occurrence = Counter()
+    dataset_count = 0
 
     # Process the ingredient data
     ingredient_data = {}
@@ -91,8 +159,9 @@ def visualize(file, recipe_type):
                 name, quantity, unit = ingredient
                 if name not in ingredient_data:
                     ingredient_data[name] = {'total_quantity': 0, 'recipe_count': 0}
-                ingredient_data[name]['total_quantity'] += quantity  # Adjust if unit conversion is needed
+                ingredient_data[name]['total_quantity'] += quantity  # Adjusted via Normalized Ingredients
                 ingredient_data[name]['recipe_count'] += 1
+            dataset_count+=1
         except Exception as e:
             pass
             #print(e)
@@ -101,22 +170,22 @@ def visualize(file, recipe_type):
     names = []
     quantities = []
     prevalences = []
-    for name, data in ingredient_data.items():
+    for name, data in sorted(ingredient_data.items(),key=lambda x: x[1]['recipe_count'], reverse=True):
         names.append(name)
-        quantities.append(data['total_quantity']/data['recipe_count'])
-        prevalences.append(data['recipe_count'])
+        quantities.append(data['total_quantity'] / data['recipe_count'])
+        prevalences.append(data['recipe_count']/dataset_count)
 
     #Filter for top ingredients
-    k=20
+    k=10
     names = names[:k]
     quantities = quantities[:k]
     prevalences = prevalences[:k]
 
     # Create the graph
     plt.figure(figsize=(10, 6))
-    plt.scatter(quantities, prevalences, alpha=0.5)  # Adjust size scaling as needed
-    plt.xlabel('Relative Quantity (Cups)')
-    plt.ylabel('Recipe Prevalence')
+    plt.scatter(prevalences, quantities, alpha=0.5)  # Adjust size scaling as needed
+    plt.ylabel('Relative Quantity (Cups)')
+    plt.xlabel('Recipe Prevalence')
     plt.xticks(rotation=45)
     plt.title(''.join(['Ingredient Prevalence and Quantity in ', recipe_type, ' Recipes']))
 
@@ -124,8 +193,8 @@ def visualize(file, recipe_type):
 
     # Add ingredient names as labels
     for i, txt in enumerate(names):
-        ing_pos[txt] = (quantities[i], prevalences[i])
-        plt.annotate(txt, (quantities[i], prevalences[i]), rotation=45)
+        ing_pos[txt] = (prevalences[i], quantities[i])
+        plt.annotate(txt, (prevalences[i], quantities[i]), rotation=45)
 
     # Draw lines based on co-occurrence
     min_co_occurrence = 0.1*max(prevalences)  # Set your threshold
@@ -148,7 +217,7 @@ def visualize(file, recipe_type):
 
     plt.show()
 
-visualize('C:/Users/blake/Documents/GitHub/ebakery/data/tart/processed-tart-recipe-2024-02-29-2229.csv', "Tart")
-visualize('C:/Users/blake/Documents/GitHub/ebakery/data/banana-bread/processed-banana-bread-recipes-2024-02-27-1547.csv', "Tart")
+#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/tart/processed-tart-recipe-2024-02-29-2229.csv', "Tart")
+#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/banana-bread/processed-banana-bread-recipes-2024-02-27-1547.csv', "Banana Bread")
 visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cinnamon-rolls/processed-cinnamon-bun-recipe-2024-02-28-1227.csv', "Cinnamon Bun")
-visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1242.csv', "Cake")
+#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1242.csv', "Cake")
