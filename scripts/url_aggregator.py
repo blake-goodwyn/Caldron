@@ -15,18 +15,6 @@ urlThreshold = 3000  # total number of URLs you want
 urls = set()
 
 def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event):
-    """
-    Aggregate URLs based on a core search term and desired number of URLs.
-
-    Args:
-        file_path (str): The file path to save the URLs.
-        core_search_term (str): The core search term to use for URL aggregation.
-        desired_number_of_urls (int): The desired number of URLs to aggregate.
-        event (threading.Event): An event object to signal the termination of URL aggregation.
-
-    Returns:
-        None
-    """
     check1 = time.time()
     for d in recipe_descriptors:
         term = f"{core_search_term} {d}"
@@ -48,7 +36,8 @@ def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklist
                     if len(urls) >= desired_number_of_urls:
                         break
             except Exception as e:
-                print(e)        
+                pass
+                #print(e)        
 
             if len(urls) >= desired_number_of_urls:
                 break

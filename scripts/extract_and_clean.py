@@ -19,8 +19,8 @@ def add_quotation_marks(s):
         s = '"' + s + '"'
     return s
 
-async def clean(string):
-    normalized_ingredients = await normalize_ingredients(string)
+def clean(string):
+    normalized_ingredients = normalize_ingredients(string)
     return add_quotation_marks(re.sub(r'[\r\n]+', ' ', normalized_ingredients.lower().strip()))
 
 # Analyzing ingredient frequency

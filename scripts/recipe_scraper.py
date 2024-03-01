@@ -89,19 +89,16 @@ def download_all_images(image_urls, base_dir, website_id):
     for thread in threads:
         thread.join()
 
-async def get_recipe_info(url):
+def get_recipe_info(url):
     try:
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
             'Accept': '*/*',  # This accepts any content type
         }
 
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, headers=headers, timeout=10) as response:
-                response.raise_for_status()  # Check that the request was successful
-                content = await response.text()
-
-        soup = BeautifulSoup(content, 'html.parser')
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()  # Check that the request was successful
+        soup = BeautifulSoup(response.content, 'html.parser')
 
         out = {
             'name': "",
@@ -134,46 +131,52 @@ async def get_recipe_info(url):
 
         return out
         
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(f"Error fetching URL {url}: {e}")
         return None
-
+    
 # Function to generate a simple, random ID
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
-async def process(url, file_path, url_queue):
-    res = await get_recipe_info(url)
-    print("Processing: ", url)
-    if res is not None:
-        try:
-            website_id = generate_id()
-
-            #filter for empty entries
-            assert res.get('ingredients') != []
-            assert res.get('instructions') != []
-            assert res.get('name') != ""
-
-            processed_ingredients = await clean(str(res.get('ingredients')))
-            print("Processed: ", res.get('name'))
-            print("URL Queue Size: ", url_queue.qsize())
-
-            async with aiofiles.open(file_path, mode='a', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                await writer.writerow(','.join([website_id, url, res.get('name'), res.get('ingredients'), res.get('instructions'), eval(processed_ingredients)]) + '\n')
-
-        except Exception as e:
-            print(e)
-
-def recipe_scrape(file_path, exception_event, url_queue):
+def recipe_scrape(file_path, exception_event):
     while not exception_event.is_set() or not url_queue.empty():
         try:
-            url = url_queue.get_nowait()
-            asyncio.run(process(url, file_path, url_queue))
-            asyncio.sleep(0.05)
+            url = url_queue.get()
+            res = get_recipe_info(url)
+            print("Processing: ", url)
+            if res is not None:
+                try:
+                    website_id = generate_id()
+
+                    #filter for empty entries
+                    assert res.get('ingredients') != []
+                    assert res.get('instructions') != []
+                    assert res.get('name') != ""
+
+                    processed_ingredients = clean(str(res.get('ingredients')))
+                    print("Processed: ", res.get('name'))
+                    print("URL Queue Size: ", url_queue.qsize())
+
+                    with open(file_path, mode='a', newline='', encoding='utf-8') as file:
+                        writer = csv.writer(file)
+                        row_data = [
+                            website_id, 
+                            url, 
+                            res.get('name'), 
+                            ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'), 
+                            ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'), 
+                            ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
+                        ]
+                        writer.writerow(row_data)
+                except AssertionError as e:
+                    print(e)
+                except Exception as e:
+                    print(e)
             url_queue.task_done()
         except Exception as e:
-            print(e)
+            pass
+            #print(e)
     
     print("-- RECIPE SCRAPE THREAD EXITING --")
 

@@ -8,7 +8,6 @@ from recipe_scraper import createRecipesFile, recipe_scrape, add_quotation_marks
 import random
 from datetime import datetime
 from genai_tools import *
-import asyncio
 
 ##### Multi-Threaded Approach to Asynchronous/Simulatanous URL Scraping & Aggregation #####
 # Define recipe keywords
@@ -16,7 +15,7 @@ def recipe_collector(core_search_term, folder, urlThreshold):
 
     blacklist = ["reddit.com", "facebook.com", "instagram.com", "pinterest.com"]
 
-    descriptors = asyncio.run(descriptor_generate(core_search_term))
+    descriptors = descriptor_generate(core_search_term)
     descriptors = eval(re.sub(r'[\r\n]+', ' ', descriptors.lower().strip()))
     print("Selected Descriptors: ", descriptors)
     random.shuffle(descriptors)
@@ -32,7 +31,7 @@ def recipe_collector(core_search_term, folder, urlThreshold):
 
     # Thread 2: Recipe Scraping & Cleaning
     print("Starting Recipe Scraping")
-    thread2 = threading.Thread(target=recipe_scrape, args=(recipe_file, exception_event, url_queue))
+    thread2 = threading.Thread(target=recipe_scrape, args=(recipe_file, exception_event,))
     thread2.start()
 
     # Wait for queues to be processed
