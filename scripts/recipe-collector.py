@@ -13,7 +13,7 @@ from genai_tools import *
 # Define recipe keywords
 def recipe_collector(core_search_term, folder, urlThreshold):
 
-    blacklist = ["reddit.com", "facebook.com", "instagram.com", "pinterest.com"]
+    blacklist = ["reddit.com", "facebook.com", "instagram.com", "pinterest.com", "tiktok.com"]
 
     descriptors = descriptor_generate(core_search_term)
     descriptors = eval(re.sub(r'[\r\n]+', ' ', descriptors.lower().strip()))
@@ -39,13 +39,13 @@ def recipe_collector(core_search_term, folder, urlThreshold):
     recipe_scraping_queue.join()
 
 ##### Main Function #####
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-logger.addHandler(logging.StreamHandler())
-logger.addHandler(logging.FileHandler(''.join(["logs/recipe-collector-", datetime.now().strftime('%Y-%m-%d-%H%M'), ".log"])))
-logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
+#logger = logging.getLogger()
+#logger.setLevel(logging.INFO)
+#logger.addHandler(logging.StreamHandler())
+#logger.addHandler(logging.FileHandler(''.join(["logs/recipe-collector-", datetime.now().strftime('%Y-%m-%d-%H%M'), ".log"])))
+#logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 
-search_terms = ["cinnamon rolls"] #, "cardamom bun", "cake", "mincemeat pie"]
+search_terms = ["cookie"] #, "cardamom bun", "cake", "mincemeat pie"]
 data_path = "C:/Users/blake/Documents/GitHub/ebakery/data"
 for folder_name in search_terms:
     folder_path = os.path.join(data_path, folder_name.replace(" ", "-"))

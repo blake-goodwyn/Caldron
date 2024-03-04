@@ -1,13 +1,18 @@
 import os
 import openai
+import backoff
 import re
+import asyncio
 import aiohttp
 import json
 from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+sem  = asyncio.Semaphore(100)
+
 OAclient = openai.OpenAI()
+OAClientAsync = openai.AsyncOpenAI()
 
 def text_complete(prompt, client=OAclient):
     chat_completion = client.chat.completions.create(
@@ -21,31 +26,29 @@ def text_complete(prompt, client=OAclient):
     )
     return chat_completion.choices[0].message.content
 
-async def text_complete_async(prompt):
-    async with aiohttp.ClientSession() as session:
-        payload = {
-            "model": "gpt-3.5-turbo",
-            "messages": [
-                {
-                    "role": "user",
-                    "content": prompt,
-                }
-            ]
-        }
-        headers = {
-            "Authorization": f"Bearer YOUR_OPENAI_API_KEY",
-            "Content-Type": "application/json"
-        }
+def get_embedding(text, model="text-embedding-3-small"):
+    return OAclient.embeddings.create(input = [text], model=model).data[0].embedding
 
-        async with session.post('https://api.openai.com/v1/chat/completions', headers=headers, data=json.dumps(payload)) as response:
-            if response.status == 200:
-                chat_completion = await response.json()
-                return chat_completion['choices'][0]['message']['content']
-            else:
-                raise Exception(f"OpenAI API request failed with status code: {response.status}")
+
+async def text_complete_async(prompt) -> None:
+    chat_completion = await OAClientAsync.chat.create(
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        model="gpt-3.5-turbo",
+    )
+    return chat_completion.choices[0].message.content
+
+@backoff.on_exception(backoff.expo, openai.RateLimitError)
+async def get_embedding_async(text, model="text-embedding-3-small") -> None:
+    text = text.replace("\n", " ")
+    return (await OAClientAsync.embeddings.create(input = [text], model=model)).data[0].embedding
 
 def descriptor_generate(key_term):
-    descriptor_prompt = "Generate a list of 25 descriptors that could be appended onto the phrase: " + key_term + ". The descriptors should be related to the phrase and should be unique from one another. It is required that the list should be a Python list of strings."
+    descriptor_prompt = "Generate a list of 50 descriptors that could be appended onto the phrase: " + key_term + ". The descriptors should be related to the phrase, should be varied, and should be unique from one another. It is required that the list should be a Python list of strings."
     return text_complete(descriptor_prompt)
 
 def standardize_ingredients(ingredients):

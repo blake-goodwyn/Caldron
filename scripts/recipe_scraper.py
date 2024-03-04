@@ -97,8 +97,8 @@ def get_recipe_info(url):
     try:
         scraper = recipe_scrapers.scrape_me(url, wild_mode=True)
         out['name'] = scraper.title()
-        out['ingredients'] = scraper.ingredients()
-        out['instructions'] = scraper.instructions_list()
+        out['ingredients'] = [i.replace("\n", "") for i in scraper.ingredients()]
+        out['instructions'] = [i.replace("\n", "") for i in scraper.instructions_list()]
         print("recipe_scraper: ", out['name'])
         return out
 
@@ -210,7 +210,8 @@ def createMalformedFile():
     if not os.path.exists(ID_file):
         with open(ID_file, mode='w', newline='', encoding='utf-8') as file:
             file.write("Malformed Processed Ingredient Lists:\n")
+            file.close()
     return ID_file
 
-ID_file = createMalformedFile()
+#ID_file = createMalformedFile()
 print("COMPLETE!")

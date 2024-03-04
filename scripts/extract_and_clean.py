@@ -18,7 +18,7 @@ def add_quotation_marks(s):
 
 def ing_clean(string):
     standardized_ingredients = standardize_ingredients(string)
-    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', standardized_ingredients.lower().strip()))
+    return add_quotation_marks(re.sub(r'[\r\n]+', ' ', standardized_ingredients.lower().strip().replace("none","None")))
 
 def instr_clean(string):
     standardized_instructions = standardize_instructions(string)

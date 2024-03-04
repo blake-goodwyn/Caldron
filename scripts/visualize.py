@@ -7,6 +7,10 @@ import sys
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import wordnet
+import statistics as stat
+from dataset_linter import lint_dataset
+
+_DEBUG = False
 
 def display_loading_bar(current, total, bar_length=50):
     """
@@ -34,7 +38,13 @@ def get_wordnet_pos(word):
 
 def lemmatize_ingredient(phrase):
     
-    known_compounds = {'brown sugar', 'vanilla extract', 'baking powder', 'baking soda', 'chocolate chip'}
+    known_compounds = {'brown sugar', 
+                       'chocolate chip', 
+                       'cream cheese', 
+                       'vanilla extract', 
+                       'baking powder', 
+                       'baking soda', 
+                       'chocolate chips'}
 
     # Check if the entire phrase is a known compound noun
     if phrase.lower() in known_compounds:
@@ -79,6 +89,7 @@ def normalize_to_flour(quantity, unit):
 
 def normalize_ingredients(df):
     # Process each recipe
+    c = 1
     for index, row in df.iterrows():
         display_loading_bar(index, len(df))
         try:
@@ -121,11 +132,12 @@ def normalize_ingredients(df):
             normalized_ingredients = [(name, qty, unit) for name, (qty, unit) in combined_ingredients.items()]
 
             # Store the normalized ingredients
-            df.at[index, 'Normalized Ingredients'] = str(normalized_ingredients)
+            df.at[index, 'Normalized Ingredients'] = normalized_ingredients
             
         except Exception as e:
-            pass
-            #print(e)
+            if _DEBUG:
+                print(e)
+
     return df
 
 def update_co_occurrence(ing_list, co_occurrence):
@@ -143,59 +155,7 @@ def update_co_occurrence(ing_list, co_occurrence):
 
     return co_occurrence
 
-def visualize(file, recipe_type):
-    # Load the data
-    df = normalize_ingredients(pd.read_csv(file))
-    co_occurrence = Counter()
-    dataset_count = 0
-
-    # Process the ingredient data
-    ingredient_data = {}
-    for index, row in df.iterrows():
-        try:
-            ingredients = eval(row['Normalized Ingredients'])  # Replace with actual column name
-            co_occurrence = update_co_occurrence(ingredients, co_occurrence)
-            for ingredient in ingredients:
-                name, quantity, unit = ingredient
-                if name not in ingredient_data:
-                    ingredient_data[name] = {'total_quantity': 0, 'recipe_count': 0}
-                ingredient_data[name]['total_quantity'] += quantity  # Adjusted via Normalized Ingredients
-                ingredient_data[name]['recipe_count'] += 1
-            dataset_count+=1
-        except Exception as e:
-            pass
-            #print(e)
-
-    # Prepare data for plotting
-    names = []
-    quantities = []
-    prevalences = []
-    for name, data in sorted(ingredient_data.items(),key=lambda x: x[1]['recipe_count'], reverse=True):
-        names.append(name)
-        quantities.append(data['total_quantity'] / data['recipe_count'])
-        prevalences.append(data['recipe_count']/dataset_count)
-
-    #Filter for top ingredients
-    k=10
-    names = names[:k]
-    quantities = quantities[:k]
-    prevalences = prevalences[:k]
-
-    # Create the graph
-    plt.figure(figsize=(10, 6))
-    plt.scatter(prevalences, quantities, alpha=0.5)  # Adjust size scaling as needed
-    plt.ylabel('Relative Quantity (Cups)')
-    plt.xlabel('Recipe Prevalence')
-    plt.xticks(rotation=45)
-    plt.title(''.join(['Ingredient Prevalence and Quantity in ', recipe_type, ' Recipes']))
-
-    ing_pos={}
-
-    # Add ingredient names as labels
-    for i, txt in enumerate(names):
-        ing_pos[txt] = (prevalences[i], quantities[i])
-        plt.annotate(txt, (prevalences[i], quantities[i]), rotation=45)
-
+def show_co_occurrence(co_occurrence, names, ing_pos, prevalences):
     # Draw lines based on co-occurrence
     min_co_occurrence = 0.1*max(prevalences)  # Set your threshold
 
@@ -215,9 +175,79 @@ def visualize(file, recipe_type):
 
                 plt.plot([x1, x2], [y1, y2], color='grey', alpha=alpha, linewidth=linewidth)
 
+def visualize(file, recipe_type):
+    # Load the data
+    df = lint_dataset(pd.read_csv(file))
+    df = normalize_ingredients(df)
+    #co_occurrence = Counter()
+    dataset_count = 0
+    total_ing = 0
+    failed_ing = 0
+
+    # Process the ingredient data
+    ingredient_data = {}
+    for index, row in df.iterrows():
+        try:
+            if _DEBUG:
+                print(row['Normalized Ingredients'])
+            ingredients = row['Normalized Ingredients']  # Replace with actual column name
+            #co_occurrence = update_co_occurrence(ingredients, co_occurrence)
+            total_ing += len(ingredients)
+            for ingredient in ingredients:
+                try:
+                    name, quantity, unit = ingredient
+                    if name not in ingredient_data:
+                        ingredient_data[name] = {'total_quantity': [], 'recipe_count': 0}
+                    ingredient_data[name]['total_quantity'].append(quantity)  # Adjusted via Normalized Ingredients
+                    ingredient_data[name]['recipe_count'] += 1
+                except Exception as e:
+                    failed_ing += 1
+                    if _DEBUG:
+                        print(e)
+
+            dataset_count+=1
+        except Exception as e:
+            if _DEBUG:
+                print(e)
+
+    # Prepare data for plotting
+    names = []
+    quantities = []
+    prevalences = []
+    errors = []
+    for name, data in sorted(ingredient_data.items(),key=lambda x: x[1]['recipe_count'], reverse=True):
+        names.append(name)
+        quantities.append(stat.median(data['total_quantity']))
+        try:
+            errors.append(stat.stdev(data['total_quantity']))
+        except:
+            errors.append([0,0])
+        prevalences.append(data['recipe_count']/dataset_count)
+
+    #Filter for top ingredients
+    k=10
+    names = names[:k]
+    quantities = quantities[:k]
+    errors = errors[:k]
+
+    # Create the bar graph
+    plt.figure(figsize=(10, 6))
+    plt.bar(names, quantities, alpha=0.7)  # Adjust alpha as needed
+    #plt.errorbar(names, quantities, yerr=errors, fmt='o', color='black', alpha=0.7)  # Adjust alpha as needed
+    plt.ylabel('Relative Quantity (Cups)')
+    plt.xticks(rotation=20)
+    plt.title(f'Ingredient Quantities in {recipe_type} Recipes (n = {dataset_count})')
+
+    ##For scatter variant
+    #show_co_occurrence(co_occurrence, names, ing_pos, prevalences):
+
+    print("\nPercentage of rows readable: ", dataset_count/len(df)*100, "%")
+    print("Percentage of ingredients readable: ", (total_ing-failed_ing)/total_ing*100, "%")
+
     plt.show()
 
-#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/tart/processed-tart-recipe-2024-02-29-2229.csv', "Tart")
+visualize('data/cookie/processed-cookie-recipe-2024-03-04-1918.csv', "Cookie")
+#visualize('data/tart/processed-tart-recipe-2024-02-29-2229-PROCESSED.csv', "Tart")
 #visualize('C:/Users/blake/Documents/GitHub/ebakery/data/banana-bread/processed-banana-bread-recipes-2024-02-27-1547.csv', "Banana Bread")
-#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cinnamon-rolls/processed-cinnamon-rolls-recipe-2024-02-28-1227.csv', "Cinnamon Bun")
-visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1336.csv', "Cake")
+#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1336.csv', "Cake")
+#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cinnamon-rolls/processed-cinnamon-rolls-recipe-2024-03-01-1928.csv', "Cinnamon Bun")
