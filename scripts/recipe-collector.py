@@ -38,14 +38,7 @@ def recipe_collector(core_search_term, folder, urlThreshold):
     url_queue.join()
     recipe_scraping_queue.join()
 
-##### Main Function #####
-#logger = logging.getLogger()
-#logger.setLevel(logging.INFO)
-#logger.addHandler(logging.StreamHandler())
-#logger.addHandler(logging.FileHandler(''.join(["logs/recipe-collector-", datetime.now().strftime('%Y-%m-%d-%H%M'), ".log"])))
-#logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
-
-search_terms = ["cookie"] #, "cardamom bun", "cake", "mincemeat pie"]
+search_terms = ["bread"] #["muffin"]
 data_path = "C:/Users/blake/Documents/GitHub/ebakery/data"
 for folder_name in search_terms:
     folder_path = os.path.join(data_path, folder_name.replace(" ", "-"))

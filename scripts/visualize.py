@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import matplotlib.pyplot as plt
 from collections import Counter
 from itertools import combinations
@@ -246,8 +247,11 @@ def visualize(file, recipe_type):
 
     plt.show()
 
-visualize('data/cookie/processed-cookie-recipe-2024-03-04-1918.csv', "Cookie")
-#visualize('data/tart/processed-tart-recipe-2024-02-29-2229-PROCESSED.csv', "Tart")
-#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/banana-bread/processed-banana-bread-recipes-2024-02-27-1547.csv', "Banana Bread")
-#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cake/processed-cake-recipe-2024-03-01-1336.csv', "Cake")
-#visualize('C:/Users/blake/Documents/GitHub/ebakery/data/cinnamon-rolls/processed-cinnamon-rolls-recipe-2024-03-01-1928.csv', "Cinnamon Bun")
+
+visualize('data/GOOD DATASETS/processed-cookie-recipe-2024-03-04-1918.csv', "Cookie")
+#folder = 'data/GOOD DATASETS/'
+#folderObj = os.scandir(folder)
+#for entry in folderObj:
+#    if entry.is_file():
+#        file = folder + entry.name
+#        visualize(file, entry.name.split('-')[1])

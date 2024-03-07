@@ -1,6 +1,7 @@
 from extract_and_clean import ing_clean
 import pandas as pd
 import ast
+import re
 
 # Example DataFrame
 file = 'data/tart/processed-tart-recipe-2024-02-29-2229.csv'
@@ -10,6 +11,8 @@ file_new = 'data/tart/processed-tart-recipe-2024-02-29-2229-PROCESSED.csv'
 
 # Specify the column to check for NaN
 column_name = 'Processed Ingredients'
+
+_DEBUG = False
 
 def safely_convert_to_list(string_value):
     """
@@ -30,64 +33,80 @@ def safely_convert_to_list(string_value):
     return string_value if isinstance(string_value, list) else [string_value]
 
 # Loop through each row and check for NaN in the specified column
-def lint_dataset(df):
+def lint_dataset(df, _DEBUG=False):
     assert type(df) == pd.DataFrame, "Input must be a DataFrame"
     for index, row in df.iterrows():
         
         if pd.isna(row[column_name]):
-            print("[Value Undefined] Cleaning row #", index+1, " | ", row['ID'])
+            if _DEBUG:
+                print("[Value Undefined] Cleaning row #", index+1, " | ", row['ID'])
             row[column_name] = ing_clean(row['Ingredients'])
             try:
                 eval(row[column_name])
                 assert type(eval(row[column_name]) == list)
-                print(row['ID'], " | PASS | ", row[column_name])
+                if _DEBUG:
+                    print(row['ID'], " | PASS | ", row[column_name])
             except AssertionError as e:
-                print(e)
-                row[column_name] = safely_convert_to_list(eval(row[column_name]))
+                if _DEBUG:
+                    print(e)
+                row[column_name] = safely_convert_to_list(row[column_name])
             except Exception as e:
-                print(e)
-                print(row['ID'], " | FAIL | ", row[column_name])
+                if _DEBUG:
+                    print(e)
+                    print(row['ID'], " | FAIL | ", row[column_name])
         
         try:
-            print("Evaluating row #", index+1, " | ", row['ID'])
+            if _DEBUG:
+                print("Evaluating row #", index+1, " | ", row['ID'])
             eval(row[column_name])
             assert type(eval(row[column_name]) == list)
-            print(row['ID'], " | PASS | ", row[column_name])
+            if _DEBUG:
+                print(row['ID'], " | PASS | ", row[column_name])
         except AssertionError as e:
-            print(e)
+            if _DEBUG:
+                print(e)
             row[column_name] = safely_convert_to_list(eval(row[column_name]))
             try:
                 eval(row[column_name])
                 assert type(eval(row[column_name]) == list)
-                print(row['ID'], " | PASS | ", row[column_name])
+                if _DEBUG:
+                    print(row['ID'], " | PASS | ", row[column_name],"\n")
             except Exception as e:
-                print(e)
-                print(row['ID'], " | FAIL | ", row[column_name])
+                if _DEBUG:
+                    print(e)
+                    print(row['ID'], " | FAIL | ", row[column_name],"\n")
         except Exception as e:
-            print(e)
-            print("[Eval failed] Cleaning row #", index+1, " | ", row['ID'])
+            if _DEBUG:
+                print(e)
+                print("[Eval failed] Cleaning row #", index+1, " | ", row['ID'])
             row[column_name] = ing_clean(row['Ingredients'])
             try:
                 eval(row[column_name])
                 assert type(eval(row[column_name]) == list)
-                print(row['ID'], " | PASS | ", row[column_name])
+                if _DEBUG:
+                    print(row['ID'], " | PASS | ", row[column_name],"\n")
             except Exception as e:
-                print(e)
-                print(row['ID'], " | FAIL | ", row[column_name])
+                if _DEBUG:
+                    print(e)
+                    print(row['ID'], " | FAIL | ", row[column_name],"\n")
 
     # Parse corrected dataframe
     c = 0
     for index, row in df.iterrows():
-        print("\nEvaluating row #", index+1, " | ", row['ID'])
+        #print("Evaluating row #", index+1, " | ", row['ID'])
         try:
             eval(row[column_name])
             assert type(eval(row[column_name])) == list
-            print("Type: ", type(eval(row[column_name])))
+            if _DEBUG:
+                print("Type: ", type(eval(row[column_name])))
             c+=1
+            if _DEBUG:
+                print("PASS | ", row['ID'],"\n")
         except Exception as e:
-            print(e)
-            print(row[column_name])
-            print(row['ID'], " | FAIL ")
+            if _DEBUG:
+                print(e)
+                print(row[column_name])
+            print("FAIL | ", row['ID'])
 
     print("Percentage of rows readable: ", c/len(df)*100, "%")
 

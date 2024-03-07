@@ -5,6 +5,7 @@ import os
 from threads import *
 from genai_tools import *
 from datetime import datetime
+import re
 
 ingredient_counter = Counter()
 
