@@ -1,14 +1,11 @@
 import os
 import openai
 import asyncio
-import re
 from dotenv import load_dotenv
+
 load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
-sem  = asyncio.Semaphore(100)
-
 OAclient = openai.OpenAI()
 OAClientAsync = openai.AsyncOpenAI()
 
