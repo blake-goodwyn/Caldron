@@ -61,6 +61,10 @@ def action_extraction(instructions):
     prompt = action_extraction_prompt + instructions
     return text_complete(prompt)
 
+def extract_action(action):
+    prompt = "Given the following string representing a step in a recipe, extract the core action from the string. Each action should be a single, distinct verb. For example, 'Add the eggs and whisk for 15 seconds' should be something like 'Whisk'. Return as a single word: \n\n" + action
+    return text_complete(prompt)
+
 async def action_extraction_async(recipe):
     assert(type(recipe) == dict)
     prompt = action_extraction_prompt + recipe['instructions']

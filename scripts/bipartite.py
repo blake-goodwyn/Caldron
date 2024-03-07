@@ -2,14 +2,13 @@ import pandas as pd
 import networkx as nx
 from itertools import combinations
 import matplotlib.pyplot as plt
-import math
 import numpy as np
 from collections import Counter
-import spacy
+from cos_similarity import are_similar
 
-nlp = spacy.load('en_core_web_md')
-cosThreshold = 0.8 #arbitrary threshold for cosine similarity
 k = 20 #top ingredients
+thresh = 0.8 #cosine similarity threshold
+_SIMILARITY = False
 
 def graph_update(G, ing_list):
     
@@ -17,8 +16,9 @@ def graph_update(G, ing_list):
 
     for ing1, ing2 in combinations(l, 2):
 
-        if are_similar(ing1, ing2):
-            print("similar! : ", ing1, " | ", ing2)
+        if _SIMILARITY:
+            if are_similar(ing1, ing2):
+                print("similar! : ", ing1, " | ", ing2)
         if G.has_edge(ing1, ing2): # If the edge exists, increase weight; otherwise, add edge with weight 1
             G[ing1][ing2]['weight'] += 1
         else:
@@ -29,38 +29,17 @@ def counter_update(C, ing_list):
     l = [x[0] for x in ing_list] #grabs just the ingredients
     for ing in l: #iterate across list of ingredients
         found = False
-        for existing_ing in C:
-            if are_similar(existing_ing, ing): #checks cosine similarity
-                #print("similar! : ", existing_ing, " | ", ing)
-                C[existing_ing] += 1
-                found = True
-                break
+        if _SIMILARITY:
+            for existing_ing in C:
+                if are_similar(existing_ing, ing): #checks cosine similarity
+                    C[existing_ing] += 1
+                    found = True
+                    break
         if not found:
             C[ing] += 1
 
-## Quick Cosine Similarity
-def are_similar(str1, str2):
-
-    #get embeddings for the two strings
-    u = nlp(str1.lower()).vector
-    v = nlp(str2.lower()).vector
-
-    assert(u.shape[0] == v.shape[0])
-    uv = 0
-    uu = 0
-    vv = 0
-    for i in range(u.shape[0]):
-        uv += u[i]*v[i]
-        uu += u[i]*u[i]
-        vv += v[i]*v[i]
-    cos_theta = 1
-    if uu!=0 and vv!=0:
-        cos_theta = uv/np.sqrt(uu*vv)
-
-    return cos_theta > cosThreshold
-
 def bipartite(file):
-    
+
     #Read CSV to DataFrame
     df = pd.read_csv(file)
     assert 'Processed Ingredients' in df.columns, "DataFrame must contain a 'Processed Ingredients' column"
@@ -84,16 +63,30 @@ def bipartite(file):
             print(index, " | ", row['ID'])
             print(e)
 
-        if index >= 50:
-            break
-
-    #for i in sorted(C, key=lambda x: C[x], reverse=True)[:k]:
-    #    print(i, " : ", C[i])
-    # 
-    #input("Press Enter to continue...")
-
     degrees = dict(G.degree())
-    top_nodes = sorted(degrees, key=degrees.get, reverse=True)[:k]
+    nodes = sorted(degrees, key=degrees.get, reverse=True)
+    top_nodes = []
+
+    while len(top_nodes) < k and nodes:
+        current_node = nodes.pop(0)
+        merged = False
+
+        for i in range(len(top_nodes)):
+            if are_similar(current_node, top_nodes[i], cosThreshold=thresh):
+                # Merge nodes by summing their degrees
+                degrees[top_nodes[i]] += degrees[current_node]
+                merged = True
+                break
+
+        if not merged:
+            top_nodes.append(current_node)
+
+    # Sort top_nodes by their updated degrees if required
+    top_nodes = sorted(top_nodes, key=lambda n: degrees[n], reverse=True)
+                
+    print("Top nodes: ", top_nodes)
+    input()
+
     for ingredient, count in C.items():
         if ingredient in G:
             G.nodes[ingredient]['size'] = count
