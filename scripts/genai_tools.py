@@ -1,6 +1,7 @@
 import os
 import openai
 import asyncio
+import ast
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -52,11 +53,31 @@ def standardize_instructions(ingredients):
     normalize_prompt = "Given the following string representing a list of instructions (and potentially utensils or supplies), extract the core instructions from the string. Then, return ONLY a string representing a Python list of strings with each string representing a discrete action. : \n\n" + ingredients
     return text_complete(normalize_prompt)
 
-action_extraction_prompt = "Given the following string representing a list of recipe instructions, extract the actions in sequence from the string. Each action should be a single, distinct verb. For example, 'Add the eggs and whisk for 15 seconds' should be something like 'Add', 'Whisk'. Return a Python list of these actions in sequence. Ensure that the proper brackets are included: \n\n"
+action_extraction_prompt = "Given the following string representing a some number of recipe instructions, extract the actions in sequence from the string. Each action should be a single, distinct verb. For example, 'Add the eggs and whisk for 15 seconds' should be something like ['add', 'whisk']. Return a Python list of these actions in sequence. Ensure that the proper brackets are included: \n\n"
 
-def action_extraction(instructions):
+def actions_extraction(instructions):
     prompt = action_extraction_prompt + instructions
-    return text_complete(prompt)
+    temp = text_complete(prompt)
+
+    while True:
+        try:
+            # Use ast.literal_eval instead of eval for safety
+            l = ast.literal_eval(temp)
+
+            if not isinstance(l, list):
+                raise ValueError("Result is not a list")
+
+            for i in l:
+                if not isinstance(i, str):
+                    raise ValueError("List item is not a string")
+            break  # Break the loop if no exceptions are raised
+
+        except (ValueError, SyntaxError) as e:
+            print(f"Error: {e}")
+            # Re-prompt and continue the loop
+            temp = text_complete(prompt)
+
+    return l
 
 def extract_action(action):
     prompt = "Given the following string representing a step in a recipe, extract the core action from the string. Each action should be a single, distinct verb. For example, 'Add the eggs and whisk for 15 seconds' should be something like 'Whisk'. Return as a single word: \n\n" + action
