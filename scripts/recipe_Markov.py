@@ -1,7 +1,8 @@
 import pandas as pd
 import spacy
 import numpy as np
-from sklearn.preprocessing import normalize
+import os
+from sklearn.preprocessing import normalize, LabelEncoder
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
@@ -10,10 +11,13 @@ import logging
 import warnings
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.mixture import GaussianMixture
+import tiktoken
+import pickle
 
 # Initialize spaCy model once and use it throughout
 nlp = spacy.load('en_core_web_md')
 method = "kmeans"  # Clustering method to use
+tokenizer = tiktoken.encoding_for_model('gpt-3.5-turbo')
 
 class RecipeAction:
     def __init__(self, ID, position, text, label):
@@ -200,26 +204,31 @@ def process_recipes(file_path, k):
                 #normalize the positions of the actions depending on the length of recipe_actions list
         for r in new:
             r.normalize_position(len(new))
-        recipe_actions.extend(new)       
+        recipe_actions.append(new)       
 
     return recipe_actions
 
-def main(file, k=10):
+def main(file, k=1000):
     print("Starting recipe modeling...")
     
     try:
         recipe_actions = process_recipes(file, k)
-        print(f"{len(recipe_actions)} recipe actions extracted.")
-        input()
-        n_clusters_range = range(2, 101)
-        scores, clusters = perform_clustering(recipe_actions, n_clusters_range)
-
+        all_actions = [item for sub in recipe_actions for item in sub]
+        print(f"{len(all_actions)} recipe actions extracted.")
+        n_clusters_range = range(2, 500)
+        scores, clusters = perform_clustering(all_actions, n_clusters_range)
         print("Best Fit Score: ", max(scores, key=lambda x: x[1]))
-        #print(f"Examine the {len(clusters[0].actions)} actions in the first cluster")
-        #for a in clusters[0].actions:
-        #    print(a.label)
 
-        #TODO - Make sense of the groupings and visualize the clusters
+        # Define the output file path
+        cwd = os.getcwd()
+        output_directory = os.path.join(cwd, 'outputs')
+
+        #pickle the clusters and recipe_actions
+        with open(os.path.join(output_directory, 'clusters.pkl'), 'wb') as file:
+            pickle.dump(clusters, file)
+        
+        with open(os.path.join(output_directory, 'recipe_actions.pkl'), 'wb') as file:
+            pickle.dump(recipe_actions, file)
 
         ##Make sense of the cluster labels with a single label
         for cluster in sorted(clusters, key=lambda x: x.position):
@@ -227,14 +236,32 @@ def main(file, k=10):
             cluster_actions = cluster.actions #form action list
             action_prompt = ""
             for action in cluster_actions:
-                action_prompt += str(action.pos) + " | "
-                action_prompt += str(action.label) + "\n"
+                temp = str(action.pos) + " | "
+                temp += str(action.label) + "\n"
+                if len(tokenizer.encode(action_prompt+temp)) < 16385: #openapi token limit
+                    action_prompt += temp
+                else:
+                    break
+
+            #ensure that action_prompt is less than 16385 tokens
             cluster.set_label(cluster_label(action_prompt).lower())
             print(f"Cluster ID: {cluster.clusterID} | Label: {cluster.label} | Position: {cluster.position}| # of Actions: {len(cluster.actions)}")
-            #assign appropriate label to each cluster
 
-            #assign appropriate label to each action in the cluster
+        output_file_path = os.path.join(output_directory, 'recipe_actions.txt')
 
+        # Check if the directory exists, create it if it doesn't
+        if not os.path.exists(output_directory):
+            os.makedirs(output_directory)
+
+        with open(output_file_path, 'w+') as file:
+            for action_list in recipe_actions:
+                file.write("<")
+                print("<", end="")
+                for action in action_list:
+                    file.write(f"{action.state} ")
+                    print(f"{action.state} ", end="")
+                file.write(">\n")  # Write a newline character after each action list
+                print(">")
         
 
         # Plotting and additional processing can go here

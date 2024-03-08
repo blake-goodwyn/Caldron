@@ -84,7 +84,7 @@ def extract_action(action):
     return text_complete(prompt)
 
 def cluster_label(prompt):
-    prompt = "Given the following string representing a list of actions associated with specific phase of a recipe, examine the actions and determine a label for the category of the list. The string is formatted in lines of the position of the action in the recipe's sequence of action and then a label for the action. Return a single word to be used as a label for the cluster \n\n" + prompt
+    prompt = "Given the following string representing a list of actions associated with specific phase of a recipe, examine the actions and determine a label for the category of the list. Consider labels that repeat prominently in this determination. The string is formatted in lines of the position of the action in the recipe's sequence of action and then a label for the action. Return a single word to be used as a label for the cluster \n\n" + prompt
     return text_complete(prompt)
 
 async def action_extraction_async(recipe):
