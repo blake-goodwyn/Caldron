@@ -112,4 +112,11 @@ def lint_dataset(df, _DEBUG=False):
 
     return df
 
+def lint(file):
+    assert type(file) == str, "Input must be a string"
+    assert file.endswith('.csv'), "Input must be a CSV file"
+    df = pd.read_csv(file)
+    df = lint_dataset(df, _DEBUG=True)
+    df.to_csv(file, index=False)
+
 #lint_dataset(df)

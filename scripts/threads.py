@@ -1,8 +1,7 @@
-import queue
 import threading
+import asyncio
 
 # Threading Objects
-url_queue = queue.Queue()
-recipe_scraping_queue = queue.Queue()
-recipe_cleaning_queue = queue.Queue()
+url_queue = asyncio.Queue()
+recipe_scraping_queue = asyncio.Queue()
 exception_event = threading.Event()

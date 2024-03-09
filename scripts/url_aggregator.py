@@ -15,21 +15,21 @@ cse_id = "6373f179be4354964"
 urlThreshold = 10000  # total number of URLs you want
 urls = set()
 
-def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event):
+async def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event, url_queue):
     check1 = time.time()
     for d in recipe_descriptors:
         term = f"{core_search_term} {d}"
         for start_num in range(1, 91, 10):  # increment by 10 as API allows max 10 results at a time
             check2 = time.time()
             if (check2 - check1) < 2:
-                time.sleep(2)  # rate limit safeguard
+                await asyncio.sleep(2)  # rate limit safeguard
             try:
                 search_results = google_search(term, api_key, cse_id, start_num)
                 for result in search_results.get('items', []):
                     url = result.get('link').replace("\n","")
                     if not any(domain in url for domain in blacklisted_domains) and url not in urls:
                         urls.add(url)
-                        url_queue.put(url)
+                        await url_queue.put(url)  # Asynchronous queue operation
                         with open(file_path, mode='a', newline='', encoding='utf-8') as file:
                             csv_writer = csv.writer(file)
                             csv_writer.writerow([url])
@@ -38,7 +38,9 @@ def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklist
                         break
             except Exception as e:
                 pass
-                #print(e)        
+                #print(e)  
+
+            print(len(urls), "URLs found")      
 
             if len(urls) >= desired_number_of_urls:
                 break
@@ -47,6 +49,12 @@ def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklist
     
     print(f"URL Aggregation Complete: {len(urls)} URLs found")
     event.set()
+
+def run_url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event, url_queue):
+    asyncio.set_event_loop(asyncio.new_event_loop())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event, url_queue))
+    loop.close()
 
 def google_search(search_term, api_key, cse_id, start_num, **kwargs):
     """

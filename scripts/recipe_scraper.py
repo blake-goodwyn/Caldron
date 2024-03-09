@@ -10,8 +10,9 @@ import mimetypes
 import threading
 from util import create_directory
 from threads import *
-from extract_and_clean import ing_clean, instr_clean, update_ingredient_counter, ingredient_counter, add_quotation_marks
+from extract_and_clean import ing_clean
 import recipe_scrapers
+import asyncio
 
 ### Identified Information Vectors ###
 
@@ -99,7 +100,7 @@ def get_recipe_info(url):
         out['name'] = scraper.title()
         out['ingredients'] = [i.replace("\n", "") for i in scraper.ingredients()]
         out['instructions'] = [i.replace("\n", "") for i in scraper.instructions_list()]
-        print("recipe_scraper: ", out['name'])
+        #print("recipe_scraper: ", out['name'])
         return out
 
     except:
@@ -140,7 +141,7 @@ def get_recipe_info(url):
                 if li.get_text(strip=True) not in ingredients:
                     ingredients.append(li.get_text(strip=True).replace("\n", ""))
 
-            print("Default: ", out['name'])
+            #print("Default: ", out['name'])
             return out
             
         except Exception as e:
@@ -151,9 +152,9 @@ def get_recipe_info(url):
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
-def process(url, file_path):
+async def process(url, file_path):
     print("Processing: ", url)
-    res = get_recipe_info(url)
+    res = await asyncio.to_thread(get_recipe_info, url)
     if res is not None:
         try:
             website_id = generate_id()
@@ -163,21 +164,10 @@ def process(url, file_path):
             assert res.get('instructions') != []
             assert res.get('name') != ""
 
-            processed_ingredients = ing_clean(str(res.get('ingredients')))
+            processed_ingredients = await asyncio.to_thread(ing_clean, str(res.get('ingredients')))
             print("Processed: ", res.get('name'))
-            print("URL Queue Size: ", url_queue.qsize())
 
-            with open(file_path, mode='a', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                row_data = [
-                    website_id, 
-                    url, 
-                    res.get('name'), 
-                    ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'), 
-                    ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'), 
-                    ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
-                ]
-                writer.writerow(row_data)
+            await asyncio.to_thread(write_to_csv, file_path, website_id, url, res, processed_ingredients)
                 
         except AssertionError as e:
             print(e)
@@ -186,16 +176,52 @@ def process(url, file_path):
     else:
         print("Error fetching URL: ", url)
 
-def recipe_scrape(file_path, exception_event):
+def write_to_csv(file_path, website_id, url, res, processed_ingredients):
+    with open(file_path, mode='a', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        row_data = [
+            website_id,
+            url,
+            res.get('name'),
+            ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'),
+            ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'),
+            ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
+        ]
+        writer.writerow(row_data)
+
+async def recipe_scrape(file_path, exception_event, url_queue):
     while not exception_event.is_set() or not url_queue.empty():
         try:
-            url = url_queue.get()
-            process(url, file_path)
-            url_queue.task_done()
+            # Wait for at least one URL to be available or timeout
+            try:
+                await asyncio.wait_for(url_queue.get(), timeout=10)
+                url_queue.task_done()  # Mark the first URL as done
+            except asyncio.TimeoutError:
+                continue  # No URL was found, check the loop condition again
+
+            # Gather URLs from the queue without blocking
+            urls = []
+            while not url_queue.empty():
+                urls.append(url_queue.get_nowait())
+                url_queue.task_done()
+
+            # Create asynchronous process tasks for each URL
+            tasks = [process(url, file_path) for url in urls]
+
+            # Wait for all tasks to complete
+            await asyncio.gather(*tasks)
+
         except Exception as e:
             print(e)
     
     print("-- RECIPE SCRAPE THREAD EXITING --")
+
+def run_recipe_scrape(recipe_file, exception_event, url_queue):
+    print("Starting Recipe Scraping")
+    asyncio.set_event_loop(asyncio.new_event_loop())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(recipe_scrape(recipe_file, exception_event, url_queue))
+    loop.close()
 
 # Creates a CSV file to store recipe scraping
 def createRecipesFile(search_term, folder_path):

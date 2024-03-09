@@ -1,10 +1,7 @@
 print("Loading Extract-and-Clean...", end='')
-import pandas as pd
 from collections import Counter
-import os
 from threads import *
 from genai_tools import *
-from datetime import datetime
 import re
 
 ingredient_counter = Counter()
@@ -56,25 +53,3 @@ def recipe_clean(event):
     print("-- RECIPE CLEAN THREAD EXITING --")
 
 print("COMPLETE!")
-
-#Test: determine malformed processed ingredient lists
-#file_path = ''.join(['data/processed-banana-bread-recipes-', datetime.now().strftime('%Y-%m-%d-%H%M'),'.csv'])
-#ID_file = 'data/malformed-processed-ingredient-IDs.txt'
-#if not os.path.exists(ID_file):
-#    with open(ID_file, mode='w', newline='', encoding='utf-8') as file:
-#        file.write("Malformed Processed Ingredient Lists:\n")
-
-#df['Processed_Ingredients'] = pd.Series([None]*len(df['Ingredients']), index=df.index)
-#c = 0
-#for i in df['Ingredients']:
-#    print("Processing Recipe", c+1, "of", len(df['Ingredients']))
-#    try:
-#        #add result of update_ingredient_counter to df in selected row
-#        df.loc[c, "Processed_Ingredients"] = update_ingredient_counter(i, ingredient_counter)
-#    except Exception as e:
-#        print(e)
-#        print(df.loc[c,'ID'])
-#        with open(ID_file, 'a') as file:
-#            file.write(str(df.loc[c,'ID']) + '\n')
-#    c += 1
-#    df.to_csv(file_path, index=False)

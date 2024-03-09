@@ -1,7 +1,14 @@
-from dataset_linter import lint_dataset
-import pandas as pd
+from dataset_linter import lint
+import os
+from recipe_state_clusters import find_state_clusters
+from hmm_test import hmm_model
 
-file = 'data/bread/processed-bread-recipe-2024-03-07-1139.csv'
-df = pd.read_csv(file)
-df = lint_dataset(df, _DEBUG=True)
-df.to_csv(file, index=False)
+cwd = os.getcwd()
+
+for file in os.listdir('data/GOOD DATASETS'):
+    print("Linting: ", file)
+    if file.endswith('.csv'):
+        lint(os.path.abspath(file))
+
+#find_state_clusters(file, sample=1000, max_clusters=20)
+#hmm_model()
