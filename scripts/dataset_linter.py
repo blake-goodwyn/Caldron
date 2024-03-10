@@ -62,20 +62,20 @@ def lint_dataset(df, _DEBUG=False):
         if pd.isna(row[column_name]):
             if _DEBUG:
                 print("[Value Undefined] Cleaning row #", index+1, " | ", row['ID'])
-            row[column_name] = ing_clean(row['Ingredients'])
+            df.loc[index, column_name] = ing_clean(row['Ingredients'])
             try:
-                eval(row[column_name])
-                assert type(eval(row[column_name]) == list)
+                eval(df.loc[index, column_name])
+                assert type(eval(df.loc[index, column_name]) == list)
                 if _DEBUG:
                     print(row['ID'], " | PASS | ", row[column_name])
             except AssertionError as e:
                 if _DEBUG:
                     print(e)
-                row[column_name] = safely_convert_to_list(row[column_name])
+                df.loc[index, column_name] = safely_convert_to_list(df.loc[index, column_name])
             except Exception as e:
                 if _DEBUG:
                     print(e)
-                    print(row['ID'], " | FAIL | ", row[column_name])
+                    print(row['ID'], " | FAIL | ", df.loc[index, column_name])
         
         try:
             if _DEBUG:
@@ -87,30 +87,30 @@ def lint_dataset(df, _DEBUG=False):
         except AssertionError as e:
             if _DEBUG:
                 print(e)
-            row[column_name] = safely_convert_to_list(eval(row[column_name]))
+            df.loc[index, column_name] = safely_convert_to_list(eval(df.loc[index, column_name]))
             try:
-                eval(row[column_name])
-                assert type(eval(row[column_name]) == list)
+                eval(df.loc[index, column_name])
+                assert type(eval(df.loc[index, column_name]) == list)
                 if _DEBUG:
-                    print(row['ID'], " | PASS | ", row[column_name],"\n")
+                    print(row['ID'], " | PASS | ", df.loc[index, column_name],"\n")
             except Exception as e:
                 if _DEBUG:
                     print(e)
-                    print(row['ID'], " | FAIL | ", row[column_name],"\n")
+                    print(row['ID'], " | FAIL | ", df.loc[index, column_name],"\n")
         except Exception as e:
             if _DEBUG:
                 print(e)
                 print("[Eval failed] Cleaning row #", index+1, " | ", row['ID'])
-            row[column_name] = ing_clean(row['Ingredients'])
+            df.loc[index, column_name] = ing_clean(row['Ingredients'])
             try:
-                eval(row[column_name])
-                assert type(eval(row[column_name]) == list)
+                eval(df.loc[index, column_name])
+                assert type(eval(df.loc[index, column_name]) == list)
                 if _DEBUG:
-                    print(row['ID'], " | PASS | ", row[column_name],"\n")
+                    print(row['ID'], " | PASS | ", df.loc[index, column_name],"\n")
             except Exception as e:
                 if _DEBUG:
                     print(e)
-                    print(row['ID'], " | FAIL | ", row[column_name],"\n")
+                    print(row['ID'], " | FAIL | ", df.loc[index, column_name],"\n")
 
     return df
 

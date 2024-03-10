@@ -152,9 +152,12 @@ def get_recipe_info(url):
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
-async def process(url, file_path):
+async def process(url, file_path, timeout=30):
     print("Processing: ", url)
-    res = await asyncio.to_thread(get_recipe_info, url)
+    try:
+        res = await asyncio.wait_for(asyncio.to_thread(get_recipe_info, url), timeout)
+    except asyncio.TimeoutError:
+            print("Timeout fetching URL: ", url)
     if res is not None:
         try:
             website_id = generate_id()
@@ -164,15 +167,18 @@ async def process(url, file_path):
             assert res.get('instructions') != []
             assert res.get('name') != ""
 
-            processed_ingredients = await asyncio.to_thread(ing_clean, str(res.get('ingredients')))
+            processed_ingredients = await asyncio.wait_for(asyncio.to_thread(ing_clean, str(res.get('ingredients'))), timeout)
             print("Processed: ", res.get('name'))
 
             await asyncio.to_thread(write_to_csv, file_path, website_id, url, res, processed_ingredients)
                 
-        except AssertionError as e:
-            print(e)
-        except Exception as e:
-            print(e)
+        except asyncio.TimeoutError:
+            print("Timeout Cleaning Ingredient String: ", url)
+        except (AssertionError, Exception) as e:
+            if isinstance(e, AssertionError):
+                print(f"Assertion Error: {e}")
+            else:
+                print(f"General Error: {e}")
     else:
         print("Error fetching URL: ", url)
 
@@ -239,5 +245,4 @@ def createMalformedFile():
             file.close()
     return ID_file
 
-#ID_file = createMalformedFile()
 print("COMPLETE!")
