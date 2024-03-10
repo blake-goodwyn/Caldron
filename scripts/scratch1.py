@@ -21,11 +21,11 @@ for file in os.listdir('data/GOOD DATASETS'):
 
 #print(C)
 
-#for file in os.listdir('data/GOOD DATASETS'):
-#    if file.endswith('.csv'):
-#        print(f"{file}")
-#        df = pd.read_csv(os.path.join(os.path.dirname(file),'data\\GOOD DATASETS', file))
-#        get_legible(df)
+for file in os.listdir('data/GOOD DATASETS'):
+    if file.endswith('.csv'):
+        print(f"{file}")
+        df = pd.read_csv(os.path.join(os.path.dirname(file),'data\\GOOD DATASETS', file))
+        get_legible(df)
 
 #find_state_clusters(file, sample=1000, max_clusters=20)
 #hmm_model()

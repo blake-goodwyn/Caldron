@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from similarity import are_similar
 from sklearn.cluster import KMeans
+from dataset_linter import safely_convert_to_list
 import numpy as np
 
 k = 20 #number of top ingredients to display
@@ -85,8 +86,8 @@ def bipartite(file):
     for index,row in shuffled_df.iterrows():
         print(index)
         try:
-            assert type(eval(row['Processed Ingredients'])) == list
-            ing_list = eval(row['Processed Ingredients'])
+            assert type(eval(safely_convert_to_list(row['Processed Ingredients']))) == list
+            ing_list = eval(safely_convert_to_list(row['Processed Ingredients']))
             graph_update(G, ing_list)
 
         except Exception as e:

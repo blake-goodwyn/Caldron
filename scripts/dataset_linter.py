@@ -32,24 +32,23 @@ def safely_convert_to_list(string_value):
     # If the result is a list, return it, otherwise, return the value inside a list
     return string_value if isinstance(string_value, list) else [string_value]
 
-def get_legible(df, verbose=False):
+def get_legible(df, _DEBUG=False):
     # Parse corrected dataframe
     c = 0
     for index, row in df.iterrows():
         #print("Evaluating row #", index+1, " | ", row['ID'])
         try:
             eval(row[column_name])
-            assert type(eval(row[column_name])) == list
-            if _DEBUG:
-                print("Type: ", type(eval(row[column_name])))
+            assert type(safely_convert_to_list(eval(row[column_name]))) == list
+            #if _DEBUG:
+            #    print("Type: ", type(eval(row[column_name])))
             c+=1
-            if _DEBUG:
-                print("PASS | ", row['ID'],"\n")
+            #if _DEBUG:
+            #    print("PASS | ", row['ID'],"\n")
         except Exception as e:
             if _DEBUG:
                 print(e)
                 print(row[column_name])
-            if verbose:
                 print("FAIL | ", row['ID'])
 
     print("Percentage of rows readable: ", c/len(df)*100, "%")
@@ -62,7 +61,7 @@ def lint_dataset(df, _DEBUG=False):
         if pd.isna(row[column_name]):
             if _DEBUG:
                 print("[Value Undefined] Cleaning row #", index+1, " | ", row['ID'])
-            df.loc[index, column_name] = ing_clean(row['Ingredients'])
+            df.loc[index, column_name] = safely_convert_to_list(ing_clean(row['Ingredients']))
             try:
                 eval(df.loc[index, column_name])
                 assert type(eval(df.loc[index, column_name]) == list)
@@ -101,16 +100,16 @@ def lint_dataset(df, _DEBUG=False):
             if _DEBUG:
                 print(e)
                 print("[Eval failed] Cleaning row #", index+1, " | ", row['ID'])
-            df.loc[index, column_name] = ing_clean(row['Ingredients'])
+            df.loc[index, column_name] = safely_convert_to_list(ing_clean(row['Ingredients']))
             try:
                 eval(df.loc[index, column_name])
                 assert type(eval(df.loc[index, column_name]) == list)
                 if _DEBUG:
-                    print(row['ID'], " | PASS | ", df.loc[index, column_name],"\n")
+                    print(row['ID'], " | PASS")
             except Exception as e:
                 if _DEBUG:
                     print(e)
-                    print(row['ID'], " | FAIL | ", df.loc[index, column_name],"\n")
+                    print(row['ID'], " | FAIL")
 
     return df
 
