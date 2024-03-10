@@ -3,10 +3,13 @@ import networkx as nx
 from itertools import combinations
 import matplotlib.pyplot as plt
 import numpy as np
-from similarity import are_similar
-from sklearn.cluster import KMeans
+from similarity import are_similar, sim_embedding, shared_embeddings
 from dataset_linter import safely_convert_to_list
 import numpy as np
+from genai_tools import limited_call
+from tqdm import tqdm
+from tqdm.asyncio import tqdm_asyncio
+import asyncio
 
 k = 20 #number of top ingredients to display
 thresh = 0.8 #cosine similarity threshold
@@ -14,7 +17,7 @@ _SIMILARITY = True
 
 def standardize_name(name):
     """Standardize the ingredient name for consistent comparison."""
-    return name.lower().replace(" ", "")
+    return name.lower()
 
 def find_similar_node(G, name):
     """Find a node in the graph that is similar to the given name, or add a new node."""
@@ -36,6 +39,7 @@ def preprocess_ingredients(ing_list):
         found = False
         for key in grouped_ingredients:
             if are_similar(standardized_ing, key, thresh):
+                print("GROUPED! ", ing, " | ", key)
                 grouped_ingredients[key].append(ing)
                 found = True
                 break
@@ -62,14 +66,53 @@ def coreness_based_on_kemeny(G):
     return coreness_scores
 
 def graph_update(G, ing_list):
-    grouped_ings = preprocess_ingredients([x[0] for x in ing_list])
-    for standard_ing, ings in grouped_ings.items():
-        G.add_node(standard_ing)  # Add standardized node
-        for ing1, ing2 in combinations(ings, 2):
+    grouped_ings = [x[0] for x in ing_list]
+    for ing in grouped_ings:
+        for ing1, ing2 in combinations(grouped_ings, 2):
             if G.has_edge(ing1, ing2):
                 G[ing1][ing2]['weight'] += 1
             else:
                 G.add_edge(ing1, ing2, weight=1)
+
+def combine_similar_nodes(graph):
+
+    nodes_to_combine = []
+    removed_nodes = set()
+    all_nodes = list(graph.nodes)
+    
+    # Wrap the outer loop with tqdm to show a progress bar
+    for i, node1 in tqdm(enumerate(all_nodes[:-1]), total=len(all_nodes)-1, desc='Combining nodes'):
+        if node1 in removed_nodes:
+            continue
+        for node2 in all_nodes[i+1:]:
+            if node2 in removed_nodes or not are_similar(node1, node2):
+                continue
+            keep_node = min(node1, node2, key=len)
+            remove_node = node2 if keep_node == node1 else node1
+            nodes_to_combine.append((keep_node, remove_node))
+            removed_nodes.add(remove_node)
+    
+    # Combine nodes based on the gathered pairs
+    for keep_node, remove_node in tqdm(nodes_to_combine, desc='Merging edges'):
+        if remove_node not in graph:
+            continue
+        
+        for neighbor, data in list(graph[remove_node].items()):
+            if neighbor != keep_node:
+                if graph.has_edge(keep_node, neighbor):
+                    graph[keep_node][neighbor].update(data)
+                else:
+                    graph.add_edge(keep_node, neighbor, **data)
+        graph.remove_node(remove_node)
+    
+    return graph
+
+async def form_sim_embeddings(G):
+    
+    for node in tqdm(G.nodes, desc='Creating embeddings'):
+        node_tasks = await asyncio.create_task(asyncio.to_thread(sim_embedding,node))
+
+    tqdm_asyncio.as_completed(asyncio.wait(node_tasks))
 
 def bipartite(file):
 
@@ -84,45 +127,43 @@ def bipartite(file):
 
     #Pull all processed ingredients into a graph structure
     for index,row in shuffled_df.iterrows():
-        print(index)
+        print(index, end='')
+        ing_list = []
         try:
-            assert type(eval(safely_convert_to_list(row['Processed Ingredients']))) == list
-            ing_list = eval(safely_convert_to_list(row['Processed Ingredients']))
+            assert type(eval(row['Processed Ingredients'])) == list
+            for i in eval(row['Processed Ingredients']):
+                assert type(i[0]) == str
+            ing_list = eval(row['Processed Ingredients'])
+        except (AssertionError, Exception) as e:
+            ing_list = safely_convert_to_list(row['Processed Ingredients'])
+            try:
+                assert type(ing_list) == list, "Processed Ingredients must be a list"
+                for i in ing_list:
+                    assert type(i[0]) == str
+            except (AssertionError, Exception) as e:
+                #print(f" Error: {e}")
+                ing_list = []
+
+        if ing_list != []:
+            
             graph_update(G, ing_list)
 
-        except Exception as e:
-            print(index, " | ", row['ID'])
-            print(e)
+    #Create embeddings for each ingredient
+    asyncio.run(form_sim_embeddings(G))
+    print(f"Embeddings created: {len(shared_embeddings.keys())}")
+    G = combine_similar_nodes(G)
 
     # Top Nodes based on Coreness
-    d = dict(G.degree)
-    top_nodes = sorted(G.nodes, key=lambda x: d[x], reverse=True)[:k]
-    print(top_nodes)
-    input()
-
-    # Coreness Metric Calculation
-    degree_centrality = nx.degree_centrality(G)
-    coreness_scores = coreness_based_on_kemeny(G)
-    coreness_array = np.array(list(coreness_scores.values())).reshape(-1, 1)
-
-    # Perform KMeans Clustering
-    kmeans = KMeans(n_clusters=2, random_state=0).fit(coreness_array) #input is not appropriate
-    labels = kmeans.labels_
-
-    # Identify Core Ingredients
-    # Assuming the cluster with the higher mean centrality score is the core cluster
-    core_cluster = np.argmax(kmeans.cluster_centers_)
-    core_ingredients = [node for node, label in zip(degree_centrality.keys(), labels) if label == core_cluster]
-
-    # Top Nodes based on Coreness
-    top_nodes = sorted(core_ingredients, key=lambda x: degree_centrality[x], reverse=True)[:k]
+    degrees = dict(G.degree)
+    threshold = np.quantile(list(degrees.values()), 0.99)
+    core_ingredients = sorted([node for node, degree in degrees.items() if degree >= threshold], key=lambda x: degrees[x], reverse=True)
 
     # Create a subgraph with top k nodes
-    H = G.subgraph(top_nodes)
+    H = G.subgraph(core_ingredients)
 
-    for i in top_nodes:
-        print(i)
-
+    for i in sorted(H.nodes, key=lambda x: degrees[x], reverse=True):
+        print(f"{i} | {degrees[i]}")
+    
     # Drawing the subgraph
     plt.figure(figsize=(12, 12))
     pos = nx.spring_layout(H)  # positions for all nodes 

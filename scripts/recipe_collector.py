@@ -61,5 +61,4 @@ def recipe_collect(search_terms, data_path, urlThreshold):
 
     for i in range(0,len(core_search_terms)):
         folder = os.path.join(data_path, search_terms[i].replace(" ", "_"))
-        print(folder)
         asyncio.run(recipe_collector(core_search_terms[i], folder, urlThreshold))

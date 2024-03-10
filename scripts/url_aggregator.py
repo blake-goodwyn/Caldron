@@ -9,6 +9,7 @@ import uuid
 from bs4 import Tag
 import os
 from dotenv import load_dotenv
+from tqdm import tqdm
 
 load_dotenv()
 
@@ -20,7 +21,7 @@ urls = set()
 
 async def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event, url_queue):
     check1 = time.time()
-    for d in recipe_descriptors:
+    for d in tqdm(recipe_descriptors, desc="Searching for Recipe URLs..."):
         term = f"{core_search_term} {d}"
         for start_num in range(1, 91, 10):  # increment by 10 as API allows max 10 results at a time
             check2 = time.time()
@@ -41,9 +42,7 @@ async def url_aggregate(file_path, core_search_term, desired_number_of_urls, bla
                         break
             except Exception as e:
                 pass
-                #print(e)  
-
-            print(len(urls), "URLs found")      
+                #print(e)     
 
             if len(urls) >= desired_number_of_urls:
                 break

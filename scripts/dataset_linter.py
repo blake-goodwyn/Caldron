@@ -24,7 +24,7 @@ def safely_convert_to_list(string_value):
         try:
             # Try to parse the string as a literal (list, dict, etc.)
             string_value = eval(string_value)
-        except (ValueError, SyntaxError):
+        except (ValueError, SyntaxError, Exception):
             # If it fails to parse, it's not a valid Python literal
             # So we consider it a final value (even if it's a string)
             break

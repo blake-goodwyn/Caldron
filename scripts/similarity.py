@@ -3,6 +3,12 @@ import numpy as np
 from difflib import SequenceMatcher
 
 nlp = spacy.load('en_core_web_md')
+shared_embeddings = {}
+
+def sim_embedding(ing):
+    assert type(ing) == str, "Input must be a string"
+    #shared_embeddings[ing] = get_embedding(ing)
+    shared_embeddings[ing] = nlp(ing).vector
 
 def standardize_str(s):
     return s.lower().replace("-", " ").replace("  ", " ")
@@ -11,45 +17,28 @@ def split_terms(s):
     return s.split()
 
 ## Quick Cosine Similarity
-def are_similar(str1, str2, cosThreshold=0.8, verbose=False):
+def are_similar(str1, str2, threshold=1.8):
 
-    str1 = standardize_str(str1)
-    str2 = standardize_str(str2)
+    vec1 = shared_embeddings.get(str1, None)
+    vec2 = shared_embeddings.get(str2, None)
+
+    if vec1 is None or vec2 is None:
+        return False
 
     # 1. Cosine Similarity
-    if cosine_similar(str1, str2, cosThreshold):
-        if verbose:
-            print(f"Cosine similarity match: '{str1}' and '{str2}'")
-        return True
-
-    # 2. String Similarity (e.g., Substring match, Levenshtein distance)
-    if string_similarity(str1, str2):
-        if verbose:
-            print(f"String similarity match: '{str1}' and '{str2}'")
+    if cosine_similar(vec1,vec2) + string_similarity(str1, str2) > threshold:
         return True
     
     return False
 
-def string_similarity(str1, str2, threshold=0.4):
+def string_similarity(str1, str2):
     # Simple substring check or other string similarity measures
     # Example: Using SequenceMatcher from difflib
-    return SequenceMatcher(None, str1.lower(), str2.lower()).ratio() > threshold
+    return SequenceMatcher(None, str1.lower(), str2.lower()).ratio()
 
-def cosine_similar(str1, str2, cosThreshold):
+def cosine_similar(vec1, vec2):
     #get embeddings for the two strings
-    u = nlp(str1.lower()).vector
-    v = nlp(str2.lower()).vector
-
-    assert(u.shape[0] == v.shape[0])
-    uv = 0
-    uu = 0
-    vv = 0
-    for i in range(u.shape[0]):
-        uv += u[i]*v[i]
-        uu += u[i]*u[i]
-        vv += v[i]*v[i]
-    cos_theta = 1
-    if uu!=0 and vv!=0:
-        cos_theta = uv/np.sqrt(uu*vv)
-
-    return cos_theta > cosThreshold
+    dot_product = np.dot(vec1, vec2)
+    norm_vec1 = np.linalg.norm(vec1)
+    norm_vec2 = np.linalg.norm(vec2)
+    return dot_product / (norm_vec1 * norm_vec2)
