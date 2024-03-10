@@ -7,12 +7,15 @@ import csv
 from threads import *
 import uuid
 from bs4 import Tag
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 ## URL Aggregation Functions ##
-api_key = "AIzaSyBqffLzRrNKUQX-nZiU8NEp1ocB1P9MeHI"
-cse_id = "6373f179be4354964"
+google_search_api_key = os.getenv("google_search_api_key")
+cse_id = os.getenv("google_cse_id")
 
-urlThreshold = 10000  # total number of URLs you want
 urls = set()
 
 async def url_aggregate(file_path, core_search_term, desired_number_of_urls, blacklisted_domains, recipe_descriptors, event, url_queue):
@@ -24,7 +27,7 @@ async def url_aggregate(file_path, core_search_term, desired_number_of_urls, bla
             if (check2 - check1) < 2:
                 await asyncio.sleep(2)  # rate limit safeguard
             try:
-                search_results = google_search(term, api_key, cse_id, start_num)
+                search_results = google_search(term, google_search_api_key, cse_id, start_num)
                 for result in search_results.get('items', []):
                     url = result.get('link').replace("\n","")
                     if not any(domain in url for domain in blacklisted_domains) and url not in urls:

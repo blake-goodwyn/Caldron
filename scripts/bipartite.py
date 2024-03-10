@@ -137,5 +137,3 @@ def bipartite(file):
 
     plt.axis('off')
     plt.show()
-
-bipartite('data/GOOD DATASETS/processed-banana_bread-recipes-2024-02-27-1547.csv')

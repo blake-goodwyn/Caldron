@@ -32,6 +32,28 @@ def safely_convert_to_list(string_value):
     # If the result is a list, return it, otherwise, return the value inside a list
     return string_value if isinstance(string_value, list) else [string_value]
 
+def get_legible(df, verbose=False):
+    # Parse corrected dataframe
+    c = 0
+    for index, row in df.iterrows():
+        #print("Evaluating row #", index+1, " | ", row['ID'])
+        try:
+            eval(row[column_name])
+            assert type(eval(row[column_name])) == list
+            if _DEBUG:
+                print("Type: ", type(eval(row[column_name])))
+            c+=1
+            if _DEBUG:
+                print("PASS | ", row['ID'],"\n")
+        except Exception as e:
+            if _DEBUG:
+                print(e)
+                print(row[column_name])
+            if verbose:
+                print("FAIL | ", row['ID'])
+
+    print("Percentage of rows readable: ", c/len(df)*100, "%")
+
 # Loop through each row and check for NaN in the specified column
 def lint_dataset(df, _DEBUG=False):
     assert type(df) == pd.DataFrame, "Input must be a DataFrame"
@@ -90,26 +112,6 @@ def lint_dataset(df, _DEBUG=False):
                     print(e)
                     print(row['ID'], " | FAIL | ", row[column_name],"\n")
 
-    # Parse corrected dataframe
-    c = 0
-    for index, row in df.iterrows():
-        #print("Evaluating row #", index+1, " | ", row['ID'])
-        try:
-            eval(row[column_name])
-            assert type(eval(row[column_name])) == list
-            if _DEBUG:
-                print("Type: ", type(eval(row[column_name])))
-            c+=1
-            if _DEBUG:
-                print("PASS | ", row['ID'],"\n")
-        except Exception as e:
-            if _DEBUG:
-                print(e)
-                print(row[column_name])
-            print("FAIL | ", row['ID'])
-
-    print("Percentage of rows readable: ", c/len(df)*100, "%")
-
     return df
 
 def lint(file):
@@ -117,6 +119,7 @@ def lint(file):
     assert file.endswith('.csv'), "Input must be a CSV file"
     df = pd.read_csv(file)
     df = lint_dataset(df, _DEBUG=True)
+    get_legible(df)
     df.to_csv(file, index=False)
 
 #lint_dataset(df)
