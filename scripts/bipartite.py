@@ -115,7 +115,7 @@ async def form_sim_embeddings(G):
 
     tqdm_asyncio.as_completed(asyncio.wait(node_tasks))
 
-def bipartite(file):
+def bipartite(file, opt="FOOD_DATA"):
 
     #Read CSV to DataFrame
     df = pd.read_csv(file)
@@ -156,45 +156,50 @@ def bipartite(file):
 
     cwd = os.getcwd()
 
-    #write all nodes to a file
-    output_directory = os.path.join(cwd, 'ingredients')
-    search_terms = [node for node in G.nodes]
-    with open(os.path.join(output_directory, 'search_terms.txt'), 'w') as file:
-        for term in search_terms:
-            file.write(term + '\n')
+    if opt == "FOOD_DATA":
+        #write all nodes to a file
+        output_directory = os.path.join(cwd, 'ingredients')
+        search_terms = [node for node in G.nodes]
+        with open(os.path.join(output_directory, 'search_terms.txt'), 'w') as file:
+            for term in search_terms:
+                file.write(term + '\n')
+        
+        return
 
-    input("Press Enter to continue...")
+    elif opt == "PLOT":
+        # Define the output file path
+        output_directory = os.path.join(cwd, 'outputs')
 
-    # Define the output file path
-    output_directory = os.path.join(cwd, 'outputs')
+        #pickle the clusters and recipe_actions
+        with open(os.path.join(output_directory, 'ingredient_bipartite.pkl'), 'wb') as file:
+            pickle.dump(G, file)
+        
+        # Top Nodes based on Coreness
+        degrees = dict(G.degree)
+        threshold = np.quantile(list(degrees.values()), 0.99)
+        core_ingredients = sorted([node for node, degree in degrees.items() if degree >= threshold], key=lambda x: degrees[x], reverse=True)
 
-    #pickle the clusters and recipe_actions
-    with open(os.path.join(output_directory, 'ingredient_bipartite.pkl'), 'wb') as file:
-        pickle.dump(G, file)
-    
-    # Top Nodes based on Coreness
-    degrees = dict(G.degree)
-    threshold = np.quantile(list(degrees.values()), 0.99)
-    core_ingredients = sorted([node for node, degree in degrees.items() if degree >= threshold], key=lambda x: degrees[x], reverse=True)
+        # Create a subgraph with top k nodes
+        H = G.subgraph(core_ingredients)
 
-    # Create a subgraph with top k nodes
-    H = G.subgraph(core_ingredients)
+        for i in sorted(H.nodes, key=lambda x: degrees[x], reverse=True):
+            print(f"{i} | {degrees[i]}")
+        
+        # Drawing the subgraph
+        plt.figure(figsize=(12, 12))
+        pos = nx.spring_layout(H)  # positions for all nodes 
 
-    for i in sorted(H.nodes, key=lambda x: degrees[x], reverse=True):
-        print(f"{i} | {degrees[i]}")
-    
-    # Drawing the subgraph
-    plt.figure(figsize=(12, 12))
-    pos = nx.spring_layout(H)  # positions for all nodes 
+        # Nodes
+        nx.draw_networkx_nodes(H, pos, node_color='blue')
 
-    # Nodes
-    nx.draw_networkx_nodes(H, pos, node_color='blue')
+        # Edges
+        nx.draw_networkx_edges(H, pos, width=1.0, alpha=0.5, edge_color='black')
 
-    # Edges
-    nx.draw_networkx_edges(H, pos, width=1.0, alpha=0.5, edge_color='black')
+        # Labels
+        nx.draw_networkx_labels(H, pos, font_size=20, font_family='sans-serif')
 
-    # Labels
-    nx.draw_networkx_labels(H, pos, font_size=20, font_family='sans-serif')
-
-    plt.axis('off')
-    plt.show()
+        plt.axis('off')
+        plt.show()
+    else:
+        print("Invalid option")
+        return

@@ -47,7 +47,14 @@ def search_food(api_key, query):
     if response.status_code == 200:
         foods = response.json().get("foods", [])
         df = pd.DataFrame(foods)
-        df = df[['fdcId', 'description', 'foodCategory', 'foodNutrients', 'finalFoodInputFoods', 'foodMeasures']]
+
+        #Pare down the dataframe to only the columns we want
+        try:
+            df = df[['fdcId', 'description', 'foodCategory', 'foodNutrients', 'finalFoodInputFoods', 'foodMeasures']]
+        except Exception as e:
+            print(f"Error: {e}")
+            return None
+
         return df
     else:
         return None
@@ -84,5 +91,3 @@ def update_from_node_graph(file):
     for term in tqdm(search_terms):
         term = term.strip()
         update_ingredients_db(fdc_api_key, term)
-
-update_from_node_graph("ingredients/search_terms.txt")
