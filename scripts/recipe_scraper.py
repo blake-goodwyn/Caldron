@@ -104,7 +104,7 @@ def get_recipe_info(url):
         out['name'] = scraper.title()
         out['ingredients'] = [i.replace("\n", "") for i in scraper.ingredients()]
         out['instructions'] = [i.replace("\n", "").replace("\r","") for i in scraper.instructions_list()]
-        #print("recipe_scraper: ", out['name'])
+        input()
         return out
 
     except:

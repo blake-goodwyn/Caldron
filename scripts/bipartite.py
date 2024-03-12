@@ -6,10 +6,11 @@ import numpy as np
 from similarity import are_similar, sim_embedding, shared_embeddings
 from dataset_linter import safely_convert_to_list
 import numpy as np
-from genai_tools import limited_call
 from tqdm import tqdm
 from tqdm.asyncio import tqdm_asyncio
 import asyncio
+import pickle
+import os
 
 k = 20 #number of top ingredients to display
 thresh = 0.8 #cosine similarity threshold
@@ -153,6 +154,24 @@ def bipartite(file):
     print(f"Embeddings created: {len(shared_embeddings.keys())}")
     G = combine_similar_nodes(G)
 
+    cwd = os.getcwd()
+
+    #write all nodes to a file
+    output_directory = os.path.join(cwd, 'ingredients')
+    search_terms = [node for node in G.nodes]
+    with open(os.path.join(output_directory, 'search_terms.txt'), 'w') as file:
+        for term in search_terms:
+            file.write(term + '\n')
+
+    input("Press Enter to continue...")
+
+    # Define the output file path
+    output_directory = os.path.join(cwd, 'outputs')
+
+    #pickle the clusters and recipe_actions
+    with open(os.path.join(output_directory, 'ingredient_bipartite.pkl'), 'wb') as file:
+        pickle.dump(G, file)
+    
     # Top Nodes based on Coreness
     degrees = dict(G.degree)
     threshold = np.quantile(list(degrees.values()), 0.99)

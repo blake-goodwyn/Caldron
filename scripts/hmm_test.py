@@ -28,6 +28,7 @@ def hmm_model():
 
     label_map = {}
     for cluster in clusters:
+        print(cluster)
         label_map[cluster.clusterID] = cluster.label
 
     print("Loading recipe sequences...")

@@ -8,6 +8,8 @@ from bipartite import bipartite
 
 #C = 0
 
+#file = 'data/GOOD DATASETS/processed-brownie-recipe-2024-03-10-1046.csv'
+
 bipartite('data/GOOD DATASETS/processed-brownie-recipe-2024-03-10-1046.csv')
 
 #recipe_collect(["doughnut"], 

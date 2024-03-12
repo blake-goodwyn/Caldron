@@ -17,7 +17,7 @@ def split_terms(s):
     return s.split()
 
 ## Quick Cosine Similarity
-def are_similar(str1, str2, threshold=1.8):
+def are_similar(str1, str2, threshold=2):
 
     vec1 = shared_embeddings.get(str1, None)
     vec2 = shared_embeddings.get(str2, None)

@@ -153,12 +153,8 @@ def extract_action(action):
     prompt = "Given the following string representing a step in a recipe, extract the core action from the string. Each action should be a single, distinct verb. For example, 'Add the eggs and whisk for 15 seconds' should be something like 'Whisk'. Return as a single word: \n\n" + action
     return text_complete(prompt)
 
-def cluster_label(prompt):
+def generate_cluster_label(prompt):
     prompt = "Given the following string representing a list of actions associated with specific phase of a recipe, examine the actions and determine a one token label for the category of the list. Consider labels that repeat prominently in this determination. The string is formatted in lines of the position of the action in the recipe's sequence of action and then a label for the action. Return a single word to be used as a label for the cluster \n\n" + prompt
-    if len(tokenizer.encode(prompt)) > 16385: #openapi token limit
-        legal_tokens = tokenizer.encode(prompt)[:-10]
-        prompt = tokenizer.decode(legal_tokens)
-    
     return text_complete(prompt)
 
 async def action_extraction_async(recipe):
@@ -175,3 +171,22 @@ async def action_extraction_async(recipe):
         model="gpt-3.5-turbo",
     )
     recipe["instr_list"] = chat_completion.choices[0].message.content
+
+def file_to_assistant(file_path, assistant_name, instruction_string, client=OAclient):
+    assert type(file_path) == str, "File must be a string"
+    assert file_path.endswith('.pdf'), "File must be a PDF"
+    file = client.files.create(
+        file=open(file_path, "rb"),
+        purpose='assistants'
+    )
+
+    # Add the file to the assistant
+    assistant = client.beta.assistants.create(
+        name=assistant_name,
+        instructions=instruction_string,
+        model="gpt-4-turbo-preview",
+        tools=[{"type": "retrieval"}],
+        file_ids=[file.id]
+    )
+
+    return assistant
