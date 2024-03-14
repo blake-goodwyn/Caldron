@@ -5,7 +5,7 @@ setup(
     version='0.1',
     packages=find_packages(),
     license='MIT',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
     install_requires=[
         'tqdm',
         'numpy',
