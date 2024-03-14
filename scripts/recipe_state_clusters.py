@@ -137,18 +137,21 @@ async def label_cluster(cluster):
         temp += str(action.label) + "\n"
         action_prompt += temp
     
-    new_label = await limited_call(cluster_label, action_prompt)
+    new_label = await limited_call(generate_cluster_label, action_prompt)
     cluster.set_label(new_label.lower().strip().split()[0])
 
 async def process_clusters(clusters):
     return await asyncio.gather(*(label_cluster(cluster) for cluster in clusters))
 
+def get_all_actions(file, sample, counter):
+    recipe_actions = asyncio.run(process_recipes(file, sample, counter))
+    return [item for sub in recipe_actions for item in sub]
+
 def find_state_clusters(file, sample=2000, max_clusters=150):
     print("Starting recipe modeling...")
     counter = {"done": 0}
     try:
-        recipe_actions = asyncio.run(process_recipes(file, sample, counter))
-        all_actions = [item for sub in recipe_actions for item in sub]
+        all_actions = get_all_actions(file, sample, counter)
         print(f"{len(all_actions)} recipe actions extracted.")
         n_clusters_range = range(2, max_clusters, 2)
         scores, clusters = perform_clustering(all_actions, n_clusters_range)
@@ -172,7 +175,7 @@ def find_state_clusters(file, sample=2000, max_clusters=150):
         actions_name = file.split('processed-')[1].split('-recipe')[0]
         actions_name += "-actions.pkl"
         with open(os.path.join(output_directory, actions_name), 'wb') as file:
-            pickle.dump(recipe_actions, file)
+            pickle.dump(all_actions, file)
 
         #output_file_path = os.path.join(output_directory, 'recipe_sequences.txt')
 
