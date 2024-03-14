@@ -29,6 +29,8 @@ class Ingredient(Base):
     foodNutrients = Column(JSON)
     finalFoodInputFoods = Column(JSON)
     foodMeasures = Column(JSON)
+    servingSizeUnit = Column(String)
+    servingSize = Column(Float)
 
 engine = create_engine('sqlite:///' + os.path.join(output_directory, 'ingredients_db.sqlite'))
 Base.metadata.create_all(engine)
@@ -47,13 +49,16 @@ def search_food(api_key, query):
     if response.status_code == 200:
         foods = response.json().get("foods", [])
         df = pd.DataFrame(foods)
-
+        
         #Pare down the dataframe to only the columns we want
         try:
-            df = df[['fdcId', 'description', 'foodCategory', 'foodNutrients', 'finalFoodInputFoods', 'foodMeasures']]
+            df = df[['fdcId','description','foodCategory','servingSizeUnit','servingSize','foodNutrients','finalFoodInputFoods', 'foodMeasures']]
         except Exception as e:
-            print(f"Error: {e}")
-            return None
+            try:
+                df = df[['fdcId','description','foodCategory','foodNutrients', 'finalFoodInputFoods', 'foodMeasures']]
+            except:    
+                print(f"Error: {e}")
+                return None
 
         return df
     else:
@@ -64,8 +69,11 @@ def update_ingredients_db(fdc_api_key, term):
     if df is not None:
         for _, row in df.iterrows():
             if not session.query(Ingredient).filter(Ingredient.fdcId == row['fdcId']).first():
-                ingredient = Ingredient(**row)
-                session.add(ingredient)
+                try:
+                    ingredient = Ingredient(**row)
+                    session.add(ingredient)
+                except Exception as e:
+                    print(f"Error: {e}")
         session.commit()
 
 def get_nutrient_profile(fdcID, opt="LOCAL"):

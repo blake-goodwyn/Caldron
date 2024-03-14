@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import asyncio
 from class_defs import RecipeAction, StateCluster
 
-from genai_tools import limited_call, actions_extraction, cluster_label
+from genai_tools import limited_call, actions_extraction, generate_cluster_label
 
 # Initialize spaCy model once and use it throughout
 method = "kmeans"  # Clustering method to use
@@ -162,34 +162,40 @@ def find_state_clusters(file, sample=2000, max_clusters=150):
         output_directory = os.path.join(cwd, 'outputs')
         
         #pickle the clusters and recipe_actions
-        with open(os.path.join(output_directory, 'clusters.pkl'), 'wb') as file:
+        
+        #grab the keywords in the file name between processed and recipe
+        clusters_name = file.split('processed-')[1].split('-recipe')[0]
+        clusters_name += "-clusters.pkl"
+        with open(os.path.join(output_directory, clusters_name), 'wb') as file:
             pickle.dump(clusters, file)
         
-        with open(os.path.join(output_directory, 'recipe_actions.pkl'), 'wb') as file:
+        actions_name = file.split('processed-')[1].split('-recipe')[0]
+        actions_name += "-actions.pkl"
+        with open(os.path.join(output_directory, actions_name), 'wb') as file:
             pickle.dump(recipe_actions, file)
 
-        output_file_path = os.path.join(output_directory, 'recipe_sequences.txt')
+        #output_file_path = os.path.join(output_directory, 'recipe_sequences.txt')
 
         # Check if the directory exists, create it if it doesn't
-        if not os.path.exists(output_directory):
-            os.makedirs(output_directory)
+        #if not os.path.exists(output_directory):
+        #    os.makedirs(output_directory)
 
-        with open(output_file_path, 'w+') as file:
-            for action_list in recipe_actions:
-                file.write("<")
-                print("<", end="")
-                for action in action_list:
-                    file.write(f"{action.state} ")
-                    print(f"{action.state} ", end="")
-                file.write(">\n")  # Write a newline character after each action list
-                print(">")
+        #with open(output_file_path, 'w+') as file:
+        #    for action_list in recipe_actions:
+        #        file.write("<")
+        #        print("<", end="")
+        #        for action in action_list:
+        #            file.write(f"{action.state} ")
+        #            print(f"{action.state} ", end="")
+        #        file.write(">\n")  # Write a newline character after each action list
+        #        print(">")
 
         ## Plotting and additional processing can go here ##
-        plt.plot(*zip(*scores))
-        plt.xlabel("Number of Clusters")
-        plt.ylabel("Silhouette Score")
-        plt.title("Silhouette Score vs Number of Clusters")
-        plt.show()
+        #plt.plot(*zip(*scores))
+        #plt.xlabel("Number of Clusters")
+        #plt.ylabel("Silhouette Score")
+        #plt.title("Silhouette Score vs Number of Clusters")
+        #plt.show()
 
     except Exception as e:
         logging.error(f"Error in processing: {e}")

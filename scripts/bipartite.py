@@ -11,6 +11,7 @@ from tqdm.asyncio import tqdm_asyncio
 import asyncio
 import pickle
 import os
+from time import sleep
 
 k = 20 #number of top ingredients to display
 thresh = 0.8 #cosine similarity threshold
@@ -157,12 +158,33 @@ def bipartite(file, opt="FOOD_DATA"):
     cwd = os.getcwd()
 
     if opt == "FOOD_DATA":
-        #write all nodes to a file
+        
+        #get all existing terms in the file
+        with open(os.path.join(cwd, 'ingredients', 'search_terms.txt'), 'r') as file:
+            search_terms = file.readlines()
+
+        #convert search terms to a set
+        search_terms_set = set([term.strip() for term in search_terms])
+
+        #add all nodes from graph into the set
+        for node in G.nodes:
+            try:
+                search_terms_set.add(node)
+            except Exception as e:
+                print(f"Error: {e}")
+
+        print(f"Search terms: {len(search_terms_set)}")
+
+        sleep(2)
+
+        #write all terms to a file
         output_directory = os.path.join(cwd, 'ingredients')
-        search_terms = [node for node in G.nodes]
         with open(os.path.join(output_directory, 'search_terms.txt'), 'w') as file:
-            for term in search_terms:
-                file.write(term + '\n')
+            for term in search_terms_set:
+                try:
+                    file.write(term + '\n')
+                except Exception as e:
+                    print(f"Error: {e}")
         
         return
 

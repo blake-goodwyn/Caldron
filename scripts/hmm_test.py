@@ -73,3 +73,5 @@ def hmm_model():
     plt.ylabel('Hidden States')
     plt.title('Emission Probability Matrix')
     plt.show()
+
+    return optimal_model, clusters

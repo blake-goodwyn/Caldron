@@ -18,6 +18,7 @@ tokenizer = tiktoken.encoding_for_model('gpt-3.5-turbo')
 MAX_CALLS_PER_MINUTE = 500
 SEM = Semaphore(MAX_CALLS_PER_MINUTE)
 TC_MODEL = "gpt-3.5-turbo"
+GPT4_MODEL = "gpt-4-turbo-preview"
 EMB_MODEL = "text-embedding-3-small"
 
 #####
@@ -30,7 +31,7 @@ async def limited_call(func, *args, **kwargs):
         return result
 
 @backoff.on_exception(backoff.constant, (requests.exceptions.RequestException, openai.RateLimitError, openai.OpenAIError), max_time=3600)
-def text_complete(prompt, client=OAclient, max_tokens=16000):
+def text_complete(prompt, client=OAclient, max_tokens=16000, model=TC_MODEL):
     try:
         
         encoded_prompt = tokenizer.encode(prompt)
@@ -45,7 +46,7 @@ def text_complete(prompt, client=OAclient, max_tokens=16000):
                     "content": truncated_prompt,
                 }
             ],
-            model=TC_MODEL,
+            model=model,
         )
         return chat_completion.choices[0].message.content
     except openai.RateLimitError as e:
@@ -190,3 +191,20 @@ def file_to_assistant(file_path, assistant_name, instruction_string, client=OAcl
     )
 
     return assistant
+
+def synthesize_hmm_results(model, clusters):
+    prompt = "The following is the written summary of a Hidden Markov Model of recipe instructions and their ordering generated from the given data: \n\n"
+    for index, state in enumerate(model.emissionprob_):
+        prompt += "-- State " + str(index+1) + " --"
+        prompt += "\n----------------"
+        prompt += "\n Start Probability: " + str(model.startprob_[index]) + " "
+        prompt += "\n----------------"
+        prompt += "\n State Transitions: " + str(model.transmat_[index]) + " "
+        prompt += "\n----------------"
+        for i, prob in enumerate(state):
+            prompt += f"\n{clusters[i].label}: {prob}"
+
+        prompt += "\n----------------\n\n"
+
+    prompt += "Please provide a written summary interpretting this model's results in the real-world context of baking."
+    return text_complete(prompt, model=GPT4_MODEL)
