@@ -23,8 +23,9 @@ def process_instructions(instructions, retry_limit=3):
     print("Extracting actions from recipe instructions...")
     for _ in range(retry_limit):
         try:
-            action_list = eval(instructions)
-            return [action.lower() for action in action_list if isinstance(action, str)]
+            action_list = [instructions]
+            a = [action.lower() for action in action_list if isinstance(action, str)]
+            return a
         except Exception as e:
             logging.warning(f"Error in action extraction: {e}. Retrying...")
     raise ValueError("Max retries reached for action extraction.")
@@ -99,10 +100,11 @@ async def create_actions(count, l, recipe):
     actions = []
     print(f"Processing recipe {recipe['ID']}")
     
-    instructions = await limited_call(process_instructions, recipe.get('Instructions', ''))
+    instructions = await asyncio.to_thread(process_instructions, recipe.get('Instructions', ''))
     
     for i in instructions:
-        extracted_actions = await limited_call(actions_extraction, i)
+        extracted_actions = await asyncio.to_thread(actions_extraction, i)
+        print(extracted_actions)
         for a in extracted_actions:
             c += 1
             #print(f"Processing action {c} of recipe {recipe['ID']} | #{index} of {l}")

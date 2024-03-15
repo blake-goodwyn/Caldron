@@ -43,6 +43,13 @@ class RecipeAction:
         self.embedding = self.generate_embedding(new_text)
         self.label = new_label
 
+    def from_string(self, string):
+        """Create a RecipeAction object from a string."""
+        ID, pos, text, label = string.split("|")
+        print(f"ID: {ID}, pos: {pos}, text: {text}, label: {label}")
+        input()
+        return RecipeAction(int(ID), int(pos), text, label)
+
     def __str__(self):
         """String representation of the recipe step."""
         return f"Recipe ID: {self.recipeID} | Position: {self.pos}, Label: {self.label}"
