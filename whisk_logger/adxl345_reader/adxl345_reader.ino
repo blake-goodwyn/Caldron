@@ -1,27 +1,34 @@
 #include <Wire.h>
-#include <ADXL345.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_ADXL345_U.h>
 
-ADXL345 adxl; // Create an instance of the ADXL345 library
+Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified(12345);
 
 void setup() {
   Serial.begin(9600);
-  Wire.begin(); // Initialize I2C communication
-  adxl.powerOn(); // Power on the ADXL345
-  
-  // Set measurement range
-  // +/-2G, +/-4G, +/-8G, +/-16G
-  adxl.setRangeSetting(16);
+  while (!Serial); // Wait for serial port to connect.
+
+  if (!accel.begin()) {
+    Serial.println("No ADXL345 detected");
+    while (1);
+  }
+
+  accel.setRange(ADXL345_RANGE_16_G);
 }
 
 void loop() {
-  int x, y, z;
-  adxl.readAccel(&x, &y, &z); // Read the accelerometer values
-  Serial.print("X: ");
-  Serial.print(x);
-  Serial.print(" Y: ");
-  Serial.print(y);
-  Serial.print(" Z: ");
-  Serial.println(z);
+  sensors_event_t event;
+  accel.getEvent(&event);
 
-  delay(100); // Delay to make the output readable
+  // Get current time in milliseconds
+  unsigned long now = millis();
+
+  // Format and print data
+  Serial.print("Time:"); Serial.print(now);
+  Serial.print(",X:"); Serial.print(event.acceleration.x);
+  Serial.print(",Y:"); Serial.print(event.acceleration.y);
+  Serial.print(",Z:"); Serial.print(event.acceleration.z);
+  Serial.println("");
+
+  delay(500); // Delay for half a second
 }

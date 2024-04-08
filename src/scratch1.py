@@ -3,18 +3,19 @@ import os
 #import pandas as pd
 #from recipe_collector import recipe_collect
 #from bipartite import bipartite
-#from recipe_state_clusters import get_all_actions
+from recipe_state_clusters import find_state_clusters #, perform_clustering, get_all_actions
 from hmm_test import hmm_model
 #from food_data import update_from_node_graph, search_food, fdc_api_key
-from tqdm import tqdm
-#from genai_tools import synthesize_hmm_results
-from class_defs import RecipeAction
+#from tqdm import tqdm
+from genai_tools import synthesize_hmm_results
+from class_defs import RecipeAction, StateCluster
+#import re
 
 #C = 0
 
 file = 'data/GOOD DATASETS/processed-brownie-recipe-2024-03-10-1046.csv'
-actions = []
-counter = {"done": 0}
+#actions = []
+#counter = {"done": 0}
 output_directory = os.path.join(os.getcwd(), 'outputs')
 
 #for file in tqdm(os.listdir('data/GOOD DATASETS')):
@@ -51,16 +52,21 @@ output_directory = os.path.join(os.getcwd(), 'outputs')
 #        df = pd.read_csv(os.path.join(os.path.dirname(file),'data\\GOOD DATASETS', file))
 #        get_legible(df)
 
-actions = []
-with open(os.path.join(output_directory, 'all_actions.txt'), 'r') as file:
-    for line in file:
-        print(line)
-        input()
-        actions.append(RecipeAction.from_string(line))
+#actions = []
+#with open(os.path.join(output_directory, 'all_actions.txt'), 'r') as file:
+#    for line in tqdm(file):
+#        t = re.split(": | |, ", line.rstrip())
+#        r = RecipeAction(t[2], float(t[5]), '', t[-1])
+#        actions.append(r)
 
-#find_state_clusters(file, sample=1000, max_clusters=20)
-#model, clusters = hmm_model()
+#scores, clusters = perform_clustering(actions, range(2, 50, 2))
+
+#for c in clusters:
+#    print(c)
+
+find_state_clusters(file, sample=1000, max_clusters=20)
+model, clusters = hmm_model()
 
 #for each hidden state, we want to know the probability of each action
 
-#print(synthesize_hmm_results(model, clusters))
+print(synthesize_hmm_results(model, clusters))

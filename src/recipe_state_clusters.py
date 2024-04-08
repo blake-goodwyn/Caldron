@@ -9,6 +9,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.mixture import GaussianMixture
+from tqdm import tqdm
 import matplotlib.pyplot as plt
 import asyncio
 from class_defs import RecipeAction, StateCluster
@@ -40,7 +41,7 @@ def perform_clustering(recipe_actions, n_clusters_range):
     normalized_embeddings = normalize(embeddings)
     silhouette_avg_scores = []
 
-    for n_clusters in n_clusters_range:
+    for n_clusters in tqdm(n_clusters_range):
         print(f"Refining clusters with {n_clusters} clusters using {method}...")
         try:
             with warnings.catch_warnings():
@@ -153,7 +154,8 @@ def find_state_clusters(file, sample=2000, max_clusters=150):
     print("Starting recipe modeling...")
     counter = {"done": 0}
     try:
-        all_actions = get_all_actions(file, sample, counter)
+        recipe_actions = asyncio.run(process_recipes(file, sample, counter))
+        all_actions = [item for sub in recipe_actions for item in sub]
         print(f"{len(all_actions)} recipe actions extracted.")
         n_clusters_range = range(2, max_clusters, 2)
         scores, clusters = perform_clustering(all_actions, n_clusters_range)
@@ -179,21 +181,21 @@ def find_state_clusters(file, sample=2000, max_clusters=150):
         with open(os.path.join(output_directory, actions_name), 'wb') as file:
             pickle.dump(all_actions, file)
 
-        #output_file_path = os.path.join(output_directory, 'recipe_sequences.txt')
+        output_file_path = os.path.join(output_directory, 'recipe_sequences.txt')
 
         # Check if the directory exists, create it if it doesn't
-        #if not os.path.exists(output_directory):
-        #    os.makedirs(output_directory)
+        if not os.path.exists(output_directory):
+            os.makedirs(output_directory)
 
-        #with open(output_file_path, 'w+') as file:
-        #    for action_list in recipe_actions:
-        #        file.write("<")
-        #        print("<", end="")
-        #        for action in action_list:
-        #            file.write(f"{action.state} ")
-        #            print(f"{action.state} ", end="")
-        #        file.write(">\n")  # Write a newline character after each action list
-        #        print(">")
+        with open(output_file_path, 'w+') as file:
+            for action_list in recipe_actions:
+                file.write("<")
+                print("<", end="")
+                for action in action_list:
+                    file.write(f"{action.state} ")
+                    print(f"{action.state} ", end="")
+                file.write(">\n")  # Write a newline character after each action list
+                print(">")
 
         ## Plotting and additional processing can go here ##
         #plt.plot(*zip(*scores))
