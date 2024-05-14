@@ -204,6 +204,30 @@ def bipartite(file, opt="FOOD_DATA"):
         # Create a subgraph with top k nodes
         H = G.subgraph(core_ingredients)
 
+        # Print the top k nodes
+        subgraph_degrees = {node: degrees[node] for node in H.nodes()}
+
+        # Sorting the nodes based on their degrees
+        sorted_nodes = sorted(subgraph_degrees, key=subgraph_degrees.get, reverse=True)
+        sorted_degrees = [subgraph_degrees[node] for node in sorted_nodes]
+
+        # Limiting to top k nodes
+        sorted_nodes = sorted_nodes[:k]
+        sorted_degrees = sorted_degrees[:k]
+
+        # Plotting the bar chart
+        plt.figure(figsize=(10, 6))  # Adjust the size as needed
+        plt.bar(sorted_nodes, sorted_degrees, color='blue')
+
+        # Adding labels and title
+        plt.xlabel('Nodes')
+        plt.ylabel('Degree')
+        plt.title('Top ' + str(k) + ' Core Ingredients in the Subgraph')
+        plt.xticks(rotation=45)  # Rotate the x-axis labels for better readability
+
+        # Show the plot
+        plt.show()
+
         for i in sorted(H.nodes, key=lambda x: degrees[x], reverse=True):
             print(f"{i} | {degrees[i]}")
         
@@ -222,6 +246,8 @@ def bipartite(file, opt="FOOD_DATA"):
 
         plt.axis('off')
         plt.show()
+
+
     else:
         print("Invalid option")
         return

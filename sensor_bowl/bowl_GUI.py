@@ -2,6 +2,7 @@ import tkinter as tk
 import serial
 import threading
 import time
+from datetime import datetime  # Import datetime module
 
 # Set to your Arduino's serial port
 SERIAL_PORT = 'COM4'
@@ -30,6 +31,10 @@ layout_positions = {
     4: (3, 2),
     5: (4, 2)
 }
+
+def generate_log_filename():
+    now = datetime.now()
+    return now.strftime("%Y%m%d_%H%M_SerialLog.txt")
 
 def calculate_color(value, baseline):
     difference = abs(value - baseline)
@@ -71,6 +76,10 @@ root.bind("<Configure>", on_resize)
 # Open serial port
 ser = serial.Serial(SERIAL_PORT, BAUD_RATE)
 
+# Open a log file in append mode
+log_filename = generate_log_filename()
+log_file = open(log_filename, 'a')
+
 def check_serial():
     current_time = time.time()
     if ser.in_waiting:
@@ -78,6 +87,8 @@ def check_serial():
         try:
             decoded_line = line.decode('utf-8').strip()
             parts = decoded_line.split('\t')  # Split the line by tabs
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Timestamp for logging
+            log_file.write(f"{timestamp}: {decoded_line}\n")  # Write to log file
 
             # Ensure the line has the expected number of elements (3 elements per channel)
             if len(parts) == 36:  # 12 channels * 3 elements per channel
@@ -112,6 +123,8 @@ def check_serial():
 
 # Start checking serial data
 check_serial()
+
+root.protocol("WM_DELETE_WINDOW", lambda: [log_file.close(), root.destroy()])
 
 # Start the GUI event loop
 root.mainloop()

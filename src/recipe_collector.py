@@ -7,6 +7,7 @@ from recipe_scraper import createRecipesFile, run_recipe_scrape
 import random
 import os
 from genai_tools import descriptor_generate
+from tqdm import tqdm
 
 ##### Multi-Threaded Approach to Asynchronous/Simulatanous URL Scraping & Aggregation #####
 # Define recipe keywords

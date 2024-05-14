@@ -1,8 +1,8 @@
 #from dataset_linter import lint, get_legible
 import os
 #import pandas as pd
-#from recipe_collector import recipe_collect
-#from bipartite import bipartite
+from recipe_collector import recipe_collect
+from bipartite import bipartite
 from recipe_state_clusters import find_state_clusters #, perform_clustering, get_all_actions
 from hmm_test import hmm_model
 #from food_data import update_from_node_graph, search_food, fdc_api_key
@@ -13,10 +13,11 @@ from class_defs import RecipeAction, StateCluster
 
 #C = 0
 
-file = 'data/GOOD DATASETS/processed-brownie-recipe-2024-03-10-1046.csv'
+#file = 'data/GOOD DATASETS/processed-brownie-recipe-2024-03-10-1046.csv'
+#bipartite(os.path.join(os.getcwd(),file), opt="PLOT")
 #actions = []
 #counter = {"done": 0}
-output_directory = os.path.join(os.getcwd(), 'outputs')
+#output_directory = os.path.join(os.getcwd(), 'outputs')
 
 #for file in tqdm(os.listdir('data/GOOD DATASETS')):
 #    if file.endswith('.csv'):
@@ -35,8 +36,8 @@ output_directory = os.path.join(os.getcwd(), 'outputs')
 #update_from_node_graph("ingredients/search_terms.txt")
 
 
-#recipe_collect(["doughnut"], 
-#               "C:/Users/blake/Documents/GitHub/ebakery/data", 3000) #roughly 60% result in processed recipes
+recipe_collect(["bread"], 
+               "C:/Users/blake/Documents/GitHub/ebakery/data", 1000) #roughly 60% result in processed recipes
 
 # Clean all the good datasets
 #for file in os.listdir('data/GOOD DATASETS'):
@@ -64,9 +65,8 @@ output_directory = os.path.join(os.getcwd(), 'outputs')
 #for c in clusters:
 #    print(c)
 
-find_state_clusters(file, sample=1000, max_clusters=20)
-model, clusters = hmm_model()
+#find_state_clusters(file, sample=1000, max_clusters=20)
+#model, clusters = hmm_model()
 
 #for each hidden state, we want to know the probability of each action
-
-print(synthesize_hmm_results(model, clusters))
+#print(synthesize_hmm_results(model, clusters))

@@ -4,10 +4,10 @@ import ast
 import re
 
 # Example DataFrame
-file = 'data/tart/processed-tart-recipe-2024-02-29-2229.csv'
+#file = 'data/tart/processed-tart-recipe-2024-02-29-2229.csv'
 #file = 'C:/Users/blake/Documents/GitHub/ebakery/data/tart/processed-tart-recipe-2024-02-29-2229.csv'
-df = pd.read_csv(file)
-file_new = 'data/tart/processed-tart-recipe-2024-02-29-2229-PROCESSED.csv'
+#df = pd.read_csv(file)
+#file_new = 'data/tart/processed-tart-recipe-2024-02-29-2229-PROCESSED.csv'
 
 # Specify the column to check for NaN
 column_name = 'Processed Ingredients'

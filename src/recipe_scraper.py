@@ -14,8 +14,33 @@ from extract_and_clean import ing_clean
 import recipe_scrapers
 import asyncio
 from tqdm.asyncio import tqdm_asyncio
+from genai_tools import TIMEOUT
+from sqlalchemy import create_engine, Column, String, JSON
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 _DEBUG = False
+# Define the SQLAlchemy ORM base class
+Base = declarative_base()
+
+# Define the Recipe class mapping to the recipes table
+class Recipe(Base):
+    __tablename__ = 'recipes'
+    
+    id = Column(String, primary_key=True)
+    url = Column(String)
+    name = Column(String)
+    ingredients = Column(JSON)
+    instructions = Column(JSON)
+    processed_ingredients = Column(JSON)
+
+database_directory = 'C:/Users/blake/Documents/GitHub/ebakery/sql'  # Replace this with the actual path
+database_file_path = f'sqlite:///{database_directory}/recipes.db'
+
+# Setup the database connection and session
+engine = create_engine(database_file_path)
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
 
 ### Identified Information Vectors ###
 
@@ -104,7 +129,6 @@ def get_recipe_info(url):
         out['name'] = scraper.title()
         out['ingredients'] = [i.replace("\n", "") for i in scraper.ingredients()]
         out['instructions'] = [i.replace("\n", "").replace("\r","") for i in scraper.instructions_list()]
-        input()
         return out
 
     except:
@@ -158,7 +182,7 @@ def get_recipe_info(url):
 def generate_id():
     return str(uuid.uuid4())[:8]  # Generate a UUID and use the first 8 characters
 
-async def process(url, file_path, timeout=600):
+async def process(url, file_path, timeout=TIMEOUT):
     #print("Processing: ", url)
     try:
         res = await asyncio.wait_for(asyncio.to_thread(get_recipe_info, url), timeout)
@@ -174,9 +198,7 @@ async def process(url, file_path, timeout=600):
             assert res.get('name') != ""
 
             processed_ingredients = await asyncio.wait_for(asyncio.to_thread(ing_clean, str(res.get('ingredients'))), 600)
-            #print("Processed: ", res.get('name'))
-
-            await asyncio.to_thread(write_to_csv, file_path, website_id, url, res, processed_ingredients)
+            await asyncio.to_thread(write_to_csv_and_sql, file_path, website_id, url, res, processed_ingredients)
                 
         except asyncio.TimeoutError:
             print("Timeout Cleaning Ingredient String: ", url)
@@ -190,7 +212,21 @@ async def process(url, file_path, timeout=600):
         if _DEBUG:
             print("Error fetching URL: ", url)
 
-def write_to_csv(file_path, website_id, url, res, processed_ingredients):
+# Function to add recipe to SQL database
+def add_to_sql(session, website_id, url, res, processed_ingredients):
+    new_recipe = Recipe(
+        id=website_id,
+        url=url,
+        name=res['name'],
+        ingredients=', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'),
+        instructions=', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'),
+        processed_ingredients=', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
+    )
+    session.add(new_recipe)
+    session.commit()
+
+def write_to_csv_and_sql(file_path, website_id, url, res, processed_ingredients):
+    session = Session()
     with open(file_path, mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         row_data = [
@@ -200,8 +236,12 @@ def write_to_csv(file_path, website_id, url, res, processed_ingredients):
             ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'),
             ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'),
             ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
+        
         ]
         writer.writerow(row_data)
+    add_to_sql(session, website_id, url, res, processed_ingredients)
+    session.close()
+
 
 async def recipe_scrape(file_path, exception_event, url_queue, batch_size=300):
     while not exception_event.is_set() or not url_queue.empty():

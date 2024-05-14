@@ -9,6 +9,7 @@ from asyncio import Semaphore
 from dotenv import load_dotenv
 
 load_dotenv()
+TIMEOUT=300
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 OAclient = openai.OpenAI()
@@ -30,7 +31,7 @@ async def limited_call(func, *args, **kwargs):
         result = await asyncio.to_thread(func, *args, **kwargs)
         return result
 
-@backoff.on_exception(backoff.constant, (requests.exceptions.RequestException, openai.RateLimitError, openai.OpenAIError), max_time=3600)
+@backoff.on_exception(backoff.constant, (requests.exceptions.RequestException, openai.RateLimitError, openai.OpenAIError), max_time=TIMEOUT)
 def text_complete(prompt, client=OAclient, max_tokens=16000, model=TC_MODEL):
     try:
         
