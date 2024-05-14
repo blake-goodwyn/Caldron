@@ -12,6 +12,7 @@ from langchain import hub
 
 from dotenv import load_dotenv
 import os
+import asyncio
 
 load_dotenv()
 LANGCHAIN_TRACING_V2=True
@@ -22,11 +23,13 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 def Parser():
     return StrOutputParser()
 
-def CreateSQLAgent(llm_model, db, verbose=False):
+def CreateSQLAgent(llm_model, prompt, db, verbose=False):
     assert type(llm_model) == str, "Model must be a string"
-    
+    assert type(prompt) == str, "Prompt must be a string"
+
     llm = ChatOpenAI(model=llm_model, temperature=0)
-    return create_sql_agent(llm, db=db, agent_type="openai-tools", verbose=verbose)
+    hubPrompt = hub.pull(prompt)
+    return create_sql_agent(llm, prompt=hubPrompt, db=db, agent_type="openai-tools", verbose=verbose)
 
 def createAgent(llm_model, hubPrompt, tools):
 
@@ -82,6 +85,13 @@ class ChatBot:
     def chat(self, input):
         return self.parser.invoke(self.bot.invoke({"input": input}, config={"configurable": {"session_id": "unused"}}))
     
+    def stream(self, input, callback, on_complete):
+        # Assume invoke_stream exists and handles streaming.
+        for chunk in self.bot.stream({"input": input}, config={"configurable": {"session_id": "unused"}}):
+            callback(chunk.content)
+        on_complete()  # Call the on_complete function after the stream is done
+        return
+    
 class Chain:
     def __init__(self, model, prompt):
         self.chain = createChain(model, prompt)
@@ -99,10 +109,16 @@ class Agent:
 class SQLAgent:
     def __init__(self, model, db_path, verbose=False):
         db = SQLDatabase.from_uri(db_path)
-        self.agent = CreateSQLAgent(model, db, verbose=verbose)
+        self.agent = CreateSQLAgent(model, "blake-goodwyn/sql-retrieval-assistant", db, verbose=verbose)
     
     def invoke(self, input):
         return self.agent.invoke(input)['output']
     
-sqlBot = CreateSQLAgent("gpt-4", "sqlite:///sql/recipes.db")
-sqlBot.invoke("How many recipes are there?")
+    def stream(self, input, callback):
+        # This method should use the real streaming functionality of your bot.
+        # Assuming a streaming method `invoke_stream` exists similar to the given example.
+        for chunk in self.agent.stream(input):
+            print(chunk)
+            print("------")
+            callback(chunk)
+        return
