@@ -43,8 +43,8 @@ class CauldronApp():
 ### MAIN ###
 
 #Parameter for chains & agents
-db_path = "sqlite:///sql/recipes.db"
-llm_model = "gpt-3.5-turbo"
+db_path = "sqlite:///sql/recipes_0514_1821.db"
+llm_model = "gpt-4"
 assistant_prompt = "blake-goodwyn/cauldron-assistant-v0"
 assistant_temperature = 0.0
 
@@ -239,10 +239,19 @@ class InteractiveDemo:
             self.input_text.delete(0, tk.END)
 
     def execute_sql_commands(self):
-        sqlQueries = find_SQL_prompt(self.output_text.get("1.0", "end-1c"))
-        print(sqlQueries)
-        thread = threading.Thread(target=lambda: app.SQLAgent.stream(sqlQueries, self.append_output_chat))
-        thread.start()
+        self.sqlQueries = find_SQL_prompt(self.output_text.get("1.0", "end-1c"))
+        self.process_queries_sequentially()
+
+    def process_queries_sequentially(self):
+        if self.sqlQueries:
+            query = self.sqlQueries.pop(0)
+            thread = threading.Thread(target=self.run_query_and_append, args=(query,))
+            thread.start()
+            thread.join()  # Wait for the thread to complete
+            self.master.after(100, self.process_queries_sequentially)  # Schedule the next query
+
+    def run_query_and_append(self, query):
+        app.SQLAgent.stream(query, self.append_output_chat)
 
     def clear_output(self):
         self.output_text.delete("1.0", tk.END)  # Clear all text from the output text box

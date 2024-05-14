@@ -37,7 +37,7 @@ from class_defs import RecipeAction, StateCluster
 
 
 recipe_collect(["bread"], 
-               "C:/Users/blake/Documents/GitHub/ebakery/data", 1000) #roughly 60% result in processed recipes
+               "C:/Users/blake/Documents/GitHub/ebakery/data", 10000) #roughly 60% result in processed recipes
 
 # Clean all the good datasets
 #for file in os.listdir('data/GOOD DATASETS'):

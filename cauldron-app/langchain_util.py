@@ -23,13 +23,13 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 def Parser():
     return StrOutputParser()
 
-def CreateSQLAgent(llm_model, prompt, db, verbose=False):
+def CreateSQLAgent(llm_model, db, verbose=False):
     assert type(llm_model) == str, "Model must be a string"
-    assert type(prompt) == str, "Prompt must be a string"
+    #assert type(prompt) == str, "Prompt must be a string"
 
     llm = ChatOpenAI(model=llm_model, temperature=0)
-    hubPrompt = hub.pull(prompt)
-    return create_sql_agent(llm, prompt=hubPrompt, db=db, agent_type="openai-tools", verbose=verbose)
+    #hubPrompt = hub.pull(prompt)
+    return create_sql_agent(llm, db=db, agent_type="openai-tools", verbose=verbose)
 
 def createAgent(llm_model, hubPrompt, tools):
 
@@ -109,7 +109,7 @@ class Agent:
 class SQLAgent:
     def __init__(self, model, db_path, verbose=False):
         db = SQLDatabase.from_uri(db_path)
-        self.agent = CreateSQLAgent(model, "blake-goodwyn/sql-retrieval-assistant", db, verbose=verbose)
+        self.agent = CreateSQLAgent(model, db, verbose=verbose)
     
     def invoke(self, input):
         return self.agent.invoke(input)['output']

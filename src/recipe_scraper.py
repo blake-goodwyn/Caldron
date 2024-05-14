@@ -11,6 +11,7 @@ import threading
 from util import create_directory
 from threads import *
 from extract_and_clean import ing_clean
+from genai_tools import tag_generate
 import recipe_scrapers
 import asyncio
 from tqdm.asyncio import tqdm_asyncio
@@ -18,6 +19,8 @@ from genai_tools import TIMEOUT
 from sqlalchemy import create_engine, Column, String, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import json
+from dataset_linter import safely_convert_to_list
 
 _DEBUG = False
 # Define the SQLAlchemy ORM base class
@@ -33,9 +36,10 @@ class Recipe(Base):
     ingredients = Column(JSON)
     instructions = Column(JSON)
     processed_ingredients = Column(JSON)
+    tags = Column(JSON)
 
 database_directory = 'C:/Users/blake/Documents/GitHub/ebakery/sql'  # Replace this with the actual path
-database_file_path = f'sqlite:///{database_directory}/recipes.db'
+database_file_path = f'sqlite:///{database_directory}/recipes_{datetime.now().strftime("%m%d_%H%M")}.db'
 
 # Setup the database connection and session
 engine = create_engine(database_file_path)
@@ -218,9 +222,10 @@ def add_to_sql(session, website_id, url, res, processed_ingredients):
         id=website_id,
         url=url,
         name=res['name'],
-        ingredients=', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'),
-        instructions=', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'),
-        processed_ingredients=', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
+        ingredients=json.dumps(', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients')),
+        instructions=json.dumps(', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions')),
+        processed_ingredients=json.dumps(safely_convert_to_list(', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients))),
+        tags = json.dumps(safely_convert_to_list(tag_generate(res)))
     )
     session.add(new_recipe)
     session.commit()
@@ -236,12 +241,10 @@ def write_to_csv_and_sql(file_path, website_id, url, res, processed_ingredients)
             ', '.join(res.get('ingredients')) if isinstance(res.get('ingredients'), list) else res.get('ingredients'),
             ', '.join(res.get('instructions')) if isinstance(res.get('instructions'), list) else res.get('instructions'),
             ', '.join(eval(processed_ingredients)) if isinstance(eval(processed_ingredients), list) else eval(processed_ingredients)
-        
         ]
         writer.writerow(row_data)
     add_to_sql(session, website_id, url, res, processed_ingredients)
     session.close()
-
 
 async def recipe_scrape(file_path, exception_event, url_queue, batch_size=300):
     while not exception_event.is_set() or not url_queue.empty():

@@ -9,14 +9,14 @@ from asyncio import Semaphore
 from dotenv import load_dotenv
 
 load_dotenv()
-TIMEOUT=300
+TIMEOUT=3000
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 OAclient = openai.OpenAI()
 OAClientAsync = openai.AsyncOpenAI()
 tokenizer = tiktoken.encoding_for_model('gpt-3.5-turbo')
 
-MAX_CALLS_PER_MINUTE = 500
+MAX_CALLS_PER_MINUTE = 20 * 60
 SEM = Semaphore(MAX_CALLS_PER_MINUTE)
 TC_MODEL = "gpt-3.5-turbo"
 GPT4_MODEL = "gpt-4-turbo-preview"
@@ -118,6 +118,10 @@ def descriptor_generate(key_term):
 
     return l
 
+def tag_generate(recipe):
+    prompt = "Given the following Python dictionary object representing a recipe, generate a Python list of tags associated with the recipe to be added to a SQL database. Only generate this list of tags. \n\n" + str(recipe)
+    return text_complete(prompt)
+
 def standardize_ingredients(ingredients):
     normalize_prompt = "Given the following string representing a list of ingredients (and potentially utensils or supplies), extract the core ingredients from the string. These ingredients should be expressed in one or two word phrases without extra descriptors. Then, return ONLY a string representing a Python list of tuples of the form (core ingredients, quantity number, quantity unit). The tuple should follow the format: ('ingredient', QTY, 'quantity unit'). The quantity number should be a floating-point number. No fractions should be present. The quantity unit is optional and should only be used for ingredients measured in quantities such as grams, milliliters, tablespoons, cups, etc. If no quantity unit is present, return None. : \n\n" + ingredients
     return text_complete(normalize_prompt)
@@ -208,4 +212,4 @@ def synthesize_hmm_results(model, clusters):
         prompt += "\n----------------\n\n"
 
     prompt += "Please provide a written summary interpretting this model's results in the real-world context of baking."
-    return text_complete(prompt, model=GPT4_MODEL)
+    return text_complete(prompt, model=TC_MODEL)
