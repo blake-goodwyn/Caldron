@@ -18,7 +18,6 @@
 # 10. Cauldron intelligently uses this feedback to further refine the recipe as well as save a "snapshot" of the recipe attempt for future reference
 
 ### IMPORTS ###
-import os
 from util import SQLAgent, ChatBot, find_SQL_prompt, VoiceInterface
 import warnings
 import tkinter as tk
@@ -26,7 +25,6 @@ from tkinter.scrolledtext import ScrolledText
 import serial
 import threading
 import time
-from datetime import datetime
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
@@ -34,30 +32,52 @@ warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Tr
 
 class CauldronApp():
     
-    def __init__(self, db_path, llm_model, assistant_prompt, assistant_temperature, verbose=False):
+    def __init__(self, db_path, llm_model, verbose=False):
+        
+        #Pathways and Parameters
         self.db = db_path
         self.llm = llm_model
+
+        ## Defining Agents ##
+        
+        # SQL Retrieval Agent (Boilerplate) #
         self.SQLAgent = SQLAgent(llm_model, db_path, verbose=verbose)
-        self.Assistant = ChatBot(llm_model, assistant_prompt, assistant_temperature)
+
+        # UI Agent #
+        ui_prompt = "blake-goodwyn/cauldron-assistant-v0"
+        ui_temp = 0.0
+        self.UIAgent = ChatBot(llm_model, ui_prompt, ui_temp)
+
+        # Question Generation Agent #
+        # TODO: Add question generation agent
+
+        # Insight Consolidation Agent #
+        # TODO: Add insight consolidation agent
+
+        # Foundational Recipe Steward Agent #
+        # TODO: Add foundational recipe steward agent
+
+        # Peripheral Feedback Agent #
+        # TODO: Add peripheral interpretation agent
+
+        # "Sous Chef" Agent #
+        # TODO: Add agent for in-media-res cooking feedback integration
+
+        # TODO: Determine additional agents for fitness evaluation:
+        # > flavor profile analysis
+        # > nutritional analysis
+        # > culinary trend analysis
+        # > ingredient sourcing analysis
+        # > recipe cost analysis
+        # > sensory appeal analysis
 
 ### MAIN ###
 
 #Parameter for chains & agents
 db_path = "sqlite:///sql/recipes_0514_1821.db"
 llm_model = "gpt-4"
-assistant_prompt = "blake-goodwyn/cauldron-assistant-v0"
-assistant_temperature = 0.0
 
-# Constants for serial communication
-SERIAL_PORT = 'COM4'
-BAUD_RATE = 115200
-INITIAL_PERIOD = 1
-ADC_BOUND = 7
-
-app = CauldronApp(db_path, llm_model, assistant_prompt, assistant_temperature, verbose=True)
-
-import tkinter as tk
-from tkinter.scrolledtext import ScrolledText
+app = CauldronApp(db_path, llm_model, verbose=True)
 
 class InteractiveDemo:
     def __init__(self, master):
@@ -65,6 +85,13 @@ class InteractiveDemo:
         self.running = True  # Flag to indicate that the app is running
         self.master.title("Cauldron Interactive Demo Application")
         self.master.geometry("1200x600")  # Adjust size as necessary
+
+        # Constants for serial communication
+        self.SERIAL_PORT = 'COM4'
+        self.BAUD_RATE = 115200
+        self.INITIAL_PERIOD = 1
+        self.ADC_BOUND = 7
+        self.start_time = time.time()
 
         # Voice interface
         self.voice_interface = VoiceInterface()
@@ -113,14 +140,18 @@ class InteractiveDemo:
         # Sensor display components
         self.lights = []
         self.adc_texts = []
+        self.initial_readings = [[] for _ in range(8)]
         self.setup_sensor_display(master)
 
         # Serial connection
-        self.ser = serial.Serial(SERIAL_PORT, BAUD_RATE)
-        self.start_time = time.time()
-        self.baseline = [0] * 8
-        self.initial_readings = [[] for _ in range(8)]
-        self.start_sensor_reading()
+        try:
+            self.ser = serial.Serial(self.SERIAL_PORT, self.BAUD_RATE)
+            self.start_time = time.time()
+            self.baseline = [0] * 8
+            self.initial_readings = [[] for _ in range(8)]
+            self.start_sensor_reading()
+        except Exception as e:
+            print("Error opening serial port:", e)
 
     def start_recording(self):
         """Start the recording in a separate thread to avoid UI blocking."""
@@ -160,17 +191,17 @@ class InteractiveDemo:
 
         # Specifying the positions of each sensor within the 5x5 grid
         sensor_positions = {
-            1: (0, 2),
             0: (1, 2),
-            2: (2, 0), 3: (2, 1),
-            6: (2, 3), 7: (2, 4),
-            4: (3, 2),
-            5: (4, 2)
+            1: (0, 2),
+            2: (2, 1), 
+            3: (2, 0), 
+            4: (4, 2), 
+            5: (3, 2),
+            6: (2, 3),
+            7: (2, 4)
         }
 
         # Creating sensor displays
-        self.lights = []
-        self.adc_texts = []
         for sensor_id, (row, col) in sensor_positions.items():
             frame = tk.Frame(sensor_frame, bd=2, relief="ridge")
             frame.grid(row=row, column=col, padx=10, pady=10, sticky='nsew')
@@ -182,40 +213,62 @@ class InteractiveDemo:
             self.adc_texts.append(adc_text)
             self.lights.append(light_canvas)
 
+        # Add reset baseline button
+        reset_button = tk.Button(sensor_frame, text="Reset Baseline", command=self.reset_baseline)
+        reset_button.grid(row=4, column=4, padx=10, pady=10, sticky='nsew')  # Positioned at the bottom right
+
     def start_sensor_reading(self):
         threading.Thread(target=self.check_serial, daemon=True).start()
 
+    def reset_baseline(self):
+        """Reset the baseline values to current ADC readings."""
+        for i in range(8):
+            if self.initial_readings[i]:
+                self.baseline[i] = sum(self.initial_readings[i]) / len(self.initial_readings[i])
+                print(f"Sensor {i} baseline reset to {self.baseline[i]}")
+
     def check_serial(self):
         while self.running:
+            current_time = time.time()
             if self.ser.in_waiting:
                 line = self.ser.readline()
                 try:
                     decoded_line = line.decode('utf-8').strip().split('\t')
                     for i in range(8):
+
                         current_value = int(decoded_line[i * 3 + 1])
+
+                        if current_time - self.start_time <= self.INITIAL_PERIOD:
+                            if current_value != 0:
+                                self.initial_readings[i].append(current_value)
+                                self.baseline[i] = sum(self.initial_readings[i]) / len(self.initial_readings[i])
+                        
                         self.lights[i].itemconfig(self.adc_texts[i], text=f"ADC: {current_value}")
                         color = self.calculate_color(current_value, self.baseline[i])
                         self.lights[i].config(bg=color)
+                        
                 except Exception as e:
                     print("Error:", e)
             time.sleep(0.01)
 
     def calculate_color(self, value, baseline):
         difference = abs(value - baseline)
-        if difference < ADC_BOUND:
+        if difference < self.ADC_BOUND:
             return "#ff0000"  # Red for values within the bound
         else:
-            green_intensity = int(max(0, 255 - int((difference - ADC_BOUND)) * 0.75))
+            green_intensity = int(max(0, 255 - int((difference - self.ADC_BOUND))) * 0.5)
             return f"#00{green_intensity:02x}00"
 
     def append_output_chat(self,chat_output):
         if "actions" in chat_output:
-            for action in chat_output["actions"]:
-                self.output_text.insert(tk.END, f"Calling Tool: `{action.tool}` with input `{action.tool_input}`\n")
+            pass
+            #for action in chat_output["actions"]:
+            #    self.output_text.insert(tk.END, f"Calling Tool: `{action.tool}` with input `{action.tool_input}`\n")
         # Observation
         elif "steps" in chat_output:
-            for step in chat_output["steps"]:
-                self.output_text.insert(tk.END, f"Tool Result: `{step.observation}`\n")
+            pass
+            #for step in chat_output["steps"]:
+            #    self.output_text.insert(tk.END, f"Tool Result: `{step.observation}`\n")
         # Final result
         elif "output" in chat_output:
             self.output_text.insert(tk.END, f'Final Output: {chat_output["output"]}\n')
@@ -234,7 +287,7 @@ class InteractiveDemo:
             self.master.quit()  # Close the application
         else:
             # Start streaming in a separate thread, properly passing the callback and on_complete functions
-            thread = threading.Thread(target=lambda: app.Assistant.stream(user_input, self.append_output_chat, self.finalize_stream))
+            thread = threading.Thread(target=lambda: app.UIAgent.stream(user_input, self.append_output_chat, self.finalize_stream))
             thread.start()
             self.input_text.delete(0, tk.END)
 
@@ -248,10 +301,11 @@ class InteractiveDemo:
             thread = threading.Thread(target=self.run_query_and_append, args=(query,))
             thread.start()
             thread.join()  # Wait for the thread to complete
-            self.master.after(100, self.process_queries_sequentially)  # Schedule the next query
+            nil=input("Pause for demo...")
 
     def run_query_and_append(self, query):
         app.SQLAgent.stream(query, self.append_output_chat)
+        return
 
     def clear_output(self):
         self.output_text.delete("1.0", tk.END)  # Clear all text from the output text box
