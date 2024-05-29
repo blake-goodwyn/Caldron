@@ -1,0 +1,13 @@
+2024-05-29 16:48:22,745 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 16:48:22,746 - cauldron - INFO   - langchain_util.py - Initializing Conductor with model: gpt-4, prompt: blake-goodwyn/conductor-node, temperature: 0.0
+2024-05-29 16:48:22,747 - cauldron - INFO   - langchain_util.py - Creating conductor agent with model: gpt-4, prompt: blake-goodwyn/conductor-node, temperature: 0.0
+2024-05-29 16:48:26,072 - cauldron - INFO   - langchain_util.py - Conductor created successfully.
+2024-05-29 16:48:26,073 - cauldron - DEBUG  - langchain_util.py - Creating StrOutputParser instance.
+2024-05-29 16:48:26,078 - cauldron - INFO   - cauldron_app.py - UI Agent Initialized
+2024-05-29 16:48:26,078 - cauldron - INFO   - langchain_util.py - Initializing SQLAgent with model: gpt-4, db_path: sqlite:///sql/recipes_0514_1821.db, verbose: False
+2024-05-29 16:48:26,173 - cauldron - INFO   - langchain_util.py - Creating SQL Agent with model: gpt-4 and database: <langchain_community.utilities.sql_database.SQLDatabase object at 0x000001E6A0513F50>
+2024-05-29 16:48:30,516 - cauldron - INFO   - langchain_util.py - SQL Agent created successfully.
+2024-05-29 16:48:30,517 - cauldron - INFO   - langchain_util.py - SQLAgent initialized successfully.
+2024-05-29 16:48:30,518 - cauldron - INFO   - cauldron_app.py - SQL Agent Initialized
+2024-05-29 16:48:30,518 - cauldron - INFO   - cauldron_app.py - Invoking Cauldron with input: Hello! Introduce yourself.
+2024-05-29 16:48:30,519 - cauldron - DEBUG  - langchain_util.py - Conductor chat invoked with input: Hello! Introduce yourself.

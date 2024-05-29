@@ -1,0 +1,19 @@
+2024-05-29 16:21:33,541 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 16:21:33,542 - cauldron - INFO   - langchain_util.py - Initializing Conductor with model: gpt-4, prompt: blake-goodwyn/cauldron-assistant-v0, temperature: 0.0
+2024-05-29 16:21:33,543 - cauldron - INFO   - langchain_util.py - Creating conductor agent with model: gpt-4, prompt: blake-goodwyn/cauldron-assistant-v0, temperature: 0.0
+2024-05-29 16:21:37,369 - cauldron - INFO   - langchain_util.py - Conductor created successfully.
+2024-05-29 16:21:37,370 - cauldron - DEBUG  - langchain_util.py - Creating StrOutputParser instance.
+2024-05-29 16:21:37,371 - cauldron - INFO   - cauldron_app.py - UI Agent Initialized
+2024-05-29 16:21:37,371 - cauldron - INFO   - langchain_util.py - Initializing SQLAgent with model: gpt-4, db_path: sqlite:///sql/recipes_0514_1821.db, verbose: False
+2024-05-29 16:21:37,448 - cauldron - INFO   - langchain_util.py - Creating SQL Agent with model: gpt-4 and database: <langchain_community.utilities.sql_database.SQLDatabase object at 0x0000010834AFFBC0>
+2024-05-29 16:21:38,863 - cauldron - INFO   - langchain_util.py - SQL Agent created successfully.
+2024-05-29 16:21:38,864 - cauldron - DEBUG  - langchain_util.py - Creating AgentParser instance.
+2024-05-29 16:21:38,865 - cauldron - ERROR  - langchain_util.py - Error initializing SQLAgent: 'PydanticOutputParser' object is not callable
+Traceback (most recent call last):
+  File "c:\Users\blake\Documents\GitHub\ebakery\cauldron-app\langchain_util.py", line 160, in __init__
+    self.parser = AgentParser()
+                  ^^^^^^^^^^^^^
+  File "c:\Users\blake\Documents\GitHub\ebakery\cauldron-app\langchain_util.py", line 32, in AgentParser
+    return CauldronPydanticParser()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'PydanticOutputParser' object is not callable

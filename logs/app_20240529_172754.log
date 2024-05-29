@@ -1,0 +1,31 @@
+2024-05-29 17:28:03,414 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 17:28:03,416 - cauldron - INFO   - langchain_util.py - Initializing Conductor with model: gpt-4, prompt: You are the Conductor node for the Cauldron application. Your task is to receive user requests related to recipe development and direct them to the relevant nodes (Flavor Profiling, Nutritional Balancing, Cost & Availability, Feedback Interpreter, SQL Database Retrieval, Recipe Modification Manager, Recipe Development Tracker, Peripheral Interpreter). Ensure that all communication follows Pydantic standards. When a user request is received, respond with a confirmation and specify which node(s) the task is being directed to. Be ready to receive and compile results from other nodes and provide a comprehensive response to the user. Maintain a clear and concise log of all communications for transparency.
+---
+Answer the user query.
+{format_instructions}
+---
+{chat_history}
+---
+{agent_scratchpad}
+---
+{input}, temperature: 0.0
+2024-05-29 17:28:03,425 - cauldron - INFO   - langchain_util.py - Creating conductor agent with model: gpt-4, prompt: You are the Conductor node for the Cauldron application. Your task is to receive user requests related to recipe development and direct them to the relevant nodes (Flavor Profiling, Nutritional Balancing, Cost & Availability, Feedback Interpreter, SQL Database Retrieval, Recipe Modification Manager, Recipe Development Tracker, Peripheral Interpreter). Ensure that all communication follows Pydantic standards. When a user request is received, respond with a confirmation and specify which node(s) the task is being directed to. Be ready to receive and compile results from other nodes and provide a comprehensive response to the user. Maintain a clear and concise log of all communications for transparency.
+---
+Answer the user query.
+{format_instructions}
+---
+{chat_history}
+---
+{agent_scratchpad}
+---
+{input}, temperature: 0.0
+2024-05-29 17:28:07,689 - cauldron - INFO   - langchain_util.py - Conductor created successfully.
+2024-05-29 17:28:07,690 - cauldron - DEBUG  - langchain_util.py - Creating StrOutputParser instance.
+2024-05-29 17:28:07,691 - cauldron - INFO   - cauldron_app.py - UI Agent Initialized
+2024-05-29 17:28:07,692 - cauldron - INFO   - langchain_util.py - Initializing SQLAgent with model: gpt-4, db_path: sqlite:///sql/recipes_0514_1821.db, verbose: False
+2024-05-29 17:28:07,790 - cauldron - INFO   - langchain_util.py - Creating SQL Agent with model: gpt-4 and database: <langchain_community.utilities.sql_database.SQLDatabase object at 0x000002476386B050>
+2024-05-29 17:28:10,907 - cauldron - INFO   - langchain_util.py - SQL Agent created successfully.
+2024-05-29 17:28:10,908 - cauldron - INFO   - langchain_util.py - SQLAgent initialized successfully.
+2024-05-29 17:28:10,909 - cauldron - INFO   - cauldron_app.py - SQL Agent Initialized
+2024-05-29 17:28:10,910 - cauldron - INFO   - cauldron_app.py - Invoking Cauldron with input: I want to find a recipe for bread that uses xanthan gum.
+2024-05-29 17:28:10,912 - cauldron - DEBUG  - langchain_util.py - Conductor chat invoked with input: I want to find a recipe for bread that uses xanthan gum.

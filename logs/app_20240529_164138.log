@@ -1,0 +1,17 @@
+2024-05-29 16:41:43,446 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 16:41:43,447 - cauldron - INFO   - langchain_util.py - Initializing Conductor with model: gpt-4, prompt: conductor-node, temperature: 0.0
+2024-05-29 16:41:43,448 - cauldron - INFO   - langchain_util.py - Creating conductor agent with model: gpt-4, prompt: conductor-node, temperature: 0.0
+2024-05-29 16:41:46,722 - cauldron - ERROR  - langchain_util.py - Unexpected error in createConductor: Invalid identifier conductor-node. Identifier must be in the format of `owner/repo:commit or owner/repo`.
+Traceback (most recent call last):
+  File "c:\Users\blake\Documents\GitHub\ebakery\cauldron-app\langchain_util.py", line 80, in createConductor
+    template=hub.pull(promptRef),
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\langchain\hub.py", line 86, in pull
+    res_dict = client.pull_repo(owner_repo_commit)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\langchainhub\client.py", line 250, in pull_repo
+    owner, repo, commit_hash = parse_owner_repo_commit(owner_repo_commit)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\langchainhub\client.py", line 65, in parse_owner_repo_commit
+    raise ValueError(
+ValueError: Invalid identifier conductor-node. Identifier must be in the format of `owner/repo:commit or owner/repo`.

@@ -1,0 +1,18 @@
+2024-05-29 16:42:24,111 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 16:42:24,112 - cauldron - INFO   - langchain_util.py - Initializing Conductor with model: gpt-4, prompt: blake-goodwyn/conductor-node, temperature: 0.0
+2024-05-29 16:42:24,113 - cauldron - INFO   - langchain_util.py - Creating conductor agent with model: gpt-4, prompt: blake-goodwyn/conductor-node, temperature: 0.0
+2024-05-29 16:42:31,875 - cauldron - ERROR  - langchain_util.py - Unexpected error in createConductor: 'template'
+Traceback (most recent call last):
+  File "c:\Users\blake\Documents\GitHub\ebakery\cauldron-app\langchain_util.py", line 79, in createConductor
+    prompt = PromptTemplate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\pydantic\v1\main.py", line 339, in __init__
+    values, fields_set, validation_error = validate_model(__pydantic_self__.__class__, data)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\pydantic\v1\main.py", line 1100, in validate_model
+    values = validator(cls_, values)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\langchain_core\prompts\prompt.py", line 143, in template_is_valid
+    values["template"], values["template_format"]
+    ~~~~~~^^^^^^^^^^^^
+KeyError: 'template'

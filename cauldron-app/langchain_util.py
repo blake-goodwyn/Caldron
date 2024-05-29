@@ -1,7 +1,7 @@
 # langchain_util.py
 
 from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_community.utilities import SQLDatabase
@@ -14,7 +14,11 @@ from langchain import hub
 
 from dotenv import load_dotenv
 import os
+from pydantic_util import CauldronPydanticParser
 from logging_util import logger
+from agent_defs import *
+from agent_tools import datetime_tool
+from datetime import datetime
 
 load_dotenv()
 LANGCHAIN_TRACING_V2=True
@@ -22,9 +26,13 @@ LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
 TAVILY_API_KEY=os.getenv("TAVIL_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-def Parser():
+def StringParser():
     logger.debug("Creating StrOutputParser instance.")
     return StrOutputParser()
+
+def AgentParser():
+    logger.debug("Creating AgentParser instance.")
+    return CauldronPydanticParser()
 
 def CreateSQLAgent(llm_model, db, verbose=False):
     logger.info(f"Creating SQL Agent with model: {llm_model} and database: {db}")
@@ -64,30 +72,36 @@ def createAgent(llm_model, hubPrompt, tools):
         logger.error(f"Unexpected error in createAgent: {e}", exc_info=True)
         raise
 
-def createChatbot(llm_model, prompt, temperature):
-    logger.info(f"Creating chatbot with model: {llm_model}, prompt: {prompt}, temperature: {temperature}")
+def createConductor(llm_model, promptRef, temperature):
+    logger.info(f"Creating conductor agent with model: {llm_model}, prompt: {promptRef}, temperature: {temperature}")
     try:
         assert type(llm_model) == str, "Model must be a string"
-        assert type(prompt) == str, "System instructions must be a string"
+        assert type(promptRef) == str, "System instructions must be a string"
         assert type(temperature) == float, "Temperature must be a float"
         
         llm = ChatOpenAI(model=llm_model, temperature=temperature)
-        prompt = hub.pull(prompt)
-        chain = prompt | llm
+        prompt = PromptTemplate(
+            template=promptRef,
+            input_variables=["query"],
+            partial_variables={"format_instructions": CauldronPydanticParser.get_format_instructions(), "datetime": datetime.now()},
+        )
+        tools = [datetime_tool]
+        agent = create_openai_tools_agent(llm, tools, prompt)
+        agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
         history = ChatMessageHistory()
         chain_with_message_history = RunnableWithMessageHistory(
-            chain,
+            agent_executor,
             lambda session_id: history,
             input_messages_key="input",
             history_messages_key="chat_history",
         )
-        logger.info("Chatbot created successfully.")
+        logger.info("Conductor created successfully.")
         return chain_with_message_history
     except AssertionError as e:
-        logger.error(f"Error in createChatbot: {e}")
+        logger.error(f"Error in createConductor: {e}")
         raise
     except Exception as e:
-        logger.error(f"Unexpected error in createChatbot: {e}", exc_info=True)
+        logger.error(f"Unexpected error in createConductor: {e}", exc_info=True)
         raise
 
 def createChain(llm_model, prompt):
@@ -111,18 +125,17 @@ def createChain(llm_model, prompt):
         logger.error(f"Unexpected error in createChain: {e}", exc_info=True)
         raise
 
-class ChatBot:
+class Conductor:
     def __init__(self, model, prompt, temperature):
-        logger.info(f"Initializing ChatBot with model: {model}, prompt: {prompt}, temperature: {temperature}")
-        self.bot = createChatbot(model, prompt, temperature)
-        self.parser = Parser()
+        logger.info(f"Initializing Conductor with model: {model}, prompt: {prompt}, temperature: {temperature}")
+        self.bot = createConductor(model, prompt, temperature)
     
     def chat(self, input):
-        logger.debug(f"ChatBot chat invoked with input: {input}")
-        return self.parser.invoke(self.bot.invoke({"input": input}, config={"configurable": {"session_id": "unused"}}))
+        logger.debug(f"Conductor chat invoked with input: {input}")
+        return self.bot.invoke({"input": input}, config={"configurable": {"session_id": "unused"}})
     
     def stream(self, input, callback, on_complete):
-        logger.debug(f"ChatBot stream invoked with input: {input}")
+        logger.debug(f"Conductor stream invoked with input: {input}")
         for chunk in self.bot.stream({"input": input}, config={"configurable": {"session_id": "unused"}}):
             callback(chunk.content)
         on_complete()  # Call the on_complete function after the stream is done
@@ -141,10 +154,11 @@ class Agent:
     def __init__(self, model, prompt, tools):
         logger.info(f"Initializing Agent with model: {model}, prompt: {prompt}, tools: {tools}")
         self.agent = createAgent(model, prompt, tools)
+        self.parser
     
     def invoke(self, input):
         logger.debug(f"Agent invoke called with input: {input}")
-        return self.agent.invoke(input)
+        return self.parser.invoke(self.agent.invoke(input))
 
 class SQLAgent:
     def __init__(self, model, db_path, verbose=False):
@@ -159,7 +173,7 @@ class SQLAgent:
     
     def invoke(self, input):
         logger.debug(f"SQLAgent invoke called with input: {input}")
-        return self.agent.invoke(input)['output']
+        return self.parser.invoke(self.agent.invoke(input)['output'])
     
     def stream(self, input, callback):
         logger.debug(f"SQLAgent stream called with input: {input}")
