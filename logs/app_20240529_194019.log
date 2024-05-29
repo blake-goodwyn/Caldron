@@ -1,0 +1,13 @@
+2024-05-29 19:40:19,595 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 19:40:21,189 - cauldron - INFO   - cauldron_app.py - Creating agent for You are the Flavor Profiling node for the Cauldron application. Your task is to analyze the flavor profiles of the ingredients provided and suggest combinations that enhance the overall taste of the recipe. Ensure your analysis adheres to Pydantic standards and format your output accordingly. Once the analysis is complete, forward your results to the relevant nodes (e.g., Nutritional Balancing, Recipe Modification Manager). If you detect a looping issue or need further input, communicate this clearly and concisely.
+---
+Current Datetime:{datetime}
+
+Answer the user query.
+{format_instructions}
+---
+{chat_history}
+---
+{agent_scratchpad}
+---
+{input}

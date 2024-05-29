@@ -1,16 +1,13 @@
 # langchain_util.py
 
+import operator
+from typing import Annotated, List, Tuple, Union, TypedDict
 from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import HumanMessage, BaseMessage
 from langchain_core.output_parsers import StrOutputParser
-from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain_community.utilities import SQLDatabase
-from langchain_community.agent_toolkits import create_sql_agent
-from langchain.agents import create_tool_calling_agent, create_openai_tools_agent
-from langchain.agents import AgentExecutor
-from langchain_community.chat_message_histories import ChatMessageHistory
-from langchain_core.runnables.history import RunnableWithMessageHistory
-from langchain import hub
+from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
+from langchain.agents import AgentExecutor, create_openai_functions_agent
 
 from dotenv import load_dotenv
 import os
@@ -18,12 +15,10 @@ from pydantic_util import CauldronPydanticParser
 from logging_util import logger
 from agent_defs import *
 from agent_tools import *
-from datetime import datetime
 
 load_dotenv()
 LANGCHAIN_TRACING_V2=True
 LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
-TAVILY_API_KEY=os.getenv("TAVIL_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 def StringParser():
@@ -34,175 +29,83 @@ def AgentParser():
     logger.debug("Creating AgentParser instance.")
     return CauldronPydanticParser
 
-def CreateSQLAgent(llm_model, db, verbose=False):
-    logger.info(f"Creating SQL Agent with model: {llm_model} and database: {db}")
-    try:
-        assert type(llm_model) == str, "Model must be a string"
-        llm = ChatOpenAI(model=llm_model, temperature=0)
-        agent = create_sql_agent(llm, db=db, agent_type="openai-tools", verbose=verbose)
-        logger.info("SQL Agent created successfully.")
-        return agent
-    except AssertionError as e:
-        logger.error(f"Error in CreateSQLAgent: {e}")
-        raise
-    except Exception as e:
-        logger.error(f"Unexpected error in CreateSQLAgent: {e}", exc_info=True)
-        raise
+def createAgent(
+    llm: ChatOpenAI,
+    tools: list,
+    system_prompt: str,
+) -> str:
+    """Create a function-calling agent and add it to the graph."""
+    system_prompt += "\nWork autonomously according to your specialty, using the tools available to you."
+    " Do not ask for clarification."
+    " Your other team members (and other teams) will collaborate with you with their own specialties."
+    " You are chosen for a reason! You are one of the following team members: {team_members}."
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            (
+                "system",
+                system_prompt,
+            ),
+            MessagesPlaceholder(variable_name="messages"),
+            MessagesPlaceholder(variable_name="agent_scratchpad"),
+        ]
+    )
+    agent = create_openai_functions_agent(llm, tools, prompt)
+    executor = AgentExecutor(agent=agent, tools=tools)
+    return executor
 
-def createAgent(llm_model, promptRef, tools, return_executor=True):
-    """
-    Create an agent or an AgentExecutor based on the return_executor flag.
+def agentNode(state, agent, name):
+    result = agent.invoke(state)
+    return {"messages": [HumanMessage(content=result["output"], name=name)]}
 
-    Parameters:
-    llm_model (str): The model to be used.
-    promptRef (str): The reference for the prompt template.
-    tools (list): The list of tools.
-    return_executor (bool): If True, return an AgentExecutor, otherwise return the agent directly.
+def createTeamSupervisor(llm: ChatOpenAI, system_prompt, members) -> str:
+    """An LLM-based router."""
+    options = ["FINISH"] + members
+    function_def = {
+        "name": "route",
+        "description": "Select the next role.",
+        "parameters": {
+            "title": "routeSchema",
+            "type": "object",
+            "properties": {
+                "next": {
+                    "title": "Next",
+                    "anyOf": [
+                        {"enum": options},
+                    ],
+                },
+            },
+            "required": ["next"],
+        },
+    }
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", system_prompt),
+            MessagesPlaceholder(variable_name="messages"),
+            (
+                "system",
+                "Given the conversation above, who should act next?"
+                " Or should we FINISH? Select one of: {options}",
+            ),
+        ]
+    ).partial(options=str(options), team_members=", ".join(members))
+    return (
+        prompt
+        | llm.bind_functions(functions=[function_def], function_call="route")
+        | JsonOutputFunctionsParser()
+    )
 
-    Returns:
-    AgentExecutor or agent: The created AgentExecutor or agent.
-    """
-    logger.info(f"Creating agent with model: {llm_model}, promptRef: {promptRef}, tools: {tools}")
-    try:
-        assert type(llm_model) == str, "Model must be a string"
-        assert type(promptRef) == str, "Prompt must be a string"
-        assert type(tools) == list, "Tools must be a list"
+class CauldronState(TypedDict):
+    # A message is added after each team member finishes
+    messages: Annotated[List[BaseMessage], operator.add]
+    # The team members are tracked so they are aware of
+    # the others' skill-sets
+    team_members: List[str]
+    # Used to route work. The supervisor calls a function
+    # that will update this every time it makes a decision
+    next: str
 
-        llm = ChatOpenAI(model=llm_model)
-        prompt = ChatPromptTemplate(
-            template=prompts_dict[promptRef],
-            input_variables=["input"],
-            partial_variables={"format_instructions": CauldronPydanticParser.get_format_instructions(), "datetime": datetime.now()},
-        )
-        if tools != []:
-            agent = create_tool_calling_agent(llm, tools, prompt)
-            logger.info("Agent created successfully.")
-            if return_executor:
-                return AgentExecutor(agent=agent, tools=tools)
-            else:
-                return agent
-        else:
-            logger.error("Tools list cannot be empty")
-            raise AssertionError("Tools list cannot be empty")
-    except AssertionError as e:
-        logger.error(f"Error in createAgent: {e}")
-        raise
-    except Exception as e:
-        logger.error(f"Unexpected error in createAgent: {e}", exc_info=True)
-        raise
-
-def createConductor(llm_model, promptRef, temperature, return_executor=True):
-    logger.info(f"Creating conductor agent with model: {llm_model}, prompt: {promptRef}, temperature: {temperature}")
-    try:
-        assert type(llm_model) == str, "Model must be a string"
-        assert type(promptRef) == str, "System instructions must be a string"
-        assert type(temperature) == float, "Temperature must be a float"
-        
-        llm = ChatOpenAI(model=llm_model, temperature=temperature)
-        prompt = PromptTemplate(
-            template=promptRef,
-            input_variables=["query"],
-            partial_variables={"format_instructions": CauldronPydanticParser.get_format_instructions(), "datetime": datetime.now()},
-        )
-        tools = [task_ID_tool]
-        agent = create_openai_tools_agent(llm, tools, prompt)
-        agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-        history = ChatMessageHistory()
-        chain_with_message_history = RunnableWithMessageHistory(
-            agent_executor,
-            lambda session_id: history,
-            input_messages_key="input",
-            history_messages_key="chat_history",
-        )
-        logger.info("Conductor created successfully.")
-        if return_executor:
-            return chain_with_message_history
-        else:
-            return agent
-    except AssertionError as e:
-        logger.error(f"Error in createConductor: {e}")
-        raise
-    except Exception as e:
-        logger.error(f"Unexpected error in createConductor: {e}", exc_info=True)
-        raise
-
-def createChain(llm_model, prompt):
-    logger.info(f"Creating chain with model: {llm_model}, prompt: {prompt}")
-    try:
-        assert type(llm_model) == str, "Model must be a string"
-        assert type(prompt) == str, "System instructions must be a string"
-        
-        llm = ChatOpenAI(model=llm_model)
-        prompt = ChatPromptTemplate.from_messages([
-            ("system", prompt),
-            ("user", "{input}")
-        ])
-        output_parser = StrOutputParser()
-        logger.info("Chain created successfully.")
-        return prompt | llm | output_parser
-    except AssertionError as e:
-        logger.error(f"Error in createChain: {e}")
-        raise
-    except Exception as e:
-        logger.error(f"Unexpected error in createChain: {e}", exc_info=True)
-        raise
-
-class Conductor:
-    def __init__(self, model, prompt, temperature):
-        logger.info(f"Initializing Conductor with model: {model}, prompt: {prompt}, temperature: {temperature}")
-        self.bot = createConductor(model, prompt, temperature)
-        self.parser = AgentParser()
-    
-    def chat(self, input):
-        logger.debug(f"Conductor chat invoked with input: {input}")
-        return self.bot.invoke({"input": input}, config={"configurable": {"session_id": "unused"}})
-    
-    def stream(self, input, callback, on_complete):
-        logger.debug(f"Conductor stream invoked with input: {input}")
-        for chunk in self.bot.stream({"input": input}, config={"configurable": {"session_id": "unused"}}):
-            callback(chunk.content)
-        on_complete()  # Call the on_complete function after the stream is done
-        return
-
-class Chain:
-    def __init__(self, model, prompt):
-        logger.info(f"Initializing Chain with model: {model}, prompt: {prompt}")
-        self.chain = createChain(model, prompt)
-    
-    def invoke(self, input):
-        logger.debug(f"Chain invoke called with input: {input}")
-        return self.chain.invoke(input)
-
-class Agent:
-    def __init__(self, model, prompt, tools):
-        logger.info(f"Initializing Agent with model: {model}, prompt: {prompt}, tools: {tools}")
-        self.agent = createAgent(model, prompt, tools)
-    
-    def invoke(self, input):
-        logger.debug(f"Agent invoke called with input: {input}")
-        return self.parser.invoke(self.agent.invoke(input))
-
-class SQLAgent:
-    def __init__(self, model, db_path, verbose=False):
-        logger.info(f"Initializing SQLAgent with model: {model}, db_path: {db_path}, verbose: {verbose}")
-        try:
-            db = SQLDatabase.from_uri(db_path)
-            self.agent = CreateSQLAgent(model, db, verbose=verbose)
-            logger.info("SQLAgent initialized successfully.")
-        except Exception as e:
-            logger.error(f"Error initializing SQLAgent: {e}", exc_info=True)
-            raise
-    
-    def invoke(self, input):
-        logger.debug(f"SQLAgent invoke called with input: {input}")
-        return self.parser.invoke(self.agent.invoke(input)['output'])
-    
-    def stream(self, input, callback):
-        logger.debug(f"SQLAgent stream called with input: {input}")
-        # This method should use the real streaming functionality of your bot.
-        # Assuming a streaming method `invoke_stream` exists similar to the given example.
-        for chunk in self.agent.stream(input):
-            print(chunk)
-            print("------")
-            callback(chunk)
-        return
+def enter_chain(message: str):
+    results = {
+        "messages": [HumanMessage(content=message)],
+    }
+    return results

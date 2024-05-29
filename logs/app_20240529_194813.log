@@ -1,0 +1,10 @@
+2024-05-29 19:48:14,018 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 19:48:15,386 - cauldron - INFO   - cauldron_app.py - Creating agent for FlavorProfileAgent
+2024-05-29 19:48:15,910 - cauldron - INFO   - cauldron_app.py - Creating agent for NutrionalAnalysisAgent
+2024-05-29 19:48:15,911 - cauldron - INFO   - cauldron_app.py - Creating agent for CostAvailabilityAgent
+2024-05-29 19:48:15,912 - cauldron - INFO   - cauldron_app.py - Creating agent for FeedbackAgent
+2024-05-29 19:48:15,914 - cauldron - INFO   - cauldron_app.py - Creating agent for SQLAgent
+2024-05-29 19:48:15,921 - cauldron - INFO   - cauldron_app.py - Creating agent for ModificationsAgent
+2024-05-29 19:48:15,923 - cauldron - INFO   - cauldron_app.py - Creating agent for DevelopmentTrackerAgent
+2024-05-29 19:48:15,924 - cauldron - INFO   - cauldron_app.py - Creating agent for PeripheralFeedbackAgent
+2024-05-29 19:48:15,925 - cauldron - INFO   - cauldron_app.py - Creating agent for PeripheralFeedbackAgent
