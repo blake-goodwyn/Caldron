@@ -1,0 +1,7 @@
+2024-05-29 12:23:06,235 - cauldron - INFO - Initializing Interactive Demo Application
+2024-05-29 12:23:06,236 - cauldron - INFO - Serial Port and ADC Constants Initialized
+2024-05-29 12:23:07,795 - cauldron - INFO - Voice Interface Initialized
+2024-05-29 12:23:07,796 - cauldron - INFO - Grid Layout Initialized
+2024-05-29 12:23:07,805 - cauldron - INFO - Text Interaction Components Initialized
+2024-05-29 12:23:07,807 - cauldron - INFO - Transcription Components Initialized
+2024-05-29 12:23:07,888 - cauldron - INFO - Serial Connection Initialization Failed

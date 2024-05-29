@@ -1,0 +1,21 @@
+2024-05-29 12:44:17,352 - cauldron - INFO   - cauldron_app.py - >> Cauldron Functional Demo <<
+2024-05-29 12:44:17,646 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 12:44:17,651 - cauldron - INFO   - langchain_util.py - Initializing SQLAgent with model: gpt-4, db_path: sqlite:///sql/recipes_0514_1821.db, verbose: True
+2024-05-29 12:44:17,854 - cauldron - INFO   - langchain_util.py - Creating SQL Agent with model: gpt-4 and database: <langchain_community.utilities.sql_database.SQLDatabase object at 0x000001F44B6F1F10>
+2024-05-29 12:44:21,789 - cauldron - INFO   - langchain_util.py - SQL Agent created successfully.
+2024-05-29 12:44:21,796 - cauldron - INFO   - langchain_util.py - SQLAgent initialized successfully.
+2024-05-29 12:44:21,796 - cauldron - INFO   - cauldron_app.py - SQL Agent Initialized
+2024-05-29 12:44:21,797 - cauldron - INFO   - langchain_util.py - Initializing ChatBot with model: gpt-4, prompt: blake-goodwyn/cauldron-assistant-v0, temperature: 0.0
+2024-05-29 12:44:21,798 - cauldron - INFO   - langchain_util.py - Creating chatbot with model: gpt-4, prompt: blake-goodwyn/cauldron-assistant-v0, temperature: 0.0
+2024-05-29 12:44:27,970 - cauldron - INFO   - langchain_util.py - Chatbot created successfully.
+2024-05-29 12:44:27,972 - cauldron - DEBUG  - langchain_util.py - Creating StrOutputParser instance.
+2024-05-29 12:44:27,973 - cauldron - INFO   - cauldron_app.py - UI Agent Initialized
+2024-05-29 12:44:27,973 - cauldron - INFO   - interactive_demo.py - Initializing Functional Demo Application
+2024-05-29 12:44:27,974 - cauldron - INFO   - interactive_demo.py - Serial Port and ADC Constants Initialized
+2024-05-29 12:44:29,482 - cauldron - INFO   - interactive_demo.py - Voice Interface Initialized
+2024-05-29 12:44:29,483 - cauldron - INFO   - interactive_demo.py - Grid Layout Initialized
+2024-05-29 12:44:29,493 - cauldron - INFO   - interactive_demo.py - Text Interaction Components Initialized
+2024-05-29 12:44:29,496 - cauldron - INFO   - interactive_demo.py - Transcription Components Initialized
+2024-05-29 12:44:29,500 - cauldron - ERROR  - interactive_demo.py - Error opening serial port: could not open port 'COM4': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+2024-05-29 12:44:29,501 - cauldron - WARNING - interactive_demo.py - Serial connection could not be established.
+2024-05-29 12:44:29,502 - cauldron - INFO   - cauldron_app.py - Cauldron Functional Demo Initialized

@@ -1,89 +1,20 @@
-### TEST FILE FOR CAULDRON PROOF-OF-CONCEPT ###
-
-### Overview ###
-#
-# Cauldron is an AI-assisted recipe development platform that allows users to generate and quickly iterate on new recipes. 
-# Cauldron leverages multi-agent generative artificial intelligence tools to generate a desired foundational recipe from a provided prompt and optionally provided context. Cauldron then provides channels for both human and machine sensory feedback to iteratively refine the recipe.
-
-# The system works as follows:
-# 1. User provides a prompt and optionally context (i.e. custom ingredients, dietary restrictions, recipe sources, etc.)
-# 2. The system (Cauldron) parses the request and determines what type of SQL query to execute on a local database of recipes, ingredients, and processes
-# 3. Cauldron executes the query and returns a list of relevant information
-# 4. Cauldron formats the returned information into a context for recipe generation
-# 5. Cauldron generates a foundational recipe based on the context and prompt.
-# 6. Cauldron provides the foundational recipe to the user for feedback
-# 7. The user provides feedback on the recipe and the foundational recipe is tweaked until the user is satisfied
-# 8. Cauldron provides interaction points for human feedback (in the form of written and spoken language) and machine feedback (in the form of sensory data provided by IoT devices)
-# 9. The user is free to cook/bake the recipe and provide feedback on the final product
-# 10. Cauldron intelligently uses this feedback to further refine the recipe as well as save a "snapshot" of the recipe attempt for future reference
-
-### IMPORTS ###
-from util import SQLAgent, ChatBot, find_SQL_prompt, VoiceInterface
-import warnings
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 import serial
 import threading
 import time
-
-warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
-
-### DEFINITIONS ###
-
-class CauldronApp():
-    
-    def __init__(self, db_path, llm_model, verbose=False):
-        
-        #Pathways and Parameters
-        self.db = db_path
-        self.llm = llm_model
-
-        ## Defining Agents ##
-        
-        # SQL Retrieval Agent (Boilerplate) #
-        self.SQLAgent = SQLAgent(llm_model, db_path, verbose=verbose)
-
-        # UI Agent #
-        ui_prompt = "blake-goodwyn/cauldron-assistant-v0"
-        ui_temp = 0.0
-        self.UIAgent = ChatBot(llm_model, ui_prompt, ui_temp)
-
-        # Question Generation Agent #
-        # TODO: Add question generation agent
-
-        # Insight Consolidation Agent #
-        # TODO: Add insight consolidation agent
-
-        # Foundational Recipe Steward Agent #
-        # TODO: Add foundational recipe steward agent
-
-        # Peripheral Feedback Agent #
-        # TODO: Add peripheral interpretation agent
-
-        # "Sous Chef" Agent #
-        # TODO: Add agent for in-media-res cooking feedback integration
-
-        # TODO: Determine additional agents for fitness evaluation:
-        # > flavor profile analysis
-        # > nutritional analysis
-        # > culinary trend analysis
-        # > ingredient sourcing analysis
-        # > recipe cost analysis
-        # > sensory appeal analysis
-
-### MAIN ###
-
-#Parameter for chains & agents
-db_path = "sqlite:///sql/recipes_0514_1821.db"
-llm_model = "gpt-4"
-
-app = CauldronApp(db_path, llm_model, verbose=True)
+from util import VoiceInterface, find_SQL_prompt
+from logging_util import logger
 
 class InteractiveDemo:
-    def __init__(self, master):
+    def __init__(self, master, app):
+        
+        logger.info("Initializing Functional Demo Application")
+        
         self.master = master
+        self.app = app
         self.running = True  # Flag to indicate that the app is running
-        self.master.title("Cauldron Interactive Demo Application")
+        self.master.title("Cauldron Functional Demo Application")
         self.master.geometry("1200x600")  # Adjust size as necessary
 
         # Constants for serial communication
@@ -92,15 +23,18 @@ class InteractiveDemo:
         self.INITIAL_PERIOD = 1
         self.ADC_BOUND = 7
         self.start_time = time.time()
+        logger.info("Serial Port and ADC Constants Initialized")
 
         # Voice interface
         self.voice_interface = VoiceInterface()
+        logger.info("Voice Interface Initialized")
 
          # Set up the grid layout for the main window
         master.grid_columnconfigure(0, weight=1)
         master.grid_columnconfigure(1, weight=1)
         master.grid_rowconfigure(0, weight=1)
         master.grid_rowconfigure(1, weight=1)
+        logger.info("Grid Layout Initialized")
 
         # Setup the text input and response area in the top-left and bottom-left quadrants
         self.frame_text_interaction = tk.Frame(master)
@@ -117,6 +51,7 @@ class InteractiveDemo:
 
         self.clear_button = tk.Button(self.frame_text_interaction, text="Clear", command=self.clear_output)
         self.clear_button.pack(fill=tk.X, padx=10, pady=5)
+        logger.info("Text Interaction Components Initialized")
 
         # Transcription display in the upper right quadrant
         self.transcription_text = ScrolledText(master, height=10)
@@ -136,6 +71,7 @@ class InteractiveDemo:
 
         self.copy_to_chat_button = tk.Button(master, text="Copy to Chat Input", command=self.copy_transcription_to_chat)
         self.copy_to_chat_button.grid(row=0, column=1, sticky='n', padx=10, pady=(130, 0))
+        logger.info("Transcription Components Initialized")
 
         # Sensor display components
         self.lights = []
@@ -150,8 +86,10 @@ class InteractiveDemo:
             self.baseline = [0] * 8
             self.initial_readings = [[] for _ in range(8)]
             self.start_sensor_reading()
-        except Exception as e:
-            print("Error opening serial port:", e)
+            logger.info("Serial connection established.")
+        except serial.SerialException as e:
+            logger.error("Error opening serial port: %s", e, exc_info=False)
+            logger.warning("Serial connection could not be established.")
 
     def start_recording(self):
         """Start the recording in a separate thread to avoid UI blocking."""
@@ -287,7 +225,7 @@ class InteractiveDemo:
             self.master.quit()  # Close the application
         else:
             # Start streaming in a separate thread, properly passing the callback and on_complete functions
-            thread = threading.Thread(target=lambda: app.UIAgent.stream(user_input, self.append_output_chat, self.finalize_stream))
+            thread = threading.Thread(target=lambda: self.app.UIAgent.stream(user_input, self.append_output_chat, self.finalize_stream))
             thread.start()
             self.input_text.delete(0, tk.END)
 
@@ -304,7 +242,7 @@ class InteractiveDemo:
             nil=input("Pause for demo...")
 
     def run_query_and_append(self, query):
-        app.SQLAgent.stream(query, self.append_output_chat)
+        self.app.SQLAgent.stream(query, self.append_output_chat)
         return
 
     def clear_output(self):
@@ -316,14 +254,8 @@ class InteractiveDemo:
         self.master.after(500, self.master.destroy)  # Delay to allow threads to terminate
 
         # Additional cleanup if necessary, like closing serial connections:
-        if self.ser.is_open:
+        if hasattr(self, 'ser') and self.ser.is_open:
             self.ser.close()       
 
-def main():
-    root = tk.Tk()
-    app = InteractiveDemo(root)
-    root.protocol("WM_DELETE_WINDOW", app.on_close)  # Bind the close event
-    root.mainloop()
 
-if __name__ == "__main__":
-    main()
+
