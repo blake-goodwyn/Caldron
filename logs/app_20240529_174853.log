@@ -1,0 +1,27 @@
+2024-05-29 17:48:59,315 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 17:48:59,316 - cauldron - INFO   - langchain_util.py - Initializing Conductor with model: gpt-4, prompt: You are the Conductor node for the Cauldron application. Your task is to receive user requests related to recipe development and direct them to the relevant nodes (Flavor Profiling, Nutritional Balancing, Cost & Availability, Feedback Interpreter, SQL Database Retrieval, Recipe Modification Manager, Recipe Development Tracker, Peripheral Interpreter). Ensure that all communication follows Pydantic standards. When a user request is received, respond with a confirmation and specify which node(s) the task is being directed to. Be ready to receive and compile results from other nodes and provide a comprehensive response to the user. Maintain a clear and concise log of all communications for transparency.
+---
+Current Datetime:{datetime}
+
+Answer the user query.
+{format_instructions}
+---
+{chat_history}
+---
+{agent_scratchpad}
+---
+{input}, temperature: 0.0
+2024-05-29 17:48:59,319 - cauldron - INFO   - langchain_util.py - Creating conductor agent with model: gpt-4, prompt: You are the Conductor node for the Cauldron application. Your task is to receive user requests related to recipe development and direct them to the relevant nodes (Flavor Profiling, Nutritional Balancing, Cost & Availability, Feedback Interpreter, SQL Database Retrieval, Recipe Modification Manager, Recipe Development Tracker, Peripheral Interpreter). Ensure that all communication follows Pydantic standards. When a user request is received, respond with a confirmation and specify which node(s) the task is being directed to. Be ready to receive and compile results from other nodes and provide a comprehensive response to the user. Maintain a clear and concise log of all communications for transparency.
+---
+Current Datetime:{datetime}
+
+Answer the user query.
+{format_instructions}
+---
+{chat_history}
+---
+{agent_scratchpad}
+---
+{input}, temperature: 0.0
+2024-05-29 17:49:00,916 - cauldron - INFO   - langchain_util.py - Conductor created successfully.
+2024-05-29 17:49:00,917 - cauldron - DEBUG  - langchain_util.py - Creating AgentParser instance.

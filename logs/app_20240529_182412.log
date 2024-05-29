@@ -1,0 +1,28 @@
+2024-05-29 18:24:18,603 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 18:24:18,604 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: ConductorAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:20,226 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:20,226 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: FlavorProfileAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:21,475 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:21,475 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: NutrionalAnalysisAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:22,697 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:22,698 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: CostAvailabilityAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:23,933 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:23,933 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: FeedbackAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:25,145 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:25,145 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: SQLAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:26,382 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:26,383 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: ModificationsAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:27,635 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:27,635 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: DevelopmentTrackerAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:28,886 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:28,887 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: PeripheralFeedbackAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001F5EF0BD9E0>)]
+2024-05-29 18:24:30,109 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:24:30,110 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to FlavorProfileAgent
+2024-05-29 18:24:30,110 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to NutrionalAnalysisAgent
+2024-05-29 18:24:30,110 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to CostAvailabilityAgent
+2024-05-29 18:24:30,111 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to FeedbackAgent
+2024-05-29 18:24:30,111 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to SQLAgent
+2024-05-29 18:24:30,111 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to ModificationsAgent
+2024-05-29 18:24:30,112 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to DevelopmentTrackerAgent
+2024-05-29 18:24:30,112 - cauldron - INFO   - cauldron_app.py - Adding edge from ConductorAgent to PeripheralFeedbackAgent
+2024-05-29 18:24:30,114 - cauldron - INFO   - cauldron_app.py - Agent Network Initialized

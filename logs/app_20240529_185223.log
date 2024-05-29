@@ -1,0 +1,25 @@
+2024-05-29 18:52:29,636 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 18:52:29,636 - cauldron - INFO   - langchain_util.py - Initializing Conductor with model: gpt-3.5-turbo, prompt: You are the Conductor node for the Cauldron application. Your task is to receive user requests related to recipe development and direct them to the relevant nodes (Flavor Profiling, Nutritional Balancing, Cost & Availability, Feedback Interpreter, SQL Database Retrieval, Recipe Modification Manager, Recipe Development Tracker, Peripheral Interpreter). Ensure that all communication follows Pydantic standards. When a user request is received, respond with a confirmation and specify which node(s) the task is being directed to. Be ready to receive and compile results from other nodes and provide a comprehensive response to the user. Maintain a clear and concise log of all communications for transparency.
+---
+Current Datetime:{datetime}
+
+Answer the user query.
+{format_instructions}
+---
+{input}, temperature: 0.0
+2024-05-29 18:52:29,638 - cauldron - INFO   - langchain_util.py - Creating conductor agent with model: gpt-3.5-turbo, prompt: You are the Conductor node for the Cauldron application. Your task is to receive user requests related to recipe development and direct them to the relevant nodes (Flavor Profiling, Nutritional Balancing, Cost & Availability, Feedback Interpreter, SQL Database Retrieval, Recipe Modification Manager, Recipe Development Tracker, Peripheral Interpreter). Ensure that all communication follows Pydantic standards. When a user request is received, respond with a confirmation and specify which node(s) the task is being directed to. Be ready to receive and compile results from other nodes and provide a comprehensive response to the user. Maintain a clear and concise log of all communications for transparency.
+---
+Current Datetime:{datetime}
+
+Answer the user query.
+{format_instructions}
+---
+{input}, temperature: 0.0
+2024-05-29 18:52:31,040 - cauldron - ERROR  - langchain_util.py - Unexpected error in createConductor: Prompt missing required variables: {'agent_scratchpad'}
+Traceback (most recent call last):
+  File "c:\Users\blake\Documents\GitHub\ebakery\cauldron-app\langchain_util.py", line 108, in createConductor
+    agent = create_openai_tools_agent(llm, tools, prompt)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\langchain\agents\openai_tools\base.py", line 85, in create_openai_tools_agent
+    raise ValueError(f"Prompt missing required variables: {missing_vars}")
+ValueError: Prompt missing required variables: {'agent_scratchpad'}

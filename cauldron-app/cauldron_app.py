@@ -6,6 +6,7 @@ import warnings
 from logging_util import logger
 from agent_defs import prompts_dict
 
+
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
 ### DEFINITIONS ###
@@ -20,10 +21,8 @@ class CauldronApp():
         self.db = db_path
         self.llm = llm_model
 
-        ## Defining Agents ##
-
         # UI Agent #
-        ui_prompt = prompts_dict['ConductorAgentPrompt']
+        ui_prompt = prompts_dict['ConductorAgent']
         ui_temp = 0.0
         self.UIAgent = Conductor(llm_model, ui_prompt, ui_temp)
         logger.info("UI Agent Initialized")

@@ -17,7 +17,7 @@ import os
 from pydantic_util import CauldronPydanticParser
 from logging_util import logger
 from agent_defs import *
-from agent_tools import datetime_tool
+from agent_tools import *
 from datetime import datetime
 
 load_dotenv()
@@ -32,7 +32,7 @@ def StringParser():
 
 def AgentParser():
     logger.debug("Creating AgentParser instance.")
-    return CauldronPydanticParser()
+    return CauldronPydanticParser
 
 def CreateSQLAgent(llm_model, db, verbose=False):
     logger.info(f"Creating SQL Agent with model: {llm_model} and database: {db}")
@@ -49,22 +49,41 @@ def CreateSQLAgent(llm_model, db, verbose=False):
         logger.error(f"Unexpected error in CreateSQLAgent: {e}", exc_info=True)
         raise
 
-def createAgent(llm_model, hubPrompt, tools):
-    logger.info(f"Creating agent with model: {llm_model}, hubPrompt: {hubPrompt}, tools: {tools}")
+def createAgent(llm_model, promptRef, tools, return_executor=True):
+    """
+    Create an agent or an AgentExecutor based on the return_executor flag.
+
+    Parameters:
+    llm_model (str): The model to be used.
+    promptRef (str): The reference for the prompt template.
+    tools (list): The list of tools.
+    return_executor (bool): If True, return an AgentExecutor, otherwise return the agent directly.
+
+    Returns:
+    AgentExecutor or agent: The created AgentExecutor or agent.
+    """
+    logger.info(f"Creating agent with model: {llm_model}, promptRef: {promptRef}, tools: {tools}")
     try:
         assert type(llm_model) == str, "Model must be a string"
-        assert type(hubPrompt) == str, "Hub prompt must be a string"
+        assert type(promptRef) == str, "Prompt must be a string"
         assert type(tools) == list, "Tools must be a list"
 
         llm = ChatOpenAI(model=llm_model)
-        prompt = hub.pull(hubPrompt)
+        prompt = ChatPromptTemplate(
+            template=prompts_dict[promptRef],
+            input_variables=["input"],
+            partial_variables={"format_instructions": CauldronPydanticParser.get_format_instructions(), "datetime": datetime.now()},
+        )
         if tools != []:
             agent = create_tool_calling_agent(llm, tools, prompt)
+            logger.info("Agent created successfully.")
+            if return_executor:
+                return AgentExecutor(agent=agent, tools=tools)
+            else:
+                return agent
         else:
-            tools = [TavilySearchResults(max_results=1)]
-            agent = create_openai_tools_agent(llm, tools, prompt)
-        logger.info("Agent created successfully.")
-        return AgentExecutor(agent=agent, tools=tools)
+            logger.error("Tools list cannot be empty")
+            raise AssertionError("Tools list cannot be empty")
     except AssertionError as e:
         logger.error(f"Error in createAgent: {e}")
         raise
@@ -72,7 +91,7 @@ def createAgent(llm_model, hubPrompt, tools):
         logger.error(f"Unexpected error in createAgent: {e}", exc_info=True)
         raise
 
-def createConductor(llm_model, promptRef, temperature):
+def createConductor(llm_model, promptRef, temperature, return_executor=True):
     logger.info(f"Creating conductor agent with model: {llm_model}, prompt: {promptRef}, temperature: {temperature}")
     try:
         assert type(llm_model) == str, "Model must be a string"
@@ -85,7 +104,7 @@ def createConductor(llm_model, promptRef, temperature):
             input_variables=["query"],
             partial_variables={"format_instructions": CauldronPydanticParser.get_format_instructions(), "datetime": datetime.now()},
         )
-        tools = [datetime_tool]
+        tools = [task_ID_tool]
         agent = create_openai_tools_agent(llm, tools, prompt)
         agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
         history = ChatMessageHistory()
@@ -96,7 +115,10 @@ def createConductor(llm_model, promptRef, temperature):
             history_messages_key="chat_history",
         )
         logger.info("Conductor created successfully.")
-        return chain_with_message_history
+        if return_executor:
+            return chain_with_message_history
+        else:
+            return agent
     except AssertionError as e:
         logger.error(f"Error in createConductor: {e}")
         raise
@@ -129,6 +151,7 @@ class Conductor:
     def __init__(self, model, prompt, temperature):
         logger.info(f"Initializing Conductor with model: {model}, prompt: {prompt}, temperature: {temperature}")
         self.bot = createConductor(model, prompt, temperature)
+        self.parser = AgentParser()
     
     def chat(self, input):
         logger.debug(f"Conductor chat invoked with input: {input}")
@@ -154,7 +177,6 @@ class Agent:
     def __init__(self, model, prompt, tools):
         logger.info(f"Initializing Agent with model: {model}, prompt: {prompt}, tools: {tools}")
         self.agent = createAgent(model, prompt, tools)
-        self.parser
     
     def invoke(self, input):
         logger.debug(f"Agent invoke called with input: {input}")

@@ -1,0 +1,19 @@
+2024-05-29 18:22:14,445 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-29 18:22:14,445 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: ConductorAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:16,132 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:16,132 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: FlavorProfileAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:17,352 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:17,353 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: NutrionalAnalysisAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:18,591 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:18,592 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: CostAvailabilityAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:19,832 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:19,832 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: FeedbackAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:21,076 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:21,077 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: SQLAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:22,263 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:22,263 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: ModificationsAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:23,456 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:23,457 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: DevelopmentTrackerAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:24,642 - cauldron - INFO   - langchain_util.py - Agent created successfully.
+2024-05-29 18:22:24,643 - cauldron - INFO   - langchain_util.py - Creating agent with model: gpt-3.5-turbo, promptRef: PeripheralFeedbackAgent, tools: [Tool(name='Datetime', description='Returns the current datetime', func=<function <lambda> at 0x000001ECE295D9E0>)]
+2024-05-29 18:22:25,899 - cauldron - INFO   - langchain_util.py - Agent created successfully.
