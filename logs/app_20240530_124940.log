@@ -1,0 +1,6 @@
+2024-05-30 12:49:40,050 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-05-30 12:49:40,051 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-05-30 12:49:41,330 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-05-30 12:49:41,331 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-05-30 12:49:42,572 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-05-30 12:49:42,572 - cauldron - INFO   - agent_defs.py - Creating agent: FlavorProfileAgent

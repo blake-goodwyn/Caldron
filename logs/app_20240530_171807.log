@@ -1,0 +1,13 @@
+2024-05-30 17:18:13,321 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-30 17:18:14,542 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-05-30 17:18:14,542 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-05-30 17:18:14,543 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-05-30 17:18:14,544 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-05-30 17:18:14,544 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-05-30 17:18:14,549 - cauldron - INFO   - agent_defs.py - Creating agent: SQLAgent
+2024-05-30 17:18:14,552 - cauldron - INFO   - agent_defs.py - Agent SQLAgent created.
+2024-05-30 17:18:14,552 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-05-30 17:18:14,555 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-05-30 17:18:14,555 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-05-30 17:18:14,558 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-05-30 17:18:14,558 - cauldron - INFO   - agent_defs.py - All agents created.

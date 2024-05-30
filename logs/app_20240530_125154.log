@@ -1,0 +1,21 @@
+2024-05-30 12:51:54,766 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-05-30 12:51:54,766 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-05-30 12:51:55,966 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-05-30 12:51:55,967 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-05-30 12:51:57,117 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-05-30 12:51:57,117 - cauldron - INFO   - agent_defs.py - Creating agent: FlavorProfileAgent
+2024-05-30 12:51:58,681 - cauldron - INFO   - agent_defs.py - Agent FlavorProfileAgent created.
+2024-05-30 12:51:58,682 - cauldron - INFO   - agent_defs.py - Creating agent: NutrionalAnalysisAgent
+2024-05-30 12:51:59,788 - cauldron - INFO   - agent_defs.py - Agent NutrionalAnalysisAgent created.
+2024-05-30 12:51:59,788 - cauldron - INFO   - agent_defs.py - Creating agent: CostAvailabilityAgent
+2024-05-30 12:52:00,899 - cauldron - INFO   - agent_defs.py - Agent CostAvailabilityAgent created.
+2024-05-30 12:52:00,899 - cauldron - INFO   - agent_defs.py - Creating agent: FeedbackAgent
+2024-05-30 12:52:01,989 - cauldron - INFO   - agent_defs.py - Agent FeedbackAgent created.
+2024-05-30 12:52:01,989 - cauldron - INFO   - agent_defs.py - Creating agent: SQLAgent
+2024-05-30 12:52:03,081 - cauldron - INFO   - agent_defs.py - Agent SQLAgent created.
+2024-05-30 12:52:03,081 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-05-30 12:52:04,176 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-05-30 12:52:04,176 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-05-30 12:52:05,330 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-05-30 12:52:05,330 - cauldron - INFO   - agent_defs.py - Creating agent: PeripheralFeedbackAgent
+2024-05-30 12:52:06,448 - cauldron - INFO   - agent_defs.py - Agent PeripheralFeedbackAgent created.

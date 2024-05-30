@@ -1,20 +1,26 @@
 # langchain_util.py
 
 import operator
-from typing import Annotated, List, Tuple, Union, TypedDict
+from typing import Annotated, Sequence, TypedDict, Literal
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.messages import HumanMessage, BaseMessage
+from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, ToolMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
 from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain.agents.agent import RunnableAgent
+from langchain_community.utilities.sql_database import SQLDatabase
+from langchain_community.agent_toolkits.sql.prompt import (
+    SQL_FUNCTIONS_SUFFIX,
+    SQL_PREFIX,
+)
+from langchain_community.agent_toolkits import SQLDatabaseToolkit
+from langgraph.graph import StateGraph
 
 from dotenv import load_dotenv
 import os
 from pydantic_util import CauldronPydanticParser
 from logging_util import logger
-from agent_defs import *
-from agent_tools import *
 
 load_dotenv()
 LANGCHAIN_TRACING_V2=True
@@ -34,32 +40,54 @@ def createAgent(
     tools: list,
     system_prompt: str,
 ) -> str:
-    """Create a function-calling agent and add it to the graph."""
-    system_prompt += "\nWork autonomously according to your specialty, using the tools available to you."
-    " Do not ask for clarification."
-    " Your other team members (and other teams) will collaborate with you with their own specialties."
-    " You are chosen for a reason! You are one of the following team members: {team_members}."
     prompt = ChatPromptTemplate.from_messages(
         [
             (
                 "system",
-                system_prompt,
+                "You are a helpful AI assistant, collaborating with other assistants."
+                " Use the provided tools to progress towards answering the question."
+                " If you are unable to fully answer, that's OK, another assistant with different tools "
+                " will help where you left off. Execute what you can to make progress."
+                " If you or any of the other assistants have the final answer or deliverable,"
+                " prefix your response with FINAL ANSWER so the team knows to stop."
+                " You have access to the following tools: {tool_names}.\n\n Your responsibility is the following:\n{system_message}",
             ),
-            MessagesPlaceholder(variable_name="messages"),
-            MessagesPlaceholder(variable_name="agent_scratchpad"),
+            MessagesPlaceholder(variable_name="messages")
         ]
     )
-    agent = create_openai_functions_agent(llm, tools, prompt)
-    executor = AgentExecutor(agent=agent, tools=tools)
-    return executor
+    prompt = prompt.partial(system_message=system_prompt)
+    prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
+    return prompt | llm.bind_tools(tools)
 
-def agentNode(state, agent, name):
-    result = agent.invoke(state)
-    return {"messages": [HumanMessage(content=result["output"], name=name)]}
+def createSQLAgent(system_prompt, llm_model, db_path, verbose=False):
+    assert type(llm_model) == str, "Model must be a string"
+    #assert type(prompt) == str, "Prompt must be a string"
 
-def createTeamSupervisor(llm: ChatOpenAI, system_prompt, members) -> str:
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            SystemMessage(str(SQL_PREFIX)),
+            SystemMessage(str(system_prompt)),
+            MessagesPlaceholder(variable_name="messages"),
+            MessagesPlaceholder(variable_name="agent_scratchpad"),
+            AIMessage(SQL_FUNCTIONS_SUFFIX)
+        ]
+    )
+
+    llm = ChatOpenAI(model=llm_model, temperature=0)
+    db = SQLDatabase.from_uri(db_path)
+    toolkit = SQLDatabaseToolkit(llm=llm, db=db)
+    tools = toolkit.get_tools()
+    agent = RunnableAgent(
+            runnable=create_openai_functions_agent(llm, tools, prompt),
+            input_keys_arg=["messages"],
+            return_keys_arg=["output"]
+        )
+    return AgentExecutor(name="SQL Agent Executor", agent=agent, tools=tools)
+
+def createTeamSupervisor(llm: ChatOpenAI, system_prompt, name, members) -> str:
     """An LLM-based router."""
-    options = ["FINISH"] + members
+    sender = name
+    options = members
     function_def = {
         "name": "route",
         "description": "Select the next role.",
@@ -73,8 +101,14 @@ def createTeamSupervisor(llm: ChatOpenAI, system_prompt, members) -> str:
                         {"enum": options},
                     ],
                 },
+                "sender": {
+                    "title": "Sender",
+                    "anyOf": [
+                        {"string": sender},
+                    ]
+                }
             },
-            "required": ["next"],
+            "required": ["next", "sender"],
         },
     }
     prompt = ChatPromptTemplate.from_messages(
@@ -94,15 +128,23 @@ def createTeamSupervisor(llm: ChatOpenAI, system_prompt, members) -> str:
         | JsonOutputFunctionsParser()
     )
 
-class CauldronState(TypedDict):
-    # A message is added after each team member finishes
-    messages: Annotated[List[BaseMessage], operator.add]
-    # The team members are tracked so they are aware of
-    # the others' skill-sets
-    team_members: List[str]
-    # Used to route work. The supervisor calls a function
-    # that will update this every time it makes a decision
+# Helper function to create a node for a given agent
+def agent_node(state, agent, name):
+    result = agent.invoke(state)
+    logger.info(result)
+    result = AIMessage(content=result["output"], name=name)
+    return {
+        "messages": [result],
+        "sender": name,
+    }
+
+class AgentState(TypedDict):
+    messages: Annotated[Sequence[BaseMessage], operator.add]
+    sender: str
     next: str
+
+def workflow():
+    return StateGraph(AgentState)
 
 def enter_chain(message: str):
     results = {

@@ -1,0 +1,23 @@
+2024-05-30 13:21:54,879 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-30 13:21:55,965 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-05-30 13:21:55,965 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-05-30 13:21:55,966 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-05-30 13:21:55,966 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-05-30 13:21:55,967 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-05-30 13:21:55,972 - cauldron - INFO   - agent_defs.py - Creating agent: FlavorProfileAgent
+2024-05-30 13:21:56,450 - cauldron - INFO   - agent_defs.py - Agent FlavorProfileAgent created.
+2024-05-30 13:21:56,451 - cauldron - INFO   - agent_defs.py - Creating agent: NutrionalAnalysisAgent
+2024-05-30 13:21:56,452 - cauldron - INFO   - agent_defs.py - Agent NutrionalAnalysisAgent created.
+2024-05-30 13:21:56,452 - cauldron - INFO   - agent_defs.py - Creating agent: CostAvailabilityAgent
+2024-05-30 13:21:56,453 - cauldron - INFO   - agent_defs.py - Agent CostAvailabilityAgent created.
+2024-05-30 13:21:56,454 - cauldron - INFO   - agent_defs.py - Creating agent: FeedbackAgent
+2024-05-30 13:21:56,455 - cauldron - INFO   - agent_defs.py - Agent FeedbackAgent created.
+2024-05-30 13:21:56,455 - cauldron - INFO   - agent_defs.py - Creating agent: SQLAgent
+2024-05-30 13:21:56,456 - cauldron - INFO   - agent_defs.py - Agent SQLAgent created.
+2024-05-30 13:21:56,456 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-05-30 13:21:56,459 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-05-30 13:21:56,460 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-05-30 13:21:56,462 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-05-30 13:21:56,463 - cauldron - INFO   - agent_defs.py - Creating agent: PeripheralFeedbackAgent
+2024-05-30 13:21:56,464 - cauldron - INFO   - agent_defs.py - Agent PeripheralFeedbackAgent created.
+2024-05-30 13:21:56,464 - cauldron - INFO   - agent_defs.py - All agents created.

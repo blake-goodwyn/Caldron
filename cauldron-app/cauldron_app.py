@@ -1,14 +1,14 @@
 ### TEST FILE FOR CAULDRON PROOF-OF-CONCEPT ###
 
 ### IMPORTS ###
-from util import db_path, llm_model
 import warnings
-import functools
 from logging_util import logger
-from agent_defs import prompts_dict
-from langchain_util import ChatOpenAI, OPENAI_API_KEY, createTeamSupervisor, createAgent, agentNode, CauldronState, enter_chain
-from langgraph.graph import END, StateGraph
-from agent_tools import datetime_tool
+from langchain_util import ChatOpenAI, workflow, enter_chain
+from recipe_graph import fresh_graph, default_graph_file
+from mods_list import fresh_mods_list, default_mods_list_file
+from agent_defs import create_all_agents, prompts_dict, direct_edges
+import matplotlib.pyplot as plt
+import networkx as nx
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
@@ -16,7 +16,7 @@ warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Tr
 
 class CauldronApp():
     
-    def __init__(self, db_path, llm_model, verbose=False):
+    def __init__(self, db_path, llm_model, defs=prompts_dict, edges=direct_edges, gf=default_graph_file, mlist=default_mods_list_file, verbose=False):
         
         logger.info("Initializing Cauldron Application")
 
@@ -24,55 +24,53 @@ class CauldronApp():
         self.db = db_path
         self.llm = ChatOpenAI(model=llm_model)
 
-        ##Determine Hierarchical Structure
+        #Central Data Structures
+        self.recipe_graph = fresh_graph(gf)
+        self.mods_list = fresh_mods_list(mlist)
 
-        self.agents = []
-        self.graph = StateGraph(CauldronState)
-
-        for agent_name, prompt in prompts_dict.items():
-            if agent_name != "ConductorAgent":
-                logger.info(f"Creating agent for {agent_name}")
-                self.agents.append(agent_name)
-                curAgent = createAgent(self.llm, [datetime_tool], prompt)
-                functools.partial(agentNode, agent=curAgent, name=agent_name)
-                self.graph.add_node(agent_name, curAgent)
-        
-        logger.info(f"Creating agent for {agent_name}")
-        self.Conductor = createTeamSupervisor(
-            self.llm,
-            prompts_dict["ConductorAgent"],
-            self.agents,
-        )
-
-        self.graph.add_node("ConductorAgent", self.Conductor)
+        ##Determine Agent Structure
+        self.agents = create_all_agents(self.llm,defs)
 
         # Define the control flow
-        for agent_name in self.agents:
-            self.graph.add_edge(agent_name, "ConductorAgent")
+        self.flow_graph = workflow()
+        self.display_graph = nx.DiGraph()
+        for node_name, node in self.agents.items():
+            self.flow_graph.add_node(node_name, node)
+            self.display_graph.add_node(node_name)
 
-        self.graph.add_conditional_edges(
+        for source, target in edges:
+            self.flow_graph.add_edge(source, target)
+            self.display_graph.add_edge(source, target)
+
+        self.flow_graph.add_conditional_edges(
             "ConductorAgent",
             lambda x: x["next"],
-            {"FlavorProfileAgent": "FlavorProfileAgent", 
-             "NutrionalAnalysisAgent": "NutrionalAnalysisAgent",
-             "CostAvailabilityAgent": "CostAvailabilityAgent",
-             "FeedbackAgent": "FeedbackAgent",
-            "SQLAgent": "SQLAgent",
-            "ModificationsAgent": "ModificationsAgent",
-            "DevelopmentTrackerAgent": "DevelopmentTrackerAgent",
-            "PeripheralFeedbackAgent": "PeripheralFeedbackAgent",
-            "FINISH": END},
+            {
+                "RecipeResearchAgent": "RecipeResearchAgent", 
+                #"FeedbackAgent": "FeedbackAgent", TODO
+                "ModificationsAgent": "ModificationsAgent", 
+                "DevelopmentTrackerAgent": "DevelopmentTrackerAgent", 
+                #"PeripheralFeedbackAgent": "PeripheralFeedbackAgent" TODO
+            },
         )
+
+        self.flow_graph.add_conditional_edges(
+            "RecipeResearchAgent",
+            lambda x: x["next"],
+            {
+                #"FlavorProfileAgent": "FlavorProfileAgent", TODO
+                #"NutrionalAnalysisAgent": "NutrionalAnalysisAgent", TODO 
+                #"CostAvailabilityAgent": "CostAvailabilityAgent", TODO
+                "ConductorAgent": "ConductorAgent",
+                "SQLAgent": "SQLAgent"
+            },
+        )
+
+        self.flow_graph.set_entry_point("ConductorAgent")
+
+        pos = nx.spring_layout(self.display_graph)  # positions for all nodes
+        nx.draw(self.display_graph, pos, with_labels=True, node_size=3000, node_color="lightblue", font_size=10, font_weight="bold", arrows=True)
+        #plt.show()
         
-        self.graph.set_entry_point("ConductorAgent")
-        self.chain = self.graph.compile()
+        self.chain = self.flow_graph.compile()
         self.interface = enter_chain | self.chain
-
-
-app = CauldronApp(db_path, llm_model)
-for s in app.interface.stream(
-    "I want to make gluten-free bread with xanthan gum", {"recursion_limit": 100}
-):
-    if "__end__" not in s:
-        print(s)
-        print("---")
