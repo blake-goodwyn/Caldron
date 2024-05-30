@@ -6,7 +6,7 @@ from logging_util import logger
 from langchain_util import ChatOpenAI, workflow, enter_chain
 from recipe_graph import fresh_graph, default_graph_file
 from mods_list import fresh_mods_list, default_mods_list_file
-from agent_defs import create_all_agents, prompts_dict, direct_edges
+from agent_defs import create_all_agents, prompts_dict, direct_edges, END
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -50,6 +50,7 @@ class CauldronApp():
                 #"FeedbackAgent": "FeedbackAgent", TODO
                 "ModificationsAgent": "ModificationsAgent", 
                 "DevelopmentTrackerAgent": "DevelopmentTrackerAgent", 
+                "FINISH": END,
                 #"PeripheralFeedbackAgent": "PeripheralFeedbackAgent" TODO
             },
         )

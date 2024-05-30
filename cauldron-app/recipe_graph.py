@@ -33,6 +33,10 @@ class RecipeGraph:
 
     def get_foundational_recipe(self):
         return self.get_recipe(self.foundational_recipe_node)
+    
+    def set_foundational_recipe(self, node_id):
+        self.foundational_recipe_node = node_id
+        #TODO - establish foundational recipe node when there is none
 
     def get_graph(self):
         return self.graph
@@ -117,3 +121,5 @@ def get_graph(
     nodes = list(graph.nodes(data=True))
     edges = list(graph.edges(data=True))
     return f"Recipe Graph: Nodes - {nodes}, Edges - {edges}"
+
+#TODO - Validate recipe format
