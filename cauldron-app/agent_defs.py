@@ -50,12 +50,12 @@ prompts_dict = {
     },
     "ModificationsAgent": {
         "type": "agent",
-        "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent. You have the following tools at your disposal: suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod",
+        "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent.",
         "tools": [suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
     },
     "DevelopmentTrackerAgent": {
         "type": "agent",
-        "prompt": "You are DevelopmentTrackerAgent. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the ConductorAgent on how to develop the recipe_graph object appropriately. Ensure that the development path is clear and logical. You have the following tools at your disposal: create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph",
+        "prompt": "You are DevelopmentTrackerAgent. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the ConductorAgent on how to develop the recipe_graph object appropriately. Ensure that the development path is clear and logical.",
         "tools": [create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph],
     },
     #"PeripheralFeedbackAgent": { TODO
@@ -85,17 +85,17 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
     for name, d in prompts_dict.items():
         if d["type"] == "supervisor":
             logger.info(f"Creating supervisor agent: {name}")
-            agent = createTeamSupervisor(llm, d["prompt"], name, members=d["members"])
+            agent = createTeamSupervisor(name, d["prompt"], llm, members=d["members"])
             node = agent
 
         elif d["type"] == "sql":
             logger.info(f"Creating SQL agent: {name}")
-            agent = createSQLAgent(d["prompt"],llm_model, db_path, verbose=True)
+            agent = createSQLAgent(name, d["prompt"], llm_model, db_path, verbose=True)
             node = functools.partial(agent_node, agent=agent, name=name)
 
         elif d["type"] == "agent":
             logger.info(f"Creating agent: {name}")
-            agent = createAgent(llm, d["tools"], d["prompt"])
+            agent = createAgent(name, d["prompt"], llm, d["tools"])
             node = functools.partial(agent_node, agent=agent, name=name)
 
         agents[name] = node

@@ -1,0 +1,16 @@
+2024-05-31 14:58:03,067 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-31 14:58:03,975 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-05-31 14:58:03,975 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-05-31 14:58:03,976 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-05-31 14:58:03,977 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-05-31 14:58:03,978 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-05-31 14:58:03,978 - cauldron - INFO   - agent_defs.py - Creating SQL agent: SQLAgent
+2024-05-31 14:58:05,305 - cauldron - INFO   - agent_defs.py - Agent SQLAgent created.
+2024-05-31 14:58:05,305 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-05-31 14:58:05,308 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-05-31 14:58:05,308 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-05-31 14:58:05,311 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-05-31 14:58:05,311 - cauldron - INFO   - agent_defs.py - All agents created.
+2024-05-31 14:58:10,209 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SQLAgent', 'output': "I don't know."}
+2024-05-31 14:58:13,846 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.'), AIMessage(content="I don't know.", name='SQLAgent')], 'sender': 'RecipeResearchAgent', 'next': 'SQLAgent', 'output': "I don't know."}
+2024-05-31 14:58:26,024 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.'), AIMessage(content="I don't know.", name='SQLAgent'), AIMessage(content="I don't know.", name='SQLAgent')], 'sender': 'RecipeResearchAgent', 'next': 'SQLAgent', 'output': 'I found some gluten-free bread recipes that include xanthan gum in the processed ingredients. Here are a few of them:\n1. **Gluten Free Brown Bread**\n   - Recipe Link: [Gluten Free Brown Bread](https://glutenfreeonashoestring.com/brown-bread/)\n2. **Hearty Quinoa Bread**\n   - Recipe Link: [Hearty Quinoa Bread](https://wendypolisi.com/hearty-quinoa-bread/)\n3. **Easy White Gluten Free Bread Recipe for Sandwiches | Tender and Springy**\n   - Recipe Link: [Easy White Gluten Free Bread Recipe](https://glutenfreeonashoestring.com/gluten-free-bread-recipe/)\n4. **Homemade Gluten-Free Bread {bread machine, dairy-free option}**\n   - Recipe Link: [Homemade Gluten-Free Bread](https://www.mamaknowsglutenfree.com/homemade-gluten-free-bread/)\n5. **Gluten Free Naan Bread Recipe (vegan, dairy free, low FODMAP)**\n   - Recipe Link: [Gluten Free Naan Bread Recipe](https://glutenfreecuppatea.co.uk/2020/01/16/gluten-free-naan-bread-recipe-vegan/)'}

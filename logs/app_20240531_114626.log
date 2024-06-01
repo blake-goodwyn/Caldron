@@ -1,0 +1,14 @@
+2024-05-31 11:46:30,790 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-05-31 11:46:31,858 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-05-31 11:46:31,858 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-05-31 11:46:31,859 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-05-31 11:46:31,859 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-05-31 11:46:31,860 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-05-31 11:46:31,867 - cauldron - INFO   - agent_defs.py - Creating SQL agent: SQLAgent
+2024-05-31 11:46:33,450 - cauldron - INFO   - agent_defs.py - Agent SQLAgent created.
+2024-05-31 11:46:33,450 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-05-31 11:46:33,452 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-05-31 11:46:33,452 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-05-31 11:46:33,454 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-05-31 11:46:33,454 - cauldron - INFO   - agent_defs.py - All agents created.
+2024-05-31 11:46:37,309 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SQLAgent', 'output': "I don't know."}

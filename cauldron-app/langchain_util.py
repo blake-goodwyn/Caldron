@@ -1,13 +1,13 @@
 # langchain_util.py
 
 import operator
-from typing import Annotated, Sequence, TypedDict, Literal
+from typing import Annotated, Sequence, TypedDict, Literal, List
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, ToolMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
-from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain.agents.agent import RunnableAgent
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_community.agent_toolkits.sql.prompt import (
@@ -36,9 +36,10 @@ def AgentParser():
     return CauldronPydanticParser
 
 def createAgent(
+    name: str,
+    system_prompt: str,
     llm: ChatOpenAI,
     tools: list,
-    system_prompt: str,
 ) -> str:
     prompt = ChatPromptTemplate.from_messages(
         [
@@ -52,14 +53,22 @@ def createAgent(
                 " prefix your response with FINAL ANSWER so the team knows to stop."
                 " You have access to the following tools: {tool_names}.\n\n Your responsibility is the following:\n{system_message}",
             ),
-            MessagesPlaceholder(variable_name="messages")
+            MessagesPlaceholder(variable_name="messages"),
+            MessagesPlaceholder(variable_name="agent_scratchpad"),
         ]
     )
     prompt = prompt.partial(system_message=system_prompt)
     prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
-    return prompt | llm.bind_tools(tools)
+    agent = create_openai_tools_agent(llm | JsonOutputFunctionsParser(), tools=tools, prompt=prompt)
+    return AgentExecutor(name=name, agent=agent, tools=tools)
 
-def createSQLAgent(system_prompt, llm_model, db_path, verbose=False):
+def createSQLAgent(
+        name: str, 
+        system_prompt: str, 
+        llm_model: str, 
+        db_path: str, 
+        verbose=False
+):
     assert type(llm_model) == str, "Model must be a string"
     #assert type(prompt) == str, "Prompt must be a string"
 
@@ -78,13 +87,13 @@ def createSQLAgent(system_prompt, llm_model, db_path, verbose=False):
     toolkit = SQLDatabaseToolkit(llm=llm, db=db)
     tools = toolkit.get_tools()
     agent = RunnableAgent(
-            runnable=create_openai_functions_agent(llm, tools, prompt),
+            runnable=create_openai_tools_agent(llm, tools, prompt),
             input_keys_arg=["messages"],
             return_keys_arg=["output"]
         )
-    return AgentExecutor(name="SQL Agent Executor", agent=agent, tools=tools)
+    return AgentExecutor(name=name, agent=agent, tools=tools)
 
-def createTeamSupervisor(llm: ChatOpenAI, system_prompt, name, members) -> str:
+def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
     """An LLM-based router."""
     sender = name
     options = members
@@ -119,7 +128,7 @@ def createTeamSupervisor(llm: ChatOpenAI, system_prompt, name, members) -> str:
                 "system",
                 "Given the conversation above, who should act next?"
                 " Or should we FINISH? Select one of: {options}",
-            ),
+            )
         ]
     ).partial(options=str(options), team_members=", ".join(members))
     return (
