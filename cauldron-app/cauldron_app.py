@@ -5,7 +5,7 @@ import warnings
 from logging_util import logger
 from langchain_util import ChatOpenAI, workflow, enter_chain
 from recipe_graph import fresh_graph, default_graph_file, fresh_mods_list, default_mods_list_file
-from agent_defs import create_all_agents, prompts_dict, direct_edges, END
+from agent_defs import create_all_agents, prompts_dict, direct_edges, create_conditional_edges
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -41,31 +41,7 @@ class CauldronApp():
             self.flow_graph.add_edge(source, target)
             self.display_graph.add_edge(source, target)
 
-        self.flow_graph.add_conditional_edges(
-            "ConductorAgent",
-            lambda x: x["next"],
-            {
-                "RecipeResearchAgent": "RecipeResearchAgent", 
-                #"FeedbackAgent": "FeedbackAgent", TODO
-                "ModificationsAgent": "ModificationsAgent", 
-                "DevelopmentTrackerAgent": "DevelopmentTrackerAgent", 
-                "FINISH": END,
-                #"PeripheralFeedbackAgent": "PeripheralFeedbackAgent" TODO
-            },
-        )
-
-        self.flow_graph.add_conditional_edges(
-            "RecipeResearchAgent",
-            lambda x: x["next"],
-            {
-                #"FlavorProfileAgent": "FlavorProfileAgent", TODO
-                #"NutrionalAnalysisAgent": "NutrionalAnalysisAgent", TODO 
-                #"CostAvailabilityAgent": "CostAvailabilityAgent", TODO
-                "ConductorAgent": "ConductorAgent",
-                #"SQLAgent": "SQLAgent",
-                "SearchAgent": "SearchAgent",
-            },
-        )
+        create_conditional_edges(self.flow_graph)
 
         self.flow_graph.set_entry_point("ConductorAgent")
 

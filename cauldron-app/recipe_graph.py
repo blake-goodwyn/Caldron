@@ -275,7 +275,7 @@ def generate_ingredient(
 def generate_recipe(
     name: Annotated[str, "The name of the recipe."],
     ingredients: Annotated[List[str], "A list of JSON representations of Ingredient objects. Example: ['{\"name\": \"Flour\", \"quantity\": 2.5, \"unit\": \"cups\"}']"],
-    instructions: Annotated[List[str], "A list of recipe instructions."],
+    instructions: Annotated[List[str], "A list of recipe instructions. Example: ['Preheat the oven to 350F', 'Mix the flour and sugar']"],
     tags: Annotated[Optional[List[str]], "A list of recipe tags."] = None,
     sources: Annotated[Optional[List[str]], "A list of sources or inspirations."] = None
 ) -> Annotated[str, "The JSON representation of the recipe."]:

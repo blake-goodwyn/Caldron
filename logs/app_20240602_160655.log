@@ -1,0 +1,47 @@
+2024-06-02 16:06:59,094 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-02 16:06:59,986 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-02 16:06:59,986 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-02 16:06:59,988 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-02 16:06:59,988 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-02 16:06:59,988 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-02 16:06:59,989 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-02 16:06:59,990 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-02 16:06:59,991 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-02 16:06:59,991 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 16:06:59,992 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-02 16:06:59,992 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-02 16:07:00,456 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-02 16:07:00,456 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-02 16:07:00,457 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-02 16:07:00,457 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-02 16:07:00,461 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-02 16:07:00,462 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-02 16:07:00,464 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-02 16:07:00,464 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-02 16:07:05,876 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent', 'output': 'I found a gluten-free bread recipe that includes xanthan gum. You can find the recipe at the following link: [Gluten-Free Bread Recipe with Xanthan Gum](https://www.theglutenfreeblogger.com/gluten-free-bread-recipe/). Would you like me to look for more options or details on this recipe?'}
+2024-06-02 16:07:08,013 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get keywords: 'SchemaScraper' object has no attribute 'keywords'
+2024-06-02 16:07:12,130 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.'), AIMessage(content='I found a gluten-free bread recipe that includes xanthan gum. You can find the recipe at the following link: [Gluten-Free Bread Recipe with Xanthan Gum](https://www.theglutenfreeblogger.com/gluten-free-bread-recipe/). Would you like me to look for more options or details on this recipe?', name='SearchAgent')], 'sender': 'RecipeResearchAgent', 'next': 'RecipeScraperAgent', 'output': 'I have retrieved the details for the "Gluten Free Bread" recipe that includes xanthan gum. Here are the key details:\n\n- **Ingredients**:\n  - 400g FREEE gluten free white bread flour\n  - 1 tsp xanthan gum\n  - 300ml warm water\n  - 2 tbsp caster sugar\n  - 14g dried yeast\n  - 1 tsp salt\n  - 1 tsp apple cider vinegar\n  - 5 tbsp vegetable oil\n  - 2 eggs\n\n- **Instructions**:\n  1. Prepare yeast mixture and let it activate.\n  2. Mix flour, xanthan gum, and salt in a bowl.\n  3. Whisk eggs, oil, and vinegar in a separate bowl.\n  4. Combine all mixtures to form a sticky dough.\n  5. Transfer dough to a loaf tin and let it rise.\n  6. Bake in the oven until golden.\n  7. Cool before slicing and serving.\n\nWould you like any more information or assistance with this recipe?'}
+2024-06-02 16:07:18,631 - cauldron - DEBUG  - recipe_graph.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-02 16:07:18,631 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,632 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,632 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,633 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,634 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,634 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,634 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,635 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,635 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-02 16:07:18,636 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Recipe object.
+2024-06-02 16:07:18,636 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,636 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,637 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,637 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,638 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,639 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,639 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,639 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:18,640 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of Ingredient object.
+2024-06-02 16:07:23,270 - cauldron - DEBUG  - recipe_graph.py - add_node - Adding node to recipe graph.
+2024-06-02 16:07:23,271 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-02 16:07:23,271 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-02 16:07:23,272 - cauldron - DEBUG  - recipe_graph.py - add_node - Adding node to recipe graph.

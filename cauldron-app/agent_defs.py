@@ -8,10 +8,10 @@ from typing import Dict, Any
 from langchain_openai import ChatOpenAI
 from logging_util import logger
 from langchain_util import createAgent, createTeamSupervisor, agent_node, createSQLAgent
-from recipe_graph import generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod, recipe_graph_tool_validation
+from recipe_graph import generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod
 from langgraph.graph import END
 from util import db_path, llm_model
-from agent_tools import tavily_search_tool
+from agent_tools import tavily_search_tool, get_recipe_info
 
 prompts_dict = {
     "ConductorAgent": {
@@ -21,8 +21,8 @@ prompts_dict = {
     },
     "RecipeResearchAgent": {
         "type": "supervisor",
-        "prompt": "You are RecipeResearchAgent, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: SearchAgent. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the ConductorAgent.",
-        "members": ["SearchAgent", "ConductorAgent"] #TODO - "SQLAgent", "FlavorProfileAgent", "NutrionalAnalysisAgent", "CostAvailabilityAgent" 
+        "prompt": "You are RecipeResearchAgent, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: SearchAgent RecipeScraperAgent. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the ConductorAgent.",
+        "members": ["SearchAgent", "RecipeScraperAgent", "ConductorAgent"] #TODO - "SQLAgent", "FlavorProfileAgent", "NutrionalAnalysisAgent", "CostAvailabilityAgent" 
     },
     #"FlavorProfileAgent": { TODO
     #    "type": "agent",
@@ -53,6 +53,11 @@ prompts_dict = {
         "prompt": "You are SearchAgent. Your task is to search the internet for relevant recipes that match the user's request. You will use the Tavily search tool to fulfill these requests and find relevant recipes. Once you have found a recipe, forward it to the RecipeResearchAgent.",
         "tools": [tavily_search_tool]
     },
+    "RecipeScraperAgent": {
+        "type": "agent",
+        "prompt": "You are RecipeScraperAgent. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, forward it to the RecipeResearchAgent.",
+        "tools": [get_recipe_info]
+    },
     "ModificationsAgent": {
         "type": "agent",
         "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent.",
@@ -81,6 +86,7 @@ direct_edges = [
     #("CostAvailabilityAgent", "RecipeResearchAgent"),
     #("SQLAgent", "RecipeResearchAgent"),
     ("SearchAgent", "RecipeResearchAgent"),
+    ("RecipeScraperAgent", "RecipeResearchAgent"),
     ("ConductorAgent", END)
 ]
 
@@ -109,3 +115,31 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
 
     logger.info("All agents created.")
     return agents
+
+def create_conditional_edges(flow_graph):
+    flow_graph.add_conditional_edges(
+        "ConductorAgent",
+        lambda x: x["next"],
+        {
+            "RecipeResearchAgent": "RecipeResearchAgent", 
+            #"FeedbackAgent": "FeedbackAgent", TODO
+            "ModificationsAgent": "ModificationsAgent", 
+            "DevelopmentTrackerAgent": "DevelopmentTrackerAgent", 
+            "FINISH": END,
+            #"PeripheralFeedbackAgent": "PeripheralFeedbackAgent" TODO
+        },
+    )
+
+    flow_graph.add_conditional_edges(
+        "RecipeResearchAgent",
+        lambda x: x["next"],
+        {
+            #"FlavorProfileAgent": "FlavorProfileAgent", TODO
+            #"NutrionalAnalysisAgent": "NutrionalAnalysisAgent", TODO 
+            #"CostAvailabilityAgent": "CostAvailabilityAgent", TODO
+            "ConductorAgent": "ConductorAgent",
+            #"SQLAgent": "SQLAgent",
+            "SearchAgent": "SearchAgent",
+            "RecipeScraperAgent": "RecipeScraperAgent",
+        },
+    )

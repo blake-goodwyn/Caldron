@@ -1,0 +1,22 @@
+2024-06-02 16:09:40,180 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-02 16:09:41,189 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-02 16:09:41,189 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-02 16:09:41,190 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-02 16:09:41,190 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-02 16:09:41,191 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-02 16:09:41,192 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-02 16:09:41,192 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-02 16:09:41,193 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-02 16:09:41,193 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 16:09:41,194 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-02 16:09:41,194 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-02 16:09:41,703 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-02 16:09:41,703 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-02 16:09:41,705 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-02 16:09:41,705 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-02 16:09:41,709 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-02 16:09:41,710 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-02 16:09:41,712 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-02 16:09:41,713 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-02 16:09:50,101 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get keywords: 'SchemaScraper' object has no attribute 'keywords'
+2024-06-02 16:09:57,309 - cauldron - DEBUG  - recipe_graph.py - generate_recipe - Generating JSON representation of Recipe object.

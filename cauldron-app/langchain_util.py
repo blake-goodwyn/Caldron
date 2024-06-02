@@ -140,7 +140,7 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    logger.info(result)
+    #logger.info(result)
     result = AIMessage(content=result["output"], name=name)
     return {
         "messages": [result],
