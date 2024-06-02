@@ -10,12 +10,10 @@ from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain.agents.agent import RunnableAgent
 from langchain_community.utilities.sql_database import SQLDatabase
-from langchain_community.agent_toolkits.sql.prompt import (
-    SQL_FUNCTIONS_SUFFIX,
-    SQL_PREFIX,
-)
+from langchain_community.agent_toolkits.sql.prompt import SQL_FUNCTIONS_SUFFIX, SQL_PREFIX
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
 from langgraph.graph import StateGraph
+from recipe_graph import recipe_graph_tool_validation
 
 from dotenv import load_dotenv
 import os
@@ -55,11 +53,13 @@ def createAgent(
             ),
             MessagesPlaceholder(variable_name="messages"),
             MessagesPlaceholder(variable_name="agent_scratchpad"),
+            SystemMessage("{tool_validations}")
         ]
     )
     prompt = prompt.partial(system_message=system_prompt)
+    prompt = prompt.partial(tool_validations=recipe_graph_tool_validation)
     prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
-    agent = create_openai_tools_agent(llm | JsonOutputFunctionsParser(), tools=tools, prompt=prompt)
+    agent = create_openai_tools_agent(llm, tools=tools, prompt=prompt)
     return AgentExecutor(name=name, agent=agent, tools=tools)
 
 def createSQLAgent(

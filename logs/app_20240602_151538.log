@@ -1,0 +1,20 @@
+2024-06-02 15:15:41,131 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-06-02 15:15:42,030 - cauldron - INFO   - recipe_graph.py - Creating a new recipe graph.
+2024-06-02 15:15:42,030 - cauldron - INFO   - recipe_graph.py - Initializing RecipeGraph object.
+2024-06-02 15:15:42,032 - cauldron - INFO   - recipe_graph.py - Creating a new mods list.
+2024-06-02 15:15:42,032 - cauldron - INFO   - recipe_graph.py - Initializing ModsList object.
+2024-06-02 15:15:42,033 - cauldron - INFO   - recipe_graph.py - Saving mods list to file.
+2024-06-02 15:15:42,034 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-06-02 15:15:42,035 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-06-02 15:15:42,036 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-06-02 15:15:42,036 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 15:15:42,037 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-06-02 15:15:42,037 - cauldron - INFO   - agent_defs.py - Creating agent: SearchAgent
+2024-06-02 15:15:42,414 - cauldron - INFO   - agent_defs.py - Agent SearchAgent created.
+2024-06-02 15:15:42,415 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-06-02 15:15:42,418 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-06-02 15:15:42,418 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-06-02 15:15:42,422 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-06-02 15:15:42,422 - cauldron - INFO   - agent_defs.py - All agents created.
+2024-06-02 15:15:47,948 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent', 'output': 'I found a gluten-free bread recipe that includes xanthan gum. You can find the recipe at the following link: [Gluten-Free Bread Recipe with Xanthan Gum](https://www.theglutenfreeblogger.com/gluten-free-bread-recipe/). Would you like me to look for more options or is this recipe suitable for you?'}
+2024-06-02 15:15:50,116 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.'), AIMessage(content='I found a gluten-free bread recipe that includes xanthan gum. You can find the recipe at the following link: [Gluten-Free Bread Recipe with Xanthan Gum](https://www.theglutenfreeblogger.com/gluten-free-bread-recipe/). Would you like me to look for more options or is this recipe suitable for you?', name='SearchAgent')], 'sender': 'Cauldron', 'next': 'DevelopmentTrackerAgent', 'output': 'The recipe I found includes xanthan gum and is for gluten-free bread. Should I proceed with adding this recipe to the recipe graph?'}

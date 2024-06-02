@@ -2,7 +2,7 @@ import logging
 import os
 from datetime import datetime
 
-#Configure logger
+# Configure logger
 def setup_logging(log_level=logging.DEBUG, log_dir='logs'):
     """Sets up the logging configuration."""
     # Create the logs directory if it does not exist
@@ -27,8 +27,8 @@ def setup_logging(log_level=logging.DEBUG, log_dir='logs'):
     f_handler.setLevel(log_level)
 
     # Create formatters and add it to handlers
-    c_format = logging.Formatter('%(asctime)s - %(name)-6s - %(levelname)-6s - %(filename)-12s - %(message)s')
-    f_format = logging.Formatter('%(asctime)s - %(name)-6s - %(levelname)-6s - %(filename)-12s - %(message)s')
+    c_format = logging.Formatter('%(asctime)s - %(name)-6s - %(levelname)-6s - %(filename)-12s - %(funcName)s - %(message)s')
+    f_format = logging.Formatter('%(asctime)s - %(name)-6s - %(levelname)-6s - %(filename)-12s - %(funcName)s - %(message)s')
 
     c_handler.setFormatter(c_format)
     f_handler.setFormatter(f_format)

@@ -8,21 +8,21 @@ from typing import Dict, Any
 from langchain_openai import ChatOpenAI
 from logging_util import logger
 from langchain_util import createAgent, createTeamSupervisor, agent_node, createSQLAgent
-from recipe_graph import create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph
-from mods_list import suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod
+from recipe_graph import generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod, recipe_graph_tool_validation
 from langgraph.graph import END
 from util import db_path, llm_model
+from agent_tools import tavily_search_tool
 
 prompts_dict = {
     "ConductorAgent": {
         "type": "supervisor",
-        "prompt": "You are Cauldron, an intelligent assistant for recipe development. To other agents (not the user), you are the ConductorAgent. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: RecipeResearchAgent, ModificationsAgent, DevelopmentTrackerAgent. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you will assign the request to RecipeResearchAgent to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found, you will assign the recipe to ModificationsAgent to manage suggested modifications. Finally, you will assign the modified recipe to DevelopmentTrackerAgent to track the development process. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
+        "prompt": "You are Cauldron, an intelligent assistant for recipe development. To other agents (not the user), you are the ConductorAgent. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: RecipeResearchAgent, ModificationsAgent, DevelopmentTrackerAgent. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to RecipeResearchAgent to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
         "members":["RecipeResearchAgent", "ModificationsAgent", "DevelopmentTrackerAgent"] # TODO - "FeedbackAgent" & "PeripheralFeedbackAgent"
     },
     "RecipeResearchAgent": {
         "type": "supervisor",
-        "prompt": "You are RecipeResearchAgent, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: SQLAgent. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the ConductorAgent.",
-        "members": ["SQLAgent", "ConductorAgent"] #TODO - "FlavorProfileAgent", "NutrionalAnalysisAgent", "CostAvailabilityAgent" 
+        "prompt": "You are RecipeResearchAgent, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: SearchAgent. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the ConductorAgent.",
+        "members": ["SearchAgent", "ConductorAgent"] #TODO - "SQLAgent", "FlavorProfileAgent", "NutrionalAnalysisAgent", "CostAvailabilityAgent" 
     },
     #"FlavorProfileAgent": { TODO
     #    "type": "agent",
@@ -44,19 +44,24 @@ prompts_dict = {
     #    "prompt": "You are the Feedback Interpreter node for the Cauldron application. Your task is to interpret feedback from users and other nodes, identifying areas for recipe refinement. Analyze the feedback to suggest actionable changes. Ensure all outputs follow Pydantic standards and format them accordingly. Forward your results to the relevant nodes (e.g., Recipe Modification Manager, Flavor Profiling). Clearly address any looping issues or need for further input.",
     #    "tools": [suggest_mod],
     #},
-    "SQLAgent": {
-        "type": "sql",
-        "prompt": "In the event that a simple statement is received, you may reframe this statement as a question. For example, 'I want to make gluten-free bread with xanthan gum' could be reframed as 'What is a popular recipe for gluten-free bread with xanthan gum?'"
+    #"SQLAgent": {
+    #    "type": "sql",
+    #    "prompt": "In the event that a simple statement is received, you may reframe this statement as a question. For example, 'I #want to make gluten-free bread with xanthan gum' could be reframed as 'What is a popular recipe for gluten-free bread with xanthan gum?'"
+    #},
+    "SearchAgent": {
+        "type": "agent",
+        "prompt": "You are SearchAgent. Your task is to search the internet for relevant recipes that match the user's request. You will use the Tavily search tool to fulfill these requests and find relevant recipes. Once you have found a recipe, forward it to the RecipeResearchAgent.",
+        "tools": [tavily_search_tool]
     },
     "ModificationsAgent": {
         "type": "agent",
         "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent.",
-        "tools": [suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
+        "tools": [generate_mod, generate_recipe, generate_ingredient, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
     },
     "DevelopmentTrackerAgent": {
         "type": "agent",
-        "prompt": "You are DevelopmentTrackerAgent. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the ConductorAgent on how to develop the recipe_graph object appropriately. Ensure that the development path is clear and logical.",
-        "tools": [create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph],
+        "prompt": "You are DevelopmentTrackerAgent. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the ConductorAgent or the ModificationsAgent on how to develop the recipe_graph object appropriately. Prior to modifying the recipe_graph, always check its size and the foundational recipe. If recipe_graph has no nodes (like when the graph is first initialized), use context provided to generate a foundational recipe and add it to the recipe_graph. Ensure that the development path is clear and logical.",
+        "tools": [generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph],
     },
     #"PeripheralFeedbackAgent": { TODO
     #    "type": "agent",
@@ -74,7 +79,8 @@ direct_edges = [
     #("FlavorProfileAgent", "RecipeResearchAgent"),
     #("NutrionalAnalysisAgent", "RecipeResearchAgent"),
     #("CostAvailabilityAgent", "RecipeResearchAgent"),
-    ("SQLAgent", "RecipeResearchAgent"),
+    #("SQLAgent", "RecipeResearchAgent"),
+    ("SearchAgent", "RecipeResearchAgent"),
     ("ConductorAgent", END)
 ]
 
