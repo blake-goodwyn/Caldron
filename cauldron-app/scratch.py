@@ -4,15 +4,18 @@ from langchain_util import HumanMessage
 
 
 app = CauldronApp(db_path, llm_model)
-for s in app.chain.stream(
-    {
-        "messages": [
-            HumanMessage(
-                content="I want to make gluten-free bread with xanthan gum."
-            )
-        ]
-    },
-    {"recursion_limit": 50}
-):
-    print(s)
-    print("----")
+i = input("Enter a message: ")
+while True:
+    for s in app.chain.stream(
+        {
+            "messages": [
+                HumanMessage(
+                    content=i
+                )
+            ]
+        },
+        {"recursion_limit": 50}
+    ):
+        print(s)
+        print("----")
+    i = input("Enter a message: ")

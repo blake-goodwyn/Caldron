@@ -41,16 +41,7 @@ def createAgent(
 ) -> str:
     prompt = ChatPromptTemplate.from_messages(
         [
-            (
-                "system",
-                "You are a helpful AI assistant, collaborating with other assistants."
-                " Use the provided tools to progress towards answering the question."
-                " If you are unable to fully answer, that's OK, another assistant with different tools "
-                " will help where you left off. Execute what you can to make progress."
-                " If you or any of the other assistants have the final answer or deliverable,"
-                " prefix your response with FINAL ANSWER so the team knows to stop."
-                " You have access to the following tools: {tool_names}.\n\n Your responsibility is the following:\n{system_message}",
-            ),
+            ("system","{system_message}\n\nYou have access to the following tools: {tool_names}.\n\n "),
             MessagesPlaceholder(variable_name="messages"),
             MessagesPlaceholder(variable_name="agent_scratchpad"),
             SystemMessage("{tool_validations}")
@@ -140,7 +131,6 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    #logger.info(result)
     result = AIMessage(content=result["output"], name=name)
     return {
         "messages": [result],
