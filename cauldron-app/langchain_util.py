@@ -25,14 +25,6 @@ LANGCHAIN_TRACING_V2=True
 LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-def StringParser():
-    logger.debug("Creating StrOutputParser instance.")
-    return StrOutputParser()
-
-def AgentParser():
-    logger.debug("Creating AgentParser instance.")
-    return CauldronPydanticParser
-
 def createAgent(
     name: str,
     system_prompt: str,
@@ -41,7 +33,12 @@ def createAgent(
 ) -> str:
     prompt = ChatPromptTemplate.from_messages(
         [
-            ("system","{system_message}\n\nYou have access to the following tools: {tool_names}.\n\n "),
+            ("system","""
+             You are an agent within a multi-agent architecture.
+             "Keep all language concise and unambiguous. There is no need for pleasantries.
+             "You have the following role: \n{system_message}\n\n
+             "You have access to the following tools: {tool_names}.\n\n 
+             """),
             MessagesPlaceholder(variable_name="messages"),
             MessagesPlaceholder(variable_name="agent_scratchpad"),
             SystemMessage("{tool_validations}")
@@ -131,11 +128,18 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    result = AIMessage(content=result["output"], name=name)
-    return {
-        "messages": [result],
-        "sender": name,
-    }
+    logger.info(f"Agent {name} invoked with state: {state}")
+    if "output" in result.keys(): # If the agent has an output
+        result = AIMessage(content=result["output"], name=name)
+        return {
+            "messages": [result],
+            "sender": name,
+        }
+    else: # If it routed to another agent
+        return {
+            "sender": name,
+            "next": result["next"]
+        }
 
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]

@@ -12,10 +12,13 @@ while True:
                 HumanMessage(
                     content=i
                 )
-            ]
+            ],
+            'sender': 'user',
+            'next': 'ConductorAgent'
         },
         {"recursion_limit": 50}
     ):
-        print(s)
-        print("----")
+        pass
+        #print(s)
+        #print("----")
     i = input("Enter a message: ")

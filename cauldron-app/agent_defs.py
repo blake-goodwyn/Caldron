@@ -59,7 +59,7 @@ prompts_dict = {
     },
     "ModificationsAgent": {
         "type": "agent",
-        "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent.",
+        "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the ConductorAgent for clarification.",
         "tools": [generate_mod, generate_recipe, generate_ingredient, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
     },
     "DevelopmentTrackerAgent": {
@@ -97,19 +97,16 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
         if d["type"] == "supervisor":
             logger.info(f"Creating supervisor agent: {name}")
             agent = createTeamSupervisor(name, d["prompt"], llm, members=d["members"])
-            node = agent
 
         elif d["type"] == "sql":
             logger.info(f"Creating SQL agent: {name}")
             agent = createSQLAgent(name, d["prompt"], llm_model, db_path, verbose=True)
-            node = functools.partial(agent_node, agent=agent, name=name)
 
         elif d["type"] == "agent":
             logger.info(f"Creating agent: {name}")
             agent = createAgent(name, d["prompt"], llm, d["tools"])
-            node = functools.partial(agent_node, agent=agent, name=name)
 
-        agents[name] = node
+        agents[name] = functools.partial(agent_node, agent=agent, name=name)
         logger.info(f"Agent {name} created.")
 
     logger.info("All agents created.")
