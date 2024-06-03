@@ -43,7 +43,7 @@ class CauldronApp():
 
         conditional_edges = create_conditional_edges(self.flow_graph)
 
-        self.flow_graph.set_entry_point("ConductorAgent")
+        self.flow_graph.set_entry_point("CauldronRouter")
 
         # Separate edges into solid and dotted line groups
         solid_edges = direct_edges
@@ -53,7 +53,7 @@ class CauldronApp():
         pos = nx.spring_layout(self.display_graph, k=0.5, iterations=50)
 
         # Centralize a specific node
-        central_node = 'ConductorAgent'
+        central_node = 'CauldronRouter'
         pos[central_node] = [0, 0]  # Position the central node at the center
         for node in pos:
             if node != central_node:

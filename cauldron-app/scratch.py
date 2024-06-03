@@ -15,12 +15,15 @@ while i != "exit":
                 )
             ],
             'sender': 'user',
-            'next': 'ConductorAgent'
+            'next': 'CauldronRouter'
         },
         {"recursion_limit": 50}
     ):
         print("--------------------")
-        print(s)
+        if 'SummaryAgent' in s.keys():
+            print(s['SummaryAgent']['messages'][0].content)
+        else:
+            print(s)
         
     graph = load_graph_from_file(app.recipe_graph)
     printer.pprint(graph.get_foundational_recipe())

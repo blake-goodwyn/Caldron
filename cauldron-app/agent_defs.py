@@ -10,18 +10,23 @@ from logging_util import logger
 from langchain_util import createAgent, createTeamSupervisor, agent_node, createSQLAgent
 from langgraph.graph import END
 from util import db_path, llm_model
-from agent_tools import tavily_search_tool, get_recipe_info, generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod
+from agent_tools import tavily_search_tool, get_recipe_info, generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod, get_datetime
 
 prompts_dict = {
-    "ConductorAgent": {
+    "SummaryAgent": {
+        "type": "agent",
+        "prompt": "You are SummaryAgent. Your task is to summarize the given message chain and report back to the user. You will compile a comprehensive report summarizing the findings and status of the recipe development process.",
+        "tools": [get_datetime]
+    },
+    "CauldronRouter": {
         "type": "supervisor",
-        "prompt": "You are Cauldron, an intelligent assistant for recipe development. To other agents (not the user), you are the ConductorAgent. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: RecipeResearchAgent, ModificationsAgent, DevelopmentTrackerAgent. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to RecipeResearchAgent to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
+        "prompt": "You are Cauldron, an intelligent assistant for recipe development. To other agents (not the user), you are the CauldronRouter. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: RecipeResearchAgent, ModificationsAgent, DevelopmentTrackerAgent. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to RecipeResearchAgent to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
         "members":["RecipeResearchAgent", "ModificationsAgent", "DevelopmentTrackerAgent"] # TODO - "FeedbackAgent" & "PeripheralFeedbackAgent"
     },
     "RecipeResearchAgent": {
         "type": "supervisor",
-        "prompt": "You are RecipeResearchAgent, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: SearchAgent RecipeScraperAgent. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the ConductorAgent.",
-        "members": ["SearchAgent", "RecipeScraperAgent", "ConductorAgent"] #TODO - "SQLAgent", "FlavorProfileAgent", "NutrionalAnalysisAgent", "CostAvailabilityAgent" 
+        "prompt": "You are RecipeResearchAgent, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: SearchAgent RecipeScraperAgent. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the CauldronRouter.",
+        "members": ["SearchAgent", "RecipeScraperAgent", "CauldronRouter"] #TODO - "SQLAgent", "FlavorProfileAgent", "NutrionalAnalysisAgent", "CostAvailabilityAgent" 
     },
     #"FlavorProfileAgent": { TODO
     #    "type": "agent",
@@ -59,12 +64,12 @@ prompts_dict = {
     },
     "ModificationsAgent": {
         "type": "agent",
-        "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the ConductorAgent for clarification.",
+        "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or CauldronRouter. Forward the updated recipe to the DevelopmentTrackerAgent. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the CauldronRouter for clarification.",
         "tools": [generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
     },
     "DevelopmentTrackerAgent": {
         "type": "agent",
-        "prompt": "You are DevelopmentTrackerAgent. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the ConductorAgent or the ModificationsAgent on how to develop the recipe_graph object appropriately. Prior to modifying the recipe_graph, always check its size and the foundational recipe. If recipe_graph has no nodes (like when the graph is first initialized), use context provided to generate a foundational recipe and add it to the recipe_graph. Ensure that the development path is clear and logical.",
+        "prompt": "You are DevelopmentTrackerAgent. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the CauldronRouter or the ModificationsAgent on how to develop the recipe_graph object appropriately. Prior to modifying the recipe_graph, always check its size and the foundational recipe. If recipe_graph has no nodes (like when the graph is first initialized), use context provided to generate a foundational recipe and add it to the recipe_graph. Ensure that the development path is clear and logical.",
         "tools": [generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph],
     },
     #"PeripheralFeedbackAgent": { TODO
@@ -75,18 +80,18 @@ prompts_dict = {
 }
 
 direct_edges = [
-    #("RecipeResearchAgent", "ConductorAgent"),
-    ("ModificationsAgent", "ConductorAgent"),
-    ("DevelopmentTrackerAgent", "ConductorAgent"),
-    #("FeedbackAgent", "ConductorAgent"), TODO
-    #("PeripheralFeedbackAgent", "ConductorAgent"),
+    #("RecipeResearchAgent", "CauldronRouter"),
+    ("ModificationsAgent", "CauldronRouter"),
+    ("DevelopmentTrackerAgent", "CauldronRouter"),
+    #("FeedbackAgent", "CauldronRouter"), TODO
+    #("PeripheralFeedbackAgent", "CauldronRouter"),
     #("FlavorProfileAgent", "RecipeResearchAgent"),
     #("NutrionalAnalysisAgent", "RecipeResearchAgent"),
     #("CostAvailabilityAgent", "RecipeResearchAgent"),
     #("SQLAgent", "RecipeResearchAgent"),
     ("SearchAgent", "RecipeResearchAgent"),
     ("RecipeScraperAgent", "RecipeResearchAgent"),
-    ("ConductorAgent", END)
+    ("SummaryAgent", END)
 ]
 
 def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
@@ -118,23 +123,24 @@ def form_edges(flow_graph):
     return direct_edges
 
 conditional_edges = [
-    ("ConductorAgent", "RecipeResearchAgent"),
-    ("ConductorAgent", "ModificationsAgent"),
-    ("ConductorAgent", "DevelopmentTrackerAgent"),
+    ("CauldronRouter", "RecipeResearchAgent"),
+    ("CauldronRouter", "ModificationsAgent"),
+    ("CauldronRouter", "DevelopmentTrackerAgent"),
+    ("CauldronRouter", "SummaryAgent"),
     ("RecipeResearchAgent", "SearchAgent"),
     ("RecipeResearchAgent", "RecipeScraperAgent"),
 ]
 
 def create_conditional_edges(flow_graph):
     flow_graph.add_conditional_edges(
-        "ConductorAgent",
+        "CauldronRouter",
         lambda x: x["next"],
         {
             "RecipeResearchAgent": "RecipeResearchAgent", 
             #"FeedbackAgent": "FeedbackAgent", TODO
             "ModificationsAgent": "ModificationsAgent", 
             "DevelopmentTrackerAgent": "DevelopmentTrackerAgent", 
-            "FINISH": END,
+            "FINISH": "SummaryAgent",
             #"PeripheralFeedbackAgent": "PeripheralFeedbackAgent" TODO
         },
     )
@@ -146,7 +152,7 @@ def create_conditional_edges(flow_graph):
             #"FlavorProfileAgent": "FlavorProfileAgent", TODO
             #"NutrionalAnalysisAgent": "NutrionalAnalysisAgent", TODO 
             #"CostAvailabilityAgent": "CostAvailabilityAgent", TODO
-            "ConductorAgent": "ConductorAgent",
+            "CauldronRouter": "CauldronRouter",
             #"SQLAgent": "SQLAgent",
             "SearchAgent": "SearchAgent",
             "RecipeScraperAgent": "RecipeScraperAgent",

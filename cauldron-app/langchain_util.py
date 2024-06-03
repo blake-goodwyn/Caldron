@@ -1,11 +1,10 @@
 # langchain_util.py
 
 import operator
-from typing import Annotated, Sequence, TypedDict, Literal, List
+from typing import Annotated, Sequence, TypedDict
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, ToolMessage, SystemMessage
-from langchain_core.output_parsers import StrOutputParser
+from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, SystemMessage
 from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain.agents.agent import RunnableAgent
@@ -29,6 +28,7 @@ def createAgent(
     llm: ChatOpenAI,
     tools: list,
 ) -> str:
+    
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system","""

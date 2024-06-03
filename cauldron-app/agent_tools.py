@@ -7,11 +7,17 @@ from dotenv import load_dotenv
 from recipe_scrapers import scrape_me
 from recipe_graph import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, Recipe, Ingredient, RecipeModification
 from logging_util import logger
+from datetime import datetime
 
 load_dotenv()
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 tavily_search_tool = TavilySearchResults()
+
+@tool
+def get_datetime() -> Annotated[str, "The current date and time."]:
+    """Get the current date and time."""
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 @tool
 def get_recipe_info(
