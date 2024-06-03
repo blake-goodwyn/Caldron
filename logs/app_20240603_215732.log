@@ -1,0 +1,12 @@
+2024-06-03 21:57:38,037 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 21:57:39,406 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 21:57:39,407 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 21:57:39,408 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 21:57:39,409 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 21:57:39,409 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 21:57:39,410 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 21:57:39,411 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 21:57:39,412 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 21:57:39,412 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 21:57:39,413 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 21:57:39,413 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent

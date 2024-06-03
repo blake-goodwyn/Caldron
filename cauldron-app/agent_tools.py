@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from recipe_scrapers import scrape_me
 from recipe_graph import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, Recipe, Ingredient, RecipeModification
 from logging_util import logger
-from langchain.pydantic_v1 import BaseModel, Field
 
 load_dotenv()
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
@@ -71,7 +70,7 @@ def generate_ingredient(
 @tool("generate-recipe-tool", args_schema=Recipe)
 def generate_recipe(
     name: Annotated[str, "The name of the recipe."],
-    ingredients: Annotated[List[Ingredient], "A list of Ingredient objects."],
+    ingredients: Annotated[List[Ingredient], "A list of Ingredient objects. Example: [{'name': 'flour', 'quantity': 2, 'unit': 'cups'}, {'name': 'sugar', 'quantity': 1, 'unit': 'cup'}]"],
     instructions: Annotated[List[str], "A list of recipe instructions."],
     tags: Annotated[Optional[List[str]], "A list of recipe tags."] = None,
     sources: Annotated[Optional[List[str]], "A list of web sources, book references, or other inspirations."] = None
@@ -105,9 +104,9 @@ def get_recipe(
     recipe = recipe_graph.get_recipe(node_id)
     return recipe
 
-@tool
+@tool("add-node-tool", args_schema=Recipe)
 def add_node(
-    recipe: Annotated[str, "The JSON representation of the dictionary of the Recipe object of the recipe."],
+    recipe: Annotated[Recipe, "The JSON representation of the dictionary of the Recipe object of the recipe."],
     graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
 ) -> Annotated[str, "ID of the newly added recipe node."]:
     """Add a new node to the recipe graph with the provided recipe and create an edge from the current foundational recipe."""
@@ -198,12 +197,10 @@ def suggest_mod(
     logger.debug("Suggesting modification to mods list.")
     mod_dict = json.loads(mod)
     recipe_mod = RecipeModification.from_dict(mod_dict)
-    
     mods_list = load_mods_list_from_file(mods_list_file)
     mods_list.suggest_mod(recipe_mod)
-    save_mods_list_to_file(mods_list, mods_list_file)
-    
     updated_mods_list = mods_list.get_mods_list()
+    save_mods_list_to_file(mods_list, mods_list_file)
     return updated_mods_list
 
 @tool
@@ -218,14 +215,22 @@ def get_mods_list(
 
 @tool
 def push_mod(
-    mods_list_file: Annotated[str, "The filename for the mods list."] = default_mods_list_file
-) -> Annotated[Optional[RecipeModification], "The modification that was applied, if available."]:
+    mods_list_file: Annotated[str, "The filename for the mods list."] = default_mods_list_file,
+    graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
+) -> Annotated[bool, "Indicates whether the modification was successfully removed."]:
     """Apply the top modification from the mods list."""
     logger.debug("Pushing modification from mods list.")
     mods_list = load_mods_list_from_file(mods_list_file)
+    recipe_graph = load_graph_from_file(graph_file)
     mod_to_apply = mods_list.push_mod()
+    result = recipe_graph.apply_modification(mod_to_apply)
+    save_graph_to_file(recipe_graph, default_graph_file)
     save_mods_list_to_file(mods_list, mods_list_file)
-    return mod_to_apply
+    if not result:
+        logger.error(f"Failed to apply modification: {mod_to_apply}")
+        return False
+    logger.info(f"Modification applied: {mod_to_apply}")
+    return True
 
 @tool
 def rank_mod(
@@ -244,7 +249,7 @@ def rank_mod(
     mods_list.rank_mod(mod_id, new_priority)
     save_mods_list_to_file(mods_list, mods_list_file)
     updated_mods_list = mods_list.get_mods_list()
-    return updated_mods_list
+    logger.info(f"Modification reprioritized: {updated_mods_list}")
 
 @tool
 def remove_mod(

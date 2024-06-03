@@ -54,13 +54,13 @@ prompts_dict = {
     },
     "RecipeScraperAgent": {
         "type": "agent",
-        "prompt": "You are RecipeScraperAgent. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, use the generate_recipe tool to summarize it and forward it to the RecipeResearchAgent.",
+        "prompt": "You are RecipeScraperAgent. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, use the generate_recipe tool to summarize each recipe found. Pass your results to the RecipeResearchAgent.",
         "tools": [get_recipe_info, generate_recipe, generate_ingredient]
     },
     "ModificationsAgent": {
         "type": "agent",
         "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or ConductorAgent. Forward the updated recipe to the DevelopmentTrackerAgent. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the ConductorAgent for clarification.",
-        "tools": [generate_mod, generate_recipe, generate_ingredient, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
+        "tools": [generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
     },
     "DevelopmentTrackerAgent": {
         "type": "agent",

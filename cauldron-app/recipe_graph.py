@@ -7,7 +7,6 @@ import heapq
 from typing import List, Dict, Optional, Any
 from logging_util import logger
 from langchain.pydantic_v1 import BaseModel, Field
-from pprint import pformat
 
 default_mods_list_file = "mods_list.pkl"
 default_graph_file="recipe_graph.pkl"
@@ -16,9 +15,6 @@ class Ingredient(BaseModel):
     name: str = Field(description="Name of the ingredient")
     quantity: float = Field(description="Quantity of the ingredient")
     unit: str = Field(description="Unit of measurement for the ingredient")
-
-    def __str__(self):
-        return json.dumps(self.dict(), indent=2)
 
     def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating dictionary representation of Ingredient object.")
@@ -51,14 +47,15 @@ class RecipeModification(BaseModel):
 
 class Recipe(BaseModel):
     name: str = Field(description="Name of the recipe")
-    id: Optional[str] = Field(description="Unique identifier for the recipe")
     ingredients: List[Ingredient] = Field(description="List of ingredients required for the recipe")
     instructions: List[str] = Field(description="List of instructions to prepare the recipe")
     tags: Optional[List[str]] = None  # New field for tags
     sources: Optional[List[str]] = None  # New field for sources or inspirations
+    id: Optional[str] = Field(description="Unique identifier for the recipe")
 
-    def __str__(self):
-        return json.dumps(self.dict(), indent=2)
+    def __init__(self, **data):
+        super().__init__(**data)
+        self.give_id()
     
     def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating dictionary representation of Recipe object.")
@@ -69,59 +66,45 @@ class Recipe(BaseModel):
         logger.debug("Creating Recipe object from dictionary.")
         return Recipe.parse_raw(str(data))
     
-    def apply_modification(self, modification: RecipeModification) -> None:
+    def give_id(self) -> None:
+        logger.debug("Updating ID for Recipe object.")
+        if self.id is None:
+            self.id = str(uuid.uuid4())
+
+    def apply_modification(self, modification: RecipeModification) -> bool:
         logger.debug("Applying modification to Recipe object.")
         if modification.attributes.get('add_ingredient'):
             logger.debug("Adding ingredient to Recipe object.")
             self.ingredients.append(Ingredient.from_dict(modification.attributes['add_ingredient']))
+            return True
         if modification.attributes.get('remove_ingredient'):
-            logger
+            logger.debug("Removing ingredient from Recipe object.")
             self.ingredients = [ing for ing in self.ingredients if ing.name != modification.attributes['remove_ingredient']['name']]
+            return True
         if modification.attributes.get('update_ingredient'):
             logger.debug("Updating ingredient in Recipe object.")
             for ing in self.ingredients:
                 if ing.name == modification.attributes['update_ingredient']['name']:
                     ing.quantity = modification.attributes['update_ingredient'].get('quantity', ing.quantity)
                     ing.unit = modification.attributes['update_ingredient'].get('unit', ing.unit)
+            return True
         if modification.attributes.get('add_instruction'):
             logger.debug("Adding instruction to Recipe object.")
             self.instructions.append(modification.attributes['add_instruction'])
+            return True
         if modification.attributes.get('remove_instruction'):
             logger.debug("Removing instruction from Recipe object.")
             self.instructions.remove(modification.attributes['remove_instruction'])
+            return True
         if modification.attributes.get('add_tag'):
             logger.debug("Adding tag to Recipe object.")
             self.tags.append(modification.attributes['add_tag'])
+            return True
         if modification.attributes.get('remove_tag'):
             logger.debug("Removing tag from Recipe object.")
             self.tags.remove(modification.attributes['remove_tag'])
-
-    def __pretty__(self, p, cycle):
-        if cycle:
-            p.text(f"<Recipe(name={self.name})>")
-            return
-        p.begin_group(1, f"<Recipe(name={self.name})>")
-        p.breakable()
-        p.text("Ingredients:")
-        p.breakable()
-        for ingredient in self.ingredients:
-            p.pretty(ingredient)
-            p.breakable()
-        p.text("Instructions:")
-        p.breakable()
-        p.pretty(self.instructions)
-        p.breakable()
-        if self.tags:
-            p.text("Tags:")
-            p.breakable()
-            p.pretty(self.tags)
-            p.breakable()
-        if self.sources:
-            p.text("Sources:")
-            p.breakable()
-            p.pretty(self.sources)
-            p.breakable()
-        p.end_group(1, "")
+            return True
+        return False
 
 class RecipeGraph:
     def __init__(self) -> None:
@@ -146,7 +129,7 @@ class RecipeGraph:
             node_id = self.foundational_recipe_node
         if self.get_graph_size() == 0:
             return None
-        return self.graph.nodes[node_id].get('recipe', None)
+        return Recipe.from_dict(self.graph.nodes[node_id].get('recipe', None))
     
     def get_node_id(self, node_id: Optional[str] = None) -> Optional[str]:
         logger.debug("Getting node ID from recipe graph.")
@@ -156,7 +139,9 @@ class RecipeGraph:
 
     def add_node(self, recipe: Recipe) -> str:
         logger.debug("Adding node to recipe graph.")
-        node_id = str(uuid.uuid4())
+        if recipe.id is None:
+            recipe.give_id()
+        node_id = recipe.id
         logger.debug(f"Node ID: {node_id}")
         self.graph.add_node(node_id, recipe=recipe)
         if self.foundational_recipe_node is not None:
@@ -255,66 +240,4 @@ def load_mods_list_from_file(filename: str) -> ModsList:
 def save_mods_list_to_file(mods_list: ModsList, filename: str) -> None:
     logger.info("Saving mods list to file.")
     with open(filename, 'wb') as file:
-        pickle.dump(mods_list, file)##Graph Tools
-
-recipe_graph_tool_validation =  """
-
-Formatting Instructions for Tools:
-
-1. **Ingredient**: Each ingredient is represented by a JSON string with fields `name` (string), `quantity` (float), and `unit` (string). Example:
-    
-    {"name": "Flour", "quantity": 2.5, "unit": "cups"}
-
-Ensure that the generate_info tool is provided with a name (str), quantity (float), and unit (str) as input. Example:
-
-    generate_ingredient(name="Flour", quantity=2.5, unit="cups")
-
-The output will be a JSON string representing the ingredient following the above format.
-    
-
-2. **RecipeModification**: Each modification must be a JSON string with fields `id` (string), `priority` (int), and optional fields `add_ingredient`, `remove_ingredient`, `update_ingredient`, `add_instruction`, `remove_instruction`, `add_tag`, and `remove_tag`. Example:
-    
-    {"id": "mod1", "priority": 1, "add_ingredient": {"name": "Sugar", "quantity": 0.5, "unit": "cups"}, "add_instruction": "Stir in the sugar"}
-
-Ensure that the generate_mod tool is provided with an id (str), priority (int), and optional fields for the modification. Example:
-
-    generate_mod(id="mod1", priority=1, add_ingredient='{"name": "Sugar", "quantity": 0.5, "unit": "cups"}', add_instruction="Stir in the sugar")
-
-The output will be a JSON string representing the modification following the above format.    
-
-3. **Recipe**: Each recipe is represented by a JSON string with fields `name` (string), `ingredients` (list of JSON strings following Ingredient format given above), `instructions` (list of strings), and optional fields `tags` (list of strings) and `sources` (list of strings). Example:
-
-    {
-        "name": "Pancakes",
-        "ingredients": [
-            '{"name": "Flour", "quantity": 2.0, "unit": "cups"}',
-            '{"name": "Milk", "quantity": 1.5, "unit": "cups"}',
-            '{"name": "Eggs", "quantity": 2, "unit": "units"}'
-        ],
-        "instructions": [
-            "Mix all ingredients together.",
-            "Cook on a hot griddle until golden brown."
-        ],
-        "tags": ["breakfast", "easy"],
-        "sources": ["https://example.com/pancakes"]
-    }
-
-Ensure that the generate_recipe tool is provided with a name (str), ingredients (list of JSON strings), instructions (list of strings), and optional tags (list of strings) and sources (list of strings) as input. Example:
-
-    generate_recipe(
-        name="Pancakes",
-        ingredients=[
-            '{"name": "Flour", "quantity": 2.0, "unit": "cups"}',
-            '{"name": "Milk", "quantity": 1.5, "unit": "cups"}',
-            '{"name": "Eggs", "quantity": 2, "unit": "units"}'
-        ],
-        instructions=[
-            "Mix all ingredients together.",
-            "Cook on a hot griddle until golden brown."
-        ],
-        tags=["breakfast", "easy"],
-        sources=["https://example.com/pancakes"]
-    )
-
-Always validate JSON strings for proper formatting after using these tools.
-"""
+        pickle.dump(mods_list, file)

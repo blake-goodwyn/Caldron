@@ -1,13 +1,12 @@
 from cauldron_app import CauldronApp
 from util import db_path, llm_model
 from langchain_util import HumanMessage
-from recipe_graph import load_graph_from_file, Recipe
-import pprint
-
+from recipe_graph import load_graph_from_file
+from custom_print import printer
 
 app = CauldronApp(db_path, llm_model)
 i = input("Enter a message: ")
-while True:
+while i != "exit":
     for s in app.chain.stream(
         {
             "messages": [
@@ -20,8 +19,9 @@ while True:
         },
         {"recursion_limit": 50}
     ):
-        pass
+        print("--------------------")
+        print(s)
         
     graph = load_graph_from_file(app.recipe_graph)
-    pprint.pprint(Recipe.from_dict(graph.get_foundational_recipe()))
+    printer.pprint(graph.get_foundational_recipe())
     i = input("Enter a message: ")

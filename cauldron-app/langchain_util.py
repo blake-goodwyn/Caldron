@@ -13,11 +13,9 @@ from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_community.agent_toolkits.sql.prompt import SQL_FUNCTIONS_SUFFIX, SQL_PREFIX
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
 from langgraph.graph import StateGraph
-from recipe_graph import recipe_graph_tool_validation
 
 from dotenv import load_dotenv
 import os
-from pydantic_util import CauldronPydanticParser
 from logging_util import logger
 
 load_dotenv()
@@ -35,17 +33,15 @@ def createAgent(
         [
             ("system","""
              You are an agent within a multi-agent architecture.
-             "Keep all language concise but detailed. There is no need for pleasantries.
+             "Keep all language detailed but focused. There is no need for pleasantries.
              "You have the following role: \n{system_message}\n\n
              "You have access to the following tools: {tool_names}.\n\n 
              """),
             MessagesPlaceholder(variable_name="messages"),
-            MessagesPlaceholder(variable_name="agent_scratchpad"),
-            SystemMessage("{tool_validations}")
+            MessagesPlaceholder(variable_name="agent_scratchpad")
         ]
     )
     prompt = prompt.partial(system_message=system_prompt)
-    prompt = prompt.partial(tool_validations=recipe_graph_tool_validation)
     prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
     agent = create_openai_tools_agent(llm, tools=tools, prompt=prompt)
     return AgentExecutor(name=name, agent=agent, tools=tools)
@@ -127,7 +123,7 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    logger.info(f"Agent {name} invoked with state: {state}")
+    #logger.info(f"Agent {name} invoked with state: {state}")
     if "output" in result.keys(): # If the agent has an output
         result = AIMessage(content=result["output"], name=name)
         return {
