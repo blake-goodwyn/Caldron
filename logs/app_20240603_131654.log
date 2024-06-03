@@ -1,0 +1,36 @@
+2024-06-03 13:16:58,056 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 13:16:58,964 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 13:16:58,964 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 13:16:58,965 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 13:16:58,965 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 13:16:58,966 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 13:16:58,967 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 13:16:58,967 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 13:16:58,968 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 13:16:58,969 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 13:16:58,969 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 13:16:58,970 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 13:16:59,459 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 13:16:59,459 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 13:16:59,461 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 13:16:59,461 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 13:16:59,465 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 13:16:59,466 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 13:16:59,468 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 13:16:59,469 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 13:17:06,657 - cauldron - INFO   - langchain_util.py - agent_node - Agent ConductorAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'user', 'next': 'ConductorAgent'}
+2024-06-03 13:17:07,320 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'ConductorAgent', 'next': 'RecipeResearchAgent'}
+2024-06-03 13:17:14,198 - cauldron - INFO   - langchain_util.py - agent_node - Agent SearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent'}
+2024-06-03 13:17:14,842 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies"), AIMessage(content='I have found several recipes for chocolate chip cookies. Here are some options:\n\n1. [The Best Chocolate Chip Cookies](https://www.onceuponachef.com/recipes/the-best-chocolate-chip-cookies.html)\n2. [Chewy Chocolate Chip Cookies](https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/)\n3. [Best Chocolate Chip Cookies](https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/)\n4. [The Most Amazing Chocolate Chip Cookies](https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/)\n5. [Ultimate Chocolate Chip Cookies](https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57)\n\nI will forward the recipe for "The Best Chocolate Chip Cookies" to RecipeResearchAgent.', name='SearchAgent')], 'sender': 'SearchAgent', 'next': 'SearchAgent'}
+2024-06-03 13:17:23,549 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeScraperAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies"), AIMessage(content='I have found several recipes for chocolate chip cookies. Here are some options:\n\n1. [The Best Chocolate Chip Cookies](https://www.onceuponachef.com/recipes/the-best-chocolate-chip-cookies.html)\n2. [Chewy Chocolate Chip Cookies](https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/)\n3. [Best Chocolate Chip Cookies](https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/)\n4. [The Most Amazing Chocolate Chip Cookies](https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/)\n5. [Ultimate Chocolate Chip Cookies](https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57)\n\nI will forward the recipe for "The Best Chocolate Chip Cookies" to RecipeResearchAgent.', name='SearchAgent')], 'sender': 'RecipeResearchAgent', 'next': 'RecipeScraperAgent'}
+2024-06-03 13:17:29,208 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-03 13:17:29,209 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-03 13:17:29,210 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-03 13:17:29,211 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-03 13:17:32,134 - cauldron - DEBUG  - agent_tools.py - get_mods_list - Getting mods list.
+2024-06-03 13:17:32,135 - cauldron - INFO   - recipe_graph.py - load_mods_list_from_file - Loading mods list from file.
+2024-06-03 13:17:32,136 - cauldron - DEBUG  - recipe_graph.py - get_mods_list - Getting mods list.
+2024-06-03 13:17:33,941 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-03 13:17:33,951 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-03 13:17:33,952 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-03 13:17:33,953 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.

@@ -35,7 +35,7 @@ def createAgent(
         [
             ("system","""
              You are an agent within a multi-agent architecture.
-             "Keep all language concise and unambiguous. There is no need for pleasantries.
+             "Keep all language concise but detailed. There is no need for pleasantries.
              "You have the following role: \n{system_message}\n\n
              "You have access to the following tools: {tool_names}.\n\n 
              """),
@@ -83,7 +83,6 @@ def createSQLAgent(
 
 def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
     """An LLM-based router."""
-    sender = name
     options = members
     function_def = {
         "name": "route",
@@ -101,7 +100,7 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
                 "sender": {
                     "title": "Sender",
                     "anyOf": [
-                        {"string": sender},
+                        {"string": name},
                     ]
                 }
             },

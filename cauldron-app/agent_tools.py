@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from recipe_scrapers import scrape_me
 from recipe_graph import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, Recipe, Ingredient, RecipeModification
 from logging_util import logger
+from langchain.pydantic_v1 import BaseModel, Field
 
 load_dotenv()
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
@@ -28,6 +29,7 @@ def get_recipe_info(
     """
 
     out: Dict[str, Optional[List[str]]] = {}
+    out["source"] = url
     try:
         scraper = scrape_me(url, wild_mode=True)
 
@@ -53,8 +55,8 @@ def get_recipe_info(
     except Exception as e:
         logger.error(f"Failed to scrape recipe: {e}")
         return out
-    
-@tool
+
+@tool("generate-ingredient-tool", args_schema=Ingredient)
 def generate_ingredient(
     name: Annotated[str, "The name of the ingredient."],
     quantity: Annotated[float, "The quantity of the ingredient."],
@@ -62,23 +64,23 @@ def generate_ingredient(
 ) -> Annotated[str, "The JSON representation of the ingredient."]:
     """Generate a JSON representation of an Ingredient object."""
     logger.debug("Generating JSON representation of Ingredient object.")
-    print(name, quantity, unit)
+    logger.debug(f"Name: {name}, Quantity: {quantity}, Unit: {unit}")
     ingredient = Ingredient(name=name, quantity=quantity, unit=unit)
-    return json.dumps(ingredient.to_dict(), indent=2)
+    return str(ingredient)
 
-@tool
+@tool("generate-recipe-tool", args_schema=Recipe)
 def generate_recipe(
     name: Annotated[str, "The name of the recipe."],
-    ingredients: Annotated[List[str], "A list of JSON representations of Ingredient objects. Example: ['{\"name\": \"Flour\", \"quantity\": 2.5, \"unit\": \"cups\"}']"],
-    instructions: Annotated[List[str], "A list of recipe instructions. Example: ['Preheat the oven to 350F', 'Mix the flour and sugar']"],
+    ingredients: Annotated[List[Ingredient], "A list of Ingredient objects."],
+    instructions: Annotated[List[str], "A list of recipe instructions."],
     tags: Annotated[Optional[List[str]], "A list of recipe tags."] = None,
-    sources: Annotated[Optional[List[str]], "A list of sources or inspirations."] = None
-) -> Annotated[str, "The JSON representation of the recipe."]:
+    sources: Annotated[Optional[List[str]], "A list of web sources, book references, or other inspirations."] = None
+) -> Annotated[str, "A string representation of the Recipe."]:
     """Generate a JSON representation of a Recipe object."""
     logger.debug("Generating JSON representation of Recipe object.")
-    ingredients_objs = [Ingredient.from_dict(json.loads(ing)) for ing in ingredients]
-    recipe = Recipe(name=name, ingredients=ingredients_objs, instructions=instructions, tags=tags, sources=sources)
-    return json.dumps(recipe.to_dict(), indent=2)
+    logger.debug(f"Name: {name}, Ingredients: {ingredients}, Instructions: {instructions}, Tags: {tags}, Sources: {sources}")
+    recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions, tags=tags, sources=sources)
+    return str(recipe)
 
 @tool
 def create_recipe_graph(

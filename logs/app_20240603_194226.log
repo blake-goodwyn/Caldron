@@ -1,0 +1,25 @@
+2024-06-03 19:42:29,755 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 19:42:30,670 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 19:42:30,671 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 19:42:30,671 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 19:42:30,672 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 19:42:30,672 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 19:42:30,673 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 19:42:30,674 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 19:42:30,675 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 19:42:30,675 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 19:42:30,675 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 19:42:30,676 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 19:42:31,142 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 19:42:31,142 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 19:42:31,145 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 19:42:31,146 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 19:42:31,149 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 19:42:31,149 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 19:42:31,152 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 19:42:31,154 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 19:42:34,061 - cauldron - INFO   - langchain_util.py - agent_node - Agent ConductorAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'user', 'next': 'ConductorAgent'}
+2024-06-03 19:42:34,753 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'ConductorAgent', 'next': 'RecipeResearchAgent'}
+2024-06-03 19:42:41,026 - cauldron - INFO   - langchain_util.py - agent_node - Agent SearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent'}
+2024-06-03 19:42:41,787 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies"), AIMessage(content="I have found several chocolate chip cookies recipes for you:\n\n1. [Chewy Chocolate Chip Cookies by Sally's Baking Addiction](https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/)\n2. [Original Nestle Toll House Chocolate Chip Cookies Recipe](https://www.verybestbaking.com/toll-house/recipes/original-nestle-toll-house-chocolate-chip-cookies/)\n3. [Ultimate Chocolate Chip Cookies by Betty Crocker](https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57)\n4. [The Most Amazing Chocolate Chip Cookies by JoyFoodSunshine](https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/)\n5. [Best Chocolate Chip Cookies Recipe by Allrecipes](https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/)\n\nYou can check out these recipes for making delicious chocolate chip cookies.", name='SearchAgent')], 'sender': 'SearchAgent', 'next': 'SearchAgent'}
+2024-06-03 19:42:47,126 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.verybestbaking.com/toll-house/recipes/original-nestle-toll-house-chocolate-chip-cookies/.

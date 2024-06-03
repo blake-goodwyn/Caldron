@@ -54,8 +54,8 @@ prompts_dict = {
     },
     "RecipeScraperAgent": {
         "type": "agent",
-        "prompt": "You are RecipeScraperAgent. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, forward it to the RecipeResearchAgent.",
-        "tools": [get_recipe_info]
+        "prompt": "You are RecipeScraperAgent. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, use the generate_recipe tool to summarize it and forward it to the RecipeResearchAgent.",
+        "tools": [get_recipe_info, generate_recipe, generate_ingredient]
     },
     "ModificationsAgent": {
         "type": "agent",
@@ -112,6 +112,19 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
     logger.info("All agents created.")
     return agents
 
+def form_edges(flow_graph):
+    for source, target in direct_edges:
+        flow_graph.add_edge(source, target)
+    return direct_edges
+
+conditional_edges = [
+    ("ConductorAgent", "RecipeResearchAgent"),
+    ("ConductorAgent", "ModificationsAgent"),
+    ("ConductorAgent", "DevelopmentTrackerAgent"),
+    ("RecipeResearchAgent", "SearchAgent"),
+    ("RecipeResearchAgent", "RecipeScraperAgent"),
+]
+
 def create_conditional_edges(flow_graph):
     flow_graph.add_conditional_edges(
         "ConductorAgent",
@@ -139,3 +152,5 @@ def create_conditional_edges(flow_graph):
             "RecipeScraperAgent": "RecipeScraperAgent",
         },
     )
+
+    return conditional_edges

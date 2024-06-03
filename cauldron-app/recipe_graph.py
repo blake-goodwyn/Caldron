@@ -1,40 +1,37 @@
 import uuid
 import pickle
 import os
+import json
 import networkx as nx
 import heapq
 from typing import List, Dict, Optional, Any
 from logging_util import logger
-from pydantic import BaseModel
+from langchain.pydantic_v1 import BaseModel, Field
+from pprint import pformat
 
 default_mods_list_file = "mods_list.pkl"
 default_graph_file="recipe_graph.pkl"
 
 class Ingredient(BaseModel):
-    name: str
-    quantity: float
-    unit: str
+    name: str = Field(description="Name of the ingredient")
+    quantity: float = Field(description="Quantity of the ingredient")
+    unit: str = Field(description="Unit of measurement for the ingredient")
+
+    def __str__(self):
+        return json.dumps(self.dict(), indent=2)
 
     def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating dictionary representation of Ingredient object.")
-        return {
-            'name': self.name,
-            'quantity': self.quantity,
-            'unit': self.unit
-        }
+        return self.dict()
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Ingredient':
         logger.debug("Creating Ingredient object from dictionary.")
-        return cls(
-            name=data['name'],
-            quantity=data['quantity'],
-            unit=data['unit']
-        )
+        return Ingredient.parse_raw(str(data))
 
 class RecipeModification(BaseModel):
-    id: str
-    priority: int
+    id: str = Field(description="Unique identifier for the modification")
+    priority: int = Field(description="Priority of the modification. Lower values have higher priority.")
     add_ingredient: Optional[Dict[str, Any]] = None
     remove_ingredient: Optional[Dict[str, Any]] = None
     update_ingredient: Optional[Dict[str, Any]] = None
@@ -45,61 +42,32 @@ class RecipeModification(BaseModel):
 
     def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating dictionary representation of RecipeModification object.")
-        return {
-            'id': self.id,
-            'priority': self.priority,
-            'add_ingredient': self.add_ingredient,
-            'remove_ingredient': self.remove_ingredient,
-            'update_ingredient': self.update_ingredient,
-            'add_instruction': self.add_instruction,
-            'remove_instruction': self.remove_instruction,
-            'add_tag': self.add_tag,
-            'remove_tag': self.remove_tag
-        }
+        return self.dict()
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'RecipeModification':
         logger.debug("Creating RecipeModification object from dictionary.")
-        return cls(
-            id=data['id'],
-            priority=data['priority'],
-            add_ingredient=data.get('add_ingredient'),
-            remove_ingredient=data.get('remove_ingredient'),
-            update_ingredient=data.get('update_ingredient'),
-            add_instruction=data.get('add_instruction'),
-            remove_instruction=data.get('remove_instruction'),
-            add_tag=data.get('add_tag'),
-            remove_tag=data.get('remove_tag')
-        )
+        return RecipeModification.parse_raw(str(data))
 
 class Recipe(BaseModel):
-    name: str
-    ingredients: List[Ingredient]
-    instructions: List[str]
-    tags: Optional[List[str]] = None
+    name: str = Field(description="Name of the recipe")
+    id: Optional[str] = Field(description="Unique identifier for the recipe")
+    ingredients: List[Ingredient] = Field(description="List of ingredients required for the recipe")
+    instructions: List[str] = Field(description="List of instructions to prepare the recipe")
+    tags: Optional[List[str]] = None  # New field for tags
     sources: Optional[List[str]] = None  # New field for sources or inspirations
 
+    def __str__(self):
+        return json.dumps(self.dict(), indent=2)
+    
     def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating dictionary representation of Recipe object.")
-        return {
-            'name': self.name,
-            'ingredients': [ing.to_dict() for ing in self.ingredients],
-            'instructions': self.instructions,
-            'tags': self.tags,
-            'sources': self.sources  # Include sources in the dictionary representation
-        }
-
+        return self.dict()
+    
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Recipe':
         logger.debug("Creating Recipe object from dictionary.")
-        ingredients = [Ingredient.from_dict(ing) for ing in data['ingredients']]
-        return cls(
-            name=data['name'],
-            ingredients=ingredients,
-            instructions=data['instructions'],
-            tags=data.get('tags', []),
-            sources=data.get('sources', [])
-        )
+        return Recipe.parse_raw(str(data))
     
     def apply_modification(self, modification: RecipeModification) -> None:
         logger.debug("Applying modification to Recipe object.")
@@ -128,11 +96,38 @@ class Recipe(BaseModel):
             logger.debug("Removing tag from Recipe object.")
             self.tags.remove(modification.attributes['remove_tag'])
 
+    def __pretty__(self, p, cycle):
+        if cycle:
+            p.text(f"<Recipe(name={self.name})>")
+            return
+        p.begin_group(1, f"<Recipe(name={self.name})>")
+        p.breakable()
+        p.text("Ingredients:")
+        p.breakable()
+        for ingredient in self.ingredients:
+            p.pretty(ingredient)
+            p.breakable()
+        p.text("Instructions:")
+        p.breakable()
+        p.pretty(self.instructions)
+        p.breakable()
+        if self.tags:
+            p.text("Tags:")
+            p.breakable()
+            p.pretty(self.tags)
+            p.breakable()
+        if self.sources:
+            p.text("Sources:")
+            p.breakable()
+            p.pretty(self.sources)
+            p.breakable()
+        p.end_group(1, "")
+
 class RecipeGraph:
     def __init__(self) -> None:
         logger.info("Initializing RecipeGraph object.")
         self.graph = nx.DiGraph()
-        self.foundational_recipe_node: Optional[str] = None
+        self.foundational_recipe_node: Optional[Recipe] = None
 
     def get_graph_size(self) -> int:
         logger.debug("Getting the number of nodes in the recipe graph.")
@@ -225,6 +220,7 @@ def fresh_graph(filename):
     recipe_graph = RecipeGraph()
     with open(filename, 'wb') as file:
         pickle.dump(recipe_graph, file)
+    return filename
 
 def save_graph_to_file(recipe_graph, filename):
     logger.info("Saving recipe graph to file.")
@@ -236,7 +232,8 @@ def load_graph_from_file(filename):
     if os.path.exists(filename):
         with open(filename, 'rb') as file:
             return pickle.load(file)
-    return RecipeGraph()
+    else:
+        raise FileNotFoundError("File does not exist.")
 
 ## Modifications Functions
 
@@ -244,6 +241,7 @@ def fresh_mods_list(filename: str) -> None:
     logger.info("Creating a new mods list.")
     mods_list = ModsList()
     save_mods_list_to_file(mods_list, filename)
+    return filename
 
 def load_mods_list_from_file(filename: str) -> ModsList:
     logger.info("Loading mods list from file.")
