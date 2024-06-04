@@ -1,0 +1,66 @@
+2024-06-04 11:43:03,461 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-04 11:43:04,432 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-04 11:43:04,433 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-04 11:43:04,434 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-04 11:43:04,435 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-04 11:43:04,436 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-04 11:43:04,438 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-04 11:43:04,438 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SummaryAgent
+2024-06-04 11:43:04,936 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SummaryAgent created.
+2024-06-04 11:43:04,937 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CauldronRouter
+2024-06-04 11:43:04,938 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CauldronRouter created.
+2024-06-04 11:43:04,939 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-04 11:43:04,939 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-04 11:43:04,940 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-04 11:43:04,941 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-04 11:43:04,941 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-04 11:43:04,944 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-04 11:43:04,944 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-04 11:43:04,949 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-04 11:43:04,950 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-04 11:43:04,954 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-04 11:43:04,955 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-04 11:43:23,691 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-04 11:43:36,059 - cauldron - DEBUG  - agent_tools.py - get_graph - Getting recipe graph.
+2024-06-04 11:43:36,060 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:43:36,061 - cauldron - DEBUG  - recipe_graph.py - get_graph - Getting recipe graph.
+2024-06-04 11:43:36,979 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 11:43:36,980 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:43:36,980 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 11:43:36,981 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-04 11:43:36,981 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-04 11:43:40,530 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:43:40,531 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 11:43:40,531 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Potato Gnocchi, Ingredients: [Ingredient(name='potatoes', quantity=4.0, unit='medium'), Ingredient(name='all-purpose flour', quantity=2.0, unit='cups'), Ingredient(name='egg', quantity=1.0, unit=''), Ingredient(name='kosher salt', quantity=1.0, unit='teaspoon')], Instructions: ['Boil the potatoes until tender, peel, and mash them.', 'In a large bowl, combine the mashed potatoes with flour, egg, and salt. Mix until a dough forms.', 'Divide the dough into small portions and roll each portion into a rope.', 'Cut the rope into small pieces to form gnocchi.', 'Bring a large pot of salted water to a boil and cook the gnocchi until they float to the surface, about 2-4 minutes.', 'Remove the gnocchi with a slotted spoon and serve with your favorite sauce.'], Tags: None, Sources: None
+2024-06-04 11:43:40,532 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:43:45,066 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-04 11:43:45,067 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:43:45,069 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-04 11:43:45,070 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-04 11:43:49,495 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:43:49,505 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 11:43:49,506 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-04 11:43:49,507 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-04 11:43:49,507 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Recipe object from dictionary.
+2024-06-04 11:43:49,508 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:43:57,941 - cauldron - DEBUG  - agent_tools.py - generate_mod - Generating JSON representation of RecipeModification object.
+2024-06-04 11:43:57,941 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of RecipeModification object.
+2024-06-04 11:43:58,620 - cauldron - DEBUG  - agent_tools.py - push_mod - Pushing modification from mods list.
+2024-06-04 11:43:58,621 - cauldron - INFO   - recipe_graph.py - load_mods_list_from_file - Loading mods list from file.
+2024-06-04 11:43:58,623 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:43:58,624 - cauldron - DEBUG  - recipe_graph.py - push_mod - Pushing modification from mods list.
+2024-06-04 11:43:58,624 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-04 11:43:58,625 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-04 11:43:58,626 - cauldron - ERROR  - agent_tools.py - push_mod - Failed to apply modification: None
+2024-06-04 11:44:14,431 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.everydayhealth.com/healthy-recipes/healthy-recipes-to-make-with-cinnamon/.
+2024-06-04 11:44:15,343 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-04 11:44:16,214 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://houseofnasheats.com/recipes-with-cinnamon/.
+2024-06-04 11:44:20,272 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-04 11:44:33,727 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:44:33,728 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 11:44:33,728 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: 25 Cinnamon Recipes To Spice Up Your Life, Ingredients: [Ingredient(name='Easy Cinnamon Cookies', quantity=1.0, unit='batch'), Ingredient(name='Cinnamon Roll Dutch Apple Pie', quantity=1.0, unit='pie'), Ingredient(name='Cinnamon Babka', quantity=1.0, unit='loaf'), Ingredient(name='Cinnamon Cupcakes', quantity=1.0, unit='dozen'), Ingredient(name='Cinnamon Pancakes with Cinnamon Roll Glaze', quantity=1.0, unit='serving'), Ingredient(name='Caramel Pecan Cinnamon Rolls', quantity=1.0, unit='pan'), Ingredient(name='Viral TikTok Cinnamon Rolls with Heavy Cream', quantity=1.0, unit='batch'), Ingredient(name='Easy Cinnamon Muffins', quantity=1.0, unit='batch'), Ingredient(name='Cinnamon Waffles', quantity=1.0, unit='serving'), Ingredient(name='Cinnamon Crumb Coffee Cake', quantity=1.0, unit='cake'), Ingredient(name='Cinnamon Butter', quantity=1.0, unit='jar'), Ingredient(name='Cinnamon French Toast', quantity=1.0, unit='serving'), Ingredient(name='Stovetop Cinnamon Apples', quantity=1.0, unit='serving'), Ingredient(name='Cinnamon Hot Cocoa Mix', quantity=1.0, unit='jar'), Ingredient(name='Cinnamon Roasted Sweet Potatoes', quantity=1.0, unit='serving'), Ingredient(name='Homemade Cinnamon Roll Cake', quantity=1.0, unit='cake'), Ingredient(name='Cinnamon Ice Cream', quantity=1.0, unit='serving'), Ingredient(name='Cinnamon Bread', quantity=1.0, unit='loaf'), Ingredient(name='Snickerdoodle Coffee Cake', quantity=1.0, unit='cake'), Ingredient(name='Soft and Chewy Snickerdoodle Cookies', quantity=1.0, unit='batch'), Ingredient(name='Cinnamon Cream Syrup', quantity=1.0, unit='jar'), Ingredient(name='Hot Apple Cider', quantity=1.0, unit='serving'), Ingredient(name='Cinnamon Scones with Cinnamon Chips', quantity=1.0, unit='batch')], Instructions: ['Select your favorite recipe.', 'Organize all the required ingredients.', 'Prep a delicious cinnamon recipe in 30 minutes or less!'], Tags: ['cinnamon', 'recipes'], Sources: ['https://insanelygoodrecipes.com/cinnamon-recipes/']
+2024-06-04 11:44:33,733 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:44:35,346 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:44:35,348 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 11:44:35,349 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Healthy Recipes to Make with Cinnamon, Ingredients: [], Instructions: [], Tags: ['cinnamon', 'healthy', 'recipes'], Sources: ['https://www.everydayhealth.com/healthy-recipes/healthy-recipes-to-make-with-cinnamon/']
+2024-06-04 11:44:35,350 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.

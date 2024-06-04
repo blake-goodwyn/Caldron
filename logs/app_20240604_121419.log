@@ -1,0 +1,68 @@
+2024-06-04 12:14:22,366 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-04 12:14:23,290 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-04 12:14:23,290 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-04 12:14:23,291 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-04 12:14:23,291 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-04 12:14:23,292 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-04 12:14:23,293 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-04 12:14:23,293 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SummaryAgent
+2024-06-04 12:14:23,757 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SummaryAgent created.
+2024-06-04 12:14:23,757 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CauldronRouter
+2024-06-04 12:14:23,758 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CauldronRouter created.
+2024-06-04 12:14:23,758 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-04 12:14:23,759 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-04 12:14:23,759 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-04 12:14:23,760 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-04 12:14:23,760 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-04 12:14:23,763 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-04 12:14:23,763 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-04 12:14:23,768 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-04 12:14:23,769 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-04 12:14:23,771 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-04 12:14:23,771 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-04 12:14:47,195 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-04 12:15:14,645 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,646 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 12:15:14,646 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Creamy Tuscan Gnocchi, Ingredients: [Ingredient(name='olive oil', quantity=1.0, unit='tablespoon'), Ingredient(name='sun-dried tomatoes', quantity=4.0, unit='oz'), Ingredient(name='potato gnocchi', quantity=16.0, unit='oz'), Ingredient(name='garlic', quantity=5.0, unit='cloves'), Ingredient(name='Italian seasoning', quantity=1.0, unit='teaspoon'), Ingredient(name='paprika', quantity=0.5, unit='teaspoon'), Ingredient(name='salt', quantity=0.25, unit='teaspoon'), Ingredient(name='chicken broth', quantity=0.5, unit='cup'), Ingredient(name='heavy cream', quantity=1.0, unit='cup'), Ingredient(name='fresh spinach', quantity=5.0, unit='oz'), Ingredient(name='canned artichoke hearts', quantity=7.0, unit='oz'), Ingredient(name='red pepper flakes', quantity=0.25, unit='teaspoon'), Ingredient(name='fresh thyme leaves', quantity=1.0, unit='teaspoon')], Instructions: ['Heat olive oil, sun-dried tomatoes, gnocchi, garlic, and seasonings.', 'Add broth and cream, simmer, then add spinach and artichokes.', 'Season and serve with thyme.'], Tags: ['Creamy', 'Tuscan', 'One-Pan'], Sources: ['https://juliasalbum.com/creamy-gnocchi/']
+2024-06-04 12:15:14,648 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,653 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,654 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 12:15:14,655 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Homemade Potato Gnocchi, Ingredients: [Ingredient(name='potatoes', quantity=1.0, unit='pound'), Ingredient(name='flour', quantity=1.0, unit='cup'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='egg', quantity=1.0, unit='medium'), Ingredient(name='olive oil', quantity=2.0, unit='tablespoons'), Ingredient(name='garlic', quantity=1.0, unit='clove'), Ingredient(name='oregano', quantity=1.0, unit='teaspoon'), Ingredient(name='basil', quantity=5.0, unit='leaves'), Ingredient(name='hot pepper flakes', quantity=2.0, unit='dashes'), Ingredient(name='pelati tomatoes with sauce', quantity=1.5, unit='cups'), Ingredient(name='water', quantity=0.5, unit='cup')], Instructions: ['Boil and rice potatoes, mix with flour and egg, shape gnocchi, cook and serve with tomato sauce.'], Tags: ['Homemade', 'Potato', 'Italian'], Sources: ['https://anitalianinmykitchen.com/gnocchi/']
+2024-06-04 12:15:14,657 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,669 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,670 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 12:15:14,670 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Potato Gnocchi (Authentic Italian Recipe), Ingredients: [Ingredient(name='Russet potatoes', quantity=500.0, unit='g'), Ingredient(name='all purpose flour', quantity=125.0, unit='g'), Ingredient(name='beaten egg', quantity=2.0, unit='Tbsp')], Instructions: ['Mix potatoes, flour, and egg, shape gnocchi, cook, and serve with sauce and cheese.'], Tags: ['Potato', 'Authentic', 'Italian'], Sources: ['https://www.christinascucina.com/potato-gnocchi-authentic-italian-recipe/']
+2024-06-04 12:15:14,671 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,682 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,683 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 12:15:14,684 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Gnocchi, Ingredients: [Ingredient(name='russet potatoes', quantity=3.0, unit='medium'), Ingredient(name='all-purpose flour', quantity=1.5, unit='cups'), Ingredient(name='egg', quantity=1.0, unit='large'), Ingredient(name='kosher salt', quantity=1.0, unit='teaspoon')], Instructions: ['Boil and peel potatoes, mix with flour, egg, and salt, shape gnocchi, cook, and serve.'], Tags: ['Gnocchi'], Sources: ['https://www.allrecipes.com/recipe/18465/gnocchi']
+2024-06-04 12:15:14,686 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 12:15:14,695 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,696 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: sun-dried tomatoes, Quantity: 4.0, Unit: oz
+2024-06-04 12:15:14,705 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,706 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: potato gnocchi, Quantity: 16.0, Unit: oz
+2024-06-04 12:15:14,713 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,714 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: garlic, Quantity: 5.0, Unit: cloves
+2024-06-04 12:15:14,725 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,726 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: Italian seasoning, Quantity: 1.0, Unit: teaspoon
+2024-06-04 12:15:14,736 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,737 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: paprika, Quantity: 0.5, Unit: teaspoon
+2024-06-04 12:15:14,744 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,744 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: salt, Quantity: 0.25, Unit: teaspoon
+2024-06-04 12:15:14,756 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,756 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: chicken broth, Quantity: 0.5, Unit: cup
+2024-06-04 12:15:14,764 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,764 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: heavy cream, Quantity: 1.0, Unit: cup
+2024-06-04 12:15:14,774 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,775 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: fresh spinach, Quantity: 5.0, Unit: oz
+2024-06-04 12:15:14,782 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,785 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: canned artichoke hearts, Quantity: 7.0, Unit: oz
+2024-06-04 12:15:14,793 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,793 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: red pepper flakes, Quantity: 0.25, Unit: teaspoon
+2024-06-04 12:15:14,804 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-04 12:15:14,804 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: fresh thyme leaves, Quantity: 1.0, Unit: teaspoon
+2024-06-04 12:15:42,250 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-04 12:15:42,251 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 12:15:42,252 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-04 12:15:42,253 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-04 12:15:42,261 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.

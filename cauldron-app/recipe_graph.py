@@ -1,10 +1,10 @@
 import uuid
 import pickle
 import os
-import json
+import ujson
 import networkx as nx
 import heapq
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Optional, Any, Tuple
 from logging_util import logger
 from langchain.pydantic_v1 import BaseModel, Field
 
@@ -16,33 +16,45 @@ class Ingredient(BaseModel):
     quantity: float = Field(description="Quantity of the ingredient")
     unit: str = Field(description="Unit of measurement for the ingredient")
 
-    def to_dict(self) -> Dict[str, Any]:
+    class Config:
+        json_loads = ujson.loads
+
+    def __str__(self) -> str:
+        return self.json()
+
+    def to_json(self) -> Dict[str, Any]:
         logger.debug("Creating dictionary representation of Ingredient object.")
-        return self.dict()
+        return self.json()
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Ingredient':
-        logger.debug("Creating Ingredient object from dictionary.")
+    def from_json(cls, data: Dict[str, Any]) -> 'Ingredient':
+        logger.debug("Creating Ingredient object from JSON string.")
         return Ingredient.parse_raw(str(data))
 
 class RecipeModification(BaseModel):
-    id: str = Field(description="Unique identifier for the modification")
     priority: int = Field(description="Priority of the modification. Lower values have higher priority.")
-    add_ingredient: Optional[Dict[str, Any]] = None
-    remove_ingredient: Optional[Dict[str, Any]] = None
-    update_ingredient: Optional[Dict[str, Any]] = None
+    add_ingredient: Optional[Ingredient] = None
+    remove_ingredient: Optional[Ingredient] = None
+    update_ingredient: Optional[Ingredient] = None
     add_instruction: Optional[str] = None
     remove_instruction: Optional[str] = None
     add_tag: Optional[str] = None
     remove_tag: Optional[str] = None
+    id: Optional[str] = Field(default=str(uuid.uuid4()),description="Unique identifier for the modification")
 
-    def to_dict(self) -> Dict[str, Any]:
-        logger.debug("Creating dictionary representation of RecipeModification object.")
-        return self.dict()
+    class Config:
+        json_loads = ujson.loads
+
+    def __str__(self) -> str:
+        return self.json()
+
+    def to_json(self) -> Dict[str, Any]:
+        logger.debug("Creating JSON representation of RecipeModification object.")
+        return self.json()
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'RecipeModification':
-        logger.debug("Creating RecipeModification object from dictionary.")
+    def from_json(cls, data: Dict[str, Any]) -> 'RecipeModification':
+        logger.debug("Creating RecipeModification object from JSON string.")
         return RecipeModification.parse_raw(str(data))
 
 class Recipe(BaseModel):
@@ -51,31 +63,28 @@ class Recipe(BaseModel):
     instructions: List[str] = Field(description="List of instructions to prepare the recipe")
     tags: Optional[List[str]] = None  # New field for tags
     sources: Optional[List[str]] = None  # New field for sources or inspirations
-    id: Optional[str] = Field(description="Unique identifier for the recipe")
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        self.give_id()
+    id: Optional[str] = Field(default=str(uuid.uuid4()),description="Unique identifier for the recipe")
     
-    def to_dict(self) -> Dict[str, Any]:
-        logger.debug("Creating dictionary representation of Recipe object.")
-        return self.dict()
+    class Config:
+        json_loads = ujson.loads
+    
+    def __str__(self) -> str:
+        return self.json()
+
+    def to_json(self) -> Dict[str, Any]:
+        logger.debug("Creating JSON representation of Recipe object.")
+        return self.json()
     
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Recipe':
-        logger.debug("Creating Recipe object from dictionary.")
+    def from_json(cls, data: Dict[str, Any]) -> 'Recipe':
+        logger.debug("Creating Recipe object from JSON string.")
         return Recipe.parse_raw(str(data))
-    
-    def give_id(self) -> None:
-        logger.debug("Updating ID for Recipe object.")
-        if self.id is None:
-            self.id = str(uuid.uuid4())
 
     def apply_modification(self, modification: RecipeModification) -> bool:
         logger.debug("Applying modification to Recipe object.")
         if modification.attributes.get('add_ingredient'):
             logger.debug("Adding ingredient to Recipe object.")
-            self.ingredients.append(Ingredient.from_dict(modification.attributes['add_ingredient']))
+            self.ingredients.append(Ingredient.from_json(modification.attributes['add_ingredient']))
             return True
         if modification.attributes.get('remove_ingredient'):
             logger.debug("Removing ingredient from Recipe object.")
@@ -129,7 +138,7 @@ class RecipeGraph:
             node_id = self.foundational_recipe_node
         if self.get_graph_size() == 0:
             return None
-        return Recipe.from_dict(self.graph.nodes[node_id].get('recipe', None))
+        return Recipe.from_json(self.graph.nodes[node_id].get('recipe', None))
     
     def get_node_id(self, node_id: Optional[str] = None) -> Optional[str]:
         logger.debug("Getting node ID from recipe graph.")
@@ -139,8 +148,6 @@ class RecipeGraph:
 
     def add_node(self, recipe: Recipe) -> str:
         logger.debug("Adding node to recipe graph.")
-        if recipe.id is None:
-            recipe.give_id()
         node_id = recipe.id
         logger.debug(f"Node ID: {node_id}")
         self.graph.add_node(node_id, recipe=recipe)
@@ -162,11 +169,16 @@ class RecipeGraph:
         logger.debug("Getting recipe graph.")
         return self.graph
 
-class ModsList:
-    def __init__(self) -> None:
-        logger.info("Initializing ModsList object.")
-        self.queue: List[tuple[int, RecipeModification]] = []
+class ModsList(BaseModel):
+    queue: List[Tuple[int, RecipeModification]] = Field(default=[], description="Priority queue of recipe modifications")
 
+    def __init__(self, **data):
+        super().__init__(**data)
+        logger.info("Initializing ModsList object.")
+
+    def __str__(self) -> str:
+        return self.json()
+        
     def suggest_mod(self, mod: RecipeModification) -> None:
         logger.debug("Suggesting modification to mods list.")
         heapq.heappush(self.queue, (-mod.priority, mod))
@@ -175,11 +187,14 @@ class ModsList:
         logger.debug("Getting mods list.")
         return [mod for _, mod in sorted(self.queue, key=lambda x: -x[0])]
 
-    def push_mod(self) -> Optional[RecipeModification]:
+    def push_mod(self, recipe_graph: RecipeGraph) -> Tuple[RecipeModification, bool]:
         logger.debug("Pushing modification from mods list.")
         if self.queue:
-            return heapq.heappop(self.queue)[1]
-        return None
+            mod = heapq.heappop(self.queue)[1]
+            recipe = recipe_graph.get_foundational_recipe()
+            if recipe is not None:
+                return (mod, recipe.apply_modification(mod))
+        return (None, False)
 
     def rank_mod(self, mod_id: str, new_priority: int) -> None:
         logger.debug("Ranking modification in mods list.")

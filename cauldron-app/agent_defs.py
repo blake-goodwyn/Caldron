@@ -10,17 +10,17 @@ from logging_util import logger
 from langchain_util import createAgent, createTeamSupervisor, agent_node, createSQLAgent
 from langgraph.graph import END
 from util import db_path, llm_model
-from agent_tools import tavily_search_tool, get_recipe_info, generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod, get_datetime
+from agent_tools import tavily_search_tool, get_recipe_info, generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, get_datetime
 
 prompts_dict = {
     "SummaryAgent": {
         "type": "agent",
-        "prompt": "You are SummaryAgent. Your task is to summarize the given message chain and report back to the user. You will compile a comprehensive report summarizing the findings and status of the recipe development process.",
+        "prompt": "You are Cauldron, an intelligent assistant for recipe development. You are friendly and chipper in your responses. Your task is to summarize the given message chain and summarize it for the user.",
         "tools": [get_datetime]
     },
     "CauldronRouter": {
         "type": "supervisor",
-        "prompt": "You are Cauldron, an intelligent assistant for recipe development. To other agents (not the user), you are the CauldronRouter. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: RecipeResearchAgent, ModificationsAgent, DevelopmentTrackerAgent. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to RecipeResearchAgent to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
+        "prompt": "You are CauldronRouter. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: RecipeResearchAgent, ModificationsAgent, DevelopmentTrackerAgent. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to RecipeResearchAgent to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
         "members":["RecipeResearchAgent", "ModificationsAgent", "DevelopmentTrackerAgent"] # TODO - "FeedbackAgent" & "PeripheralFeedbackAgent"
     },
     "RecipeResearchAgent": {
@@ -65,7 +65,7 @@ prompts_dict = {
     "ModificationsAgent": {
         "type": "agent",
         "prompt": "You are ModficationsAgent. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or CauldronRouter. Forward the updated recipe to the DevelopmentTrackerAgent. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the CauldronRouter for clarification.",
-        "tools": [generate_mod, suggest_mod, get_mods_list, push_mod, rank_mod, remove_mod],
+        "tools": [generate_mod, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod],
     },
     "DevelopmentTrackerAgent": {
         "type": "agent",

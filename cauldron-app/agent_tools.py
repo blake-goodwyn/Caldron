@@ -14,10 +14,14 @@ TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 tavily_search_tool = TavilySearchResults()
 
+## Datetime Tool (mainly for dummy use)
+
 @tool
 def get_datetime() -> Annotated[str, "The current date and time."]:
     """Get the current date and time."""
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+## Recipe Manipulation Tools
 
 @tool
 def get_recipe_info(
@@ -87,9 +91,11 @@ def generate_recipe(
     recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions, tags=tags, sources=sources)
     return str(recipe)
 
+## Recipe Graph Tools ##
+
 @tool
 def create_recipe_graph(
-    recipe: Annotated[str, "The JSON representation of the dictionary of the Recipe object of the foundational recipe."],
+    recipe: Annotated[Recipe, "The representation of the Recipe object of the foundational recipe."],
     graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
 ) -> Annotated[str, "ID of the newly created foundational recipe node."]:
     """Create a new recipe graph with the provided foundational recipe. Typically used to start a new recipe graph."""
@@ -112,12 +118,13 @@ def get_recipe(
 
 @tool("add-node-tool", args_schema=Recipe)
 def add_node(
-    recipe: Annotated[Recipe, "The JSON representation of the dictionary of the Recipe object of the recipe."],
+    recipe_str: Annotated[str, "The representation of the Recipe object of the recipe."],
     graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
 ) -> Annotated[str, "ID of the newly added recipe node."]:
     """Add a new node to the recipe graph with the provided recipe and create an edge from the current foundational recipe."""
     logger.debug("Adding node to recipe graph.")
     recipe_graph = load_graph_from_file(graph_file)
+    recipe = Recipe.from_json(recipe_str)
     node_id = recipe_graph.add_node(recipe)
     save_graph_to_file(recipe_graph, graph_file)
     return f"New recipe node added with ID: {node_id}"
@@ -163,7 +170,7 @@ def get_graph(
     logger.debug("Getting recipe graph.")
     recipe_graph = load_graph_from_file(graph_file)
     graph = recipe_graph.get_graph()
-    nodes = [(node, data['recipe'].to_dict()) for node, data in graph.nodes(data=True)]
+    nodes = [(node, data['recipe'].to_json()) for node, data in graph.nodes(data=True)]
     edges = list(graph.edges(data=True))
     return f"Recipe Graph: Nodes - {nodes}, Edges - {edges}"
 
@@ -176,38 +183,38 @@ def get_graph_size(
     recipe_graph = load_graph_from_file(graph_file)
     return f"Number of nodes in recipe graph: {recipe_graph.get_graph_size()}"
 
-## Modifications Tools
-@tool
+## Modifications List Tools ##
+
+@tool("generate-modification-tool", args_schema=RecipeModification)
 def generate_mod(
-    mod_id: Annotated[str, "The ID of the modification."],
     priority: Annotated[int, "The priority of the modification."],
-    add_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to add."]=None,
-    remove_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to remove."]=None,
-    update_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to update."]=None,
-    add_instruction: Annotated[Optional[str], "The instruction to add."]=None,
-    remove_instruction: Annotated[Optional[str], "The instruction to remove."]=None,
-    add_tag: Annotated[Optional[str], "The tag to add."]=None,
-    remove_tag: Annotated[Optional[str], "The tag to remove."]=None
-) -> Annotated[str, "The JSON representation of the modification."]:
-    """Generate a JSON representation of a RecipeModification object."""
+    add_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to add."]= None,
+    remove_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to remove."]= None,
+    update_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to update."]= None,
+    add_instruction: Annotated[Optional[str], "The instruction to add."]= None,
+    remove_instruction: Annotated[Optional[str], "The instruction to remove."]= None,
+    add_tag: Annotated[Optional[str], "The tag to add."]= None,
+    remove_tag: Annotated[Optional[str], "The tag to remove."]= None,
+    id: Annotated[Optional[str], "The ID of the modification."] = None
+) -> Annotated[str, "The string representation of the RecipeModification."]:
+    """Generate a representation of a RecipeModification object."""
     logger.debug("Generating JSON representation of RecipeModification object.")
-    mod = RecipeModification(id=mod_id, priority=priority, add_ingredient=add_ingredient, remove_ingredient=remove_ingredient, update_ingredient=update_ingredient, add_instruction=add_instruction, remove_instruction=remove_instruction, add_tag=add_tag, remove_tag=remove_tag)
-    return json.dumps(mod.to_dict(), indent=2)
+    mod = RecipeModification(id=id, priority=priority, add_ingredient=add_ingredient, remove_ingredient=remove_ingredient, update_ingredient=update_ingredient, add_instruction=add_instruction, remove_instruction=remove_instruction, add_tag=add_tag, remove_tag=remove_tag)
+    return str(mod)
 
 @tool
 def suggest_mod(
-    mod: Annotated[str, "The JSON representation of the dictionary of the RecipeModification object to be suggested."],
+    mod: Annotated[RecipeModification, "The recipe modification to be suggested. Example: {'priority': 1, 'add_ingredient': {'name': 'salt', 'quantity': 1, 'unit': 'teaspoon'}}"],
     mods_list_file: Annotated[str, "The filename for the mods list."] = default_mods_list_file
 ) -> Annotated[List[RecipeModification], "The updated list of modifications."]:
     """Suggest a new modification to be added to the mods list."""
     logger.debug("Suggesting modification to mods list.")
-    mod_dict = json.loads(mod)
-    recipe_mod = RecipeModification.from_dict(mod_dict)
+    recipe_mod = RecipeModification.from_json(mod)
     mods_list = load_mods_list_from_file(mods_list_file)
     mods_list.suggest_mod(recipe_mod)
     updated_mods_list = mods_list.get_mods_list()
     save_mods_list_to_file(mods_list, mods_list_file)
-    return updated_mods_list
+    return str(updated_mods_list)
 
 @tool
 def get_mods_list(
@@ -220,23 +227,22 @@ def get_mods_list(
     return current_mods_list
 
 @tool
-def push_mod(
+def apply_mod(
     mods_list_file: Annotated[str, "The filename for the mods list."] = default_mods_list_file,
     graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
-) -> Annotated[bool, "Indicates whether the modification was successfully removed."]:
+) -> Annotated[str, "Indicates whether the modification was successfully applied."]:
     """Apply the top modification from the mods list."""
     logger.debug("Pushing modification from mods list.")
     mods_list = load_mods_list_from_file(mods_list_file)
     recipe_graph = load_graph_from_file(graph_file)
-    mod_to_apply = mods_list.push_mod()
-    result = recipe_graph.apply_modification(mod_to_apply)
+    (mod_to_apply, result) = mods_list.push_mod(recipe_graph)
     save_graph_to_file(recipe_graph, default_graph_file)
     save_mods_list_to_file(mods_list, mods_list_file)
     if not result:
         logger.error(f"Failed to apply modification: {mod_to_apply}")
-        return False
+        return "Failed to apply modification."
     logger.info(f"Modification applied: {mod_to_apply}")
-    return True
+    return "Successfully applied modification. {mod_to_apply}"
 
 @tool
 def rank_mod(
@@ -268,3 +274,17 @@ def remove_mod(
     result = mods_list.remove_mod(mod_id)
     save_mods_list_to_file(mods_list, mods_list_file)
     return result
+
+## Recipe Analysis Tools ##
+
+## TODO - Analyze nutritional information
+
+## TODO - Analyze recipe complexity
+
+## TODO - Suggest potential ingredient substitutions
+
+## TODO - Suggest potential ingredient add-in's
+
+## TODO - Calculate recipe cost
+
+## TODO - Calculate recipe "trendiness"
