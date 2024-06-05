@@ -70,7 +70,7 @@ prompts_dict = {
     "DevelopmentTrackerAgent": {
         "type": "agent",
         "prompt": "You are DevelopmentTrackerAgent. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the CauldronRouter or the ModificationsAgent on how to develop the recipe_graph object appropriately. Prior to modifying the recipe_graph, always check its size and the foundational recipe. If recipe_graph has no nodes (like when the graph is first initialized), use context provided to generate a foundational recipe and add it to the recipe_graph. Ensure that the development path is clear and logical.",
-        "tools": [generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph],
+        "tools": [generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, get_foundational_recipe, get_graph],
     },
     #"PeripheralFeedbackAgent": { TODO
     #    "type": "agent",

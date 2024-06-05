@@ -1,0 +1,53 @@
+2024-06-05 10:45:00,085 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-05 10:45:01,740 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-05 10:45:01,740 - cauldron - DEBUG  - recipe_graph.py - fresh_graph - Filename: recipe_graph.pkl
+2024-06-05 10:45:01,741 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-05 10:45:01,742 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-05 10:45:01,743 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-05 10:45:01,748 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-05 10:45:01,749 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-05 10:45:01,749 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SummaryAgent
+2024-06-05 10:45:02,569 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SummaryAgent created.
+2024-06-05 10:45:02,570 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CauldronRouter
+2024-06-05 10:45:02,571 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CauldronRouter created.
+2024-06-05 10:45:02,571 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-05 10:45:02,572 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-05 10:45:02,573 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-05 10:45:02,575 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-05 10:45:02,576 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-05 10:45:02,579 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-05 10:45:02,580 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-05 10:45:02,588 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-05 10:45:02,588 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-05 10:45:02,593 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-05 10:45:02,593 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-05 10:45:38,437 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-05 10:45:38,438 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-05 10:45:38,440 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-05 10:45:38,440 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-05 10:45:38,441 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-05 10:45:45,344 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-05 10:45:45,345 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Chocolate Chip Cookies, Ingredients: [Ingredient(name='butter', quantity=1.0, unit='cup'), Ingredient(name='white sugar', quantity=0.5, unit='cup'), Ingredient(name='brown sugar', quantity=0.5, unit='cup'), Ingredient(name='eggs', quantity=2.0, unit=''), Ingredient(name='vanilla extract', quantity=1.0, unit='tsp'), Ingredient(name='baking soda', quantity=1.0, unit='tsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='all-purpose flour', quantity=2.25, unit='cups'), Ingredient(name='chocolate chips', quantity=1.0, unit='cup')], Instructions: ['1. Preheat oven to 350°F (175°C).', '2. In a large bowl, cream together the butter, white sugar, and brown sugar until smooth.', '3. Beat in the eggs one at a time, then stir in the vanilla.', '4. Dissolve baking soda in hot water, add to batter along with salt.', '5. Stir in flour and chocolate chips.', '6. Drop by large spoonfuls onto ungreased pans.', '7. Bake for about 10 minutes in the preheated oven, or until edges are nicely browned.'], Tags: None, Sources: None
+2024-06-05 10:45:50,583 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-05 10:45:50,584 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-05 10:45:50,585 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-05 10:45:50,586 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-05 10:45:58,783 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-05 10:45:58,826 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-05 10:45:58,827 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-05 10:45:58,828 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-05 10:45:58,828 - cauldron - DEBUG  - recipe_graph.py - from_json - Creating Recipe object from JSON string.
+2024-06-05 10:46:07,254 - cauldron - DEBUG  - agent_tools.py - suggest_mod - Suggesting modification to mods list.
+2024-06-05 10:46:07,255 - cauldron - DEBUG  - recipe_graph.py - from_json - Creating RecipeModification object from JSON string.
+2024-06-05 10:46:07,256 - cauldron - INFO   - recipe_graph.py - load_mods_list_from_file - Loading mods list from file.
+2024-06-05 10:46:07,258 - cauldron - DEBUG  - recipe_graph.py - suggest_mod - Suggesting modification to mods list.
+2024-06-05 10:46:07,258 - cauldron - DEBUG  - recipe_graph.py - get_mods_list - Getting mods list.
+2024-06-05 10:46:07,259 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-05 10:46:10,052 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-05 10:46:10,053 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-05 10:46:10,054 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-05 10:46:10,055 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-05 10:46:10,056 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-05 10:46:10,056 - cauldron - DEBUG  - recipe_graph.py - from_json - Creating Recipe object from JSON string.
+2024-06-05 10:46:11,184 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-05 10:46:11,185 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: cinnamon, Quantity: 1.0, Unit: tsp

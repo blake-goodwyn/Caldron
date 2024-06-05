@@ -118,7 +118,7 @@ def get_recipe(
 
 @tool("add-node-tool", args_schema=Recipe)
 def add_node(
-    recipe_str: Annotated[str, "The representation of the Recipe object of the recipe."],
+    recipe_str: Annotated[Recipe, "The representation of the Recipe object of the recipe."],
     graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
 ) -> Annotated[str, "ID of the newly added recipe node."]:
     """Add a new node to the recipe graph with the provided recipe and create an edge from the current foundational recipe."""

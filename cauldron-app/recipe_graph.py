@@ -217,6 +217,7 @@ class ModsList(BaseModel):
 
 def fresh_graph(filename):
     logger.info("Creating a new recipe graph.")
+    logger.debug(f"Filename: {filename}")
     recipe_graph = RecipeGraph()
     with open(filename, 'wb') as file:
         pickle.dump(recipe_graph, file)
