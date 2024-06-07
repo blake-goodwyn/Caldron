@@ -1,5 +1,5 @@
 import pprint
-from recipe_graph import RecipeGraph, Recipe, Ingredient, RecipeModification, ModsList
+from class_defs import RecipeGraph, Recipe, Ingredient, RecipeModification, ModsList
 
 class CustomPP(pprint.PrettyPrinter):
     def format(self, obj, context, maxlevels, level):

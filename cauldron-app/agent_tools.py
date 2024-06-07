@@ -5,7 +5,7 @@ import os
 import json
 from dotenv import load_dotenv
 from recipe_scrapers import scrape_me
-from recipe_graph import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, Recipe, Ingredient, RecipeModification
+from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, Recipe, Ingredient, RecipeModification
 from logging_util import logger
 from datetime import datetime
 

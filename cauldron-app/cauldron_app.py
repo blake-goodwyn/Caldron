@@ -4,7 +4,7 @@
 import warnings
 from logging_util import logger
 from langchain_util import ChatOpenAI, workflow, enter_chain, HumanMessage
-from recipe_graph import fresh_graph, default_graph_file, fresh_mods_list, default_mods_list_file, load_graph_from_file
+from class_defs import fresh_graph, default_graph_file, fresh_mods_list, default_mods_list_file, load_graph_from_file
 from agent_defs import create_all_agents, prompts_dict, form_edges, create_conditional_edges
 from custom_print import printer
 import matplotlib.pyplot as plt
@@ -26,6 +26,7 @@ class CauldronApp():
         self.llm = ChatOpenAI(model=llm_model, temperature=0)
 
         #Central Data Structures
+        self.recipe_pot = None
         self.recipe_graph = fresh_graph(gf)
         self.mods_list = fresh_mods_list(mlist)
 
@@ -50,7 +51,7 @@ class CauldronApp():
 
         def update_graph(self, node_colors=["lightblue" for n in self.display_graph.nodes()]):
             plt.clf()
-            plt.legend(["Sender", "Receiver"], loc="upper left")
+            #plt.legend(["Sender", "Receiver"], loc="upper left")
             nx.draw_networkx_nodes(self.display_graph, self.node_pos, node_size=3000, node_color=node_colors)
             nx.draw_networkx_edges(self.display_graph, self.node_pos, edgelist=direct_edges, style='solid', connectionstyle='arc3,rad=0.2', arrows=True)
             nx.draw_networkx_edges(self.display_graph, self.node_pos, edgelist=conditional_edges, style='dotted', connectionstyle='arc3,rad=0.2', arrows=True)
@@ -108,6 +109,7 @@ class CauldronApp():
                     
                 graph = load_graph_from_file(self.recipe_graph)
                 printer.pprint(graph.get_foundational_recipe())
+                update_graph(self)
                 i = input("Enter a message: ")
 
         self.visualize_thread = threading.Thread(target=visualize_graph(self))

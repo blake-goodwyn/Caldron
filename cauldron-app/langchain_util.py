@@ -16,7 +16,7 @@ from langgraph.graph import StateGraph
 from dotenv import load_dotenv
 import os
 from logging_util import logger
-from recipe_graph import Recipe
+from class_defs import Recipe
 
 load_dotenv()
 LANGCHAIN_TRACING_V2=True

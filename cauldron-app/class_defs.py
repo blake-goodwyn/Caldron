@@ -213,6 +213,43 @@ class ModsList(BaseModel):
                 return True
         return False
     
+class Pot(BaseModel):
+    contents: List[Recipe] = Field(default=[], description="List of recipes in the pot")
+
+    def __init__(self, **data):
+        super().__init__(**data)
+        logger.info("Initializing Pot object.")
+
+    def __str__(self) -> str:
+        return self.json()
+    
+    def add_recipe(self, recipe: Recipe) -> None:
+        logger.debug("Adding recipe to pot.")
+        self.contents.append(recipe)
+
+    def remove_recipe(self, recipe_id: str) -> bool:
+        logger.debug("Removing recipe from pot.")
+        for i, recipe in enumerate(self.contents):
+            if recipe.id == recipe_id:
+                self.contents.pop(i)
+                return True
+        return False
+    
+    def get_recipe(self, recipe_id: str) -> Optional[Recipe]:
+        logger.debug("Getting recipe from pot.")
+        for recipe in self.contents:
+            if recipe.id == recipe_id:
+                return recipe
+        return None
+    
+    def get_all_recipes(self) -> List[Recipe]:
+        logger.debug("Getting all recipes from pot.")
+        return self.contents
+    
+    def clear_pot(self) -> None:
+        logger.debug("Clearing pot.")
+        self.contents = []
+
 ##Graph Functions
 
 def fresh_graph(filename):
@@ -257,3 +294,26 @@ def save_mods_list_to_file(mods_list: ModsList, filename: str) -> None:
     logger.info("Saving mods list to file.")
     with open(filename, 'wb') as file:
         pickle.dump(mods_list, file)
+
+### Recipe Pot Functions
+
+def load_pot_from_file(filename: str) -> Pot:
+    logger.info("Loading recipe pot from file.")
+    try:
+        with open(filename, 'rb') as file:
+            pot = pickle.load(file)
+    except:
+        pot = Pot()
+
+    return pot
+
+def save_pot_to_file(pot: Pot, filename: str) -> None:
+    logger.info("Saving recipe pot to file.")
+    with open(filename, 'wb') as file:
+        pickle.dump(pot, file)
+
+def fresh_pot(filename: str) -> None:
+    logger.info("Creating a new recipe pot.")
+    pot = Pot()
+    save_pot_to_file(pot, filename)
+    return filename
