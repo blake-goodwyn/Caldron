@@ -3,11 +3,13 @@
 ### IMPORTS ###
 import warnings
 from logging_util import logger
-from langchain_util import ChatOpenAI, workflow, enter_chain
-from recipe_graph import fresh_graph, default_graph_file, fresh_mods_list, default_mods_list_file
+from langchain_util import ChatOpenAI, workflow, enter_chain, HumanMessage
+from recipe_graph import fresh_graph, default_graph_file, fresh_mods_list, default_mods_list_file, load_graph_from_file
 from agent_defs import create_all_agents, prompts_dict, form_edges, create_conditional_edges
+from custom_print import printer
 import matplotlib.pyplot as plt
 import networkx as nx
+import threading
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
@@ -40,30 +42,80 @@ class CauldronApp():
         direct_edges = form_edges(self.flow_graph)
         for edge in direct_edges:
             self.display_graph.add_edge(*edge)
-
         conditional_edges = create_conditional_edges(self.flow_graph)
 
-        self.flow_graph.set_entry_point("CauldronRouter")
-
-        # Separate edges into solid and dotted line groups
-        solid_edges = direct_edges
-        dotted_edges = conditional_edges
-
-        # Get positions for the nodes
-        pos = nx.spring_layout(self.display_graph, k=0.5, iterations=50)
-
-        # Centralize a specific node
-        central_node = 'CauldronRouter'
-        pos[central_node] = [0, 0]  # Position the central node at the center
-        for node in pos:
-            if node != central_node:
-                pos[node][0] += 0.5  # Offset other nodes to maintain minimum distance
-
-        nx.draw_networkx_nodes(self.display_graph, pos, node_size=3000, node_color="lightblue")
-        nx.draw_networkx_edges(self.display_graph, pos, edgelist=solid_edges, style='solid', connectionstyle='arc3,rad=0.2', arrows=True)
-        nx.draw_networkx_edges(self.display_graph, pos, edgelist=dotted_edges, style='dotted', connectionstyle='arc3,rad=0.2', arrows=True)
-        nx.draw_networkx_labels(self.display_graph, pos, font_size=10, font_weight="bold")
-        #plt.show()
-        
+        self.flow_graph.set_entry_point("CauldronPostman")
         self.chain = self.flow_graph.compile()
         self.interface = enter_chain | self.chain
+
+        def update_graph(self, node_colors=["lightblue" for n in self.display_graph.nodes()]):
+            plt.clf()
+            plt.legend(["Sender", "Receiver"], loc="upper left")
+            nx.draw_networkx_nodes(self.display_graph, self.node_pos, node_size=3000, node_color=node_colors)
+            nx.draw_networkx_edges(self.display_graph, self.node_pos, edgelist=direct_edges, style='solid', connectionstyle='arc3,rad=0.2', arrows=True)
+            nx.draw_networkx_edges(self.display_graph, self.node_pos, edgelist=conditional_edges, style='dotted', connectionstyle='arc3,rad=0.2', arrows=True)
+            nx.draw_networkx_labels(self.display_graph, self.node_pos, font_size=10, font_weight="bold")
+            plt.draw()
+
+        ## Visualization Thread
+        def visualize_graph(self):
+            plt.ion()
+
+            # Get positions for the nodes
+            self.node_pos = nx.spring_layout(self.display_graph, k=0.5, iterations=50)
+
+            # Centralize a specific node
+            central_node = 'CauldronPostman'
+            self.node_pos[central_node] = [0, 0]  # Position the central node at the center
+            for node in self.node_pos:
+                if node != central_node:
+                    self.node_pos[node][0] += 0.5  # Offset other nodes to maintain minimum distance
+
+            update_graph(self)
+
+        ## Simple Interaction Thread
+        def interaction_loop(self):
+            i = input("Enter a message: ")
+            while i != "exit":
+                for s in self.chain.stream(
+                    {
+                        "messages": [
+                            HumanMessage(
+                                content=i
+                            )
+                        ],
+                        'sender': 'user',
+                        'next': 'CauldronPostman'
+                    },
+                    {"recursion_limit": 50}
+                ):
+                    print("--------------------")
+                    if 'Frontman' in s.keys():
+                        print(s['Frontman']['messages'][0].content)
+                    else:
+                        print(s)
+
+                    # Change node color if its name matches a key in s
+                    if 'next' in s[list(s.keys())[0]].keys():
+                        update_graph(self)
+                        plt.pause(0.1)
+                        c = []
+                        for n in self.display_graph.nodes():
+                            if n == s[list(s.keys())[0]]['sender']:
+                                c.append("blue")
+                            elif n == s[list(s.keys())[0]]['next']:
+                                c.append("red")
+                            else:
+                                c.append("lightblue")
+                        update_graph(self, node_colors=c)
+                        plt.pause(0.1)
+
+                    
+                graph = load_graph_from_file(self.recipe_graph)
+                printer.pprint(graph.get_foundational_recipe())
+                i = input("Enter a message: ")
+
+        self.visualize_thread = threading.Thread(target=visualize_graph(self))
+        self.interface_thread = threading.Thread(target=interaction_loop(self))
+        self.visualize_thread.start()
+        self.interface_thread.start()

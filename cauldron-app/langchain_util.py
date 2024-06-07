@@ -46,7 +46,7 @@ def createAgent(
     agent = create_openai_tools_agent(llm, tools=tools, prompt=prompt)
     return AgentExecutor(name=name, agent=agent, tools=tools)
 
-def createSQLAgent(
+def createBookworm(
         name: str, 
         system_prompt: str, 
         llm_model: str, 
@@ -77,10 +77,11 @@ def createSQLAgent(
         )
     return AgentExecutor(name=name, agent=agent, tools=tools)
 
-def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
+def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> str:
     """An LLM-based router."""
-    options = members
-    function_def = {
+    if exit:
+        members.append("FINISH")
+    route_fx = {
         "name": "route",
         "description": "Select the next role.",
         "parameters": {
@@ -90,7 +91,7 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
                 "next": {
                     "title": "Next",
                     "anyOf": [
-                        {"enum": options},
+                        {"enum": members},
                     ],
                 },
                 "sender": {
@@ -113,10 +114,11 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
                 " Or should we FINISH? Select one of: {options}",
             )
         ]
-    ).partial(options=str(options), team_members=", ".join(members))
+    ).partial(options=str(members), team_members=", ".join(members))
+    logger.debug(f"Router options: {members}");
     return (
         prompt
-        | llm.bind_functions(functions=[function_def], function_call="route")
+        | llm.bind_functions(functions=[route_fx], function_call="route")
         | JsonOutputFunctionsParser()
     )
 

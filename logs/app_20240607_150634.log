@@ -1,0 +1,28 @@
+2024-06-07 15:06:38,806 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-07 15:06:40,122 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-07 15:06:40,123 - cauldron - DEBUG  - recipe_graph.py - fresh_graph - Filename: recipe_graph.pkl
+2024-06-07 15:06:40,123 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-07 15:06:40,124 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-07 15:06:40,125 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-07 15:06:40,125 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-07 15:06:40,126 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-07 15:06:40,127 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-07 15:06:40,767 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-07 15:06:40,768 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CauldronPostman
+2024-06-07 15:06:40,768 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['ResearchPostman', 'ModSquad', 'Spinnaret', 'FINISH']
+2024-06-07 15:06:40,769 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CauldronPostman created.
+2024-06-07 15:06:40,769 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ResearchPostman
+2024-06-07 15:06:40,770 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'CauldronPostman']
+2024-06-07 15:06:40,771 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ResearchPostman created.
+2024-06-07 15:06:40,771 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-07 15:06:40,773 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-07 15:06:40,773 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-07 15:06:40,777 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-07 15:06:40,777 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-07 15:06:40,782 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-07 15:06:40,782 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-07 15:06:40,786 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-07 15:06:40,787 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-07 15:06:57,245 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-07 15:06:59,971 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-07 15:06:59,972 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Pistachio Ice Cream, Ingredients: [], Instructions: [], Tags: ['fermented', 'pistachio', 'ice cream'], Sources: ['https://www.thekitchn.com/pistachio-ice-cream-recipe-23294970']
