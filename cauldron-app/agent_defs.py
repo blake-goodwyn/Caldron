@@ -18,15 +18,15 @@ prompts_dict = {
         "prompt": "You are Cauldron, an intelligent assistant for recipe development. You are friendly and chipper in your responses. Your task is to summarize the entirety of the given message chain and deliver a concise explanation of changes to the user.",
         "tools": [get_datetime]
     },
-    "CauldronPostman": {
+    "Cauldron\nPostman": {
         "type": "supervisor",
-        "prompt": "You are CauldronPostman. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: ResearchPostman, ModSquad, Spinnaret. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to ResearchPostman to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
-        "members":["ResearchPostman", "ModSquad", "Spinnaret"] # TODO - "Critic" & "Jimmy"
+        "prompt": "You are Cauldron\nPostman. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: Research\nPostman, ModSquad, Spinnaret. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to Research\nPostman to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
+        "members":["Research\nPostman", "ModSquad", "Spinnaret"] # TODO - "Critic" & "Jimmy"
     },
-    "ResearchPostman": {
+    "Research\nPostman": {
         "type": "supervisor",
-        "prompt": "You are ResearchPostman, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: Tavily Sleuth. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the CauldronPostman.",
-        "members": ["Tavily", "Sleuth", "CauldronPostman"] #TODO - "Bookworm", "Remy", "HealthNut", "MrKrabs" 
+        "prompt": "You are Research\nPostman, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: Tavily Sleuth. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the Cauldron\nPostman.",
+        "members": ["Tavily", "Sleuth", "Cauldron\nPostman"] #TODO - "Bookworm", "Remy", "HealthNut", "MrKrabs" 
     },
     #"Remy": { TODO
     #    "type": "agent",
@@ -54,22 +54,23 @@ prompts_dict = {
     #},
     "Tavily": {
         "type": "agent",
-        "prompt": "You are Tavily. Your task is to search the internet for relevant recipes that match the user's request. You will use the Tavily search tool to fulfill these requests and find relevant recipes. Once you have found a recipe, forward it to the ResearchPostman.",
+        "prompt": "You are Tavily. Your task is to search the internet for relevant recipes that match the user's request. You will use the Tavily search tool to fulfill these requests and find relevant recipes. Once you have found a recipe, forward it to the Research\nPostman.",
         "tools": [tavily_search_tool]
     },
     "Sleuth": {
         "type": "agent",
-        "prompt": "You are Sleuth. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, use the generate_recipe tool to summarize each recipe found. Pass your results to the ResearchPostman.",
-        "tools": [get_recipe_info, generate_recipe, generate_ingredient]
+        "prompt": "You are Sleuth. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, complete your task by using the generate_recipe tool to summarize each recipe found. Pass your results to the Research\nPostman.",
+        "tools": [get_recipe_info, generate_recipe, generate_ingredient],
+        "tool_choice": {"type": "function", "function": {"name": "generate_recipe"}}
     },
     "ModSquad": {
         "type": "agent",
-        "prompt": "You are ModSquad. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or CauldronPostman. Forward the updated recipe to the Spinnaret. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the CauldronPostman for clarification.",
+        "prompt": "You are ModSquad. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or Cauldron\nPostman. Forward the updated recipe to the Spinnaret. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the Cauldron\nPostman for clarification.",
         "tools": [generate_mod, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod],
     },
     "Spinnaret": {
         "type": "agent",
-        "prompt": "You are Spinnaret. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the CauldronPostman or the ModSquad on how to develop the recipe_graph object appropriately. Prior to modifying the recipe_graph, always check its size and the foundational recipe. If recipe_graph has no nodes (like when the graph is first initialized), use context provided to generate a foundational recipe and add it to the recipe_graph. Ensure that the development path is clear and logical.",
+        "prompt": "You are Spinnaret. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the Cauldron\nPostman or the ModSquad on how to develop the recipe_graph object appropriately. Prior to modifying the recipe_graph, always check its size and the foundational recipe. If recipe_graph has no nodes (like when the graph is first initialized), use context provided to generate a foundational recipe and add it to the recipe_graph. Ensure that the development path is clear and logical.",
         "tools": [generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, get_foundational_recipe, get_graph],
     },
     #"Jimmy": { TODO
@@ -85,17 +86,17 @@ prompts_dict = {
 }
 
 direct_edges = [
-    #("ResearchPostman", "CauldronPostman"),
-    ("ModSquad", "CauldronPostman"),
-    ("Spinnaret", "CauldronPostman"),
-    #("Critic", "CauldronPostman"), TODO
-    #("Jimmy", "CauldronPostman"),
-    #("Remy", "ResearchPostman"),
-    #("HealthNut", "ResearchPostman"),
-    #("MrKrabs", "ResearchPostman"),
-    #("Bookworm", "ResearchPostman"),
-    ("Tavily", "ResearchPostman"),
-    ("Sleuth", "ResearchPostman"),
+    #("Research\nPostman", "Cauldron\nPostman"),
+    ("ModSquad", "Cauldron\nPostman"),
+    ("Spinnaret", "Cauldron\nPostman"),
+    #("Critic", "Cauldron\nPostman"), TODO
+    #("Jimmy", "Cauldron\nPostman"),
+    #("Remy", "Research\nPostman"),
+    #("HealthNut", "Research\nPostman"),
+    #("MrKrabs", "Research\nPostman"),
+    #("Bookworm", "Research\nPostman"),
+    ("Tavily", "Research\nPostman"),
+    ("Sleuth", "Research\nPostman"),
     ("Frontman", END)
 ]
 
@@ -106,7 +107,7 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
     for name, d in prompts_dict.items():
         if d["type"] == "supervisor":
             logger.info(f"Creating supervisor agent: {name}")
-            if name == "CauldronPostman":
+            if name == "Cauldron\nPostman":
                 agent = createRouter(name, d["prompt"], llm, members=d["members"], exit=True)
             else:
                 agent = createRouter(name, d["prompt"], llm, members=d["members"])
@@ -131,21 +132,21 @@ def form_edges(flow_graph):
     return direct_edges
 
 conditional_edges = [
-    ("CauldronPostman", "ResearchPostman"),
-    ("CauldronPostman", "ModSquad"),
-    ("CauldronPostman", "Spinnaret"),
-    ("CauldronPostman", "Frontman"),
-    ("ResearchPostman", "Tavily"),
-    ("ResearchPostman", "Sleuth"),
+    ("Cauldron\nPostman", "Research\nPostman"),
+    ("Cauldron\nPostman", "ModSquad"),
+    ("Cauldron\nPostman", "Spinnaret"),
+    ("Cauldron\nPostman", "Frontman"),
+    ("Research\nPostman", "Tavily"),
+    ("Research\nPostman", "Sleuth"),
 ]
 
 def create_conditional_edges(flow_graph):
     
     flow_graph.add_conditional_edges(
-        "CauldronPostman",
+        "Cauldron\nPostman",
         lambda x: x["next"],
         {
-            "ResearchPostman": "ResearchPostman", 
+            "Research\nPostman": "Research\nPostman", 
             #"Critic": "Critic", TODO
             "ModSquad": "ModSquad", 
             "Spinnaret": "Spinnaret", 
@@ -155,13 +156,13 @@ def create_conditional_edges(flow_graph):
     )
 
     flow_graph.add_conditional_edges(
-        "ResearchPostman",
+        "Research\nPostman",
         lambda x: x["next"],
         {
             #"Remy": "Remy", TODO
             #"HealthNut": "HealthNut", TODO 
             #"MrKrabs": "MrKrabs", TODO
-            "CauldronPostman": "CauldronPostman",
+            "Cauldron\nPostman": "Cauldron\nPostman",
             #"Bookworm": "Bookworm",
             "Tavily": "Tavily",
             "Sleuth": "Sleuth",

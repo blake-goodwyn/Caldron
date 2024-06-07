@@ -44,7 +44,7 @@ class CauldronApp():
             self.display_graph.add_edge(*edge)
         conditional_edges = create_conditional_edges(self.flow_graph)
 
-        self.flow_graph.set_entry_point("CauldronPostman")
+        self.flow_graph.set_entry_point("Cauldron\nPostman")
         self.chain = self.flow_graph.compile()
         self.interface = enter_chain | self.chain
 
@@ -62,19 +62,11 @@ class CauldronApp():
             plt.ion()
 
             # Get positions for the nodes
-            self.node_pos = nx.spring_layout(self.display_graph, k=0.5, iterations=50)
-
-            # Centralize a specific node
-            central_node = 'CauldronPostman'
-            self.node_pos[central_node] = [0, 0]  # Position the central node at the center
-            for node in self.node_pos:
-                if node != central_node:
-                    self.node_pos[node][0] += 0.5  # Offset other nodes to maintain minimum distance
-
+            self.node_pos = nx.spring_layout(self.display_graph, k=0.75, iterations=50)
             update_graph(self)
 
         ## Simple Interaction Thread
-        def interaction_loop(self):
+        def simple_interaction_loop(self):
             i = input("Enter a message: ")
             while i != "exit":
                 for s in self.chain.stream(
@@ -85,7 +77,7 @@ class CauldronApp():
                             )
                         ],
                         'sender': 'user',
-                        'next': 'CauldronPostman'
+                        'next': 'Cauldron\nPostman'
                     },
                     {"recursion_limit": 50}
                 ):
@@ -93,7 +85,8 @@ class CauldronApp():
                     if 'Frontman' in s.keys():
                         print(s['Frontman']['messages'][0].content)
                     else:
-                        print(s)
+                        pass
+                        #print(s)
 
                     # Change node color if its name matches a key in s
                     if 'next' in s[list(s.keys())[0]].keys():
@@ -101,6 +94,8 @@ class CauldronApp():
                         plt.pause(0.1)
                         c = []
                         for n in self.display_graph.nodes():
+                            if n == "Frontman":
+                                n = 'FINISH' 
                             if n == s[list(s.keys())[0]]['sender']:
                                 c.append("blue")
                             elif n == s[list(s.keys())[0]]['next']:
@@ -116,6 +111,6 @@ class CauldronApp():
                 i = input("Enter a message: ")
 
         self.visualize_thread = threading.Thread(target=visualize_graph(self))
-        self.interface_thread = threading.Thread(target=interaction_loop(self))
+        self.interface_thread = threading.Thread(target=simple_interaction_loop(self))
         self.visualize_thread.start()
         self.interface_thread.start()

@@ -65,7 +65,7 @@ def get_recipe_info(
         logger.error(f"Failed to scrape recipe: {e}")
         return out
 
-@tool("generate-ingredient-tool", args_schema=Ingredient)
+@tool("generate_ingredient", args_schema=Ingredient)
 def generate_ingredient(
     name: Annotated[str, "The name of the ingredient."],
     quantity: Annotated[float, "The quantity of the ingredient."],
@@ -77,7 +77,7 @@ def generate_ingredient(
     ingredient = Ingredient(name=name, quantity=quantity, unit=unit)
     return str(ingredient)
 
-@tool("generate-recipe-tool", args_schema=Recipe)
+@tool("generate_recipe", args_schema=Recipe)
 def generate_recipe(
     name: Annotated[str, "The name of the recipe."],
     ingredients: Annotated[List[Ingredient], "A list of Ingredient objects. Example: [{'name': 'flour', 'quantity': 2, 'unit': 'cups'}, {'name': 'sugar', 'quantity': 1, 'unit': 'cup'}]"],
@@ -116,7 +116,7 @@ def get_recipe(
     recipe = recipe_graph.get_recipe(node_id)
     return recipe
 
-@tool("add-node-tool", args_schema=Recipe)
+@tool("add_node", args_schema=Recipe)
 def add_node(
     recipe_str: Annotated[Recipe, "The representation of the Recipe object of the recipe."],
     graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
@@ -185,7 +185,7 @@ def get_graph_size(
 
 ## Modifications List Tools ##
 
-@tool("generate-modification-tool", args_schema=RecipeModification)
+@tool("generate_mod", args_schema=RecipeModification)
 def generate_mod(
     priority: Annotated[int, "The priority of the modification."],
     add_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to add."]= None,

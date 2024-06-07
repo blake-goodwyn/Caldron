@@ -1,0 +1,37 @@
+2024-06-07 17:31:06,033 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-07 17:31:07,238 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-07 17:31:07,239 - cauldron - DEBUG  - recipe_graph.py - fresh_graph - Filename: recipe_graph.pkl
+2024-06-07 17:31:07,239 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-07 17:31:07,240 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-07 17:31:07,241 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-07 17:31:07,246 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-07 17:31:07,247 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-07 17:31:07,247 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-07 17:31:07,866 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-07 17:31:07,867 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Cauldron
+Postman
+2024-06-07 17:31:07,868 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'FINISH']
+2024-06-07 17:31:07,869 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Cauldron
+Postman created.
+2024-06-07 17:31:07,869 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-07 17:31:07,870 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Cauldron\nPostman']
+2024-06-07 17:31:07,871 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-07 17:31:07,871 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-07 17:31:07,874 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-07 17:31:07,874 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-07 17:31:07,878 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-07 17:31:07,879 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-07 17:31:07,883 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-07 17:31:07,884 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-07 17:31:07,888 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-07 17:31:07,888 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-07 17:31:28,594 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.verybestbaking.com/toll-house/recipes/original-nestle-toll-house-chocolate-chip-cookies/.
+2024-06-07 17:31:50,912 - cauldron - DEBUG  - agent_tools.py - get_mods_list - Getting mods list.
+2024-06-07 17:31:50,913 - cauldron - INFO   - recipe_graph.py - load_mods_list_from_file - Loading mods list from file.
+2024-06-07 17:31:50,915 - cauldron - DEBUG  - recipe_graph.py - get_mods_list - Getting mods list.
+2024-06-07 17:31:54,541 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-07 17:31:54,544 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-07 17:31:54,545 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-07 17:31:54,545 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
