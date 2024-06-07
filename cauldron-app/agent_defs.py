@@ -10,23 +10,39 @@ from logging_util import logger
 from langchain_util import createAgent, createRouter, agent_node, createBookworm
 from langgraph.graph import END
 from util import db_path, llm_model
-from agent_tools import tavily_search_tool, get_recipe_info, generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, add_node, get_foundational_recipe, get_graph, generate_mod, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, get_datetime
+from agent_tools import tavily_search_tool, scrape_recipe_info, generate_recipe, generate_ingredient, clear_pot, create_recipe_graph, get_recipe, get_recipe_from_pot, examine_pot, add_node, get_foundational_recipe, set_foundational_recipe, get_graph, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, get_user_input
 
 prompts_dict = {
+    "User": {
+        "type": "agent",
+        "prompt": "You are the User Representative. Your task is to provide messages from the user to the Caldron application. Your message may contain a request for a recipe, feedback on a recipe, or a question about the recipe development process. Please provide clear and concise information to help the agents understand your needs.",
+        "tools": [get_user_input],
+        "tool_choice": {"type": "function", "function": {"name": "get_user_input"}}
+    },
     "Frontman": {
         "type": "agent",
-        "prompt": "You are Cauldron, an intelligent assistant for recipe development. You are friendly and chipper in your responses. Your task is to summarize the entirety of the given message chain and deliver a concise explanation of changes to the user.",
-        "tools": [get_datetime]
+        "prompt": "You are Caldron, an intelligent assistant for recipe development. You are friendly and chipper in your responses. Your task is to summarize the entirety of the given message chain and deliver a concise explanation of changes to the user. Prior to completing, run the clear_pot tool to ensure that all recent recipes are cleared from short-term memory.",
+        "tools": [clear_pot]
     },
-    "Cauldron\nPostman": {
+    "Caldron\nPostman": {
         "type": "supervisor",
-        "prompt": "You are Cauldron\nPostman. You are tasked with managing user requests related to recipe development. Without notifying the user, you supervise the following agents: Research\nPostman, ModSquad, Spinnaret. When a user request is received, respond with a confirmation and specify which agent(s) will act next. Each agent will perform a task and respond with their results and status. Ensure that all changes are recorded by Spinnaret before completing.  When all tasks are complete, respond with FINISH.\n\nWhen a user request is first received with no prior history, you may assign the request to Research\nPostman to find an appropriate recipe to serve as the Foundational Recipe. Once a recipe is found (with appropriate name, ingredients, instructions, and optional tags and sourcing), you will assign the recipe to RecipeDevelopmentTracker to set the foundational recipe. You will then compile a comprehensive report summarizing the findings and status of the recipe development process and report this back to the user.",
-        "members":["Research\nPostman", "ModSquad", "Spinnaret"] # TODO - "Critic" & "Jimmy"
+        "prompt": """
+        You are Caldron\nPostman. You are tasked with determining what task needs to be accomplished next given the messages provided. Each agent will perform a task and respond with their results and status. The following are the roles of the agents available to you:\n
+        - Research\nPostman: Researches recipe information and coordinates the efforts of web search via Tavily and recipe scraping via Sleuth.\n
+        - ModSquad: Manages suggested modifications to the recipe based on inputs from other nodes.\n
+        - Spinnaret: Plots and tracks the development process of the recipe, represented by the Recipe Graph.\n
+        - User: Provides messages from the user to the Caldron application. All questions posed by the application should be addressed by the User.\n
+        When all tasks are complete, respond with FINISH. Ensure that all changes are recorded by Spinnaret before completing.
+        """,
+        "members":["Research\nPostman", "User", "ModSquad", "Spinnaret"] # TODO - "Critic" & "Jimmy"
     },
     "Research\nPostman": {
         "type": "supervisor",
-        "prompt": "You are Research\nPostman, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Cauldron application: Tavily Sleuth. Your task is to coordinate their efforts to ensure seamless recipe development. When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, compile a comprehensive report summarizing their findings and the overall status of the recipe development process and report this back to the Cauldron\nPostman.",
-        "members": ["Tavily", "Sleuth", "Cauldron\nPostman"] #TODO - "Bookworm", "Remy", "HealthNut", "MrKrabs" 
+        "prompt": """
+        You are Research\nPostman, a supervisor agent focused on research for recipe development. You oversee the following nodes in the Caldron application: Tavily, Sleuth. Your task is to coordinate their efforts to ensure seamless recipe information retrieval.\n 
+        When a message is received, you may interpret it as you see fit and assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, direct this back to the Caldron\nPostman.
+        """,
+        "members": ["Tavily", "Sleuth", "Caldron\nPostman"] #TODO - "Bookworm", "Remy", "HealthNut", "MrKrabs" 
     },
     #"Remy": { TODO
     #    "type": "agent",
@@ -59,23 +75,44 @@ prompts_dict = {
     },
     "Sleuth": {
         "type": "agent",
-        "prompt": "You are Sleuth. Your task is to scrape recipe data from the internet. You will be given a scraper tool to fulfill these requests and find relevant recipe information. Once you have found information, complete your task by using the generate_recipe tool to summarize each recipe found. Pass your results to the Research\nPostman.",
-        "tools": [get_recipe_info, generate_recipe, generate_ingredient],
+        "prompt": """
+        You are Sleuth. Your task is to scrape recipe data from the internet. Some actions may be:\n
+        - Get recipe information. Use the scrape_recipe_info tool to find information about a specific recipe.\n
+        - Generate a recipe. Use the generate_recipe tool to summarize the recipe found and add it to the Pot.\n
+        - Examine recipes. Use the examine_pot tool to view all recipes in the Pot or get_recipe_from_pot to examine a specific recipe.\n
+        It is recommended that once you use the scrape_recipe_info tool on a URL, you will then use generate_recipe with that information. Esnure that you have examined all recipe URLs identified before proceeding. Once all recipes have been assessed, pass your results to the Research\nPostman.
+        """,
+        "tools": [scrape_recipe_info, generate_recipe, get_recipe_from_pot, examine_pot],
         "tool_choice": {"type": "function", "function": {"name": "generate_recipe"}}
     },
     "ModSquad": {
         "type": "agent",
-        "prompt": "You are ModSquad. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in a variable called mod_list. Analyze suggestions from other agents that have been added to the mods_list and perform tasks as recommended by the User or Cauldron\nPostman. Forward the updated recipe to the Spinnaret. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the Cauldron\nPostman for clarification.",
-        "tools": [generate_mod, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod],
+        "prompt": """
+        You are ModSquad. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in the Mod List. Analyze suggestions from other agents that have been added to the Mods List and perform tasks as recommended by the messages. Some actions may be:\n
+        - Suggest a modification. Use the suggest_mod tool to create a new modification based on the provided information and add it to the Mod List.\n
+        - Examine the Mod List. Use the get_mods_list tool to retrieve the current list of modifications and examine the contents.\n
+        - Apply the top-ranked modification. Use the apply_mod tool to apply the top-ranked modification from the Mod List to the foundational recipe.\n
+        - Re-rank modifications. Use the rank_mod tool to adjust the priority of a given modifications in the Mod List based on importance.\n
+        - Remove a modification. Use the remove_mod tool to remove a modification from the Mod List.\n
+        Forward the updated recipe to the Spinnaret for appropriate adjustment to the Recipe Graph. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the Caldron\nPostman for clarification.
+        """,
+        "tools": [suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod],
     },
     "Spinnaret": {
         "type": "agent",
-        "prompt": "You are Spinnaret. Your task is to plot and track the development process of the recipe, represented by the recipe_graph object, documenting all changes and decisions made by other nodes. You will recieve instruction from the Cauldron\nPostman or the ModSquad on how to develop the recipe_graph object appropriately. Prior to modifying the recipe_graph, always check its size and the foundational recipe. If recipe_graph has no nodes (like when the graph is first initialized), use context provided to generate a foundational recipe and add it to the recipe_graph. Ensure that the development path is clear and logical.",
-        "tools": [generate_recipe, generate_ingredient, create_recipe_graph, get_recipe, get_foundational_recipe, get_graph],
+        "prompt": """
+        You are Spinnaret. Your task is to plot and track the development process of the recipe, represented by the Recipe Graph, documenting all changes and decisions made by other nodes. You have three sources of information at your disposal: the message thread provided, the Pot which contains recently examined recipes, and the Recipe Graph which tracks overall development progression. You must use these sources to indicate how to develop the Recipe Graph appropriately. Your typical tasks to do so may look like, but are not limited to:\n
+        - Examine the foundational recipe (also referred to as "the recipe"). Use the get_foundational_recipe tool to retrieve the current foundational recipe and examine it.\n
+        - Create a recipe graph object if none exists. Use the get_graph tool to retrieve the current recipe graph and the create_recipe_graph tool if the recipe graph is empty.\n
+        - Add a new node to the recipe graph representing a change to the foundational recipe. Use the get_recipe_from_pot tool to examine recent recipes and the add_node tool to add a new node to the recipe graph.\n
+        - Change the foundational recipe to another node in the Recipe Graph. Use the get_foundational_recipe tool to retrieve the current foundational recipe and the set_foundational_recipe tool to change the foundational recipe.\n
+        - Examine the Pot to determine whether a new node should be added to the recipe graph. Use the get_recipe_from_pot tool to examine a specific recipe in the Pot and the add_node tool to add a new node to the recipe graph.
+        """,
+        "tools": [create_recipe_graph, add_node, get_recipe, get_foundational_recipe, set_foundational_recipe, get_graph, get_recipe_from_pot, examine_pot],
     },
     #"Jimmy": { TODO
     #    "type": "agent",
-    #    "prompt": "You are the Peripheral Interpreter node for the Cauldron application. Your task is to interpret feedback from connected smart devices (e.g., smart ovens, kitchen scales) and provide actionable insights to other nodes. Ensure all outputs follow Pydantic standards and format them accordingly. Forward the insights to the relevant nodes (e.g., Feedback Interpreter, Recipe Modification Manager). Clearly address any looping issues or need for further input.",
+    #    "prompt": "You are the Peripheral Interpreter node for the Caldron application. Your task is to interpret feedback from connected smart devices (e.g., smart ovens, kitchen scales) and provide actionable insights to other nodes. Ensure all outputs follow Pydantic standards and format them accordingly. Forward the insights to the relevant nodes (e.g., Feedback Interpreter, Recipe Modification Manager). Clearly address any looping issues or need for further input.",
     #    "tools": [suggest_mod],
     #},
     #"Glutton": {
@@ -86,11 +123,12 @@ prompts_dict = {
 }
 
 direct_edges = [
-    #("Research\nPostman", "Cauldron\nPostman"),
-    ("ModSquad", "Cauldron\nPostman"),
-    ("Spinnaret", "Cauldron\nPostman"),
-    #("Critic", "Cauldron\nPostman"), TODO
-    #("Jimmy", "Cauldron\nPostman"),
+    #("Research\nPostman", "Caldron\nPostman"),
+    ("ModSquad", "Caldron\nPostman"),
+    ("Spinnaret", "Caldron\nPostman"),
+    ("User", "Caldron\nPostman"),
+    #("Critic", "Caldron\nPostman"), TODO
+    #("Jimmy", "Caldron\nPostman"),
     #("Remy", "Research\nPostman"),
     #("HealthNut", "Research\nPostman"),
     #("MrKrabs", "Research\nPostman"),
@@ -107,7 +145,7 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
     for name, d in prompts_dict.items():
         if d["type"] == "supervisor":
             logger.info(f"Creating supervisor agent: {name}")
-            if name == "Cauldron\nPostman":
+            if name == "Caldron\nPostman":
                 agent = createRouter(name, d["prompt"], llm, members=d["members"], exit=True)
             else:
                 agent = createRouter(name, d["prompt"], llm, members=d["members"])
@@ -118,7 +156,10 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
 
         elif d["type"] == "agent":
             logger.info(f"Creating agent: {name}")
-            agent = createAgent(name, d["prompt"], llm, d["tools"])
+            if "tool_choice" in d:
+                agent = createAgent(name, d["prompt"], llm, d["tools"], d["tool_choice"])
+            else:
+                agent = createAgent(name, d["prompt"], llm, d["tools"])
 
         agents[name] = functools.partial(agent_node, agent=agent, name=name)
         logger.info(f"Agent {name} created.")
@@ -132,10 +173,11 @@ def form_edges(flow_graph):
     return direct_edges
 
 conditional_edges = [
-    ("Cauldron\nPostman", "Research\nPostman"),
-    ("Cauldron\nPostman", "ModSquad"),
-    ("Cauldron\nPostman", "Spinnaret"),
-    ("Cauldron\nPostman", "Frontman"),
+    ("Caldron\nPostman", "Research\nPostman"),
+    ("Caldron\nPostman", "ModSquad"),
+    ("Caldron\nPostman", "Spinnaret"),
+    ("Caldron\nPostman", "Frontman"),
+    ("Caldron\nPostman", "User"),
     ("Research\nPostman", "Tavily"),
     ("Research\nPostman", "Sleuth"),
 ]
@@ -143,13 +185,14 @@ conditional_edges = [
 def create_conditional_edges(flow_graph):
     
     flow_graph.add_conditional_edges(
-        "Cauldron\nPostman",
+        "Caldron\nPostman",
         lambda x: x["next"],
         {
             "Research\nPostman": "Research\nPostman", 
             #"Critic": "Critic", TODO
             "ModSquad": "ModSquad", 
             "Spinnaret": "Spinnaret", 
+            "User": "User",
             "FINISH": "Frontman",
             #"Jimmy": "Jimmy" TODO
         },
@@ -162,7 +205,7 @@ def create_conditional_edges(flow_graph):
             #"Remy": "Remy", TODO
             #"HealthNut": "HealthNut", TODO 
             #"MrKrabs": "MrKrabs", TODO
-            "Cauldron\nPostman": "Cauldron\nPostman",
+            "Caldron\nPostman": "Caldron\nPostman",
             #"Bookworm": "Bookworm",
             "Tavily": "Tavily",
             "Sleuth": "Sleuth",

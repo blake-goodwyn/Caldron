@@ -4,12 +4,14 @@ import os
 import ujson
 import networkx as nx
 import heapq
-from typing import List, Dict, Optional, Any, Tuple
+from typing import List, Dict, Optional, Any, Tuple, Type, TypeVar, Set
 from logging_util import logger
 from langchain.pydantic_v1 import BaseModel, Field
 
+T = TypeVar('T')
 default_mods_list_file = "mods_list.pkl"
 default_graph_file="recipe_graph.pkl"
+default_pot_file="recipe_pot.pkl"
 
 class Ingredient(BaseModel):
     name: str = Field(description="Name of the ingredient")
@@ -74,6 +76,12 @@ class Recipe(BaseModel):
     def to_json(self) -> Dict[str, Any]:
         logger.debug("Creating JSON representation of Recipe object.")
         return self.json()
+    
+    def get_ID(self) -> str:
+        return self.id
+    
+    def tiny(self) -> str:
+        return f"{self.name} ({self.id})"
     
     @classmethod
     def from_json(cls, data: Dict[str, Any]) -> 'Recipe':
@@ -214,7 +222,7 @@ class ModsList(BaseModel):
         return False
     
 class Pot(BaseModel):
-    contents: List[Recipe] = Field(default=[], description="List of recipes in the pot")
+    contents: List[Recipe] = Field(default=[], description="Set of recipes in the pot")
 
     def __init__(self, **data):
         super().__init__(**data)
@@ -242,6 +250,12 @@ class Pot(BaseModel):
                 return recipe
         return None
     
+    def pop_recipe(self) -> Optional[Recipe]:
+        logger.debug("Popping recipe from pot.")
+        if self.contents:
+            return self.contents.pop()
+        return None
+    
     def get_all_recipes(self) -> List[Recipe]:
         logger.debug("Getting all recipes from pot.")
         return self.contents
@@ -250,70 +264,52 @@ class Pot(BaseModel):
         logger.debug("Clearing pot.")
         self.contents = []
 
-##Graph Functions
-
-def fresh_graph(filename):
-    logger.info("Creating a new recipe graph.")
-    logger.debug(f"Filename: {filename}")
-    recipe_graph = RecipeGraph()
+# General utility functions
+def save_to_file(obj: T, filename: str) -> None:
+    logger.info(f"Saving {obj.__class__.__name__} to file.")
     with open(filename, 'wb') as file:
-        pickle.dump(recipe_graph, file)
-    return filename
+        pickle.dump(obj, file)
 
-def save_graph_to_file(recipe_graph, filename):
-    logger.info("Saving recipe graph to file.")
-    with open(filename, 'wb') as file:
-        pickle.dump(recipe_graph, file)
-
-def load_graph_from_file(filename):
-    logger.info("Loading recipe graph from file.")
+def load_from_file(cls: Type[T], filename: str) -> T:
+    logger.info(f"Loading {cls.__name__} from file.")
     if os.path.exists(filename):
         with open(filename, 'rb') as file:
             return pickle.load(file)
     else:
-        raise FileNotFoundError("File does not exist.")
+        raise FileNotFoundError(f"{filename} does not exist.")
 
-## Modifications Functions
-
-def fresh_mods_list(filename: str) -> None:
-    logger.info("Creating a new mods list.")
-    mods_list = ModsList()
-    save_mods_list_to_file(mods_list, filename)
+def fresh_instance(cls: Type[T], filename: str) -> T:
+    logger.info(f"Creating a new instance of {cls.__name__}.")
+    instance = cls()
+    save_to_file(instance, filename)
     return filename
 
-def load_mods_list_from_file(filename: str) -> ModsList:
-    logger.info("Loading mods list from file.")
-    try:
-        with open(filename, 'rb') as file:
-            mods_list = pickle.load(file)
-        return mods_list
-    except FileNotFoundError:
-        return ModsList()
+## Graph Wrapper Functions
+def fresh_graph(filename: str=default_graph_file) -> RecipeGraph:
+    return fresh_instance(RecipeGraph, filename)
 
-def save_mods_list_to_file(mods_list: ModsList, filename: str) -> None:
-    logger.info("Saving mods list to file.")
-    with open(filename, 'wb') as file:
-        pickle.dump(mods_list, file)
+def save_graph_to_file(recipe_graph: RecipeGraph, filename: str=default_graph_file) -> None:
+    save_to_file(recipe_graph, filename)
 
-### Recipe Pot Functions
+def load_graph_from_file(filename: str=default_graph_file) -> RecipeGraph:
+    return load_from_file(RecipeGraph, filename)
 
-def load_pot_from_file(filename: str) -> Pot:
-    logger.info("Loading recipe pot from file.")
-    try:
-        with open(filename, 'rb') as file:
-            pot = pickle.load(file)
-    except:
-        pot = Pot()
+## ModsList Wrapper Functions
+def fresh_mods_list(filename: str=default_mods_list_file) -> ModsList:
+    return fresh_instance(ModsList, filename)
 
-    return pot
+def save_mods_list_to_file(mods_list: ModsList, filename: str=default_mods_list_file) -> None:
+    save_to_file(mods_list, filename)
 
-def save_pot_to_file(pot: Pot, filename: str) -> None:
-    logger.info("Saving recipe pot to file.")
-    with open(filename, 'wb') as file:
-        pickle.dump(pot, file)
+def load_mods_list_from_file(filename: str=default_mods_list_file) -> ModsList:
+    return load_from_file(ModsList, filename)
 
-def fresh_pot(filename: str) -> None:
-    logger.info("Creating a new recipe pot.")
-    pot = Pot()
-    save_pot_to_file(pot, filename)
-    return filename
+## Pot Wrapper Functions
+def fresh_pot(filename: str=default_pot_file) -> Pot:
+    return fresh_instance(Pot, filename)
+
+def save_pot_to_file(pot: Pot, filename: str=default_pot_file) -> None:
+    save_to_file(pot, filename)
+
+def load_pot_from_file(filename: str=default_pot_file) -> Pot:
+    return load_from_file(Pot, filename)

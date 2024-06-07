@@ -4,7 +4,7 @@
 import warnings
 from logging_util import logger
 from langchain_util import ChatOpenAI, workflow, enter_chain, HumanMessage
-from class_defs import fresh_graph, default_graph_file, fresh_mods_list, default_mods_list_file, load_graph_from_file
+from class_defs import fresh_graph, fresh_mods_list, load_graph_from_file, fresh_pot, default_pot_file, load_pot_from_file
 from agent_defs import create_all_agents, prompts_dict, form_edges, create_conditional_edges
 from custom_print import printer
 import matplotlib.pyplot as plt
@@ -15,20 +15,20 @@ warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Tr
 
 ### DEFINITIONS ###
 
-class CauldronApp():
+class CaldronApp():
     
-    def __init__(self, db_path, llm_model, defs=prompts_dict, gf=default_graph_file, mlist=default_mods_list_file, verbose=False):
+    def __init__(self, db_path, llm_model, defs=prompts_dict, verbose=False):
         
-        logger.info("Initializing Cauldron Application")
+        logger.info("Initializing Caldron Application")
 
         #Pathways and Parameters
         self.db = db_path
         self.llm = ChatOpenAI(model=llm_model, temperature=0)
 
         #Central Data Structures
-        self.recipe_pot = None
-        self.recipe_graph = fresh_graph(gf)
-        self.mods_list = fresh_mods_list(mlist)
+        self.recipe_pot = fresh_pot()
+        self.recipe_graph = fresh_graph()
+        self.mods_list = fresh_mods_list()
 
         ##Determine Agent Structure
         self.agents = create_all_agents(self.llm, defs)
@@ -45,9 +45,8 @@ class CauldronApp():
             self.display_graph.add_edge(*edge)
         conditional_edges = create_conditional_edges(self.flow_graph)
 
-        self.flow_graph.set_entry_point("Cauldron\nPostman")
+        self.flow_graph.set_entry_point("Caldron\nPostman")
         self.chain = self.flow_graph.compile()
-        self.interface = enter_chain | self.chain
 
         def update_graph(self, node_colors=["lightblue" for n in self.display_graph.nodes()]):
             plt.clf()
@@ -69,16 +68,14 @@ class CauldronApp():
         ## Simple Interaction Thread
         def simple_interaction_loop(self):
             i = input("Enter a message: ")
+            msq_queue = []
+            msq_queue.append(HumanMessage(content=i))
             while i != "exit":
                 for s in self.chain.stream(
                     {
-                        "messages": [
-                            HumanMessage(
-                                content=i
-                            )
-                        ],
-                        'sender': 'user',
-                        'next': 'Cauldron\nPostman'
+                        "messages": [msq_queue.pop()],
+                        'sender': 'User',
+                        'next': 'Caldron\nPostman'
                     },
                     {"recursion_limit": 50}
                 ):
@@ -86,8 +83,9 @@ class CauldronApp():
                     if 'Frontman' in s.keys():
                         print(s['Frontman']['messages'][0].content)
                     else:
-                        pass
-                        #print(s)
+                        print(s)
+                        pot = load_pot_from_file(self.recipe_pot)
+                        print(pot.get_all_recipes())
 
                     # Change node color if its name matches a key in s
                     if 'next' in s[list(s.keys())[0]].keys():
@@ -105,12 +103,12 @@ class CauldronApp():
                                 c.append("lightblue")
                         update_graph(self, node_colors=c)
                         plt.pause(0.1)
-
                     
                 graph = load_graph_from_file(self.recipe_graph)
                 printer.pprint(graph.get_foundational_recipe())
                 update_graph(self)
                 i = input("Enter a message: ")
+                msq_queue.append(HumanMessage(content=i))
 
         self.visualize_thread = threading.Thread(target=visualize_graph(self))
         self.interface_thread = threading.Thread(target=simple_interaction_loop(self))

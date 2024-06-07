@@ -5,7 +5,8 @@ import os
 import json
 from dotenv import load_dotenv
 from recipe_scrapers import scrape_me
-from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, Recipe, Ingredient, RecipeModification
+from langchain_core.messages import HumanMessage
+from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, load_pot_from_file, save_pot_to_file, Recipe, Ingredient, RecipeModification
 from logging_util import logger
 from datetime import datetime
 
@@ -21,10 +22,15 @@ def get_datetime() -> Annotated[str, "The current date and time."]:
     """Get the current date and time."""
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+@tool
+def get_user_input() -> Annotated[str, "The user's input."]:
+    """Get the user's input."""
+    return HumanMessage(content=input("Enter your input: "))
+
 ## Recipe Manipulation Tools
 
 @tool
-def get_recipe_info(
+def scrape_recipe_info(
     url: Annotated[str, "The URL of the recipe to scrape."]
 ) -> Annotated[Dict[str, Optional[List[str]]], "A dictionary containing the recipe's name, ingredients, instructions, and tags."]:
     """
@@ -85,14 +91,44 @@ def generate_recipe(
     tags: Annotated[Optional[List[str]], "A list of recipe tags."] = None,
     sources: Annotated[Optional[List[str]], "A list of web sources, book references, or other inspirations."] = None
 ) -> Annotated[str, "A string representation of the Recipe."]:
-    """Generate a JSON representation of a Recipe object."""
+    """Generate a JSON representation of a Recipe object and adds it to the Pot."""
     logger.debug("Generating JSON representation of Recipe object.")
     logger.debug(f"Name: {name}, Ingredients: {ingredients}, Instructions: {instructions}, Tags: {tags}, Sources: {sources}")
     recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions, tags=tags, sources=sources)
-    return str(recipe)
+    pot = load_pot_from_file()
+    pot.add_recipe(recipe)
+    save_pot_to_file(pot)
+    return recipe.tiny()
+
+@tool
+def get_recipe_from_pot(
+    recipe_id: Annotated[Optional[str], "The ID of the recipe to retrieve."]
+) -> Annotated[Optional[Recipe], "The Recipe object."]:
+    """Get the Recipe object with the specified ID from the Pot."""
+    logger.debug("Getting recipe from pot.")
+    pot = load_pot_from_file()
+    if recipe_id:
+        return str(pot.get_recipe(recipe_id))
+    else:
+        return str(pot.pop_recipe())
+    
+@tool
+def examine_pot() -> Annotated[str, "The string representation of the Pot's contents."]:
+    """Get the contents of the Pot."""
+    logger.debug("Dumping pot.")
+    pot = load_pot_from_file()
+    return str(pot.get_all_recipes())
+
+@tool
+def clear_pot() -> Annotated[str, "Message indicating success or failure."]:
+    """Clear the Pot of all recipes."""
+    logger.debug("Clearing pot.")
+    pot = load_pot_from_file()
+    pot.clear_pot()
+    save_pot_to_file(pot)
+    return "Pot cleared."
 
 ## Recipe Graph Tools ##
-
 @tool
 def create_recipe_graph(
     recipe: Annotated[Recipe, "The representation of the Recipe object of the foundational recipe."],
@@ -114,9 +150,9 @@ def get_recipe(
     logger.debug("Getting recipe from recipe graph.")
     recipe_graph = load_graph_from_file(graph_file)
     recipe = recipe_graph.get_recipe(node_id)
-    return recipe
+    return str(recipe)
 
-@tool("add_node", args_schema=Recipe)
+@tool
 def add_node(
     recipe_str: Annotated[Recipe, "The representation of the Recipe object of the recipe."],
     graph_file: Annotated[str, "The filename for the recipe graph."] = default_graph_file
@@ -138,7 +174,7 @@ def get_node_id(
     logger.debug("Getting node ID from recipe graph.")
     recipe_graph = load_graph_from_file(graph_file)
     # TODO - see if the given recipe matches any recipe in the graph
-    return recipe_graph.get_node_id()
+    return str(recipe_graph.get_node_id())
 
 @tool
 def get_foundational_recipe(
@@ -148,7 +184,7 @@ def get_foundational_recipe(
     logger.debug("Getting foundational recipe from recipe graph.")
     recipe_graph = load_graph_from_file(graph_file)
     recipe = recipe_graph.get_foundational_recipe()
-    return recipe
+    return str(recipe)
 
 @tool
 def set_foundational_recipe(
@@ -185,8 +221,8 @@ def get_graph_size(
 
 ## Modifications List Tools ##
 
-@tool("generate_mod", args_schema=RecipeModification)
-def generate_mod(
+@tool("suggest_mod", args_schema=RecipeModification)
+def suggest_mod(
     priority: Annotated[int, "The priority of the modification."],
     add_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to add."]= None,
     remove_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to remove."]= None,
@@ -195,26 +231,16 @@ def generate_mod(
     remove_instruction: Annotated[Optional[str], "The instruction to remove."]= None,
     add_tag: Annotated[Optional[str], "The tag to add."]= None,
     remove_tag: Annotated[Optional[str], "The tag to remove."]= None,
-    id: Annotated[Optional[str], "The ID of the modification."] = None
-) -> Annotated[str, "The string representation of the RecipeModification."]:
-    """Generate a representation of a RecipeModification object."""
-    logger.debug("Generating JSON representation of RecipeModification object.")
-    mod = RecipeModification(id=id, priority=priority, add_ingredient=add_ingredient, remove_ingredient=remove_ingredient, update_ingredient=update_ingredient, add_instruction=add_instruction, remove_instruction=remove_instruction, add_tag=add_tag, remove_tag=remove_tag)
-    return str(mod)
-
-@tool
-def suggest_mod(
-    mod: Annotated[RecipeModification, "The recipe modification to be suggested. Example: {'priority': 1, 'add_ingredient': {'name': 'salt', 'quantity': 1, 'unit': 'teaspoon'}}"],
+    id: Annotated[Optional[str], "The ID of the modification."] = None,
     mods_list_file: Annotated[str, "The filename for the mods list."] = default_mods_list_file
-) -> Annotated[List[RecipeModification], "The updated list of modifications."]:
-    """Suggest a new modification to be added to the mods list."""
-    logger.debug("Suggesting modification to mods list.")
-    recipe_mod = RecipeModification.from_json(mod)
+) -> Annotated[str, "The string representation of the RecipeModification."]:
+    """Suggest a modification to the current recipe and add it to the mods list."""
+    logger.debug("Generating a RecipeModification object.")
+    mod = RecipeModification(id=id, priority=priority, add_ingredient=add_ingredient, remove_ingredient=remove_ingredient, update_ingredient=update_ingredient, add_instruction=add_instruction, remove_instruction=remove_instruction, add_tag=add_tag, remove_tag=remove_tag)
     mods_list = load_mods_list_from_file(mods_list_file)
-    mods_list.suggest_mod(recipe_mod)
-    updated_mods_list = mods_list.get_mods_list()
+    mods_list.suggest_mod(mod)
     save_mods_list_to_file(mods_list, mods_list_file)
-    return str(updated_mods_list)
+    return str(mod)
 
 @tool
 def get_mods_list(
@@ -224,7 +250,7 @@ def get_mods_list(
     logger.debug("Getting mods list.")
     mods_list = load_mods_list_from_file(mods_list_file)
     current_mods_list = mods_list.get_mods_list()
-    return current_mods_list
+    return str(current_mods_list)
 
 @tool
 def apply_mod(
@@ -261,7 +287,7 @@ def rank_mod(
     mods_list.rank_mod(mod_id, new_priority)
     save_mods_list_to_file(mods_list, mods_list_file)
     updated_mods_list = mods_list.get_mods_list()
-    logger.info(f"Modification reprioritized: {updated_mods_list}")
+    return f"Modification reprioritized: {updated_mods_list}"
 
 @tool
 def remove_mod(
@@ -273,7 +299,10 @@ def remove_mod(
     mods_list = load_mods_list_from_file(mods_list_file)
     result = mods_list.remove_mod(mod_id)
     save_mods_list_to_file(mods_list, mods_list_file)
-    return result
+    if not result:
+        return f"Failed to remove modification: {mod_id}"
+    else:
+        return f"Successfully removed modification: {mod_id}"
 
 ## Recipe Analysis Tools ##
 

@@ -46,8 +46,9 @@ def createAgent(
     prompt = prompt.partial(system_message=system_prompt)
     prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
     if tool_choice != None:
-        prompt = prompt | llm.bind_tools(tools=tools, tool_choice=tool_choice)
-    agent = RunnableAgent(
+        agent = prompt | llm.bind_tools(tools=tools, tool_choice=tool_choice)
+    else:
+        agent = RunnableAgent(
             runnable=create_openai_tools_agent(llm, tools=tools, prompt=prompt),
             input_keys_arg=["messages"],
             return_keys_arg=["output"]
@@ -151,7 +152,7 @@ class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]
     sender: str
     next: str
-    recipe: Recipe
+
 
 def workflow():
     return StateGraph(AgentState)

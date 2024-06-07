@@ -40,5 +40,5 @@ class NodeMessage(BaseModel):
     timestamp: Optional[str] = Field(None, description="Timestamp of the message")
     metadata: Optional[dict] = Field(None, description="Additional metadata or context")
 
-CauldronPydanticParser = PydanticOutputParser(pydantic_object=NodeMessage)
-format_instructions = CauldronPydanticParser.get_format_instructions()
+CaldronPydanticParser = PydanticOutputParser(pydantic_object=NodeMessage)
+format_instructions = CaldronPydanticParser.get_format_instructions()
