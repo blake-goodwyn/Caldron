@@ -278,14 +278,14 @@ def load_from_file(cls: Type[T], filename: str) -> T:
     else:
         raise FileNotFoundError(f"{filename} does not exist.")
 
-def fresh_instance(cls: Type[T], filename: str) -> T:
+def fresh_instance(cls: Type[T], filename: str) -> str:
     logger.info(f"Creating a new instance of {cls.__name__}.")
     instance = cls()
     save_to_file(instance, filename)
     return filename
 
 ## Graph Wrapper Functions
-def fresh_graph(filename: str=default_graph_file) -> RecipeGraph:
+def fresh_graph(filename: str=default_graph_file) -> str:
     return fresh_instance(RecipeGraph, filename)
 
 def save_graph_to_file(recipe_graph: RecipeGraph, filename: str=default_graph_file) -> None:
@@ -295,7 +295,7 @@ def load_graph_from_file(filename: str=default_graph_file) -> RecipeGraph:
     return load_from_file(RecipeGraph, filename)
 
 ## ModsList Wrapper Functions
-def fresh_mods_list(filename: str=default_mods_list_file) -> ModsList:
+def fresh_mods_list(filename: str=default_mods_list_file) -> str:
     return fresh_instance(ModsList, filename)
 
 def save_mods_list_to_file(mods_list: ModsList, filename: str=default_mods_list_file) -> None:
@@ -305,7 +305,7 @@ def load_mods_list_from_file(filename: str=default_mods_list_file) -> ModsList:
     return load_from_file(ModsList, filename)
 
 ## Pot Wrapper Functions
-def fresh_pot(filename: str=default_pot_file) -> Pot:
+def fresh_pot(filename: str=default_pot_file) -> str:
     return fresh_instance(Pot, filename)
 
 def save_pot_to_file(pot: Pot, filename: str=default_pot_file) -> None:

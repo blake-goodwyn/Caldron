@@ -16,7 +16,6 @@ from langgraph.graph import StateGraph
 from dotenv import load_dotenv
 import os
 from logging_util import logger
-from class_defs import Recipe
 
 load_dotenv()
 LANGCHAIN_TRACING_V2=True
@@ -28,14 +27,13 @@ def createAgent(
     system_prompt: str,
     llm: ChatOpenAI,
     tools: list,
-    tool_choice: dict | str | bool | None = None,
 ) -> str:
     
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system","""
-             You are an agent within a multi-agent architecture.
-             "Keep all language detailed but focused. There is no need for pleasantries.
+             You are an agent within a multi-agent architecture.\n
+             "Keep all language concise but detailed as necessary.\n
              "You have the following role: \n{system_message}\n\n
              "You have access to the following tools: {tool_names}.\n\n 
              """),
@@ -45,10 +43,7 @@ def createAgent(
     )
     prompt = prompt.partial(system_message=system_prompt)
     prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
-    if tool_choice != None:
-        agent = prompt | llm.bind_tools(tools=tools, tool_choice=tool_choice)
-    else:
-        agent = RunnableAgent(
+    agent = RunnableAgent(
             runnable=create_openai_tools_agent(llm, tools=tools, prompt=prompt),
             input_keys_arg=["messages"],
             return_keys_arg=["output"]
@@ -134,7 +129,6 @@ def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> s
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    print(result)
     #logger.info(f"Agent {name} invoked with state: {state}")
     if "output" in result.keys(): # If the agent has an output
         result = AIMessage(content=result["output"], name=name)
@@ -152,7 +146,6 @@ class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]
     sender: str
     next: str
-
 
 def workflow():
     return StateGraph(AgentState)

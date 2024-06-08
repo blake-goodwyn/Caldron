@@ -1,0 +1,40 @@
+2024-06-08 13:07:27,242 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-08 13:07:28,394 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-08 13:07:28,395 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-08 13:07:28,396 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-08 13:07:28,397 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-08 13:07:28,397 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-08 13:07:28,403 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-08 13:07:28,404 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-08 13:07:28,405 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-08 13:07:28,405 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-08 13:07:28,406 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-08 13:07:28,407 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-08 13:07:29,046 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-08 13:07:29,047 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-08 13:07:29,048 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'FINISH']
+2024-06-08 13:07:29,048 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-08 13:07:29,049 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-08 13:07:29,050 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-08 13:07:29,051 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-08 13:07:29,051 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-08 13:07:29,053 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-08 13:07:29,054 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-08 13:07:29,057 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-08 13:07:29,058 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-08 13:07:29,063 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-08 13:07:29,064 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-08 13:07:29,068 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-08 13:07:29,069 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-08 13:07:51,268 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-08 13:07:51,270 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-08 13:07:51,271 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-08 13:07:51,271 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-08 13:08:23,572 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-08 13:08:23,574 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-08 13:08:23,576 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-08 13:08:23,577 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.

@@ -26,9 +26,9 @@ class CaldronApp():
         self.llm = ChatOpenAI(model=llm_model, temperature=0)
 
         #Central Data Structures
-        self.recipe_pot = fresh_pot()
-        self.recipe_graph = fresh_graph()
-        self.mods_list = fresh_mods_list()
+        self.recipe_pot_file = fresh_pot()
+        self.recipe_graph_file = fresh_graph()
+        self.mods_list_file = fresh_mods_list()
 
         ##Determine Agent Structure
         self.agents = create_all_agents(self.llm, defs)
@@ -48,7 +48,8 @@ class CaldronApp():
         self.flow_graph.set_entry_point("Caldron\nPostman")
         self.chain = self.flow_graph.compile()
 
-        def update_graph(self, node_colors=["lightblue" for n in self.display_graph.nodes()]):
+        ## Update Visualization
+        def update_graph(self, node_colors=["#457b9d" for n in self.display_graph.nodes()]):
             plt.clf()
             #plt.legend(["Sender", "Receiver"], loc="upper left")
             nx.draw_networkx_nodes(self.display_graph, self.node_pos, node_size=3000, node_color=node_colors)
@@ -81,11 +82,13 @@ class CaldronApp():
                 ):
                     print("--------------------")
                     if 'Frontman' in s.keys():
+                        print("\n")
                         print(s['Frontman']['messages'][0].content)
+                        print("\n")
                     else:
                         print(s)
-                        pot = load_pot_from_file(self.recipe_pot)
-                        print(pot.get_all_recipes())
+                        #pot = load_pot_from_file(self.recipe_pot_file)
+                        #print(pot.get_all_recipes())
 
                     # Change node color if its name matches a key in s
                     if 'next' in s[list(s.keys())[0]].keys():
@@ -96,20 +99,21 @@ class CaldronApp():
                             if n == "Frontman":
                                 n = 'FINISH' 
                             if n == s[list(s.keys())[0]]['sender']:
-                                c.append("blue")
+                                c.append("#a8dadc")
                             elif n == s[list(s.keys())[0]]['next']:
-                                c.append("red")
+                                c.append("#e63946")
                             else:
-                                c.append("lightblue")
+                                c.append("#457b9d")
                         update_graph(self, node_colors=c)
                         plt.pause(0.1)
                     
-                graph = load_graph_from_file(self.recipe_graph)
+                graph = load_graph_from_file(self.recipe_graph_file)
                 printer.pprint(graph.get_foundational_recipe())
                 update_graph(self)
                 i = input("Enter a message: ")
                 msq_queue.append(HumanMessage(content=i))
 
+        ## Start Threads
         self.visualize_thread = threading.Thread(target=visualize_graph(self))
         self.interface_thread = threading.Thread(target=simple_interaction_loop(self))
         self.visualize_thread.start()
