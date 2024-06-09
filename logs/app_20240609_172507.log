@@ -1,0 +1,95 @@
+2024-06-09 17:25:13,288 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-09 17:25:14,673 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-09 17:25:14,673 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-09 17:25:14,674 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:25:14,675 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-09 17:25:14,676 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-09 17:25:14,681 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-09 17:25:14,682 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-09 17:25:14,683 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-09 17:25:14,683 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-09 17:25:14,684 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-09 17:25:14,685 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-09 17:25:15,418 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-09 17:25:15,418 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-09 17:25:15,419 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-09 17:25:15,420 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-09 17:25:15,421 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-09 17:25:15,422 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-09 17:25:15,422 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-09 17:25:15,423 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-09 17:25:15,425 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-09 17:25:15,425 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-09 17:25:15,429 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-09 17:25:15,429 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-09 17:25:15,434 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-09 17:25:15,435 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-09 17:25:15,437 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-09 17:25:15,437 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-09 17:25:15,441 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-09 17:25:15,442 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-09 17:25:23,059 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-09 17:25:23,060 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 17:25:23,064 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-09 17:25:23,065 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-09 17:25:23,066 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-09 17:25:25,782 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-09 17:25:25,783 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 17:25:25,788 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-09 17:25:25,789 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:25:26,768 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 17:25:26,769 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-09 17:25:26,769 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-09 17:25:26,770 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-09 17:26:37,862 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-09 17:26:37,863 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Moist Blueberry Muffins, Ingredients: [Ingredient(name='plain flour', quantity=2.5, unit='cups'), Ingredient(name='baking powder', quantity=3.0, unit=None), Ingredient(name='baking soda / bi carb soda', quantity=1.0, unit=None), Ingredient(name='white sugar', quantity=1.0, unit='cup'), Ingredient(name='buttermilk', quantity=1.0, unit='cup'), Ingredient(name='butter', quantity=4.0, unit='tbsp'), Ingredient(name='vegetable oil', quantity=4.0, unit='tbsp'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='vanilla extract', quantity=2.0, unit='tsp'), Ingredient(name='blueberries', quantity=8.0, unit='oz')], Instructions: ['Preheat oven to 200°C/390°F. Line a 12 hole muffin tin with paper patties.', 'Whisk Dry: Whisk flour, baking powder, baking soda, sugar, and salt in a bowl.', 'Whisk Wet: In a separate bowl, whisk buttermilk, melted butter, oil, eggs, and vanilla.', 'Combine Wet & Dry: Make a well in the flour bowl, pour in egg mixture. Mix until just combined - try not to stir more than 8 times. Some flour lumps in the batter are fine.', 'Add blueberries: Stir through most of the blueberries - reserve some for topping.', 'Fill muffin tin: Divide batter between paper cases. Top with remaining blueberries.', 'Bake 1: Bake for 5 minutes, then turn the oven down to 180°C/350°F.', 'Bake 2: Bake for a further 13 minutes (fan) or 15 minutes (standard ovens), or until a skewer inserted into the muffin comes out clean.', 'Cool: Remove muffins from the muffin tin immediately onto a cooling rack. Serve warm or at room temperature (warm is extra yum!)'], Tags: ['blueberry muffins'], Sources: ['https://www.recipetineats.com/moist-blueberry-muffins/']
+2024-06-09 17:26:37,869 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 17:26:37,873 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-09 17:26:37,874 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:26:37,890 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-09 17:26:37,891 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Blueberry Muffins, Ingredients: [Ingredient(name='brown sugar', quantity=0.5, unit='cup'), Ingredient(name='walnuts', quantity=0.5, unit='cup'), Ingredient(name='cinnamon', quantity=1.0, unit='tsp'), Ingredient(name='all-purpose flour', quantity=1.75, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='tsp'), Ingredient(name='baking powder', quantity=1.0, unit='tsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='butter', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=0.5, unit='cup'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='sour cream or plain/vanilla yogurt', quantity=0.5, unit='cup'), Ingredient(name='vanilla extract', quantity=2.0, unit='tsp'), Ingredient(name='milk', quantity=0.25, unit='cup'), Ingredient(name='blueberries', quantity=1.5, unit='cups')], Instructions: ['Preheat oven to 425°F. Spray a 12-count muffin pan with nonstick spray or use cupcake liners. Grease/line a second pan with 2 liners because this recipe yields about 14 muffins. Set aside.', 'Mix all of the topping ingredients together. Set aside.', 'Whisk the flour, baking soda, baking powder, and salt together in a large bowl. Set aside.', 'Using a handheld or stand mixer fitted with a paddle or whisk attachment, beat the butter, granulated sugar, and brown sugar together on high speed until smooth and creamy, about 2 minutes. On medium speed, add the eggs one at a time, beating well after each addition. Beat in the sour cream and vanilla extract on medium speed until combined. With the mixer running on low speed, add the dry ingredients and milk into the wet ingredients and beat until no flour pockets remain. Fold in the blueberries.', 'Spoon the batter into liners, filling them all the way to the top. Spoon brown sugar topping on each, gently pressing it down into the surface so it sticks. Bake for 5 minutes at 425 then, keeping the muffins in the oven, reduce the oven temperature to 350°F. Bake for an additional 18–20 minutes or until a toothpick inserted in the center comes out clean. The total time these muffins take in the oven is about 23–25 minutes, give or take. Allow the muffins to cool for 5 minutes in the muffin pan, then transfer to a wire rack to continue cooling. Muffins stay fresh covered at room temperature for a few days or in the refrigerator for up to 1 week.'], Tags: ['blueberry muffins'], Sources: ['https://sallysbakingaddiction.com/blueberry-muffins/']
+2024-06-09 17:26:37,899 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 17:26:37,913 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-09 17:26:37,914 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:26:37,934 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-09 17:26:37,935 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best-Ever Blueberry Muffins, Ingredients: [Ingredient(name='all-purpose flour', quantity=2.5, unit='cups'), Ingredient(name='sugar', quantity=1.0, unit='cup'), Ingredient(name='baking powder', quantity=2.5, unit='tsp'), Ingredient(name='salt', quantity=0.25, unit='tsp'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='buttermilk', quantity=1.0, unit='cup'), Ingredient(name='butter', quantity=0.25, unit='cup'), Ingredient(name='blueberries', quantity=1.5, unit='cups')], Instructions: ['Preheat oven to 400°F. In a large bowl, combine the flour, sugar, baking powder, and salt. In a small bowl, combine the eggs, buttermilk, and butter; stir into dry ingredients just until moistened. Fold in blueberries.', 'Fill greased or paper-lined muffin cups three-fourths full. Bake until a toothpick inserted in the muffin comes out clean, 20-24 minutes. Remove to a wire rack to cool.'], Tags: ['blueberry muffins'], Sources: ['https://www.tasteofhome.com/recipes/best-ever-blueberry-muffins/']
+2024-06-09 17:26:37,939 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 17:26:37,950 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-09 17:26:37,951 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:26:37,964 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-09 17:26:37,965 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Blueberry Muffins, Ingredients: [Ingredient(name='all-purpose flour', quantity=2.0, unit='cups'), Ingredient(name='baking powder', quantity=2.0, unit='tsp'), Ingredient(name='salt', quantity=0.75, unit='tsp'), Ingredient(name='unsalted butter', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=1.0, unit='cup'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='vanilla extract', quantity=1.5, unit='tsp'), Ingredient(name='almond extract', quantity=0.25, unit='tsp'), Ingredient(name='milk', quantity=0.5, unit='cup'), Ingredient(name='blueberries', quantity=2.25, unit='cups'), Ingredient(name='turbinado sugar', quantity=2.0, unit='tbsp')], Instructions: ['Preheat the oven to 375°F and put an oven rack in the middle position. Line a 12-cup muffin tin with paper liners. Spray the pan and the liners with non-stick cooking spray.', 'In a medium bowl, whisk together the flour, baking powder, and salt.', 'In the bowl of an electric mixer, beat the butter and granulated sugar for about 2 minutes. Add the eggs one at a time, scraping down the sides of the bowl and beating well after each addition. Beat in the vanilla extract and almond extract. Gradually add the flour mixture, alternating with the milk, beating on low speed to combine. Add the blueberries to the batter and fold gently with a spatula until evenly distributed. Do not overmix.', 'Scoop the batter into the prepared muffin tin (an ice-cream scoop with a wire scraper works well here); they will be very full. Sprinkle the turbinado sugar evenly on top of the muffins.', 'Bake for about 30 minutes, until lightly golden. Let the muffins cool in the pan for about 10 minutes. Run a knife around the edge of each muffin to free it from the pan if necessary (the blueberries can stick), then transfer the muffins to a rack to cool completely. Freezer-Friendly Instructions: The muffins can be frozen in an airtight container or sealable plastic bag for up to 3 months. Thaw for 3 to 4 hours on the countertop before serving. To reheat, wrap individual muffins in aluminum foil and place in a preheated 350°F oven until warm.'], Tags: ['blueberry muffins'], Sources: ['https://www.onceuponachef.com/recipes/best-ever-blueberry-muffins.html']
+2024-06-09 17:26:37,973 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 17:26:37,983 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-09 17:26:37,984 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:26:38,006 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-09 17:26:38,008 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: To Die For Blueberry Muffins, Ingredients: [Ingredient(name='all-purpose flour', quantity=1.5, unit='cups'), Ingredient(name='white sugar', quantity=0.75, unit='cup'), Ingredient(name='baking powder', quantity=2.0, unit='tsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='vegetable oil', quantity=0.33, unit='cup'), Ingredient(name='egg', quantity=1.0, unit=None), Ingredient(name='milk', quantity=0.33, unit='cup'), Ingredient(name='blueberries', quantity=1.0, unit='cup'), Ingredient(name='cinnamon', quantity=1.5, unit='tsp'), Ingredient(name='butter', quantity=0.25, unit='cup')], Instructions: ['Preheat the oven to 400 degrees F (200 degrees C). Grease 8 muffin cups or line with paper liners.', 'To make the muffins: Whisk flour, sugar, baking powder, and salt together in a large bowl.', 'Pour oil into a small liquid measuring cup. Add egg and enough milk to reach the 1-cup mark; stir until combined. Pour into flour mixture and mix just until batter is combined. Fold in blueberries; set batter aside.', 'To make the crumb topping: Combine sugar, flour, butter, and cinnamon in a small bowl. Mix with a fork until crumbly.', 'Spoon batter into the prepared muffin cups, filling right to the top. Sprinkle with crumb topping.', 'Bake in the preheated oven until a toothpick inserted in the center of a muffin comes out clean, 20 to 25 minutes.'], Tags: ['blueberry muffins'], Sources: ['https://www.allrecipes.com/recipe/6865/to-die-for-blueberry-muffins/']
+2024-06-09 17:26:38,016 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 17:26:38,027 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-09 17:26:38,028 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:26:51,390 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-09 17:26:51,393 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 17:26:51,397 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-09 17:26:51,399 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-09 17:26:51,402 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-09 17:26:55,391 - cauldron - DEBUG  - agent_tools.py - add_node - Adding node to recipe graph.
+2024-06-09 17:26:55,392 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 17:26:55,393 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-09 17:26:55,395 - cauldron - DEBUG  - class_defs.py - add_node - Adding node to recipe graph.
+2024-06-09 17:26:55,395 - cauldron - DEBUG  - class_defs.py - add_node - Node ID: 8299d44c-6e5b-4adc-b8b2-bf8cd13357b2
+2024-06-09 17:26:55,396 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-09 17:26:55,415 - cauldron - DEBUG  - agent_tools.py - set_foundational_recipe - Setting foundational recipe in recipe graph.
+2024-06-09 17:26:55,417 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 17:26:55,432 - cauldron - DEBUG  - class_defs.py - set_foundational_recipe - Setting foundational recipe in recipe graph.
+2024-06-09 17:26:55,433 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-09 17:26:58,474 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-09 17:26:58,476 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 17:26:58,501 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-09 17:26:58,505 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 17:26:59,823 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 17:26:59,846 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-09 17:26:59,848 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-09 17:26:59,849 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.

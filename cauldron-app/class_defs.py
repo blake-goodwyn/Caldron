@@ -14,9 +14,10 @@ default_graph_file="recipe_graph.pkl"
 default_pot_file="recipe_pot.pkl"
 
 class Ingredient(BaseModel):
+    """Model for an ingredient in a recipe."""
     name: str = Field(description="Name of the ingredient")
     quantity: float = Field(description="Quantity of the ingredient")
-    unit: str = Field(description="Unit of measurement for the ingredient")
+    unit: Optional[str] = Field(description="Unit of measurement for the ingredient")
 
     class Config:
         json_loads = ujson.loads
@@ -34,6 +35,7 @@ class Ingredient(BaseModel):
         return Ingredient.parse_raw(str(data))
 
 class RecipeModification(BaseModel):
+    """Model for a modification to a recipe."""
     priority: int = Field(description="Priority of the modification. Lower values have higher priority.")
     add_ingredient: Optional[Ingredient] = None
     remove_ingredient: Optional[Ingredient] = None
@@ -42,10 +44,14 @@ class RecipeModification(BaseModel):
     remove_instruction: Optional[str] = None
     add_tag: Optional[str] = None
     remove_tag: Optional[str] = None
-    id: Optional[str] = Field(default=str(uuid.uuid4()),description="Unique identifier for the modification")
 
     class Config:
         json_loads = ujson.loads
+
+    def __init__(self, **data):
+        super().__init__(**data)
+        logger.info("Initializing RecipeModification object.")
+        self.id = str(uuid.uuid4())
 
     def __str__(self) -> str:
         return self.json()
@@ -60,16 +66,21 @@ class RecipeModification(BaseModel):
         return RecipeModification.parse_raw(str(data))
 
 class Recipe(BaseModel):
+    """Model for a recipe."""
     name: str = Field(description="Name of the recipe")
     ingredients: List[Ingredient] = Field(description="List of ingredients required for the recipe")
     instructions: List[str] = Field(description="List of instructions to prepare the recipe")
-    tags: Optional[List[str]] = None  # New field for tags
-    sources: Optional[List[str]] = None  # New field for sources or inspirations
-    id: Optional[str] = Field(default=str(uuid.uuid4()),description="Unique identifier for the recipe")
+    tags: List[str] = Field(default=None,description="List of tags for the recipe")
+    sources: List[str] = Field(default=None,description="List of sources for the recipe")
     
     class Config:
         json_loads = ujson.loads
     
+    def __init__(self, **data):
+        super().__init__(**data)
+        logger.info("Initializing Recipe object.")
+        self.id = str(uuid.uuid4()) # Unique identifier for the recipe
+
     def __str__(self) -> str:
         return self.json()
 
@@ -90,40 +101,41 @@ class Recipe(BaseModel):
 
     def apply_modification(self, modification: RecipeModification) -> bool:
         logger.debug("Applying modification to Recipe object.")
-        if modification.attributes.get('add_ingredient'):
+        if modification.add_ingredient:
             logger.debug("Adding ingredient to Recipe object.")
-            self.ingredients.append(Ingredient.from_json(modification.attributes['add_ingredient']))
+            self.ingredients.append(Ingredient.from_json(modification.add_ingredient))
             return True
-        if modification.attributes.get('remove_ingredient'):
+        if modification.remove_ingredient:
             logger.debug("Removing ingredient from Recipe object.")
-            self.ingredients = [ing for ing in self.ingredients if ing.name != modification.attributes['remove_ingredient']['name']]
+            self.ingredients = [ing for ing in self.ingredients if ing.name != modification.remove_ingredient.name]
             return True
-        if modification.attributes.get('update_ingredient'):
+        if modification.update_ingredient:
             logger.debug("Updating ingredient in Recipe object.")
             for ing in self.ingredients:
-                if ing.name == modification.attributes['update_ingredient']['name']:
-                    ing.quantity = modification.attributes['update_ingredient'].get('quantity', ing.quantity)
-                    ing.unit = modification.attributes['update_ingredient'].get('unit', ing.unit)
+                if ing.name == modification.update_ingredient.name:
+                    ing.quantity = modification.update_ingredient.quantity if modification.update_ingredient.quantity != None else ing.quantity
+                    ing.unit = modification.update_ingredient.unit if modification.update_ingredient.unit != None else ing.unit
             return True
-        if modification.attributes.get('add_instruction'):
+        if modification.add_instruction:
             logger.debug("Adding instruction to Recipe object.")
-            self.instructions.append(modification.attributes['add_instruction'])
+            self.instructions.append(modification.add_instruction)
             return True
-        if modification.attributes.get('remove_instruction'):
+        if modification.remove_instruction:
             logger.debug("Removing instruction from Recipe object.")
-            self.instructions.remove(modification.attributes['remove_instruction'])
+            self.instructions.remove(modification.remove_instruction)
             return True
-        if modification.attributes.get('add_tag'):
+        if modification.add_tag:
             logger.debug("Adding tag to Recipe object.")
             self.tags.append(modification.attributes['add_tag'])
             return True
-        if modification.attributes.get('remove_tag'):
+        if modification.remove_tag:
             logger.debug("Removing tag from Recipe object.")
-            self.tags.remove(modification.attributes['remove_tag'])
+            self.tags.remove(modification.remove_tag)
             return True
         return False
 
 class RecipeGraph:
+    """Model for a recipe graph."""
     def __init__(self) -> None:
         logger.info("Initializing RecipeGraph object.")
         self.graph = nx.DiGraph()
@@ -168,16 +180,21 @@ class RecipeGraph:
         logger.debug("Getting foundational recipe from recipe graph.")
         return self.get_recipe(self.foundational_recipe_node)
     
-    def set_foundational_recipe(self, node_id: str) -> None:
+    def set_foundational_recipe(self, recipe: Recipe) -> Optional[None]:
         logger.debug("Setting foundational recipe in recipe graph.")
-        self.foundational_recipe_node = node_id
-        # TODO - establish foundational recipe node when there is none
+        if self.get_graph_size() == 0:
+            self.create_recipe_graph(recipe)
+        if self.get_graph_size() != 0 and recipe.get_ID() in self.graph.nodes:
+            self.foundational_recipe_node = recipe.get_ID()
+        else:
+            return "Node not found in graph."
 
     def get_graph(self) -> nx.DiGraph:
         logger.debug("Getting recipe graph.")
         return self.graph
 
 class ModsList(BaseModel):
+    """Model for a list of recipe modifications."""
     queue: List[Tuple[int, RecipeModification]] = Field(default=[], description="Priority queue of recipe modifications")
 
     def __init__(self, **data):
@@ -222,7 +239,9 @@ class ModsList(BaseModel):
         return False
     
 class Pot(BaseModel):
-    contents: List[Recipe] = Field(default=[], description="Set of recipes in the pot")
+    """Model for a short-term storage of recipe info."""
+    recipes: List[Recipe] = Field(default=[], description="Set of recipes in the pot")
+    urlList: List[str] = Field(default=[], description="List of URLs for recipes")
 
     def __init__(self, **data):
         super().__init__(**data)
@@ -233,36 +252,66 @@ class Pot(BaseModel):
     
     def add_recipe(self, recipe: Recipe) -> None:
         logger.debug("Adding recipe to pot.")
-        self.contents.append(recipe)
+        self.recipes.append(recipe)
 
     def remove_recipe(self, recipe_id: str) -> bool:
         logger.debug("Removing recipe from pot.")
-        for i, recipe in enumerate(self.contents):
+        for i, recipe in enumerate(self.recipes):
             if recipe.id == recipe_id:
-                self.contents.pop(i)
+                self.recipes.pop(i)
                 return True
         return False
     
     def get_recipe(self, recipe_id: str) -> Optional[Recipe]:
         logger.debug("Getting recipe from pot.")
-        for recipe in self.contents:
+        for recipe in self.recipes:
             if recipe.id == recipe_id:
                 return recipe
         return None
     
     def pop_recipe(self) -> Optional[Recipe]:
         logger.debug("Popping recipe from pot.")
-        if self.contents:
-            return self.contents.pop()
+        if self.recipes:
+            return self.recipes.pop()
         return None
     
     def get_all_recipes(self) -> List[Recipe]:
         logger.debug("Getting all recipes from pot.")
-        return self.contents
+        return self.recipes
+    
+    def add_url(self, url: str) -> None:
+        logger.debug("Adding URL to pot.")
+        assert url not in self.urlList, "URL already in pot."
+        assert url.startswith("http"), "Invalid URL."
+        self.urlList.append(url)
+
+    def remove_url(self, url: str) -> bool:
+        logger.debug("Removing URL from pot.")
+        if url in self.urlList:
+            self.urlList.remove(url)
+            return True
+        return False
+    
+    def get_url(self, url: str) -> Optional[str]:
+        logger.debug("Getting URL from pot.")
+        if url in self.urlList:
+            return url
+        return None
+    
+    def pop_url(self) -> Optional[str]:
+        logger.debug("Popping URL from pot.")
+        if self.urlList:
+            return self.urlList.pop()
+        return None
+    
+    def get_all_urls(self) -> List[str]:
+        logger.debug("Getting all URLs from pot.")
+        return self.urlList
     
     def clear_pot(self) -> None:
         logger.debug("Clearing pot.")
-        self.contents = []
+        self.recipes = []
+        self.urlList = []
 
 # General utility functions
 def save_to_file(obj: T, filename: str) -> None:

@@ -91,8 +91,8 @@ def generate_recipe(
     tags: Annotated[Optional[List[str]], "A list of recipe tags."] = None,
     sources: Annotated[Optional[List[str]], "A list of web sources, book references, or other inspirations."] = None
 ) -> Annotated[str, "A string representation of the Recipe."]:
-    """Generate a JSON representation of a Recipe object and adds it to the Pot."""
-    logger.debug("Generating JSON representation of Recipe object.")
+    """Generate a representation of a Recipe object and adds it to the Pot."""
+    logger.debug("Generating representation of Recipe object.")
     logger.debug(f"Name: {name}, Ingredients: {ingredients}, Instructions: {instructions}, Tags: {tags}, Sources: {sources}")
     recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions, tags=tags, sources=sources)
     pot = load_pot_from_file()
@@ -111,13 +111,31 @@ def get_recipe_from_pot(
         return str(pot.get_recipe(recipe_id))
     else:
         return str(pot.pop_recipe())
-    
+
+@tool
+def add_url_to_pot(
+    url: Annotated[str, "The URL of the recipe to add to the Pot."]
+) -> Annotated[str, "Message indicating success or failure."]:
+    """Add a URL to the Pot."""
+    logger.debug("Adding URL to pot.")
+    pot = load_pot_from_file()
+    pot.add_url(url)
+    save_pot_to_file(pot)
+    return "URL added to Pot."
+
+@tool
+def pop_url_from_pot() -> Annotated[Optional[str], "The URL popped from the Pot."]:
+    """Pop a URL from the Pot."""
+    logger.debug("Popping URL from pot.")
+    pot = load_pot_from_file()
+    return str(pot.pop_url())
+
 @tool
 def examine_pot() -> Annotated[str, "The string representation of the Pot's contents."]:
     """Get the contents of the Pot."""
     logger.debug("Dumping pot.")
     pot = load_pot_from_file()
-    return str(pot.get_all_recipes())
+    return str(''.join([str(pot.get_all_recipes()),str(pot.get_all_urls())]))
 
 @tool
 def clear_pot() -> Annotated[str, "Message indicating success or failure."]:

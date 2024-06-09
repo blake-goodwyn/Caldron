@@ -10,7 +10,7 @@ from logging_util import logger
 from langchain_util import createAgent, createRouter, agent_node, createBookworm
 from langgraph.graph import END
 from util import db_path, llm_model
-from agent_tools import tavily_search_tool, scrape_recipe_info, generate_recipe, generate_ingredient, clear_pot, create_recipe_graph, get_recipe, get_recipe_from_pot, examine_pot, add_node, get_foundational_recipe, set_foundational_recipe, get_graph, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, get_user_input
+from agent_tools import tavily_search_tool, scrape_recipe_info, generate_recipe, clear_pot, create_recipe_graph, get_recipe, get_recipe_from_pot, examine_pot, add_node, get_foundational_recipe, set_foundational_recipe, get_graph, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, pop_url_from_pot, add_url_to_pot
 
 prompts_dict = {
     "Frontman": {
@@ -26,9 +26,10 @@ prompts_dict = {
         - ModSquad: Manages suggested modifications to the recipe based on inputs from other nodes.\n
         - Spinnaret: Answers general questions about the recipe. Plots and tracks the development process of the recipe, represented by the Recipe Graph.\n
         - Frontman: Provides messages from the user to the Caldron application. All questions coming from agents that require user feedback should be sent to Frontman.\n
+        - KnowItAll: Answers general questions about the recipe. Has access to the foundational recipe and the Recipe Graph.\n
         When all tasks are complete, respond with FINISH. Ensure that all changes are recorded by Spinnaret before completing.
         """,
-        "members":["Research\nPostman", "ModSquad", "Spinnaret", "Frontman"] # TODO - "Critic" & "Jimmy"
+        "members":["Research\nPostman", "ModSquad", "Spinnaret", "Frontman", "KnowItAll"] # TODO - "Critic" & "Jimmy"
     },
     "Research\nPostman": {
         "type": "supervisor",
@@ -67,8 +68,12 @@ prompts_dict = {
     #},
     "Tavily": {
         "type": "agent",
-        "prompt": "You are Tavily. Your task is to search the internet for relevant recipes that match the user's request. You will use the Tavily search tool to fulfill these requests and find relevant recipes. Once you have found a recipe, forward it to the Research\nPostman.",
-        "tools": [tavily_search_tool]
+        "prompt": """
+        You are Tavily. Your task is to search the internet for relevant recipes that match the user's request. Some actions may be:\n
+        - Search the intennet. Use the tavily_search_tool to find a recipe that matches the user's request.\n
+        - Add a URL to the Pot. Use the add_url_to_pot tool to add a URL to the Pot for further examination.\n
+        """,
+        "tools": [tavily_search_tool, add_url_to_pot]
     },
     "Sleuth": {
         "type": "agent",
@@ -76,29 +81,35 @@ prompts_dict = {
         You are Sleuth. Your task is to scrape recipe data from the internet. Some actions may be:\n
         - Get recipe information. Use the scrape_recipe_info tool to find information about a specific recipe given its URL.\n
         - Generate a recipe. Use the generate_recipe tool to summarize the recipe found and add it to the Pot.\n
-        - Examine recipes. Use the examine_pot tool to view all recipes in the Pot or get_recipe_from_pot to examine a specific recipe.\n\n
-        You MUST use the scrape_recipe_info tool on URLs given to you. You will then use generate_recipe with that information. Esnure that you have examined all recipe URLs identified before proceeding. Once all recipes have been assessed, pass your results to the Research\nPostman.
+        - Grab URLs from the Pot. Use the pop_url_from_pot tool to retrieve a URL from the Pot.\n
+        - Examine short-term memory. Use the examine_pot tool to view all recipes and URLs in the Pot or get_recipe_from_pot to examine a specific recipe.\n\n
+        You MUST use the scrape_recipe_info tool on URLs in the Pot given to you. You will then use generate_recipe with that information. Esnure that you have examined all recipe URLs identified before proceeding. Once all recipes have been assessed, pass your results to the Research\nPostman.
         """,
-        "tools": [scrape_recipe_info, generate_recipe, get_recipe_from_pot, examine_pot],
+        "tools": [scrape_recipe_info, generate_recipe, get_recipe_from_pot, examine_pot, pop_url_from_pot],
         "tool_choice": {"type": "function", "function": {"name": "generate_recipe"}}
     },
     "ModSquad": {
         "type": "agent",
         "prompt": """
-        You are ModSquad. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in the Mod List. Analyze suggestions from other agents that have been added to the Mods List and perform tasks as recommended by the messages. Some actions may be:\n
-        - Suggest a modification. Use the suggest_mod tool to create a new modification based on the provided information and add it to the Mod List.\n
+        You are ModSquad. Your task is to manage suggested modifications to the recipe based on inputs from other nodes. These modifications are stored in the Mod List. Modifications in the Mod List must be applied to the recipe using the apply_mod tool. Analyze suggestions from other agents and perform tasks on the Mod List as recommended by the messages. Some actions may be:\n
+        - Suggest a modification. Use the suggest_mod tool to create a new modification based on the provided information and add it to the Mod List. Note: this DOES NOT APPLY the suggestion the recipe. Use the apply_mod tool to make changes to the recipe.\n
+        - Apply a modification. Use the apply_mod tool to apply the top-ranked modification from the Mod List to the foundational recipe.\n
         - Examine the Mod List. Use the get_mods_list tool to retrieve the current list of modifications and examine the contents.\n
-        - Apply the top-ranked modification. Use the apply_mod tool to apply the top-ranked modification from the Mod List to the foundational recipe.\n
         - Re-rank modifications. Use the rank_mod tool to adjust the priority of a given modifications in the Mod List based on importance.\n
-        - Remove a modification. Use the remove_mod tool to remove a modification from the Mod List.\n
-        Forward the updated recipe to the Spinnaret for appropriate adjustment to the Recipe Graph. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the Caldron\nPostman for clarification.
+        - Remove a modification. Use the remove_mod tool to remove a modification from the Mod List.\n\n
+        Always forward the updated recipe to the Spinnaret for appropriate adjustment to the Recipe Graph. DO NOT ask if any more modifications are needed. If you are unsure about a modification, ask the Caldron\nPostman for clarification.
         """,
         "tools": [suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod],
+    },
+    "KnowItAll": {
+        "type": "agent",
+        "prompt": "You are KnowItAll. Your task is to answer general questions about the recipe. You have access to the foundational recipe and the Recipe Graph. Use the get_foundational_recipe tool to retrieve information on the current foundational recipe. Use the get_graph tool to retrieve the current recipe graph. You may also use the set_foundational_recipe tool to change the foundational recipe. You will be asked to provide information about the recipe and the Recipe Graph.",
+        "tools": [get_foundational_recipe, get_graph, get_recipe],
     },
     "Spinnaret": {
         "type": "agent",
         "prompt": """
-        You are Spinnaret. Your task is to answer general questions about the recipe as well as plot and track the development process of the recipe, represented by the Recipe Graph, documenting all changes and decisions made by other nodes. You have three sources of information at your disposal: the message thread provided, the Pot which contains recently examined recipes, and the Recipe Graph which tracks overall development progression. You must use these sources to indicate how to develop the Recipe Graph appropriately. Your typical tasks to do so may look like, but are not limited to:\n
+        You are Spinnaret. Your task is to track the development process of the recipe, represented by the Recipe Graph, documenting all changes and decisions made by other nodes. You have three sources of information at your disposal: the message thread provided, the Pot which contains recently examined recipes, and the Recipe Graph which tracks overall development progression. You must use these sources to indicate how to develop the Recipe Graph appropriately. Your typical tasks to do so may look like, but are not limited to:\n
         - Examine the foundational recipe (also referred to as "the recipe"). Use the get_foundational_recipe tool to retrieve information on the current foundational recipe.\n
         - Create a recipe graph object if none exists. Use the get_graph tool to retrieve the current recipe graph and the create_recipe_graph tool if the recipe graph is empty.\n
         - Add a new node to the recipe graph representing a change to the foundational recipe. Use the get_recipe_from_pot tool to examine recent recipes and the add_node tool to add a new node to the recipe graph.\n
@@ -123,6 +134,7 @@ direct_edges = [
     #("Research\nPostman", "Caldron\nPostman"),
     ("ModSquad", "Caldron\nPostman"),
     ("Spinnaret", "Caldron\nPostman"),
+    ("KnowItAll", "Caldron\nPostman"),
     #("Critic", "Caldron\nPostman"), TODO
     #("Jimmy", "Caldron\nPostman"),
     #("Remy", "Research\nPostman"),
@@ -173,6 +185,7 @@ conditional_edges = [
     ("Caldron\nPostman", "ModSquad"),
     ("Caldron\nPostman", "Spinnaret"),
     ("Caldron\nPostman", "Frontman"),
+    ("Caldron\nPostman", "KnowItAll"),
     ("Research\nPostman", "Tavily"),
     ("Research\nPostman", "Sleuth"),
 ]
@@ -188,6 +201,7 @@ def create_conditional_edges(flow_graph):
             "ModSquad": "ModSquad", 
             "Spinnaret": "Spinnaret", 
             "Frontman": "Frontman",
+            "KnowItAll": "KnowItAll",
             "FINISH": "Frontman",
             #"Jimmy": "Jimmy" TODO
         },
