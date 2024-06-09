@@ -1,0 +1,52 @@
+2024-06-09 18:19:07,407 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-09 18:19:08,685 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-09 18:19:08,686 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-09 18:19:08,686 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 18:19:08,688 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-09 18:19:08,688 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-09 18:19:08,689 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-09 18:19:08,690 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-09 18:19:08,690 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-09 18:19:08,691 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-09 18:19:08,691 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-09 18:19:08,692 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-09 18:19:09,330 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-09 18:19:09,331 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-09 18:19:09,332 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-09 18:19:09,332 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-09 18:19:09,333 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-09 18:19:09,334 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-09 18:19:09,334 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-09 18:19:09,335 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-09 18:19:09,337 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-09 18:19:09,337 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-09 18:19:09,340 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-09 18:19:09,341 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-09 18:19:09,344 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-09 18:19:09,344 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-09 18:19:09,346 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-09 18:19:09,347 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-09 18:19:09,350 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-09 18:19:09,351 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-09 18:19:29,353 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-09 18:19:29,354 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Blueberry Muffins, Ingredients: [Ingredient(name='blueberries', quantity=1.0, unit='cup'), Ingredient(name='flour', quantity=2.0, unit='cups'), Ingredient(name='sugar', quantity=0.75, unit='cup'), Ingredient(name='butter', quantity=0.5, unit='cup'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='baking powder', quantity=2.0, unit='tsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='milk', quantity=0.5, unit='cup'), Ingredient(name='vanilla extract', quantity=1.0, unit='tsp')], Instructions: ['Preheat the oven to 375°F (190°C) and line a muffin tin with paper liners.', 'In a bowl, mix flour, sugar, baking powder, and salt.', 'In another bowl, whisk together melted butter, eggs, milk, and vanilla extract.', 'Combine the wet and dry ingredients until just mixed, then fold in the blueberries.', 'Divide the batter evenly among the muffin cups and bake for 20-25 minutes or until a toothpick inserted comes out clean.'], Tags: ['blueberry muffins'], Sources: None
+2024-06-09 18:19:29,356 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 18:19:29,358 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-09 18:19:29,358 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 18:20:42,025 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-09 18:20:42,025 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 18:20:42,033 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-09 18:20:42,034 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-09 18:20:45,476 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-09 18:20:45,476 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-09 18:20:45,483 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-09 18:20:45,483 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-09 18:20:46,415 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-09 18:20:46,436 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-09 18:20:46,439 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-09 18:20:46,440 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-09 18:20:46,441 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.

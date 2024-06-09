@@ -249,12 +249,11 @@ def suggest_mod(
     remove_instruction: Annotated[Optional[str], "The instruction to remove."]= None,
     add_tag: Annotated[Optional[str], "The tag to add."]= None,
     remove_tag: Annotated[Optional[str], "The tag to remove."]= None,
-    id: Annotated[Optional[str], "The ID of the modification."] = None,
     mods_list_file: Annotated[str, "The filename for the mods list."] = default_mods_list_file
 ) -> Annotated[str, "The string representation of the RecipeModification."]:
     """Suggest a modification to the current recipe and add it to the mods list."""
     logger.debug("Generating a RecipeModification object.")
-    mod = RecipeModification(id=id, priority=priority, add_ingredient=add_ingredient, remove_ingredient=remove_ingredient, update_ingredient=update_ingredient, add_instruction=add_instruction, remove_instruction=remove_instruction, add_tag=add_tag, remove_tag=remove_tag)
+    mod = RecipeModification(priority=priority, add_ingredient=add_ingredient, remove_ingredient=remove_ingredient, update_ingredient=update_ingredient, add_instruction=add_instruction, remove_instruction=remove_instruction, add_tag=add_tag, remove_tag=remove_tag)
     mods_list = load_mods_list_from_file(mods_list_file)
     mods_list.suggest_mod(mod)
     save_mods_list_to_file(mods_list, mods_list_file)

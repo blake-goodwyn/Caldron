@@ -63,7 +63,7 @@ class CaldronApp():
             plt.ion()
 
             # Get positions for the nodes
-            self.node_pos = nx.spring_layout(self.display_graph, k=0.75, iterations=50)
+            self.node_pos = nx.shell_layout(self.display_graph)
             update_graph(self)
 
         ## Simple Interaction Thread

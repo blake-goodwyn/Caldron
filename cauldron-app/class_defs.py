@@ -4,9 +4,9 @@ import os
 import ujson
 import networkx as nx
 import heapq
-from typing import List, Dict, Optional, Any, Tuple, Type, TypeVar, Set
+from typing import List, Dict, Optional, Any, Tuple, Type, TypeVar
 from logging_util import logger
-from langchain.pydantic_v1 import BaseModel, Field
+from langchain.pydantic_v1 import BaseModel, Field, PrivateAttr
 
 T = TypeVar('T')
 default_mods_list_file = "mods_list.pkl"
@@ -45,13 +45,11 @@ class RecipeModification(BaseModel):
     add_tag: Optional[str] = None
     remove_tag: Optional[str] = None
 
+    # Private attribute
+    _id: str = PrivateAttr(default=str(uuid.uuid4()))
+
     class Config:
         json_loads = ujson.loads
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        logger.info("Initializing RecipeModification object.")
-        self.id = str(uuid.uuid4())
 
     def __str__(self) -> str:
         return self.json()
@@ -72,14 +70,12 @@ class Recipe(BaseModel):
     instructions: List[str] = Field(description="List of instructions to prepare the recipe")
     tags: List[str] = Field(default=None,description="List of tags for the recipe")
     sources: List[str] = Field(default=None,description="List of sources for the recipe")
+
+    # Private attribute
+    _id: str = PrivateAttr(default=str(uuid.uuid4()))
     
     class Config:
         json_loads = ujson.loads
-    
-    def __init__(self, **data):
-        super().__init__(**data)
-        logger.info("Initializing Recipe object.")
-        self.id = str(uuid.uuid4()) # Unique identifier for the recipe
 
     def __str__(self) -> str:
         return self.json()
@@ -89,10 +85,10 @@ class Recipe(BaseModel):
         return self.json()
     
     def get_ID(self) -> str:
-        return self.id
+        return self._id
     
     def tiny(self) -> str:
-        return f"{self.name} ({self.id})"
+        return f"{self.name} ({self._id})"
     
     @classmethod
     def from_json(cls, data: Dict[str, Any]) -> 'Recipe':
@@ -126,7 +122,7 @@ class Recipe(BaseModel):
             return True
         if modification.add_tag:
             logger.debug("Adding tag to Recipe object.")
-            self.tags.append(modification.attributes['add_tag'])
+            self.tags.append(modification.add_tag)
             return True
         if modification.remove_tag:
             logger.debug("Removing tag from Recipe object.")
