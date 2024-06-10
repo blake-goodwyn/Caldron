@@ -9,9 +9,9 @@ from logging_util import logger
 from langchain.pydantic_v1 import BaseModel, Field, PrivateAttr
 
 T = TypeVar('T')
-default_mods_list_file = "mods_list.pkl"
-default_graph_file="recipe_graph.pkl"
-default_pot_file="recipe_pot.pkl"
+default_mods_list_file = "caldron-app/mods_list.pkl"
+default_graph_file="caldron-app/recipe_graph.pkl"
+default_pot_file="caldron-app/recipe_pot.pkl"
 
 class Ingredient(BaseModel):
     """Model for an ingredient in a recipe."""

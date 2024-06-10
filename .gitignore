@@ -6,3 +6,4 @@ SAM_baking/sam_vit_h_4b8939.pth
 output.wav
 SAM_baking/Segment-and-Track-Anything
 sql/recipes.json
+logs/app_20240610_213712.log
