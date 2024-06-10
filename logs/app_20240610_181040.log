@@ -1,0 +1,114 @@
+2024-06-10 18:10:47,083 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 18:10:48,826 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 18:10:48,827 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 18:10:48,827 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 18:10:48,828 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 18:10:48,829 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 18:10:48,832 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 18:10:48,833 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 18:10:48,834 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 18:10:48,834 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 18:10:48,836 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 18:10:48,836 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-10 18:10:49,755 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-10 18:10:49,755 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-10 18:10:49,756 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-10 18:10:49,757 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-10 18:10:49,757 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-10 18:10:49,758 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-10 18:10:49,758 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-10 18:10:49,758 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-10 18:10:49,762 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-10 18:10:49,762 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-10 18:10:49,766 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-10 18:10:49,766 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-10 18:10:49,770 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-10 18:10:49,771 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-10 18:10:49,773 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-10 18:10:49,773 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-10 18:10:49,781 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-10 18:10:49,781 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 18:11:22,763 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 18:11:22,764 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 18:11:22,766 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 18:11:22,766 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 18:11:30,351 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 18:11:30,352 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Hong-Kong Style Egg Tarts, Ingredients: [Ingredient(name='eggs', quantity=3.0, unit=None), Ingredient(name='sugar', quantity=50.0, unit='g'), Ingredient(name='evaporated milk', quantity=150.0, unit='ml'), Ingredient(name='water', quantity=150.0, unit='ml'), Ingredient(name='vanilla extract', quantity=1.0, unit='tsp'), Ingredient(name='store-bought puff pastry', quantity=1.0, unit=None), Ingredient(name='butter', quantity=10.0, unit='g')], Instructions: ['Preheat the oven to 200°C (390°F).', 'In a bowl, whisk together eggs, sugar, evaporated milk, water, and vanilla extract until well combined.', 'Cut the puff pastry into circles and place them in a muffin tin.', 'Pour the egg mixture into each puff pastry cup.', 'Bake for 15-20 minutes until the egg tarts are set and golden brown.', 'Remove from the oven and brush the tops with melted butter.', 'Let the egg tarts cool before serving.'], Tags: ['dessert', 'egg tart', 'Hong-Kong style'], Sources: ['https://www.justonecookbook.com/homemade-egg-tarts/']
+2024-06-10 18:11:30,355 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 18:11:30,362 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 18:11:30,363 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 18:11:34,599 - cauldron - DEBUG  - agent_tools.py - examine_pot - Dumping pot.
+2024-06-10 18:11:34,600 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 18:11:34,608 - cauldron - DEBUG  - class_defs.py - get_all_recipes - Getting all recipes from pot.
+2024-06-10 18:11:34,608 - cauldron - DEBUG  - class_defs.py - get_all_urls - Getting all URLs from pot.
+2024-06-10 18:11:36,013 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 18:11:36,014 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:11:36,016 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 18:11:36,016 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 18:11:36,017 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:11:40,971 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-10 18:11:40,971 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:11:40,972 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-10 18:11:40,973 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 18:11:44,736 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-10 18:11:44,737 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 18:11:44,738 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-10 18:11:44,738 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 18:11:45,710 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:11:45,747 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 18:11:45,748 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 18:11:45,748 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:11:45,749 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 18:12:04,629 - cauldron - INFO   - class_defs.py - load_from_file - Loading ModsList from file.
+2024-06-10 18:12:04,634 - cauldron - DEBUG  - class_defs.py - suggest_mod - Suggesting modification to mods list.
+2024-06-10 18:12:04,634 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 18:12:05,473 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:12:05,474 - cauldron - INFO   - class_defs.py - load_from_file - Loading ModsList from file.
+2024-06-10 18:12:05,484 - cauldron - DEBUG  - class_defs.py - apply_mod - Applying modification from mods list.
+2024-06-10 18:12:05,485 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 18:12:05,485 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 18:12:05,486 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:05,486 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 18:12:05,487 - cauldron - DEBUG  - class_defs.py - apply_modification - Applying modification to Recipe object.
+2024-06-10 18:12:05,488 - cauldron - DEBUG  - class_defs.py - apply_modification - Adding ingredient to Recipe object.
+2024-06-10 18:12:05,488 - cauldron - DEBUG  - class_defs.py - from_json - Creating Ingredient object from JSON string.
+2024-06-10 18:12:05,489 - cauldron - DEBUG  - class_defs.py - add_node - Adding node to recipe graph.
+2024-06-10 18:12:05,489 - cauldron - DEBUG  - class_defs.py - add_node - Node ID: 9e2be1a7-d43e-46b8-9964-3ed813d107d4
+2024-06-10 18:12:05,490 - cauldron - DEBUG  - class_defs.py - set_foundational_recipe - Setting foundational recipe in recipe graph.
+2024-06-10 18:12:05,491 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:05,492 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:05,492 - cauldron - ERROR  - agent_tools.py - apply_mod - Failed to apply modification: cannot unpack non-iterable bool object
+2024-06-10 18:12:08,538 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 18:12:08,539 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:12:08,540 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 18:12:08,540 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 18:12:08,541 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:08,541 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 18:12:15,001 - cauldron - DEBUG  - agent_tools.py - add_node - Adding node to recipe graph.
+2024-06-10 18:12:15,002 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:12:15,003 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 18:12:15,004 - cauldron - DEBUG  - class_defs.py - add_node - Adding node to recipe graph.
+2024-06-10 18:12:15,004 - cauldron - DEBUG  - class_defs.py - add_node - Node ID: 104903b0-8560-46a8-aa21-9a435af725b3
+2024-06-10 18:12:15,005 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 18:12:16,189 - cauldron - DEBUG  - agent_tools.py - set_foundational_recipe - Setting foundational recipe in recipe graph.
+2024-06-10 18:12:16,190 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:12:16,199 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 18:12:16,199 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:16,200 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 18:12:16,201 - cauldron - DEBUG  - class_defs.py - set_foundational_recipe - Setting foundational recipe in recipe graph.
+2024-06-10 18:12:16,201 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:16,202 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:16,203 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 18:12:19,381 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-10 18:12:19,381 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 18:12:19,383 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-10 18:12:19,384 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 18:12:20,295 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 18:12:20,303 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 18:12:20,304 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 18:12:20,305 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 18:12:20,305 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.

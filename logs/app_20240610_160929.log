@@ -1,0 +1,41 @@
+2024-06-10 16:09:34,961 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 16:09:36,253 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 16:09:36,253 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 16:09:36,254 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:09:36,255 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 16:09:36,256 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 16:09:36,258 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 16:09:36,259 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 16:09:36,260 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 16:09:36,260 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 16:09:36,261 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 16:09:36,262 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-10 16:09:36,947 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-10 16:09:36,947 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-10 16:09:36,948 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-10 16:09:36,949 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-10 16:09:36,949 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-10 16:09:36,950 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-10 16:09:36,951 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-10 16:09:36,952 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-10 16:09:36,954 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-10 16:09:36,954 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-10 16:09:36,957 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-10 16:09:36,958 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-10 16:09:36,961 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-10 16:09:36,962 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-10 16:09:36,964 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-10 16:09:36,964 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-10 16:09:36,968 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-10 16:09:36,969 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 16:09:56,845 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:09:56,847 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:09:56,851 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:10:00,576 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:10:00,578 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:10:00,581 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:10:07,380 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.foodnetwork.com/recipes/egg-tarts-11153957.

@@ -1,0 +1,122 @@
+2024-06-10 16:41:14,490 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 16:41:15,581 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 16:41:15,581 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 16:41:15,582 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:41:15,583 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 16:41:15,583 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 16:41:15,588 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 16:41:15,589 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 16:41:15,589 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 16:41:15,590 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 16:41:15,590 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 16:41:15,591 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-10 16:41:16,195 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-10 16:41:16,196 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-10 16:41:16,197 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-10 16:41:16,197 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-10 16:41:16,198 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-10 16:41:16,199 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-10 16:41:16,199 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-10 16:41:16,200 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-10 16:41:16,202 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-10 16:41:16,202 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-10 16:41:16,205 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-10 16:41:16,205 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-10 16:41:16,208 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-10 16:41:16,209 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-10 16:41:16,210 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-10 16:41:16,211 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-10 16:41:16,214 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-10 16:41:16,214 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 16:41:32,609 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 16:41:32,610 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:41:32,615 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 16:41:32,616 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:41:35,892 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 16:41:35,893 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:41:35,919 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 16:41:35,920 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:41:38,922 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 16:41:38,924 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:41:38,940 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 16:41:38,941 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:41:41,368 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 16:41:41,369 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:41:41,387 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 16:41:41,388 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:41:44,120 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 16:41:44,121 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:41:44,140 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 16:41:44,141 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:41:59,905 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:41:59,906 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:41:59,924 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:41:59,925 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:42:50,006 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 16:42:50,007 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Traditional Egg Custard Tart, Ingredients: [Ingredient(name='Shortcrust pastry', quantity=170.0, unit='g'), Ingredient(name='Sugar', quantity=6.0, unit='Tablespoons'), Ingredient(name='eggs', quantity=4.0, unit=''), Ingredient(name='milk', quantity=550.0, unit='ml'), Ingredient(name='Nutmeg', quantity=1.0, unit='Sprinkle')], Instructions: ['Put the oven on to 190C, 375F,Gas 5', 'Make your shortcrust pastry. Use our recipe for making your own pie crust if you prefer. Grease your flan dish & make sure you grease up the sides too.', "Roll out the pastry into the shape of your flan dish. Make sure there is enough to reach up the sides of your dish. I just place the dish over the pastry to see if I've rolled enough.", 'Use your rolling pin to transfer the pastry to the dish.', "Gently push the pastry around the sides of the dish. It's easier to lift the pastry a little and then push into the sides.", 'Use a sharp knife and trim the edges to make it tidy.', 'If you spot any holes or bits of pastry missing, use some of your cut-offs to patch up.', "Now you will need to prepare the flan case to take the wet filling. You need to first 'Bake blind' the pastry. See here for more information. You need to bake blind for 20 minutes in the oven. 5 minutes before the end of baking blind, remove the weights used and return to the oven.", "Once you have baked blind your pastry, you need to get all your filling ingredients ready if you haven't done so already and reduce the oven temperature to 180 C, Gas 4, 350 F", 'Prepare custard filling by hand whisking eggs in a mixing bowl.', 'Heat milk & sugar in a pan and bring to the boil.', 'Add the milk to the whisked eggs gradually, stirring as you pour, to prevent the eggs from scrambling.', 'Pass the mixture through a sieve and allow to cool for 15 minutes, or immerse the bowl in cold water in the sink to cool the custard down a little.', 'Carefully pour the mixture into the pastry case and sprinkle some nutmeg on the surface.', "Place in the oven, after 30 minutes, check if it's done. If the surface of the custard 'wobbles' too much when you move the dish, leave for a further 5 minutes.", 'When done, leave to cool before removing it from the flan dish', 'Some like to eat this tart warm, I enjoy it more after it has been chilled for an hour in the fridge. It is also easier to slice when it has cooled.'], Tags: None, Sources: ['https://lovefoodies.com/traditional-egg-custard-tart/']
+2024-06-10 16:42:50,014 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:42:50,016 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 16:42:50,017 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:42:52,363 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:42:52,365 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:42:52,388 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:42:52,390 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:44:02,859 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 16:44:02,860 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Hong Kong Egg Tarts, Ingredients: [Ingredient(name='all purpose flour', quantity=2.0, unit='cups'), Ingredient(name='salt', quantity=0.125, unit='teaspoon'), Ingredient(name='unsalted butter', quantity=12.0, unit='tablespoons'), Ingredient(name='cold water', quantity=2.0, unit='tablespoons'), Ingredient(name='granulated sugar', quantity=0.5, unit='cup'), Ingredient(name='hot water', quantity=1.0, unit='cup'), Ingredient(name='evaporated milk', quantity=0.5, unit='cup'), Ingredient(name='large eggs', quantity=3.0, unit=''), Ingredient(name='vanilla extract', quantity=1.0, unit='teaspoon')], Instructions: ['In a bowl, combine the flour and salt. The butter should be just soft enough that it gives when you press it, but not so soft that it collapses. Basically, you want it to be soft enough to break up with your fingers, but it shouldn’t immediately form a paste with the flour.', 'Cut the butter into small cubes, and add it to the flour and salt. Working quickly, break it up roughly with your fingers until it resembles coarse crumbs with some pea-sized chunks of butter still in the mixture.', 'Add 2 tablespoons of cold water, and bring the dough together with your hands. Add a little more water if necessary (start with 1/2 teaspoon), no more than 3 teaspoons. At this point, the dough will be scraggly and dry. You need to rest the dough in the refrigerator to allow the flour in the dough to continue to absorb moisture. Wrap the dough tightly in plastic or a reusable bag, and refrigerate for 20 minutes.', 'On a lightly floured surface, roll the dough into a roughly 6x15 inch rectangle. Work quickly to avoid overworking it.', 'Fold the top third of the dough down to the center, then the bottom third up and over that. Give the dough a quarter turn (left or right) and roll out again to a 6x15 inch rectangle. Fold the same way as before, cover, and chill for 1 hour.', 'While the dough is resting, make the filling. Dissolve the sugar into 1 cup of hot water, and allow the mixture to cool to room temperature. Whisk evaporated milk, eggs, and vanilla together, and then thoroughly whisk in the sugar water. Strain through a fine meshed strainer into a large measuring cup or pitcher (something with a pour spout). You should have about 2 to 2 1/4 cups of custard.', 'Preheat the oven to 375° F/190°C, and position a rack in the lower third of your oven.', 'Roll out the dough 0.2 inch/5mm thick, and cut into 4-inch circles to fit either mini tart tins or a shallow non-stick standard muffin pan, leaving a lip going over the top of the cup (the tart shells will shrink as they bake, so you want ample clearance). Take the excess dough, re-roll it, and cut more circles until you have around 16 of them.', 'Evenly fill the tart shells about three quarters full. If you have an ample lip of dough at the top, you can fill it just until you reach the part where the dough curves outward.', 'Once filled, immediately (but very slowly and carefully) transfer the pan to the oven. Immediately reduce the heat to 350°F/180°C, and bake for 26-29 minutes, until filling is just set (if a toothpick can stand up in it, it’s done).', 'Allow the tarts to cool for at least 10 minutes before enjoying.'], Tags: None, Sources: ['https://thewoksoflife.com/hong-kong-egg-tarts/']
+2024-06-10 16:44:02,867 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:44:02,878 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 16:44:02,879 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:44:04,244 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:44:04,245 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:44:04,257 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:44:04,258 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:44:08,579 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.foodnetwork.com/recipes/egg-tarts-11153957.
+2024-06-10 16:44:14,446 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:44:14,448 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:44:14,466 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:44:14,468 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:44:57,202 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 16:44:57,203 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Egg Tarts, Ingredients: [Ingredient(name='water', quantity=0.33, unit='cup'), Ingredient(name='sugar', quantity=0.25, unit='cup'), Ingredient(name='milk', quantity=0.25, unit='cup'), Ingredient(name='large egg', quantity=1.0, unit=''), Ingredient(name='vanilla extract', quantity=0.5, unit='teaspoon'), Ingredient(name='unsalted butter, softened', quantity=5.0, unit='tablespoons'), Ingredient(name='sugar', quantity=2.0, unit='tablespoons'), Ingredient(name='large egg, beaten', quantity=1.0, unit=''), Ingredient(name='vanilla extract', quantity=0.25, unit='teaspoon'), Ingredient(name='all-purpose flour', quantity=1.75, unit='cups')], Instructions: ['Gather the ingredients. Preheat the oven to 375 F.', 'In a small saucepan over low heat, combine the water and sugar until completely dissolved. Remove from the heat and set aside to cool.', 'In a medium bowl, whisk together the milk and egg.', 'Pour in the cooled sugar syrup and vanilla extract and whisk to combine. Set aside while preparing the crust.', 'In a mixing bowl, cream the butter and sugar until fluffy.', 'Add the egg and vanilla extract and mix well.', 'Mix in the flour until combined.', 'Knead the dough until it softens and becomes pliable.', 'Using small amounts of the dough at a time, press into the bottom and up the sides of small tart pans to form even tart shells. Trim away any excess dough that hangs over the sides.', 'Fill the tart shells with the egg custard. Bake in the preheated oven for 13 minutes until lightly browned. Reduce the heat to 350 F and continue to bake for 15 minutes more or until the custard is set.', 'Allow to cool slightly before removing from the tart pans. Enjoy!'], Tags: None, Sources: ['https://www.thespruceeats.com/egg-tarts-recipe-5097442']
+2024-06-10 16:44:57,209 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:44:57,219 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 16:44:57,219 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:44:59,684 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:44:59,686 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:44:59,711 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:44:59,714 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:46:16,988 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 16:46:17,016 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:17,026 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 16:46:17,027 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:46:18,606 - cauldron - DEBUG  - agent_tools.py - examine_pot - Dumping pot.
+2024-06-10 16:46:18,608 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:18,629 - cauldron - DEBUG  - class_defs.py - get_all_recipes - Getting all recipes from pot.
+2024-06-10 16:46:18,632 - cauldron - DEBUG  - class_defs.py - get_all_urls - Getting all URLs from pot.
+2024-06-10 16:46:23,631 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:46:23,633 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:23,636 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:46:23,637 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:46:30,201 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:46:30,202 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:30,210 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:46:30,211 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:46:36,685 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:46:36,687 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:36,718 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:46:36,719 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:46:37,964 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:46:37,966 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:37,987 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:46:37,989 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:46:39,316 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:46:39,318 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:39,342 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:46:39,344 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 16:46:40,715 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 16:46:40,717 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 16:46:40,741 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 16:46:40,742 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.

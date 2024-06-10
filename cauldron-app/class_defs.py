@@ -68,8 +68,8 @@ class Recipe(BaseModel):
     name: str = Field(description="Name of the recipe")
     ingredients: List[Ingredient] = Field(description="List of ingredients required for the recipe")
     instructions: List[str] = Field(description="List of instructions to prepare the recipe")
-    tags: List[str] = Field(default=None,description="List of tags for the recipe")
-    sources: List[str] = Field(default=None,description="List of sources for the recipe")
+    tags: List[str] = Field(default=None, description="List of tags for the recipe")
+    sources: List[str] = Field(default=None, description="List of sources for the recipe")
 
     # Private attribute
     _id: str = PrivateAttr(default=str(uuid.uuid4()))
@@ -86,6 +86,9 @@ class Recipe(BaseModel):
     
     def get_ID(self) -> str:
         return self._id
+    
+    def new_ID(self) -> None:
+        self._id = str(uuid.uuid4())
     
     def tiny(self) -> str:
         return f"{self.name} ({self._id})"
@@ -164,7 +167,7 @@ class RecipeGraph:
 
     def add_node(self, recipe: Recipe) -> str:
         logger.debug("Adding node to recipe graph.")
-        node_id = recipe.id
+        node_id = recipe._id
         logger.debug(f"Node ID: {node_id}")
         self.graph.add_node(node_id, recipe=recipe)
         if self.foundational_recipe_node is not None:
@@ -204,35 +207,40 @@ class ModsList(BaseModel):
         logger.debug("Suggesting modification to mods list.")
         heapq.heappush(self.queue, (-mod.priority, mod))
 
+    def apply_mod(self, recipe_graph: RecipeGraph) -> bool:
+        logger.debug("Applying modification from mods list.")
+        if self.queue:
+            mod = heapq.heappop(self.queue)[1]
+            recipe = recipe_graph.get_foundational_recipe()
+            if recipe is not None:
+                # Apply the modification to the recipe
+                if recipe.apply_modification(mod):
+                    recipe.new_ID()
+                    recipe_graph.add_node(recipe)
+                    recipe_graph.set_foundational_recipe(recipe)
+                    return True
+        return False
+
     def get_mods_list(self) -> List[RecipeModification]:
         logger.debug("Getting mods list.")
         return [mod for _, mod in sorted(self.queue, key=lambda x: -x[0])]
 
     def push_mod(self, recipe_graph: RecipeGraph) -> Tuple[RecipeModification, bool]:
         logger.debug("Pushing modification from mods list.")
-        if self.queue:
-            mod = heapq.heappop(self.queue)[1]
-            recipe = recipe_graph.get_foundational_recipe()
-            if recipe is not None:
-                return (mod, recipe.apply_modification(mod))
-        return (None, False)
+        mod, success = self.apply_mod(recipe_graph)
+        if success:
+            logger.debug(f"Modification {mod} applied successfully.")
+        else:
+            logger.warning(f"Failed to apply modification {mod}.")
+        return (mod, success)
 
     def rank_mod(self, mod_id: str, new_priority: int) -> None:
         logger.debug("Ranking modification in mods list.")
         for i, (_, mod) in enumerate(self.queue):
-            if mod.id == mod_id:
+            if mod._id == mod_id:
                 self.queue[i] = (-new_priority, mod)
                 heapq.heapify(self.queue)
                 break
-
-    def remove_mod(self, mod_id: str) -> bool:
-        logger.debug("Removing modification from mods list.")
-        for i, (_, mod) in enumerate(self.queue):
-            if mod.id == mod_id:
-                self.queue.pop(i)
-                heapq.heapify(self.queue)
-                return True
-        return False
     
 class Pot(BaseModel):
     """Model for a short-term storage of recipe info."""
@@ -253,7 +261,7 @@ class Pot(BaseModel):
     def remove_recipe(self, recipe_id: str) -> bool:
         logger.debug("Removing recipe from pot.")
         for i, recipe in enumerate(self.recipes):
-            if recipe.id == recipe_id:
+            if recipe._id == recipe_id:
                 self.recipes.pop(i)
                 return True
         return False
@@ -261,7 +269,7 @@ class Pot(BaseModel):
     def get_recipe(self, recipe_id: str) -> Optional[Recipe]:
         logger.debug("Getting recipe from pot.")
         for recipe in self.recipes:
-            if recipe.id == recipe_id:
+            if recipe._id == recipe_id:
                 return recipe
         return None
     
