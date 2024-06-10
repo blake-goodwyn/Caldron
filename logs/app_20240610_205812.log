@@ -1,0 +1,116 @@
+2024-06-10 20:58:16,980 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 20:58:18,245 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 20:58:18,246 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 20:58:18,246 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:58:18,247 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 20:58:18,248 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 20:58:18,248 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 20:58:18,249 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 20:58:18,250 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 20:58:18,250 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 20:58:18,251 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 20:58:18,252 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: User_Rep
+2024-06-10 20:58:18,948 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent User_Rep created.
+2024-06-10 20:58:18,949 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron_Postman
+2024-06-10 20:58:18,949 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research_Postman', 'Mod_Manager', 'Dev_Tracker', 'User_Rep', 'Q_&_A', 'FINISH']
+2024-06-10 20:58:18,950 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron_Postman created.
+2024-06-10 20:58:18,950 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research_Postman
+2024-06-10 20:58:18,951 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Web_Search', 'Web_Scraper', 'Caldron_Postman']
+2024-06-10 20:58:18,952 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research_Postman created.
+2024-06-10 20:58:18,952 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web_Search
+2024-06-10 20:58:18,955 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web_Search created.
+2024-06-10 20:58:18,955 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web_Scraper
+2024-06-10 20:58:18,959 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web_Scraper created.
+2024-06-10 20:58:18,959 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Mod_Manager
+2024-06-10 20:58:18,963 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Mod_Manager created.
+2024-06-10 20:58:18,963 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Q_&_A
+2024-06-10 20:58:18,965 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Q_&_A created.
+2024-06-10 20:58:18,965 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Dev_Tracker
+2024-06-10 20:58:18,969 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Dev_Tracker created.
+2024-06-10 20:58:18,970 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 20:58:35,200 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Research_Postman', 'sender': 'Caldron_Postman'}
+2024-06-10 20:58:36,694 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Search', 'sender': 'Research_Postman'}
+2024-06-10 20:58:43,192 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:58:43,192 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:58:43,194 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:58:43,194 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:58:43,204 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:58:43,204 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:58:43,212 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:58:43,212 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:58:43,224 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:58:43,225 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:58:43,236 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:58:43,237 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:58:43,252 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:58:43,252 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:58:43,262 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:58:43,263 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:58:43,275 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:58:43,276 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:58:43,284 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:58:43,285 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:58:46,860 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make blueberry muffins')], 'sender': 'Research_Postman', 'next': 'Web_Search', 'output': "I have added several blueberry muffin recipes to the Pot for further examination. You can check them out for more details and instructions on how to make delicious blueberry muffins:\n\n1. [To Die For Blueberry Muffins](https://www.allrecipes.com/recipe/6865/to-die-for-blueberry-muffins/)\n2. [Best Ever Blueberry Muffins](https://www.tasteofhome.com/recipes/best-ever-blueberry-muffins/)\n3. [Best Blueberry Muffins Recipe](https://simplyhomecooked.com/best-blueberry-muffins-recipe/)\n4. [Best Ever Blueberry Muffins](https://www.onceuponachef.com/recipes/best-ever-blueberry-muffins.html)\n5. [Blueberry Muffins by Sally's Baking Addiction](https://sallysbakingaddiction.com/blueberry-muffins/)\n\nFeel free to explore these recipes to find the one that suits your taste preferences!"}
+2024-06-10 20:58:47,548 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Scraper', 'sender': 'Research_Postman'}
+2024-06-10 20:58:48,728 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 20:58:48,729 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:58:48,736 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 20:58:48,737 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:58:59,733 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 20:58:59,734 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Blueberry Muffins, Ingredients: [Ingredient(name='packed light or dark brown sugar', quantity=0.5, unit=None), Ingredient(name='chopped walnuts (or pecans)', quantity=0.5, unit=None), Ingredient(name='ground cinnamon', quantity=1.0, unit=None), Ingredient(name='all-purpose flour (spooned & leveled)', quantity=1.75, unit=None), Ingredient(name='baking soda', quantity=1.0, unit=None), Ingredient(name='baking powder', quantity=1.0, unit=None), Ingredient(name='salt', quantity=0.5, unit=None), Ingredient(name='unsalted butter, softened to room temperature', quantity=0.5, unit=None), Ingredient(name='granulated sugar', quantity=0.5, unit=None), Ingredient(name='packed light or dark brown sugar', quantity=0.25, unit=None), Ingredient(name='large eggs, at room temperature', quantity=2.0, unit=None), Ingredient(name='sour cream or plain/vanilla yogurt, at room temperature', quantity=0.5, unit=None), Ingredient(name='pure vanilla extract', quantity=2.0, unit=None), Ingredient(name='milk, at room temperature', quantity=0.25, unit=None), Ingredient(name='fresh or frozen blueberries', quantity=1.5, unit=None)], Instructions: ['Preheat oven to 425°F (218°C). Spray a 12-count muffin pan with nonstick spray or use cupcake liners. Grease/line a second pan with 2 liners because this recipe yields about 14 muffins. Set aside.', 'Mix all of the topping ingredients together. Set aside.', 'Whisk the flour, baking soda, baking powder, and salt together in a large bowl. Set aside.', 'Using a handheld or stand mixer fitted with a paddle or whisk attachment, beat the butter, granulated sugar, and brown sugar together on high speed until smooth and creamy, about 2 minutes. On medium speed, add the eggs one at a time, beating well after each addition. Beat in the sour cream and vanilla extract on medium speed until combined. With the mixer running on low speed, add the dry ingredients and milk into the wet ingredients and beat until no flour pockets remain. Fold in the blueberries.', 'Spoon the batter into liners, filling them all the way to the top. Spoon brown sugar topping on each, gently pressing it down into the surface so it sticks. Bake for 5 minutes at 425 then, keeping the muffins in the oven, reduce the oven temperature to 350°F (177°C). Bake for an additional 18–20 minutes or until a toothpick inserted in the center comes out clean. The total time these muffins take in the oven is about 23–25 minutes, give or take. Allow the muffins to cool for 5 minutes in the muffin pan, then transfer to a wire rack to continue cooling.', 'Muffins stay fresh covered at room temperature for a few days or in the refrigerator for up to 1 week.'], Tags: None, Sources: None
+2024-06-10 20:58:59,742 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:58:59,744 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 20:58:59,744 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:59:04,650 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make blueberry muffins'), AIMessage(content="I have added several blueberry muffin recipes to the Pot for further examination. You can check them out for more details and instructions on how to make delicious blueberry muffins:\n\n1. [To Die For Blueberry Muffins](https://www.allrecipes.com/recipe/6865/to-die-for-blueberry-muffins/)\n2. [Best Ever Blueberry Muffins](https://www.tasteofhome.com/recipes/best-ever-blueberry-muffins/)\n3. [Best Blueberry Muffins Recipe](https://simplyhomecooked.com/best-blueberry-muffins-recipe/)\n4. [Best Ever Blueberry Muffins](https://www.onceuponachef.com/recipes/best-ever-blueberry-muffins.html)\n5. [Blueberry Muffins by Sally's Baking Addiction](https://sallysbakingaddiction.com/blueberry-muffins/)\n\nFeel free to explore these recipes to find the one that suits your taste preferences!", name='Web_Search')], 'sender': 'Research_Postman', 'next': 'Web_Scraper', 'output': 'I have generated the recipe for Blueberry Muffins. Here is a summary of the recipe:\n\n**Blueberry Muffins**\nIngredients:\n- 1/2 cup packed light or dark brown sugar\n- 1/2 cup chopped walnuts (or pecans)\n- 1 teaspoon ground cinnamon\n- 1 and 3/4 cups all-purpose flour (spooned & leveled)\n- 1 teaspoon baking soda\n- 1 teaspoon baking powder\n- 1/2 teaspoon salt\n- 1/2 cup unsalted butter, softened to room temperature\n- 1/2 cup granulated sugar\n- 1/4 cup packed light or dark brown sugar\n- 2 large eggs, at room temperature\n- 1/2 cup sour cream or plain/vanilla yogurt, at room temperature\n- 2 teaspoons pure vanilla extract\n- 1/4 cup milk, at room temperature\n- 1 and 1/2 cups fresh or frozen blueberries\n\nInstructions:\n1. Preheat oven to 425°F (218°C) and prepare muffin pans.\n2. Mix topping ingredients and set aside.\n3. Whisk dry ingredients in a bowl.\n4. Beat butter and sugars, add eggs, sour cream, and vanilla.\n5. Combine wet and dry ingredients, fold in blueberries.\n6. Fill muffin liners, top with brown sugar mixture, and bake.\n7. Cool before serving.\n\nYou can now find the Blueberry Muffins recipe in the Pot for further reference.'}
+2024-06-10 20:59:05,267 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Caldron_Postman', 'sender': 'Research_Postman'}
+2024-06-10 20:59:06,281 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'User_Rep', 'sender': 'Caldron_Postman'}
+2024-06-10 20:59:08,099 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make blueberry muffins'), AIMessage(content="I have added several blueberry muffin recipes to the Pot for further examination. You can check them out for more details and instructions on how to make delicious blueberry muffins:\n\n1. [To Die For Blueberry Muffins](https://www.allrecipes.com/recipe/6865/to-die-for-blueberry-muffins/)\n2. [Best Ever Blueberry Muffins](https://www.tasteofhome.com/recipes/best-ever-blueberry-muffins/)\n3. [Best Blueberry Muffins Recipe](https://simplyhomecooked.com/best-blueberry-muffins-recipe/)\n4. [Best Ever Blueberry Muffins](https://www.onceuponachef.com/recipes/best-ever-blueberry-muffins.html)\n5. [Blueberry Muffins by Sally's Baking Addiction](https://sallysbakingaddiction.com/blueberry-muffins/)\n\nFeel free to explore these recipes to find the one that suits your taste preferences!", name='Web_Search'), AIMessage(content='I have generated the recipe for Blueberry Muffins. Here is a summary of the recipe:\n\n**Blueberry Muffins**\nIngredients:\n- 1/2 cup packed light or dark brown sugar\n- 1/2 cup chopped walnuts (or pecans)\n- 1 teaspoon ground cinnamon\n- 1 and 3/4 cups all-purpose flour (spooned & leveled)\n- 1 teaspoon baking soda\n- 1 teaspoon baking powder\n- 1/2 teaspoon salt\n- 1/2 cup unsalted butter, softened to room temperature\n- 1/2 cup granulated sugar\n- 1/4 cup packed light or dark brown sugar\n- 2 large eggs, at room temperature\n- 1/2 cup sour cream or plain/vanilla yogurt, at room temperature\n- 2 teaspoons pure vanilla extract\n- 1/4 cup milk, at room temperature\n- 1 and 1/2 cups fresh or frozen blueberries\n\nInstructions:\n1. Preheat oven to 425°F (218°C) and prepare muffin pans.\n2. Mix topping ingredients and set aside.\n3. Whisk dry ingredients in a bowl.\n4. Beat butter and sugars, add eggs, sour cream, and vanilla.\n5. Combine wet and dry ingredients, fold in blueberries.\n6. Fill muffin liners, top with brown sugar mixture, and bake.\n7. Cool before serving.\n\nYou can now find the Blueberry Muffins recipe in the Pot for further reference.', name='Web_Scraper')], 'sender': 'Caldron_Postman', 'next': 'User_Rep', 'output': 'I have gathered information on Blueberry Muffins for you. You can find a variety of recipes in the Pot to choose from, each offering a unique take on this classic treat. Feel free to explore the recipes and let me know if you have any specific preferences or dietary restrictions that you would like me to consider when selecting a recipe for you.'}
+2024-06-10 20:59:08,124 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:59:08,127 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:59:08,128 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 20:59:08,129 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:59:22,147 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Dev_Tracker', 'sender': 'Caldron_Postman'}
+2024-06-10 20:59:23,130 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:59:23,131 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:59:23,132 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:59:23,133 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 20:59:23,133 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:59:23,799 - cauldron - DEBUG  - agent_tools.py - examine_pot - Dumping pot.
+2024-06-10 20:59:23,800 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:59:23,808 - cauldron - DEBUG  - class_defs.py - get_all_recipes - Getting all recipes from pot.
+2024-06-10 20:59:23,809 - cauldron - DEBUG  - class_defs.py - get_all_urls - Getting all URLs from pot.
+2024-06-10 20:59:34,219 - cauldron - DEBUG  - agent_tools.py - add_node - Adding node to recipe graph.
+2024-06-10 20:59:34,220 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:59:34,221 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 20:59:34,225 - cauldron - DEBUG  - class_defs.py - add_node - Adding node to recipe graph.
+2024-06-10 20:59:34,226 - cauldron - DEBUG  - class_defs.py - add_node - Node ID: 8ffd21fd-a0e4-48a6-aae0-529e333b3d03
+2024-06-10 20:59:34,227 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 20:59:35,335 - cauldron - DEBUG  - agent_tools.py - set_foundational_recipe - Setting foundational recipe in recipe graph.
+2024-06-10 20:59:35,335 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:59:35,344 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 20:59:35,345 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:59:35,345 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 20:59:35,347 - cauldron - DEBUG  - class_defs.py - set_foundational_recipe - Setting foundational recipe in recipe graph.
+2024-06-10 20:59:35,348 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:59:35,349 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:59:35,350 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 20:59:36,332 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='Please set one as the recipe')], 'sender': 'Caldron_Postman', 'next': 'Dev_Tracker', 'output': 'The recipe "Blueberry Muffins" has been set as the foundational recipe in the Recipe Graph.'}
+2024-06-10 20:59:36,997 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'FINISH', 'sender': 'Dev_Tracker'}
+2024-06-10 20:59:37,996 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-10 20:59:37,997 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:59:37,998 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-10 20:59:37,998 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:59:38,849 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='Please set one as the recipe'), AIMessage(content='The recipe "Blueberry Muffins" has been set as the foundational recipe in the Recipe Graph.', name='Dev_Tracker')], 'sender': 'Caldron_Postman', 'next': 'FINISH', 'output': 'The recipe "Blueberry Muffins" has been set as the foundational recipe. The Pot has been cleared of all other recipes.'}
+2024-06-10 20:59:38,866 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:59:38,876 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:59:38,877 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 20:59:38,878 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:59:38,879 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 20:59:51,082 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Q_&_A', 'sender': 'Caldron_Postman'}
+2024-06-10 20:59:52,158 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:59:52,158 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:59:52,160 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:59:52,160 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 20:59:52,161 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:59:52,162 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-10 20:59:52,921 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='does this recipe contain cinnamon?')], 'sender': 'Caldron_Postman', 'next': 'Q_&_A', 'output': 'Yes, the Blueberry Muffins recipe contains ground cinnamon as one of the ingredients.'}

@@ -1,0 +1,62 @@
+2024-06-10 20:53:24,903 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 20:53:26,199 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 20:53:26,199 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 20:53:26,200 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:53:26,201 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 20:53:26,201 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 20:53:26,206 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 20:53:26,207 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 20:53:26,208 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 20:53:26,208 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 20:53:26,209 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 20:53:26,210 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: User_Rep
+2024-06-10 20:53:26,889 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent User_Rep created.
+2024-06-10 20:53:26,890 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron_Postman
+2024-06-10 20:53:26,890 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research_Postman', 'Mod_Manager', 'Dev_Tracker', 'User_Rep', 'Q_&_A', 'FINISH']
+2024-06-10 20:53:26,891 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron_Postman created.
+2024-06-10 20:53:26,892 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research_Postman
+2024-06-10 20:53:26,892 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Web_Search', 'Web_Scraper', 'Caldron_Postman']
+2024-06-10 20:53:26,893 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research_Postman created.
+2024-06-10 20:53:26,893 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web_Search
+2024-06-10 20:53:26,896 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web_Search created.
+2024-06-10 20:53:26,896 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web_Scraper
+2024-06-10 20:53:26,900 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web_Scraper created.
+2024-06-10 20:53:26,900 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Mod_Manager
+2024-06-10 20:53:26,906 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Mod_Manager created.
+2024-06-10 20:53:26,906 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Q_&_A
+2024-06-10 20:53:26,908 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Q_&_A created.
+2024-06-10 20:53:26,908 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Dev_Tracker
+2024-06-10 20:53:26,912 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Dev_Tracker created.
+2024-06-10 20:53:26,912 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 20:53:44,671 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Research_Postman', 'sender': 'Caldron_Postman'}
+2024-06-10 20:53:45,700 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Search', 'sender': 'Research_Postman'}
+2024-06-10 20:53:50,001 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:53:50,002 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:53:50,003 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:53:50,004 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:53:51,194 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart')], 'sender': 'Research_Postman', 'next': 'Web_Search', 'output': 'I have found a recipe for Hong-Kong style egg tarts that you can make at home. The recipe can be found at this link: [Hong-Kong Egg Tarts Recipe](https://thewoksoflife.com/hong-kong-egg-tarts/).'}
+2024-06-10 20:53:51,762 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Scraper', 'sender': 'Research_Postman'}
+2024-06-10 20:53:59,788 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 20:53:59,790 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Hong Kong Egg Tarts, Ingredients: [Ingredient(name='all purpose flour', quantity=2.0, unit='cups'), Ingredient(name='salt', quantity=0.125, unit=None), Ingredient(name='unsalted butter', quantity=12.0, unit=None), Ingredient(name='cold water', quantity=2.0, unit=None), Ingredient(name='granulated sugar', quantity=0.5, unit='cup'), Ingredient(name='hot water', quantity=1.0, unit=None), Ingredient(name='evaporated milk', quantity=0.5, unit='cup'), Ingredient(name='large eggs', quantity=3.0, unit=None), Ingredient(name='vanilla extract', quantity=1.0, unit=None)], Instructions: ['In a bowl, combine the flour and salt. Cut the butter into small cubes and add it to the flour mixture. Add cold water and bring the dough together. Refrigerate the dough for 20 minutes.', 'Roll out the dough, fold, and chill for 1 hour. Make the filling by dissolving sugar in hot water, whisking evaporated milk, eggs, and vanilla together. Strain the mixture.', 'Preheat the oven and roll out the dough. Cut into circles and fit into tart tins. Fill the tart shells with the custard mixture.', 'Bake the tarts at 350°F for 26-29 minutes until the filling is set. Allow to cool before serving.'], Tags: ['dessert', 'egg tart'], Sources: None
+2024-06-10 20:53:59,794 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:53:59,796 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 20:53:59,797 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:54:01,202 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart'), AIMessage(content='I have found a recipe for Hong-Kong style egg tarts that you can make at home. The recipe can be found at this link: [Hong-Kong Egg Tarts Recipe](https://thewoksoflife.com/hong-kong-egg-tarts/).', name='Web_Search')], 'sender': 'Research_Postman', 'next': 'Web_Scraper', 'output': 'I have successfully scraped the recipe for Hong Kong Egg Tarts. The recipe includes ingredients like all-purpose flour, unsalted butter, eggs, and vanilla extract. The instructions involve making the dough, preparing the filling, assembling the tarts, and baking them to perfection. The recipe has been added to the Pot.'}
+2024-06-10 20:54:01,927 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Caldron_Postman', 'sender': 'Research_Postman'}
+2024-06-10 20:54:03,108 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'User_Rep', 'sender': 'Caldron_Postman'}
+2024-06-10 20:54:05,026 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart'), AIMessage(content='I have found a recipe for Hong-Kong style egg tarts that you can make at home. The recipe can be found at this link: [Hong-Kong Egg Tarts Recipe](https://thewoksoflife.com/hong-kong-egg-tarts/).', name='Web_Search'), AIMessage(content='I have successfully scraped the recipe for Hong Kong Egg Tarts. The recipe includes ingredients like all-purpose flour, unsalted butter, eggs, and vanilla extract. The instructions involve making the dough, preparing the filling, assembling the tarts, and baking them to perfection. The recipe has been added to the Pot.', name='Web_Scraper')], 'sender': 'Caldron_Postman', 'next': 'User_Rep', 'output': 'I have found a recipe for Hong Kong-style egg tarts that you can try making at home. The recipe includes ingredients like all-purpose flour, unsalted butter, eggs, and vanilla extract. The instructions involve making the dough, preparing the filling, assembling the tarts, and baking them. Would you like to proceed with this recipe, or do you have any specific preferences or dietary restrictions I should consider?'}
+2024-06-10 20:54:05,045 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:54:05,047 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:54:05,048 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 20:54:05,049 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-10 20:54:19,702 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Research_Postman', 'sender': 'Caldron_Postman'}
+2024-06-10 20:54:20,704 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Search', 'sender': 'Research_Postman'}
+2024-06-10 20:54:21,879 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:54:21,880 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:54:21,887 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:54:21,888 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:54:22,476 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='Please use this recipe')], 'sender': 'Research_Postman', 'next': 'Web_Search', 'output': 'The recipe has been added to the Pot for further examination.'}
+2024-06-10 20:54:23,156 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Search', 'sender': 'Research_Postman'}
+2024-06-10 20:54:24,372 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:54:24,373 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:54:24,380 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.

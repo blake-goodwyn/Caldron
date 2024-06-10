@@ -48,6 +48,10 @@ class CaldronApp():
         self.flow_graph.set_entry_point("Caldron\nPostman")
         self.chain = self.flow_graph.compile()
 
+        labeldict = {"__end__": "USER"}
+        for node_name, node in prompts_dict.items():
+            labeldict[node_name] = node["label"]
+
         ## Update Visualization
         def update_graph(self, node_colors=["#457b9d" for n in self.display_graph.nodes()]):
             plt.clf()
@@ -55,7 +59,7 @@ class CaldronApp():
             nx.draw_networkx_nodes(self.display_graph, self.node_pos, node_size=3000, node_color=node_colors)
             nx.draw_networkx_edges(self.display_graph, self.node_pos, edgelist=direct_edges, style='solid', connectionstyle='arc3,rad=0.2', arrows=True)
             nx.draw_networkx_edges(self.display_graph, self.node_pos, edgelist=conditional_edges, style='dotted', connectionstyle='arc3,rad=0.2', arrows=True)
-            nx.draw_networkx_labels(self.display_graph, self.node_pos, font_size=10, font_weight="bold")
+            nx.draw_networkx_labels(self.display_graph, self.node_pos, labels=labeldict, font_size=10, font_weight="bold")
             plt.draw()
 
         ## Visualization Thread

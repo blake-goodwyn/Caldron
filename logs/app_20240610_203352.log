@@ -1,0 +1,80 @@
+2024-06-10 20:33:57,076 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 20:33:58,333 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 20:33:58,333 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 20:33:58,334 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:33:58,335 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 20:33:58,335 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 20:33:58,340 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 20:33:58,341 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 20:33:58,341 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 20:33:58,341 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 20:33:58,342 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 20:33:58,342 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: User_Rep
+2024-06-10 20:33:58,988 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent User_Rep created.
+2024-06-10 20:33:58,988 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron_Postman
+2024-06-10 20:33:58,989 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research_Postman', 'Mod_Manager', 'Dev_Tracker', 'User_Rep', 'Q_&_A', 'FINISH']
+2024-06-10 20:33:58,989 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron_Postman created.
+2024-06-10 20:33:58,990 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research_Postman
+2024-06-10 20:33:58,990 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Web_Search', 'Web_Scraper', 'Caldron_Postman']
+2024-06-10 20:33:58,991 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research_Postman created.
+2024-06-10 20:33:58,991 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web_Search
+2024-06-10 20:33:58,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web_Search created.
+2024-06-10 20:33:58,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web_Scraper
+2024-06-10 20:33:58,997 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web_Scraper created.
+2024-06-10 20:33:58,997 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Mod_Manager
+2024-06-10 20:33:59,002 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Mod_Manager created.
+2024-06-10 20:33:59,003 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Q_&_A
+2024-06-10 20:33:59,005 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Q_&_A created.
+2024-06-10 20:33:59,006 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Dev_Tracker
+2024-06-10 20:33:59,009 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Dev_Tracker created.
+2024-06-10 20:33:59,010 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 20:34:25,936 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Research_Postman', 'sender': 'Caldron_Postman'}
+2024-06-10 20:34:27,012 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Search', 'sender': 'Research_Postman'}
+2024-06-10 20:34:33,815 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:34:33,816 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:34:33,817 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:34:33,818 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:34:33,827 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:34:33,827 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:34:33,834 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:34:33,834 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:34:33,846 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:34:33,846 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:34:33,858 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:34:33,858 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:34:33,878 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:34:33,880 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:34:33,886 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:34:33,887 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:34:33,901 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 20:34:33,902 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:34:33,915 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 20:34:33,915 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:34:37,111 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart')], 'sender': 'Research_Postman', 'next': 'Web_Search', 'output': 'I have added several egg tart recipes to the Pot for further examination. You can find the recipes at the following URLs:\n\n1. [Recipe for Egg Tarts by Miss Tam Chiak](https://www.misstamchiak.com/recipe-egg-tarts/)\n2. [Portuguese Egg Tart Recipe by Tasting Table](https://www.tastingtable.com/686035/portuguese-egg-tart-recipe-pastry/)\n3. [Hong Kong Egg Tarts by The Woks of Life](https://thewoksoflife.com/hong-kong-egg-tarts/)\n4. [Egg Tarts Recipe by The Spruce Eats](https://www.thespruceeats.com/egg-tarts-recipe-5097442)\n5. [Egg Tarts Recipe by Hungry Huy](https://www.hungryhuy.com/egg-tarts/)\n\nFeel free to explore these recipes to find the one that suits your preferences!'}
+2024-06-10 20:34:37,795 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Web_Scraper', 'sender': 'Research_Postman'}
+2024-06-10 20:34:38,936 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-10 20:34:38,936 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:34:38,944 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-10 20:34:38,944 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:34:54,547 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 20:34:54,605 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 20:34:54,608 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 20:34:54,624 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:34:56,184 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart'), AIMessage(content='I have added several egg tart recipes to the Pot for further examination. You can find the recipes at the following URLs:\n\n1. [Recipe for Egg Tarts by Miss Tam Chiak](https://www.misstamchiak.com/recipe-egg-tarts/)\n2. [Portuguese Egg Tart Recipe by Tasting Table](https://www.tastingtable.com/686035/portuguese-egg-tart-recipe-pastry/)\n3. [Hong Kong Egg Tarts by The Woks of Life](https://thewoksoflife.com/hong-kong-egg-tarts/)\n4. [Egg Tarts Recipe by The Spruce Eats](https://www.thespruceeats.com/egg-tarts-recipe-5097442)\n5. [Egg Tarts Recipe by Hungry Huy](https://www.hungryhuy.com/egg-tarts/)\n\nFeel free to explore these recipes to find the one that suits your preferences!', name='Web_Search')], 'sender': 'Research_Postman', 'next': 'Web_Scraper', 'output': 'I have generated the recipe for "Egg Tarts (Dim Sum Style)" based on the information from the URL provided. The recipe has been added to the Pot. If you would like to see the detailed recipe, please let me know.'}
+2024-06-10 20:34:56,922 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Caldron_Postman', 'sender': 'Research_Postman'}
+2024-06-10 20:34:58,000 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Mod_Manager', 'sender': 'Caldron_Postman'}
+2024-06-10 20:34:59,419 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart'), AIMessage(content='I have added several egg tart recipes to the Pot for further examination. You can find the recipes at the following URLs:\n\n1. [Recipe for Egg Tarts by Miss Tam Chiak](https://www.misstamchiak.com/recipe-egg-tarts/)\n2. [Portuguese Egg Tart Recipe by Tasting Table](https://www.tastingtable.com/686035/portuguese-egg-tart-recipe-pastry/)\n3. [Hong Kong Egg Tarts by The Woks of Life](https://thewoksoflife.com/hong-kong-egg-tarts/)\n4. [Egg Tarts Recipe by The Spruce Eats](https://www.thespruceeats.com/egg-tarts-recipe-5097442)\n5. [Egg Tarts Recipe by Hungry Huy](https://www.hungryhuy.com/egg-tarts/)\n\nFeel free to explore these recipes to find the one that suits your preferences!', name='Web_Search'), AIMessage(content='I have generated the recipe for "Egg Tarts (Dim Sum Style)" based on the information from the URL provided. The recipe has been added to the Pot. If you would like to see the detailed recipe, please let me know.', name='Web_Scraper')], 'sender': 'Caldron_Postman', 'next': 'Mod_Manager', 'output': 'I have gathered a recipe for Egg Tarts from a reliable source. If you would like, I can provide you with the recipe details.'}
+2024-06-10 20:35:00,085 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'Mod_Manager', 'sender': 'Caldron_Postman'}
+2024-06-10 20:35:02,198 - cauldron - DEBUG  - agent_tools.py - get_mods_list - Getting mods list.
+2024-06-10 20:35:02,199 - cauldron - INFO   - class_defs.py - load_from_file - Loading ModsList from file.
+2024-06-10 20:35:02,201 - cauldron - DEBUG  - class_defs.py - get_mods_list - Getting mods list.
+2024-06-10 20:35:02,210 - cauldron - INFO   - class_defs.py - load_from_file - Loading ModsList from file.
+2024-06-10 20:35:02,211 - cauldron - DEBUG  - class_defs.py - suggest_mod - Suggesting modification to mods list.
+2024-06-10 20:35:02,211 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 20:35:04,012 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart'), AIMessage(content='I have added several egg tart recipes to the Pot for further examination. You can find the recipes at the following URLs:\n\n1. [Recipe for Egg Tarts by Miss Tam Chiak](https://www.misstamchiak.com/recipe-egg-tarts/)\n2. [Portuguese Egg Tart Recipe by Tasting Table](https://www.tastingtable.com/686035/portuguese-egg-tart-recipe-pastry/)\n3. [Hong Kong Egg Tarts by The Woks of Life](https://thewoksoflife.com/hong-kong-egg-tarts/)\n4. [Egg Tarts Recipe by The Spruce Eats](https://www.thespruceeats.com/egg-tarts-recipe-5097442)\n5. [Egg Tarts Recipe by Hungry Huy](https://www.hungryhuy.com/egg-tarts/)\n\nFeel free to explore these recipes to find the one that suits your preferences!', name='Web_Search'), AIMessage(content='I have generated the recipe for "Egg Tarts (Dim Sum Style)" based on the information from the URL provided. The recipe has been added to the Pot. If you would like to see the detailed recipe, please let me know.', name='Web_Scraper'), AIMessage(content='I have gathered a recipe for Egg Tarts from a reliable source. If you would like, I can provide you with the recipe details.', name='Mod_Manager')], 'sender': 'Caldron_Postman', 'next': 'Mod_Manager', 'output': 'I have suggested a modification to the recipe: \n\n- **Instruction Modification:**\n  - Added: Preheat the oven to 375°F (190°C).\n  - Removed: Preheat the oven to 350°F (180°C).\n\nThis modification has been added to the Mod List with a priority of 1.'}
+2024-06-10 20:35:05,273 - cauldron - INFO   - langchain_util.py - agent_node - {'next': 'User_Rep', 'sender': 'Mod_Manager'}
+2024-06-10 20:35:07,167 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make an egg tart'), AIMessage(content='I have added several egg tart recipes to the Pot for further examination. You can find the recipes at the following URLs:\n\n1. [Recipe for Egg Tarts by Miss Tam Chiak](https://www.misstamchiak.com/recipe-egg-tarts/)\n2. [Portuguese Egg Tart Recipe by Tasting Table](https://www.tastingtable.com/686035/portuguese-egg-tart-recipe-pastry/)\n3. [Hong Kong Egg Tarts by The Woks of Life](https://thewoksoflife.com/hong-kong-egg-tarts/)\n4. [Egg Tarts Recipe by The Spruce Eats](https://www.thespruceeats.com/egg-tarts-recipe-5097442)\n5. [Egg Tarts Recipe by Hungry Huy](https://www.hungryhuy.com/egg-tarts/)\n\nFeel free to explore these recipes to find the one that suits your preferences!', name='Web_Search'), AIMessage(content='I have generated the recipe for "Egg Tarts (Dim Sum Style)" based on the information from the URL provided. The recipe has been added to the Pot. If you would like to see the detailed recipe, please let me know.', name='Web_Scraper'), AIMessage(content='I have gathered a recipe for Egg Tarts from a reliable source. If you would like, I can provide you with the recipe details.', name='Mod_Manager'), AIMessage(content='I have suggested a modification to the recipe: \n\n- **Instruction Modification:**\n  - Added: Preheat the oven to 375°F (190°C).\n  - Removed: Preheat the oven to 350°F (180°C).\n\nThis modification has been added to the Mod List with a priority of 1.', name='Mod_Manager')], 'sender': 'Caldron_Postman', 'next': 'User_Rep', 'output': 'I have gathered a recipe for Egg Tarts and made a modification to the baking temperature. The oven should now be preheated to 375°F (190°C) instead of 350°F (180°C). If you have any preferences or further modifications, please let me know!'}
+2024-06-10 20:35:07,191 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-10 20:35:07,194 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-10 20:35:07,195 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-10 20:35:07,195 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
