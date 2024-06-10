@@ -1,0 +1,20 @@
+2024-06-03 12:28:11,713 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 12:28:14,579 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 12:28:14,580 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 12:28:14,582 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 12:28:14,583 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 12:28:14,584 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 12:28:14,590 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 12:28:14,591 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 12:28:14,594 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 12:28:14,595 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 12:28:14,597 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 12:28:14,597 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 12:28:16,271 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 12:28:16,272 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 12:28:16,276 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 12:28:16,276 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 12:28:16,289 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 12:28:16,290 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 12:28:16,297 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 12:28:16,298 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.

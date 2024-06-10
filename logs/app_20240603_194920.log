@@ -1,0 +1,24 @@
+2024-06-03 19:49:23,957 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 19:49:24,859 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 19:49:24,859 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 19:49:24,860 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 19:49:24,861 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 19:49:24,861 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 19:49:24,862 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 19:49:24,863 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 19:49:24,864 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 19:49:24,864 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 19:49:24,865 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 19:49:24,866 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 19:49:25,379 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 19:49:25,379 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 19:49:25,381 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 19:49:25,382 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 19:49:25,385 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 19:49:25,385 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 19:49:25,388 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 19:49:25,388 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 19:49:28,392 - cauldron - INFO   - langchain_util.py - agent_node - Agent ConductorAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'user', 'next': 'ConductorAgent'}
+2024-06-03 19:49:29,069 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'ConductorAgent', 'next': 'RecipeResearchAgent'}
+2024-06-03 19:49:37,754 - cauldron - INFO   - langchain_util.py - agent_node - Agent SearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent'}
+2024-06-03 19:49:38,337 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies"), AIMessage(content='I have found several chocolate chip cookies recipes for you:\n\n1. [Ultimate Chocolate Chip Cookies](https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/77c14e03-d8b0-4844-846d-f19304f61c57): This recipe promises the best chocolate chip cookies with a crispy outside and chewy inside. It includes detailed ingredients, steps, and tips.\n\n2. [Chewy Chocolate Chip Cookies](https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/): These super soft and chewy chocolate chip cookies are a popular recipe. The site provides insights into making them perfectly chewy.\n\n3. [Best Chocolate Chip Cookies](https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/): This recipe offers crunchy and chewy chocolate chip cookies with detailed ingredients and directions for baking.\n\n4. [The Most Amazing Chocolate Chip Cookies](https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/): Considered the best chocolate chip cookie recipe ever, this recipe provides equipment, ingredients, instructions, and tips for baking delicious cookies.\n\nPlease check out the recipes and let me know if you need more information or assistance.', name='SearchAgent')], 'sender': 'SearchAgent', 'next': 'SearchAgent'}

@@ -1,0 +1,35 @@
+2024-06-03 21:02:35,417 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 21:02:36,327 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 21:02:36,328 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 21:02:36,329 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 21:02:36,329 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 21:02:36,330 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 21:02:36,330 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 21:02:36,331 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 21:02:36,332 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 21:02:36,332 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 21:02:36,332 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 21:02:36,333 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 21:02:36,824 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 21:02:36,824 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 21:02:36,827 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 21:02:36,828 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 21:02:36,833 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 21:02:36,833 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 21:02:36,836 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 21:02:36,836 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 21:03:09,013 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-03 21:03:09,013 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-03 21:03:09,014 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-03 21:03:09,014 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-03 21:03:09,015 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-03 21:03:13,408 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-03 21:03:13,409 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Gluten-Free Sandwich Bread, Ingredients: [Ingredient(name='gluten-free all-purpose flour', quantity=3.0, unit='cups'), Ingredient(name='instant rapid rise yeast', quantity=2.25, unit='tsp'), Ingredient(name='psyllium husk powder', quantity=1.0, unit='tbsp'), Ingredient(name='baking powder', quantity=1.0, unit='tsp'), Ingredient(name='warm water', quantity=1.5, unit='cups'), Ingredient(name='eggs', quantity=2.0, unit=''), Ingredient(name='honey', quantity=0.25, unit='cup'), Ingredient(name='vegetable oil', quantity=0.25, unit='cup')], Instructions: ['Mix all dry ingredients in a bowl.', 'Add warm water, eggs, honey, and vegetable oil to the dry ingredients.', 'Beat the batter until well combined.', 'Pour the batter into a loaf pan.', 'Bake in a preheated oven at 350°F until the internal temperature reaches at least 200°F.'], Tags: None, Sources: None
+2024-06-03 21:03:18,002 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-03 21:03:18,003 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-03 21:03:18,004 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-03 21:03:18,004 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-03 21:03:20,561 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-03 21:03:20,566 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-03 21:03:20,567 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-03 21:03:20,568 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.

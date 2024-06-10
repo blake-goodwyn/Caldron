@@ -1,0 +1,31 @@
+2024-06-04 12:51:59,304 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-04 12:52:00,204 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-04 12:52:00,205 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-04 12:52:00,206 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-04 12:52:00,206 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-04 12:52:00,206 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-04 12:52:00,207 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-04 12:52:00,208 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SummaryAgent
+2024-06-04 12:52:00,678 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SummaryAgent created.
+2024-06-04 12:52:00,678 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CauldronRouter
+2024-06-04 12:52:00,678 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CauldronRouter created.
+2024-06-04 12:52:00,679 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-04 12:52:00,679 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-04 12:52:00,679 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-04 12:52:00,681 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-04 12:52:00,681 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-04 12:52:00,683 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-04 12:52:00,683 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-04 12:52:00,688 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-04 12:52:00,688 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-04 12:52:00,691 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-04 12:52:00,691 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-04 12:52:24,032 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-04 12:52:35,307 - cauldron - DEBUG  - agent_tools.py - get_graph - Getting recipe graph.
+2024-06-04 12:52:35,307 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 12:52:35,309 - cauldron - DEBUG  - recipe_graph.py - get_graph - Getting recipe graph.
+2024-06-04 12:52:36,081 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 12:52:36,081 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 12:52:36,083 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 12:52:36,083 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-04 12:52:36,084 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.

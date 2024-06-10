@@ -1,0 +1,24 @@
+2024-06-02 21:17:57,533 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-02 21:17:58,478 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-02 21:17:58,479 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-02 21:17:58,480 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-02 21:17:58,480 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-02 21:17:58,481 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-02 21:17:58,482 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-02 21:17:58,482 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-02 21:17:58,483 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-02 21:17:58,483 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 21:17:58,484 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-02 21:17:58,484 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-02 21:17:59,002 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-02 21:17:59,002 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-02 21:17:59,003 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-02 21:17:59,004 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-02 21:17:59,007 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-02 21:17:59,008 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-02 21:17:59,010 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-02 21:17:59,010 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-02 21:18:10,583 - cauldron - INFO   - langchain_util.py - agent_node - Agent SearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make some chocolate chip cookies")], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent'}
+2024-06-02 21:18:16,486 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.verybestbaking.com/toll-house/recipes/original-nestle-toll-house-chocolate-chip-cookies/.
+2024-06-02 21:18:27,165 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeScraperAgent invoked with state: {'messages': [HumanMessage(content="Let's make some chocolate chip cookies"), AIMessage(content='I have found several chocolate chip cookies recipes for you. Here are some options:\n\n1. [The Best Chocolate Chip Cookie Recipe Ever](https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/)\n2. [Chewy Chocolate Chip Cookies](https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/)\n3. [Original Nestle Toll House Chocolate Chip Cookies](https://www.verybestbaking.com/toll-house/recipes/original-nestle-toll-house-chocolate-chip-cookies/)\n4. [Ultimate Chocolate Chip Cookies](https://www.bettycrocker.com/recipes/ultimate-chocolate-chip-cookies/)\n5. [Best Chocolate Chip Cookies](https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/)\n\nPlease let me know if you would like the detailed recipe for any specific one.', name='SearchAgent')], 'sender': 'SearchAgent', 'next': 'RecipeScraperAgent'}
+2024-06-02 21:18:31,177 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.

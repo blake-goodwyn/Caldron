@@ -1,25 +1,20 @@
 # langchain_util.py
 
 import operator
-from typing import Annotated, Sequence, TypedDict, Literal, List
+from typing import Annotated, Sequence, TypedDict
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, ToolMessage, SystemMessage
-from langchain_core.output_parsers import StrOutputParser
+from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, SystemMessage
 from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain.agents.agent import RunnableAgent
 from langchain_community.utilities.sql_database import SQLDatabase
-from langchain_community.agent_toolkits.sql.prompt import (
-    SQL_FUNCTIONS_SUFFIX,
-    SQL_PREFIX,
-)
+from langchain_community.agent_toolkits.sql.prompt import SQL_FUNCTIONS_SUFFIX, SQL_PREFIX
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
 from langgraph.graph import StateGraph
 
 from dotenv import load_dotenv
 import os
-from pydantic_util import CauldronPydanticParser
 from logging_util import logger
 
 load_dotenv()
@@ -27,42 +22,35 @@ LANGCHAIN_TRACING_V2=True
 LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-def StringParser():
-    logger.debug("Creating StrOutputParser instance.")
-    return StrOutputParser()
-
-def AgentParser():
-    logger.debug("Creating AgentParser instance.")
-    return CauldronPydanticParser
-
 def createAgent(
     name: str,
     system_prompt: str,
     llm: ChatOpenAI,
     tools: list,
 ) -> str:
+    
     prompt = ChatPromptTemplate.from_messages(
         [
-            (
-                "system",
-                "You are a helpful AI assistant, collaborating with other assistants."
-                " Use the provided tools to progress towards answering the question."
-                " If you are unable to fully answer, that's OK, another assistant with different tools "
-                " will help where you left off. Execute what you can to make progress."
-                " If you or any of the other assistants have the final answer or deliverable,"
-                " prefix your response with FINAL ANSWER so the team knows to stop."
-                " You have access to the following tools: {tool_names}.\n\n Your responsibility is the following:\n{system_message}",
-            ),
+            ("system","""
+             You are an agent within a multi-agent architecture.\n
+             "Keep all language concise but detailed as necessary.\n
+             "You have the following role: \n{system_message}\n\n
+             "You have access to the following tools: {tool_names}.\n\n 
+             """),
             MessagesPlaceholder(variable_name="messages"),
-            MessagesPlaceholder(variable_name="agent_scratchpad"),
+            MessagesPlaceholder(variable_name="agent_scratchpad")
         ]
     )
     prompt = prompt.partial(system_message=system_prompt)
     prompt = prompt.partial(tool_names=", ".join([tool.name for tool in tools]))
-    agent = create_openai_tools_agent(llm | JsonOutputFunctionsParser(), tools=tools, prompt=prompt)
+    agent = RunnableAgent(
+            runnable=create_openai_tools_agent(llm, tools=tools, prompt=prompt),
+            input_keys_arg=["messages"],
+            return_keys_arg=["output"]
+        )
     return AgentExecutor(name=name, agent=agent, tools=tools)
 
-def createSQLAgent(
+def createBookworm(
         name: str, 
         system_prompt: str, 
         llm_model: str, 
@@ -93,11 +81,11 @@ def createSQLAgent(
         )
     return AgentExecutor(name=name, agent=agent, tools=tools)
 
-def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
+def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> str:
     """An LLM-based router."""
-    sender = name
-    options = members
-    function_def = {
+    if exit:
+        members.append("FINISH")
+    route_fx = {
         "name": "route",
         "description": "Select the next role.",
         "parameters": {
@@ -107,13 +95,13 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
                 "next": {
                     "title": "Next",
                     "anyOf": [
-                        {"enum": options},
+                        {"enum": members},
                     ],
                 },
                 "sender": {
                     "title": "Sender",
                     "anyOf": [
-                        {"string": sender},
+                        {"string": name},
                     ]
                 }
             },
@@ -130,22 +118,29 @@ def createTeamSupervisor(name, system_prompt, llm: ChatOpenAI, members) -> str:
                 " Or should we FINISH? Select one of: {options}",
             )
         ]
-    ).partial(options=str(options), team_members=", ".join(members))
+    ).partial(options=str(members), team_members=", ".join(members))
+    logger.debug(f"Router options: {members}");
     return (
         prompt
-        | llm.bind_functions(functions=[function_def], function_call="route")
+        | llm.bind_functions(functions=[route_fx], function_call="route")
         | JsonOutputFunctionsParser()
     )
 
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    logger.info(result)
-    result = AIMessage(content=result["output"], name=name)
-    return {
-        "messages": [result],
-        "sender": name,
-    }
+    #logger.info(f"Agent {name} invoked with state: {state}")
+    if "output" in result.keys(): # If the agent has an output
+        result = AIMessage(content=result["output"], name=name)
+        return {
+            "messages": [result],
+            "sender": name,
+        }
+    else: # If it routed to another agent
+        return {
+            "sender": name,
+            "next": result["next"]
+        }
 
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]

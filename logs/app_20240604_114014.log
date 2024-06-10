@@ -1,0 +1,54 @@
+2024-06-04 11:40:18,501 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-04 11:40:19,466 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-04 11:40:19,466 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-04 11:40:19,467 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-04 11:40:19,467 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-04 11:40:19,468 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-04 11:40:19,469 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-04 11:40:19,469 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SummaryAgent
+2024-06-04 11:40:19,980 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SummaryAgent created.
+2024-06-04 11:40:19,981 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CauldronRouter
+2024-06-04 11:40:19,981 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CauldronRouter created.
+2024-06-04 11:40:19,981 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-04 11:40:19,981 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-04 11:40:19,982 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-04 11:40:19,984 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-04 11:40:19,984 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-04 11:40:19,986 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-04 11:40:19,986 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-04 11:40:19,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-04 11:40:19,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-04 11:40:19,996 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-04 11:40:19,996 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-04 11:40:39,801 - cauldron - ERROR  - agent_tools.py - get_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-04 11:40:56,776 - cauldron - DEBUG  - agent_tools.py - get_graph - Getting recipe graph.
+2024-06-04 11:40:56,777 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:40:56,778 - cauldron - DEBUG  - recipe_graph.py - get_graph - Getting recipe graph.
+2024-06-04 11:40:57,598 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 11:40:57,598 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:40:57,599 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 11:40:57,600 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-04 11:40:57,600 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-04 11:41:00,321 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:41:00,322 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-04 11:41:00,323 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Potato Gnocchi, Ingredients: [Ingredient(name='potatoes', quantity=500.0, unit='g'), Ingredient(name='all-purpose flour', quantity=150.0, unit='g'), Ingredient(name='egg', quantity=1.0, unit=''), Ingredient(name='salt', quantity=1.0, unit='pinch')], Instructions: ['1. Boil and peel the potatoes.', '2. Rice the boiled potatoes.', '3. Mix riced potatoes with flour, egg, and salt to form a dough.', '4. Shape the gnocchi.', '5. Boil the gnocchi in salted water until they float to the surface.', '6. Serve with your favorite sauce.'], Tags: None, Sources: None
+2024-06-04 11:41:00,324 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:41:03,908 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-04 11:41:03,909 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:41:03,910 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-04 11:41:03,910 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-04 11:41:07,495 - cauldron - DEBUG  - agent_tools.py - get_mods_list - Getting mods list.
+2024-06-04 11:41:07,495 - cauldron - INFO   - recipe_graph.py - load_mods_list_from_file - Loading mods list from file.
+2024-06-04 11:41:07,497 - cauldron - DEBUG  - recipe_graph.py - get_mods_list - Getting mods list.
+2024-06-04 11:41:12,784 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:41:12,793 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-04 11:41:12,794 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-04 11:41:12,794 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-04 11:41:12,795 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Recipe object from dictionary.
+2024-06-04 11:41:12,795 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-04 11:41:23,095 - cauldron - DEBUG  - agent_tools.py - generate_mod - Generating JSON representation of RecipeModification object.
+2024-06-04 11:41:23,096 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of RecipeModification object.
+2024-06-04 11:41:23,720 - cauldron - DEBUG  - agent_tools.py - push_mod - Pushing modification from mods list.
+2024-06-04 11:41:23,721 - cauldron - INFO   - recipe_graph.py - load_mods_list_from_file - Loading mods list from file.
+2024-06-04 11:41:23,722 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-04 11:41:23,722 - cauldron - DEBUG  - recipe_graph.py - push_mod - Pushing modification from mods list.

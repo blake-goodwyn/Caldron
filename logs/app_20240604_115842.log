@@ -1,0 +1,4 @@
+2024-06-04 11:58:45,821 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-04 11:58:46,713 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-04 11:58:46,714 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-04 11:58:46,715 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.

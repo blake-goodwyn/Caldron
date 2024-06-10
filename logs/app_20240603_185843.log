@@ -1,0 +1,25 @@
+2024-06-03 18:58:46,598 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 18:58:47,802 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 18:58:47,805 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 18:58:47,809 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 18:58:47,813 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 18:58:47,816 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 18:58:47,819 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 18:58:47,821 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 18:58:47,828 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 18:58:47,830 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 18:58:47,837 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 18:58:47,839 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 18:58:48,431 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 18:58:48,431 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 18:58:48,434 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 18:58:48,434 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 18:58:48,437 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 18:58:48,437 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 18:58:48,440 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 18:58:48,440 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 18:59:13,288 - cauldron - INFO   - langchain_util.py - agent_node - Agent ConductorAgent invoked with state: {'messages': [HumanMessage(content="Let's make gluten-free sandwich bread")], 'sender': 'user', 'next': 'ConductorAgent'}
+2024-06-03 18:59:26,399 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make gluten-free sandwich bread")], 'sender': 'ConductorAgent', 'next': 'RecipeResearchAgent'}
+2024-06-03 18:59:39,053 - cauldron - INFO   - langchain_util.py - agent_node - Agent SearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make gluten-free sandwich bread")], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent'}
+2024-06-03 18:59:39,795 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make gluten-free sandwich bread"), AIMessage(content='I have found some recipes for gluten-free sandwich bread:\n\n1. [King Arthur Baking - Gluten-Free Sandwich Bread Recipe](https://www.kingarthurbaking.com/recipes/gluten-free-sandwich-bread-recipe)\n2. [Gluten Free on a Shoestring - Gluten-Free Bread Recipe](https://glutenfreeonashoestring.com/gluten-free-bread-recipe/)\n3. [King Arthur Baking - Easy Gluten-Free Bread Recipe](https://www.kingarthurbaking.com/recipes/easy-gluten-free-bread-recipe)\n4. [Gluten Free Baking - Gluten-Free Sandwich Bread Recipe](https://glutenfreebaking.com/gluten-free-sandwich-bread/)\n5. [MamaGourmand - Best Gluten-Free Bread Recipe](https://www.mamagourmand.com/best-gluten-free-bread-recipe/)\n\nYou can check these recipes for making gluten-free sandwich bread.', name='SearchAgent')], 'sender': 'SearchAgent', 'next': 'SearchAgent'}
+2024-06-03 18:59:57,282 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.

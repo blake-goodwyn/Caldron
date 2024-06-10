@@ -1,0 +1,52 @@
+2024-06-03 21:40:19,419 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 21:40:20,332 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 21:40:20,332 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 21:40:20,333 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 21:40:20,334 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 21:40:20,334 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 21:40:20,335 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 21:40:20,335 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 21:40:20,336 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 21:40:20,336 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 21:40:20,337 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 21:40:20,337 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 21:40:20,805 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 21:40:20,805 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 21:40:20,807 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 21:40:20,807 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 21:40:20,811 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 21:40:20,811 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 21:40:20,813 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 21:40:20,813 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 21:41:10,419 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-03 21:41:10,420 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-03 21:41:10,421 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Gluten-Free Bread Recipe, Ingredients: [Ingredient(name='gluten-free flour blend', quantity=2.5, unit='cups'), Ingredient(name='xanthan gum', quantity=1.0, unit='tsp'), Ingredient(name='instant yeast', quantity=2.25, unit='tsp'), Ingredient(name='sugar', quantity=2.5, unit='tbsp'), Ingredient(name='salt', quantity=1.25, unit='tsp'), Ingredient(name='milk', quantity=1.25, unit='cups'), Ingredient(name='unsalted butter', quantity=4.0, unit='tbsp'), Ingredient(name='large eggs', quantity=3.0, unit=''), Ingredient(name='apple cider vinegar', quantity=1.5, unit='tsp')], Instructions: ['Mix dry ingredients', 'Add wet ingredients', 'Beat for 4 minutes', 'Scoop into pan', 'Let rise', 'Bake at 350°F for 45-55 minutes'], Tags: ['gluten-free', 'bread'], Sources: ['Gluten Free on a Shoestring']
+2024-06-03 21:41:10,422 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.
+2024-06-03 21:41:10,428 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,429 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: gluten-free flour blend, Quantity: 2.5, Unit: cups
+2024-06-03 21:41:10,436 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,437 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: xanthan gum, Quantity: 1.0, Unit: tsp
+2024-06-03 21:41:10,446 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,447 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: instant yeast, Quantity: 2.25, Unit: tsp
+2024-06-03 21:41:10,456 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,458 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: sugar, Quantity: 2.5, Unit: tbsp
+2024-06-03 21:41:10,468 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,469 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: salt, Quantity: 1.25, Unit: tsp
+2024-06-03 21:41:10,480 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,481 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: milk, Quantity: 1.25, Unit: cups
+2024-06-03 21:41:10,489 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,489 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: unsalted butter, Quantity: 4.0, Unit: tbsp
+2024-06-03 21:41:10,500 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,500 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: large eggs, Quantity: 3.0, Unit: 
+2024-06-03 21:41:10,511 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Generating JSON representation of Ingredient object.
+2024-06-03 21:41:10,511 - cauldron - DEBUG  - agent_tools.py - generate_ingredient - Name: apple cider vinegar, Quantity: 1.5, Unit: tsp
+2024-06-03 21:41:21,139 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-03 21:41:21,140 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-03 21:41:21,142 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-03 21:41:21,142 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-03 21:41:23,323 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-03 21:41:23,329 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-03 21:41:23,329 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-03 21:41:23,330 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-03 21:41:23,331 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Recipe object from dictionary.
+2024-06-03 21:41:23,332 - cauldron - DEBUG  - recipe_graph.py - give_id - Updating ID for Recipe object.

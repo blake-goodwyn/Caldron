@@ -1,0 +1,24 @@
+2024-06-03 12:12:22,535 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 12:12:25,407 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 12:12:25,408 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 12:12:25,410 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 12:12:25,411 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 12:12:25,412 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 12:12:25,418 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 12:12:25,419 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 12:12:25,421 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 12:12:25,422 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 12:12:25,424 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 12:12:25,425 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 12:12:26,934 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 12:12:26,935 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 12:12:26,939 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 12:12:26,940 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 12:12:26,952 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 12:12:26,954 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 12:12:26,961 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 12:12:26,962 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 12:12:47,297 - cauldron - INFO   - langchain_util.py - agent_node - Agent ConductorAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'user', 'next': 'ConductorAgent'}
+2024-06-03 12:12:48,004 - cauldron - INFO   - langchain_util.py - agent_node - Agent RecipeResearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'ConductorAgent', 'next': 'RecipeResearchAgent'}
+2024-06-03 12:12:48,742 - cauldron - INFO   - langchain_util.py - agent_node - Agent ConductorAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent'}
+2024-06-03 12:12:56,210 - cauldron - INFO   - langchain_util.py - agent_node - Agent SearchAgent invoked with state: {'messages': [HumanMessage(content="Let's make chocolate chip cookies")], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent'}

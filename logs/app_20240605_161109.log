@@ -1,0 +1,25 @@
+2024-06-05 16:11:15,298 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-05 16:11:16,917 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-05 16:11:16,918 - cauldron - DEBUG  - recipe_graph.py - fresh_graph - Filename: recipe_graph.pkl
+2024-06-05 16:11:16,918 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-05 16:11:16,919 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-05 16:11:16,920 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-05 16:11:16,926 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-05 16:11:16,927 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-05 16:11:16,928 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-05 16:11:17,767 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-05 16:11:17,767 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CauldronPostman
+2024-06-05 16:11:17,768 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['ResearchPostman', 'ModSquad', 'Spinnaret', 'FINISH']
+2024-06-05 16:11:17,769 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CauldronPostman created.
+2024-06-05 16:11:17,770 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ResearchPostman
+2024-06-05 16:11:17,771 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'CauldronPostman']
+2024-06-05 16:11:17,771 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ResearchPostman created.
+2024-06-05 16:11:17,772 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-05 16:11:17,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-05 16:11:17,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-05 16:11:17,782 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-05 16:11:17,783 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-05 16:11:17,791 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-05 16:11:17,791 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-05 16:11:17,796 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-05 16:11:17,796 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.

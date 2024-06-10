@@ -1,0 +1,28 @@
+2024-06-03 20:14:22,735 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-03 20:14:23,637 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-03 20:14:23,638 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-03 20:14:23,639 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-03 20:14:23,640 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-03 20:14:23,640 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 20:14:23,641 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-03 20:14:23,641 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-03 20:14:23,643 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-03 20:14:23,644 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-03 20:14:23,644 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-03 20:14:23,645 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-03 20:14:24,112 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-03 20:14:24,112 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: RecipeScraperAgent
+2024-06-03 20:14:24,114 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeScraperAgent created.
+2024-06-03 20:14:24,115 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-03 20:14:24,119 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-03 20:14:24,119 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-03 20:14:24,121 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-03 20:14:24,122 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-03 20:14:28,421 - cauldron - INFO   - langchain_util.py - agent_node - Agent ConductorAgent invoked with state: {'messages': [HumanMessage(content='add cinnamon to the recipe')], 'sender': 'user', 'next': 'ConductorAgent'}
+2024-06-03 20:14:29,425 - cauldron - DEBUG  - agent_tools.py - generate_mod - Generating JSON representation of RecipeModification object.
+2024-06-03 20:14:29,425 - cauldron - DEBUG  - recipe_graph.py - to_dict - Creating dictionary representation of RecipeModification object.
+2024-06-03 20:14:30,169 - cauldron - DEBUG  - agent_tools.py - push_mod - Pushing modification from mods list.
+2024-06-03 20:14:30,169 - cauldron - INFO   - recipe_graph.py - load_mods_list_from_file - Loading mods list from file.
+2024-06-03 20:14:30,170 - cauldron - DEBUG  - recipe_graph.py - push_mod - Pushing modification from mods list.
+2024-06-03 20:14:30,171 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-03 20:14:30,866 - cauldron - INFO   - langchain_util.py - agent_node - Agent ModificationsAgent invoked with state: {'messages': [HumanMessage(content='add cinnamon to the recipe')], 'sender': 'ConductorAgent', 'next': 'ModificationsAgent'}

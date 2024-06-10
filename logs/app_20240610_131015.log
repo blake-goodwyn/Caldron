@@ -1,0 +1,46 @@
+2024-06-10 13:10:22,518 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 13:10:24,182 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 13:10:24,183 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 13:10:24,183 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 13:10:24,185 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 13:10:24,185 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 13:10:24,186 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 13:10:24,187 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 13:10:24,188 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 13:10:24,189 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 13:10:24,190 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 13:10:24,190 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-10 13:10:25,091 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-10 13:10:25,092 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-10 13:10:25,094 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-10 13:10:25,095 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-10 13:10:25,096 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-10 13:10:25,097 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-10 13:10:25,098 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-10 13:10:25,099 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-10 13:10:25,102 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-10 13:10:25,103 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-10 13:10:25,111 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-10 13:10:25,111 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-10 13:10:25,118 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-10 13:10:25,119 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-10 13:10:25,125 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-10 13:10:25,142 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-10 13:10:25,165 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-10 13:10:25,166 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 13:10:42,409 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 13:10:42,410 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 13:10:42,416 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 13:10:42,417 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 13:10:52,992 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-10 13:10:52,993 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Egg Tarts, Ingredients: [Ingredient(name='water', quantity=1.33, unit='cups'), Ingredient(name='sugar', quantity=0.5, unit='cup'), Ingredient(name='milk', quantity=0.25, unit='cup'), Ingredient(name='egg', quantity=2.0, unit='large'), Ingredient(name='vanilla extract', quantity=0.75, unit='teaspoon'), Ingredient(name='unsalted butter', quantity=5.0, unit='tablespoons'), Ingredient(name='all-purpose flour', quantity=1.75, unit='cups')], Instructions: ['Gather the ingredients. Preheat the oven to 375 F.', 'In a small saucepan over low heat, combine the water and sugar until completely dissolved. Remove from the heat and set aside to cool.', 'In a medium bowl, whisk together the milk and egg.', 'Pour in the cooled sugar syrup and vanilla extract and whisk to combine. Set aside while preparing the crust.', 'In a mixing bowl, cream the butter and sugar until fluffy.', 'Add the egg and vanilla extract and mix well.', 'Mix in the flour until combined.', 'Knead the dough until it softens and becomes pliable.', 'Using small amounts of the dough at a time, press into the bottom and up the sides of small tart pans to form even tart shells. Trim away any excess dough that hangs over the sides.', 'Fill the tart shells with the egg custard. Bake in the preheated oven for 13 minutes until lightly browned. Reduce the heat to 350 F and continue to bake for 15 minutes more or until the custard is set.', 'Allow to cool slightly before removing from the tart pans. Enjoy!'], Tags: ['dessert'], Sources: None
+2024-06-10 13:10:52,998 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 13:10:53,006 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-10 13:10:53,007 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 13:10:58,921 - cauldron - DEBUG  - agent_tools.py - get_recipe_from_pot - Getting recipe from pot.
+2024-06-10 13:10:58,922 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 13:10:58,930 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from pot.

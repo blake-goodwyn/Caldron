@@ -1,0 +1,15 @@
+2024-06-02 14:14:36,130 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-06-02 14:14:37,024 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-06-02 14:14:37,025 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-06-02 14:14:37,026 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-06-02 14:14:37,026 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 14:14:37,027 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-06-02 14:14:37,027 - cauldron - INFO   - agent_defs.py - Creating SQL agent: SQLAgent
+2024-06-02 14:14:38,315 - cauldron - INFO   - agent_defs.py - Agent SQLAgent created.
+2024-06-02 14:14:38,316 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-06-02 14:14:38,320 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-06-02 14:14:38,321 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-06-02 14:14:38,323 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-06-02 14:14:38,323 - cauldron - INFO   - agent_defs.py - All agents created.
+2024-06-02 14:14:42,432 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SQLAgent', 'output': 'What specific information are you looking for in the gluten-free bread recipe with xanthan gum?'}
+2024-06-02 14:14:50,096 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.'), AIMessage(content='What specific information are you looking for in the gluten-free bread recipe with xanthan gum?', name='SQLAgent')], 'sender': 'RecipeResearchAgent', 'next': 'SQLAgent', 'output': 'I found some gluten-free bread recipes with xanthan gum in the database. Here are a few examples:\n1. Recipe: [Homemade Gluten-Free Bread {bread machine, dairy-free option}](https://www.mamaknowsglutenfree.com/homemade-gluten-free-bread/)\n2. Recipe: [GLUTEN FREE & NO REFINED SUGAR BANANA BLUEBERRY BREAD](https://kellykrugerbrooks.com/recipe/gluten-free-and-no-refined-sugar-blueberry-banana-bread-recipe/)\n3. Recipe: [Easy Gluten Free Naan Bread (No-Yeast, No-Yogurt, Dairy-Free)](https://www.dishbydish.net/easy-gluten-free-naan-bread-no-yeast-dairy-free/)\n4. Recipe: [Gluten-Free Sandwich Bread](https://www.kingarthurbaking.com/recipes/gluten-free-sandwich-bread-recipe)\n5. Recipe: [The Best Gluten-Free Zucchini Bread Around](https://www.agirldefloured.com/gluten-free-zucchini-bread/)\n6. Recipe: [The Best Soft Gluten Free Sandwich Bread](https://beautyinthecrumbs.com/the-best-gluten-free-bread/)\n\nIf you need more details or a specific recipe, please let me know!'}

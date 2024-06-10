@@ -1,0 +1,21 @@
+2024-06-02 15:00:59,337 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-06-02 15:01:00,285 - cauldron - INFO   - recipe_graph.py - Creating a new recipe graph.
+2024-06-02 15:01:00,285 - cauldron - INFO   - recipe_graph.py - Initializing RecipeGraph object.
+2024-06-02 15:01:00,286 - cauldron - INFO   - recipe_graph.py - Creating a new mods list.
+2024-06-02 15:01:00,287 - cauldron - INFO   - recipe_graph.py - Initializing ModsList object.
+2024-06-02 15:01:00,287 - cauldron - INFO   - recipe_graph.py - Saving mods list to file.
+2024-06-02 15:01:00,288 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-06-02 15:01:00,288 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-06-02 15:01:00,289 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-06-02 15:01:00,290 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 15:01:00,290 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-06-02 15:01:00,291 - cauldron - INFO   - agent_defs.py - Creating agent: SearchAgent
+2024-06-02 15:01:00,699 - cauldron - INFO   - agent_defs.py - Agent SearchAgent created.
+2024-06-02 15:01:00,700 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-06-02 15:01:00,703 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-06-02 15:01:00,704 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-06-02 15:01:00,706 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-06-02 15:01:00,707 - cauldron - INFO   - agent_defs.py - All agents created.
+2024-06-02 15:01:17,614 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent', 'output': 'Based on the search results, I found these recipes that use xanthan gum in gluten-free bread:\n\n1. [The Gluten Free Blogger](https://www.theglutenfreeblogger.com/gluten-free-bread-recipe/) - This recipe requires gluten-free bread flour, xanthan gum, and salt, among other ingredients.\n\n2. [What the Fork Food Blog](https://www.whattheforkfoodblog.com/2020/05/17/gluten-free-sourdough-bread-recipe/) - This is a gluten-free sourdough bread recipe that may use xanthan gum.\n\n3. [Gluten Free on a Shoestring](https://glutenfreeonashoestring.com/gluten-free-bread-recipe/) - This recipe provides a moist and tender white sandwich bread with a chewy crumb and a crisp, brown crust.\n\nPlease refer to the individual recipes for the specific amounts and steps.'}
+2024-06-02 15:01:50,586 - cauldron - DEBUG  - recipe_graph.py - Generating JSON representation of Recipe object.
+2024-06-02 15:01:50,587 - cauldron - ERROR  - recipe_graph.py - Invalid ingredient JSON: Gluten-free bread flour - 500g. Error: Expecting value: line 1 column 1 (char 0)

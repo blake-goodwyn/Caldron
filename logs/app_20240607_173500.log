@@ -1,0 +1,45 @@
+2024-06-07 17:35:04,477 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-07 17:35:05,695 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-07 17:35:05,696 - cauldron - DEBUG  - recipe_graph.py - fresh_graph - Filename: recipe_graph.pkl
+2024-06-07 17:35:05,696 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-07 17:35:05,697 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-07 17:35:05,698 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-07 17:35:05,703 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-07 17:35:05,704 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-07 17:35:05,704 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-07 17:35:06,368 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-07 17:35:06,369 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Cauldron
+Postman
+2024-06-07 17:35:06,370 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'FINISH']
+2024-06-07 17:35:06,371 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Cauldron
+Postman created.
+2024-06-07 17:35:06,371 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-07 17:35:06,372 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Cauldron\nPostman']
+2024-06-07 17:35:06,373 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-07 17:35:06,374 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-07 17:35:06,376 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-07 17:35:06,376 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-07 17:35:06,381 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-07 17:35:06,382 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-07 17:35:06,386 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-07 17:35:06,387 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-07 17:35:06,391 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-07 17:35:06,391 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-07 17:35:50,987 - cauldron - DEBUG  - agent_tools.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-07 17:35:50,988 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-07 17:35:50,990 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-07 17:35:50,991 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-07 17:35:50,991 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-07 17:35:58,427 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-07 17:35:58,428 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Chocolate Chip Cookies, Ingredients: [Ingredient(name='all-purpose flour', quantity=2.25, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='teaspoon'), Ingredient(name='cornstarch', quantity=1.5, unit='teaspoons'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='unsalted butter', quantity=0.75, unit='cup'), Ingredient(name='light or dark brown sugar', quantity=0.75, unit='cup'), Ingredient(name='granulated sugar', quantity=0.5, unit='cup'), Ingredient(name='large egg', quantity=1.0, unit=''), Ingredient(name='egg yolk', quantity=1.0, unit=''), Ingredient(name='pure vanilla extract', quantity=2.0, unit='teaspoons'), Ingredient(name='semi-sweet chocolate chips', quantity=1.25, unit='cups')], Instructions: ['1. In a bowl, whisk together the flour, baking soda, cornstarch, and salt.', '2. In a separate bowl, melt the butter. Add the brown sugar and granulated sugar. Mix until smooth.', '3. Add the egg, egg yolk, and vanilla extract to the butter mixture. Mix well.', '4. Gradually add the dry ingredients to the wet ingredients, mixing until combined.', '5. Fold in the chocolate chips.', '6. Chill the dough for 2-3 hours.', '7. Preheat the oven to 325°F (165°C).', '8. Scoop the dough onto a baking sheet and bake for 12-13 minutes, or until the edges are set and the center is still soft.', '9. Allow the cookies to cool on the baking sheet for 10 minutes before transferring to a wire rack to cool completely.'], Tags: ['chocolate chip cookies'], Sources: None
+2024-06-07 17:36:08,276 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-07 17:36:08,276 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-07 17:36:08,278 - cauldron - DEBUG  - recipe_graph.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-07 17:36:08,278 - cauldron - INFO   - recipe_graph.py - save_graph_to_file - Saving recipe graph to file.
+2024-06-07 17:36:14,209 - cauldron - INFO   - recipe_graph.py - load_graph_from_file - Loading recipe graph from file.
+2024-06-07 17:36:14,289 - cauldron - DEBUG  - recipe_graph.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-07 17:36:14,290 - cauldron - DEBUG  - recipe_graph.py - get_recipe - Getting recipe from recipe graph.
+2024-06-07 17:36:14,291 - cauldron - DEBUG  - recipe_graph.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-07 17:36:14,292 - cauldron - DEBUG  - recipe_graph.py - from_json - Creating Recipe object from JSON string.

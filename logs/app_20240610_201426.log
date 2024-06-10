@@ -1,0 +1,30 @@
+2024-06-10 20:14:31,089 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 20:14:32,316 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 20:14:32,316 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 20:14:32,317 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 20:14:32,318 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 20:14:32,318 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 20:14:32,319 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 20:14:32,320 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 20:14:32,320 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 20:14:32,322 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 20:14:32,323 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 20:14:32,323 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: UserRep
+2024-06-10 20:14:32,974 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent UserRep created.
+2024-06-10 20:14:32,974 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron Postman
+2024-06-10 20:14:32,975 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research Postman', 'Mod Manager', 'Dev Tracker', 'UserRep', 'Q & A', 'FINISH']
+2024-06-10 20:14:32,976 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron Postman created.
+2024-06-10 20:14:32,976 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research Postman
+2024-06-10 20:14:32,977 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Web Search', 'Web Scraper', 'Caldron Postman']
+2024-06-10 20:14:32,978 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research Postman created.
+2024-06-10 20:14:32,978 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web Search
+2024-06-10 20:14:32,981 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web Search created.
+2024-06-10 20:14:32,981 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Web Scraper
+2024-06-10 20:14:32,984 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Web Scraper created.
+2024-06-10 20:14:32,985 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Mod Manager
+2024-06-10 20:14:32,988 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Mod Manager created.
+2024-06-10 20:14:32,989 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Q & A
+2024-06-10 20:14:32,991 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Q & A created.
+2024-06-10 20:14:32,991 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Dev Tracker
+2024-06-10 20:14:32,995 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Dev Tracker created.
+2024-06-10 20:14:32,995 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.

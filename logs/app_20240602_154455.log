@@ -1,0 +1,21 @@
+2024-06-02 15:44:58,253 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-02 15:44:59,153 - cauldron - INFO   - recipe_graph.py - fresh_graph - Creating a new recipe graph.
+2024-06-02 15:44:59,154 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing RecipeGraph object.
+2024-06-02 15:44:59,155 - cauldron - INFO   - recipe_graph.py - fresh_mods_list - Creating a new mods list.
+2024-06-02 15:44:59,155 - cauldron - INFO   - recipe_graph.py - __init__ - Initializing ModsList object.
+2024-06-02 15:44:59,156 - cauldron - INFO   - recipe_graph.py - save_mods_list_to_file - Saving mods list to file.
+2024-06-02 15:44:59,157 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-02 15:44:59,157 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ConductorAgent
+2024-06-02 15:44:59,158 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ConductorAgent created.
+2024-06-02 15:44:59,158 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 15:44:59,159 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent RecipeResearchAgent created.
+2024-06-02 15:44:59,160 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: SearchAgent
+2024-06-02 15:44:59,536 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SearchAgent created.
+2024-06-02 15:44:59,537 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModificationsAgent
+2024-06-02 15:44:59,540 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModificationsAgent created.
+2024-06-02 15:44:59,541 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: DevelopmentTrackerAgent
+2024-06-02 15:44:59,543 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent DevelopmentTrackerAgent created.
+2024-06-02 15:44:59,543 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-02 15:45:05,456 - cauldron - INFO   - langchain_util.py - agent_node - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent', 'output': 'I found a gluten-free bread recipe that includes xanthan gum. You can find the recipe at the following link: [Gluten-Free Bread Recipe with Xanthan Gum](https://www.theglutenfreeblogger.com/gluten-free-bread-recipe/).'}
+2024-06-02 15:45:13,373 - cauldron - DEBUG  - recipe_graph.py - generate_recipe - Generating JSON representation of Recipe object.
+2024-06-02 15:45:13,374 - cauldron - DEBUG  - recipe_graph.py - from_dict - Creating Ingredient object from dictionary.

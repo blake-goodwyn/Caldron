@@ -1,0 +1,21 @@
+2024-06-02 15:17:25,195 - cauldron - INFO   - cauldron_app.py - Initializing Cauldron Application
+2024-06-02 15:17:26,096 - cauldron - INFO   - recipe_graph.py - Creating a new recipe graph.
+2024-06-02 15:17:26,097 - cauldron - INFO   - recipe_graph.py - Initializing RecipeGraph object.
+2024-06-02 15:17:26,098 - cauldron - INFO   - recipe_graph.py - Creating a new mods list.
+2024-06-02 15:17:26,098 - cauldron - INFO   - recipe_graph.py - Initializing ModsList object.
+2024-06-02 15:17:26,099 - cauldron - INFO   - recipe_graph.py - Saving mods list to file.
+2024-06-02 15:17:26,099 - cauldron - INFO   - agent_defs.py - Creating all agents.
+2024-06-02 15:17:26,100 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: ConductorAgent
+2024-06-02 15:17:26,101 - cauldron - INFO   - agent_defs.py - Agent ConductorAgent created.
+2024-06-02 15:17:26,101 - cauldron - INFO   - agent_defs.py - Creating supervisor agent: RecipeResearchAgent
+2024-06-02 15:17:26,102 - cauldron - INFO   - agent_defs.py - Agent RecipeResearchAgent created.
+2024-06-02 15:17:26,103 - cauldron - INFO   - agent_defs.py - Creating agent: SearchAgent
+2024-06-02 15:17:26,482 - cauldron - INFO   - agent_defs.py - Agent SearchAgent created.
+2024-06-02 15:17:26,482 - cauldron - INFO   - agent_defs.py - Creating agent: ModificationsAgent
+2024-06-02 15:17:26,486 - cauldron - INFO   - agent_defs.py - Agent ModificationsAgent created.
+2024-06-02 15:17:26,487 - cauldron - INFO   - agent_defs.py - Creating agent: DevelopmentTrackerAgent
+2024-06-02 15:17:26,489 - cauldron - INFO   - agent_defs.py - Agent DevelopmentTrackerAgent created.
+2024-06-02 15:17:26,489 - cauldron - INFO   - agent_defs.py - All agents created.
+2024-06-02 15:17:32,237 - cauldron - INFO   - langchain_util.py - {'messages': [HumanMessage(content='I want to make gluten-free bread with xanthan gum.')], 'sender': 'RecipeResearchAgent', 'next': 'SearchAgent', 'output': 'I found a gluten-free bread recipe that includes xanthan gum. You can find the recipe on the website "The Gluten Free Blogger." Here is the link to the recipe: [Gluten-Free Bread Recipe with Xanthan Gum](https://www.theglutenfreeblogger.com/gluten-free-bread-recipe/). Would you like me to find more options or details from this recipe?'}
+2024-06-02 15:17:36,557 - cauldron - DEBUG  - recipe_graph.py - Generating JSON representation of Recipe object.
+2024-06-02 15:17:36,558 - cauldron - ERROR  - recipe_graph.py - Invalid ingredient JSON: Gluten-free flour. Error: Expecting value: line 1 column 1 (char 0)

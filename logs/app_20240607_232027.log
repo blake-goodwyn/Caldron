@@ -1,0 +1,12 @@
+2024-06-07 23:20:32,421 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Cauldron Application
+2024-06-07 23:20:34,003 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-07 23:20:34,003 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-07 23:20:34,003 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-07 23:20:34,004 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-07 23:20:34,005 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-07 23:20:34,009 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-07 23:20:34,010 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-07 23:20:34,011 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-07 23:20:34,011 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-07 23:20:34,013 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-07 23:20:34,013 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: User
