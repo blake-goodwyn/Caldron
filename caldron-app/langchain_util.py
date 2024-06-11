@@ -1,7 +1,7 @@
 # langchain_util.py
 
 import operator
-from typing import Annotated, Sequence, TypedDict
+from typing import Annotated, Sequence, TypedDict, Union, List
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, SystemMessage
@@ -16,6 +16,7 @@ from langgraph.graph import StateGraph
 from dotenv import load_dotenv
 import os
 from logging_util import logger
+from class_defs import Pot, Recipe, load_pot_from_file, load_graph_from_file
 
 load_dotenv()
 LANGCHAIN_TRACING_V2=True
@@ -33,9 +34,9 @@ def createAgent(
         [
             ("system","""
              You are an agent within a multi-agent architecture.\n
-             "Keep all language concise but detailed as necessary.\n
-             "You have the following role: \n{system_message}\n\n
-             "You have access to the following tools: {tool_names}.\n\n 
+             Keep all language concise but detailed as necessary.\n
+             You have the following role: \n{system_message}\n\n
+             You have access to the following tools: {tool_names}.\n\n 
              """),
             MessagesPlaceholder(variable_name="messages"),
             MessagesPlaceholder(variable_name="agent_scratchpad")
@@ -129,12 +130,14 @@ def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> s
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    #logger.info(f"Agent {name} invoked with state: {state}")
+    recipe_graph = load_graph_from_file()
+    
     if "output" in result.keys(): # If the agent has an output
         result = AIMessage(content=result["output"], name=name)
         return {
             "messages": [result],
             "sender": name,
+            "recipe": recipe_graph.get_foundational_recipe(),
         }
     else: # If it routed to another agent
         return {
@@ -146,6 +149,7 @@ class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]
     sender: str
     next: str
+    recipe: Recipe
 
 def workflow():
     return StateGraph(AgentState)

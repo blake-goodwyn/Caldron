@@ -1,0 +1,62 @@
+2024-06-10 22:13:51,265 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-10 22:13:52,662 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-10 22:13:52,662 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-10 22:13:52,663 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 22:13:52,664 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-10 22:13:52,664 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-10 22:13:52,669 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-10 22:13:52,671 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-10 22:13:52,671 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-10 22:13:52,672 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-10 22:13:52,673 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-10 22:13:52,673 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-10 22:13:53,417 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-10 22:13:53,418 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-10 22:13:53,419 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-10 22:13:53,420 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-10 22:13:53,420 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-10 22:13:53,421 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-10 22:13:53,422 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-10 22:13:53,422 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-10 22:13:53,425 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-10 22:13:53,425 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-10 22:13:53,429 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-10 22:13:53,430 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-10 22:13:53,435 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-10 22:13:53,435 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-10 22:13:53,437 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-10 22:13:53,438 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-10 22:13:53,442 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-10 22:13:53,443 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-10 22:14:06,687 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:07,712 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:14,589 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 22:14:14,592 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:14,594 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 22:14:14,595 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 22:14:14,677 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 22:14:14,680 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:14,814 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 22:14:14,815 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 22:14:14,844 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 22:14:14,846 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:14,870 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 22:14:14,871 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 22:14:14,898 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 22:14:14,899 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:14,914 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 22:14:14,916 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 22:14:14,937 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 22:14:14,938 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:14,959 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-10 22:14:14,960 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-10 22:14:15,931 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:15,942 - cauldron - DEBUG  - class_defs.py - get_all_recipes - Getting all recipes from pot.
+2024-06-10 22:14:16,663 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:20,837 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-10 22:14:20,838 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-10 22:14:20,839 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.

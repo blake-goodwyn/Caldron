@@ -1,0 +1,61 @@
+2024-06-11 19:24:48,521 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-11 19:24:49,598 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-11 19:24:49,598 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-11 19:24:49,599 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-11 19:24:49,600 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-11 19:24:49,600 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-11 19:24:49,605 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-11 19:24:49,606 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-11 19:24:49,607 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-11 19:24:49,607 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-11 19:24:49,608 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-11 19:24:49,608 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-11 19:24:50,201 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-11 19:24:50,201 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: CaldronPostman
+2024-06-11 19:24:50,202 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['ResearchPostman', 'ModSquad', 'Spinnaret', 'KnowItAll', 'FINISH']
+2024-06-11 19:24:50,203 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent CaldronPostman created.
+2024-06-11 19:24:50,203 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: ResearchPostman
+2024-06-11 19:24:50,204 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'CaldronPostman']
+2024-06-11 19:24:50,204 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ResearchPostman created.
+2024-06-11 19:24:50,205 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Validator
+2024-06-11 19:24:50,206 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-11 19:24:50,206 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: SaySo
+2024-06-11 19:24:50,207 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Frontman', 'CaldronPostman']
+2024-06-11 19:24:50,207 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent SaySo created.
+2024-06-11 19:24:50,208 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-11 19:24:50,210 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-11 19:24:50,210 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-11 19:24:50,214 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-11 19:24:50,214 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-11 19:24:50,219 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-11 19:24:50,219 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-11 19:24:50,221 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-11 19:24:50,222 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-11 19:24:50,227 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-11 19:24:50,227 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-11 19:24:53,242 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-11 19:24:54,374 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-11 19:25:01,543 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-11 19:25:01,544 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-11 19:25:01,545 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-11 19:25:01,546 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-11 19:25:01,554 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-11 19:25:01,554 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-11 19:25:01,556 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-11 19:25:01,556 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-11 19:25:01,565 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-11 19:25:01,566 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-11 19:25:01,576 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-11 19:25:01,578 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-11 19:25:01,587 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-11 19:25:01,588 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-11 19:25:01,597 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-11 19:25:01,597 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-11 19:25:01,606 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-11 19:25:01,607 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-11 19:25:01,616 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-11 19:25:01,617 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-11 19:25:02,659 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-11 19:25:02,661 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-11 19:25:02,662 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-11 19:25:03,792 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.

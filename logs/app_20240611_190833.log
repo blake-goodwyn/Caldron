@@ -1,0 +1,3 @@
+2024-06-11 19:08:33,421 - cauldron - DEBUG  - class_defs.py - from_dict - Creating Ingredient object from dictionary.
+2024-06-11 19:08:33,423 - cauldron - DEBUG  - class_defs.py - from_dict - Creating Recipe object from dictionary.
+2024-06-11 19:08:33,424 - cauldron - ERROR  - class_defs.py - from_dict - Error creating Recipe object: __main__.Ingredient() argument after ** must be a mapping, not Ingredient

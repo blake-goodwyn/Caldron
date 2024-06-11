@@ -45,7 +45,7 @@ class CaldronApp():
             self.display_graph.add_edge(*edge)
         conditional_edges = create_conditional_edges(self.flow_graph)
 
-        self.flow_graph.set_entry_point("Caldron\nPostman")
+        self.flow_graph.set_entry_point("CaldronPostman")
         self.chain = self.flow_graph.compile()
 
         labeldict = {"__end__": "USER"}
@@ -80,7 +80,7 @@ class CaldronApp():
                     {
                         "messages": [msq_queue.pop()],
                         'sender': 'User',
-                        'next': 'Caldron\nPostman'
+                        'next': 'CaldronPostman'
                     },
                     {"recursion_limit": 50}
                 ):
@@ -120,5 +120,5 @@ class CaldronApp():
         ## Start Threads
         self.visualize_thread = threading.Thread(target=visualize_graph(self))
         self.interface_thread = threading.Thread(target=simple_interaction_loop(self))
-        self.visualize_thread.start()
+        #self.visualize_thread.start()
         self.interface_thread.start()

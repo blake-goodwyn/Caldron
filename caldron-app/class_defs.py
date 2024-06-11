@@ -17,22 +17,35 @@ class Ingredient(BaseModel):
     """Model for an ingredient in a recipe."""
     name: str = Field(description="Name of the ingredient")
     quantity: float = Field(description="Quantity of the ingredient")
-    unit: Optional[str] = Field(description="Unit of measurement for the ingredient")
+    unit: str = Field(description="Unit of measurement for the ingredient")
+    notes: Optional[str] = Field(default=None,description="Notes about the ingredient")
 
     class Config:
         json_loads = ujson.loads
 
     def __str__(self) -> str:
-        return self.json()
+        return str(self.dict())
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating dictionary representation of Ingredient object.")
-        return self.json()
+        return self.dict()
 
     @classmethod
-    def from_json(cls, data: Dict[str, Any]) -> 'Ingredient':
+    def from_json(data) -> 'Ingredient':
         logger.debug("Creating Ingredient object from JSON string.")
-        return Ingredient.parse_raw(str(data))
+        try:
+            return Ingredient.parse_raw(str(data))
+        except Exception as e:
+            logger.error(f"Error creating Ingredient object: {e}")
+            return None
+    
+    def from_dict(cls, data) -> 'Ingredient':
+        logger.debug("Creating Ingredient object from dictionary.")
+        try:
+            return cls(**data)
+        except Exception as e:
+            logger.error(f"Error creating Ingredient object: {e}")
+            return None
 
 class RecipeModification(BaseModel):
     """Model for a modification to a recipe."""
@@ -52,16 +65,20 @@ class RecipeModification(BaseModel):
         json_loads = ujson.loads
 
     def __str__(self) -> str:
-        return self.json()
+        return str(self.dict())
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating JSON representation of RecipeModification object.")
-        return self.json()
+        return self.dict()
 
     @classmethod
-    def from_json(cls, data: Dict[str, Any]) -> 'RecipeModification':
+    def from_dict(cls, data) -> 'RecipeModification':
         logger.debug("Creating RecipeModification object from JSON string.")
-        return RecipeModification.parse_raw(str(data))
+        try:
+            return cls(**data)
+        except Exception as e:
+            logger.error(f"Error creating RecipeModification object: {e}")
+            return None
 
 class Recipe(BaseModel):
     """Model for a recipe."""
@@ -78,11 +95,11 @@ class Recipe(BaseModel):
         json_loads = ujson.loads
 
     def __str__(self) -> str:
-        return self.json()
+        return str(self.dict())
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         logger.debug("Creating JSON representation of Recipe object.")
-        return self.json()
+        return self.dict()
     
     def get_ID(self) -> str:
         return self._id
@@ -94,15 +111,18 @@ class Recipe(BaseModel):
         return f"{self.name} ({self._id})"
     
     @classmethod
-    def from_json(cls, data: Dict[str, Any]) -> 'Recipe':
-        logger.debug("Creating Recipe object from JSON string.")
-        return Recipe.parse_raw(str(data))
+    def from_dict(cls, data: dict) -> 'Recipe':
+        try:
+            return cls(**data)
+        except Exception as e:
+            logger.error(f"Error creating Recipe object: {e}")
+            return None
 
     def apply_modification(self, modification: RecipeModification) -> bool:
         logger.debug("Applying modification to Recipe object.")
         if modification.add_ingredient:
             logger.debug("Adding ingredient to Recipe object.")
-            self.ingredients.append(Ingredient.from_json(modification.add_ingredient))
+            self.ingredients.append(Ingredient.from_dict(modification.add_ingredient))
             return True
         if modification.remove_ingredient:
             logger.debug("Removing ingredient from Recipe object.")
@@ -154,10 +174,10 @@ class RecipeGraph:
     def get_recipe(self, node_id: Optional[str] = None) -> Optional[Recipe]:
         logger.debug("Getting recipe from recipe graph.")
         if node_id is None:
-            node_id = self.foundational_recipe_node
+            return self.foundational_recipe_node
         if self.get_graph_size() == 0:
             return None
-        return Recipe.from_json(self.graph.nodes[node_id].get('recipe', None))
+        return self.graph.nodes[node_id].get('recipe', None)
     
     def get_node_id(self, node_id: Optional[str] = None) -> Optional[str]:
         logger.debug("Getting node ID from recipe graph.")
@@ -201,7 +221,7 @@ class ModsList(BaseModel):
         logger.info("Initializing ModsList object.")
 
     def __str__(self) -> str:
-        return self.json()
+        return self.dict()
         
     def suggest_mod(self, mod: RecipeModification) -> None:
         logger.debug("Suggesting modification to mods list.")
@@ -252,7 +272,7 @@ class Pot(BaseModel):
         logger.info("Initializing Pot object.")
 
     def __str__(self) -> str:
-        return self.json()
+        return self.dict()
     
     def add_recipe(self, recipe: Recipe) -> None:
         logger.debug("Adding recipe to pot.")
@@ -276,11 +296,12 @@ class Pot(BaseModel):
     def pop_recipe(self) -> Optional[Recipe]:
         logger.debug("Popping recipe from pot.")
         if self.recipes:
-            return self.recipes.pop()
+            return self.recipes.pop(0)
         return None
     
     def get_all_recipes(self) -> List[Recipe]:
         logger.debug("Getting all recipes from pot.")
+        out = [recipe.tiny() for recipe in self.recipes]
         return self.recipes
     
     def add_url(self, url: str) -> None:
@@ -366,3 +387,35 @@ def save_pot_to_file(pot: Pot, filename: str=default_pot_file) -> None:
 
 def load_pot_from_file(filename: str=default_pot_file) -> Pot:
     return load_from_file(Pot, filename)
+
+if __name__ == "__main__":
+
+    #Test Ingredient class construction validation
+    print("Testing Ingredient class construction validation:")
+    try:
+        ing = Ingredient(name="flour", quantity=2, unit="cups", notes="all-purpose")
+        print(ing)
+    except Exception as e:
+        print(e)
+
+    try:
+        ing = Ingredient.from_dict(data={"name":"flour", "quantity":2, "unit":"cups", "notes":"all-purpose"})
+        print(ing)
+    except Exception as e:
+        print(e)
+
+    #Test Recipe class construction validation
+    print("Testing Recipe class construction validation:")
+
+    try:
+        recipe = Recipe(name="pancakes", ingredients=[ing], instructions=["mix", "cook"], tags=["breakfast"], sources=["aunt"])
+        print(recipe)
+    except Exception as e:
+        print(e)
+
+    try:
+        d = {"name":"pancakes", "ingredients":[ing], "instructions":["mix", "cook"], "tags":["breakfast"], "sources":["aunt"]}
+        recipe = Recipe.from_dict(data=d)
+        print(recipe)
+    except Exception as e:
+        print(e)

@@ -11,7 +11,7 @@ LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 food_validator_conditional_edges = [
-    "TRUE": "Caldron\nPostman",
+    "TRUE": "CaldronPostman",
     "FALSE": "Frontman",
 ]
 
