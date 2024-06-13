@@ -1,0 +1,34 @@
+2024-06-13 11:03:30,811 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-13 11:03:31,949 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-13 11:03:31,949 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-13 11:03:31,950 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-13 11:03:31,951 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-13 11:03:31,951 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-13 11:03:31,956 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-13 11:03:31,957 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-13 11:03:31,957 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-13 11:03:31,957 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-13 11:03:31,958 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-13 11:03:31,959 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-13 11:03:32,563 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-13 11:03:32,563 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-13 11:03:32,564 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-13 11:03:32,564 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-13 11:03:32,565 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-13 11:03:32,566 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-13 11:03:32,566 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-13 11:03:32,567 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-13 11:03:32,569 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-13 11:03:32,569 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-13 11:03:32,572 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-13 11:03:32,573 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-13 11:03:32,576 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-13 11:03:32,577 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-13 11:03:32,578 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-13 11:03:32,579 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-13 11:03:32,582 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-13 11:03:32,583 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
