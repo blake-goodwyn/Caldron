@@ -1,0 +1,7 @@
+README.md
+setup.py
+ebakery.egg-info/PKG-INFO
+ebakery.egg-info/SOURCES.txt
+ebakery.egg-info/dependency_links.txt
+ebakery.egg-info/requires.txt
+ebakery.egg-info/top_level.txt

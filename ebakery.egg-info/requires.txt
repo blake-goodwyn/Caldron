@@ -1,0 +1,12 @@
+gensim
+matplotlib
+networkx
+nltk
+numpy
+pandas
+python-dotenv
+requests
+scikit-learn
+spacy
+sqlalchemy
+tqdm

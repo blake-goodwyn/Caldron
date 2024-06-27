@@ -1,0 +1,61 @@
+2024-06-25 21:24:24,036 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-25 21:24:24,233 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-25 21:24:24,234 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-25 21:24:24,234 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-25 21:24:24,235 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-25 21:24:24,235 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-25 21:24:24,235 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-25 21:24:24,236 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-25 21:24:24,237 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-25 21:24:24,237 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-25 21:24:24,237 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-25 21:24:24,238 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-25 21:24:24,544 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-25 21:24:24,545 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Caldron
+Postman
+2024-06-25 21:24:24,546 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Research\nPostman', 'ModSquad', 'Spinnaret', 'Frontman', 'KnowItAll', 'FINISH']
+2024-06-25 21:24:24,547 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Caldron
+Postman created.
+2024-06-25 21:24:24,547 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Research
+Postman
+2024-06-25 21:24:24,548 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'Sleuth', 'Caldron\nPostman']
+2024-06-25 21:24:24,548 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Research
+Postman created.
+2024-06-25 21:24:24,548 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-25 21:24:24,553 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-25 21:24:24,553 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-25 21:24:24,561 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-25 21:24:24,561 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: ModSquad
+2024-06-25 21:24:24,571 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent ModSquad created.
+2024-06-25 21:24:24,571 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: KnowItAll
+2024-06-25 21:24:24,575 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent KnowItAll created.
+2024-06-25 21:24:24,575 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-25 21:24:24,585 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-25 21:24:24,586 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-25 21:24:49,673 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-25 21:24:49,673 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-25 21:24:49,674 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-25 21:24:49,674 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-25 21:24:51,212 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-25 21:24:51,213 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-25 21:24:51,213 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-25 21:24:51,213 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-25 21:24:56,792 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-25 21:24:56,792 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-25 21:24:56,792 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-25 21:24:56,793 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-25 21:24:58,352 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://pasta.com/truffle-ravioli-recipes/.
+2024-06-25 21:25:03,817 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-25 21:25:03,818 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Truffle Ravioli, Ingredients: [Ingredient(name='Truffle', quantity=1.0, unit=None), Ingredient(name='Ravioli pasta sheets', quantity=1.0, unit=None), Ingredient(name='Butter', quantity=2.0, unit='tablespoons'), Ingredient(name='Garlic', quantity=2.0, unit='cloves'), Ingredient(name='Heavy cream', quantity=1.0, unit='cup'), Ingredient(name='Parmesan cheese', quantity=1.0, unit='cup'), Ingredient(name='Salt', quantity=1.0, unit='teaspoon'), Ingredient(name='Pepper', quantity=1.0, unit='teaspoon')], Instructions: ['1. Cook the ravioli pasta sheets according to package instructions.', '2. In a pan, melt butter and sauté garlic until fragrant.', '3. Add heavy cream, Parmesan cheese, salt, and pepper. Stir until the sauce thickens.', '4. Add the cooked ravioli to the sauce and toss to coat evenly.', '5. Shave truffle over the ravioli before serving.'], Tags: ['truffle', 'ravioli'], Sources: ['https://pasta.com/truffle-ravioli-recipes/']
+2024-06-25 21:25:03,818 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-25 21:25:03,819 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-25 21:25:03,819 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-25 21:25:05,396 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-25 21:25:05,397 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-25 21:25:05,398 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-25 21:25:05,399 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-25 21:25:12,954 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-25 21:25:12,954 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Black Truffle Ravioli with Creamy Parmesan Sauce, Ingredients: [Ingredient(name='Heavy Cream', quantity=1.0, unit='cup'), Ingredient(name='Parmesan Cheese', quantity=0.25, unit='cup'), Ingredient(name='Black Truffle', quantity=10.0, unit='grams'), Ingredient(name='Lemon Juice', quantity=1.0, unit='teaspoon'), Ingredient(name='Salt', quantity=0.0, unit='to taste'), Ingredient(name='Black Pepper', quantity=0.0, unit='to taste'), Ingredient(name='Wild Mushrooms', quantity=3.0, unit='cups'), Ingredient(name='Thyme', quantity=1.0, unit='teaspoon'), Ingredient(name='Truffle Oil', quantity=2.0, unit='teaspoons'), Ingredient(name='Ricotta Cheese', quantity=2.0, unit='tablespoons')], Instructions: ['1. Prepare the pasta dough by kneading the ingredients and allowing it to rest.', '2. Make the truffle mushroom filling by sautéing shallots, garlic, wild mushrooms, and thyme.', '3. Roll out the pasta dough and fill with the truffle mushroom mixture.', '4. Cook the ravioli in boiling water for 3 minutes.', '5. Prepare the creamy Parmesan sauce by reducing heavy cream, adding Parmesan, black truffle, lemon juice, salt, and pepper.', '6. Serve the cooked ravioli in the truffle cream sauce.'], Tags: ['truffle', 'ravioli'], Sources: ['https://pasta.com/black-truffle-raviolis/']
+2024-06-25 21:25:12,955 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-25 21:25:12,955 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-25 21:25:12,955 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
