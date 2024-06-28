@@ -6,3 +6,11 @@ SAM_baking/sam_vit_h_4b8939.pth
 output.wav
 SAM_baking/Segment-and-Track-Anything
 sql/recipes.json
+/bin
+/build
+/lib
+/lib64
+/include
+/ebakery.egg-info
+/dist
+/share

@@ -1,4 +1,3 @@
-import RPi.GPIO as GPIO
 import sounddevice as sd
 import scipy.io.wavfile as wav
 import requests
@@ -12,22 +11,30 @@ from cauldron_app import CaldronApp
 from class_defs import Recipe, Ingredient
 from custom_print import printer as pretty
 from time import sleep
+import board
+import neopixel
+from gpiozero import Button
 
-#example recipe
+# Example recipe
 demo_recipe = Recipe(
-                name="Chocolate Chip Cookies",
-                ingredients=[Ingredient(name="cookies", quantity=6, unit="unit")],
-                instructions=["Make them."]
-                )
+    name="Chocolate Chip Cookies",
+    ingredients=[Ingredient(name="cookies", quantity=6, unit="unit")],
+    instructions=["Make them."]
+)
 
 # Load environment variables
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # GPIO setup
-GPIO.setmode(GPIO.BCM)
 button_pin = 24
-GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+button = Button(button_pin, pull_up=True)
+
+# Neopixel setup
+pixel_pin = board.D18
+num_pixels = 24
+ORDER = neopixel.RGB
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
 
 # Thermal printer setup (adjust to your specific setup)
 uart = serial.Serial("/dev/serial0", baudrate=9600, timeout=3000)
@@ -43,26 +50,33 @@ SAMPLE_RATE = 44100  # Sample rate
 CHANNELS = 1  # Number of audio channels
 FILENAME = "recording.wav"  # Filename for the recorded audio
 
-# Function to record audio while button is pressed
-def record_audio(filename):
-    print("Recording...")
-    recording = []  # List to hold audio chunks
+# Initialize recording list
+recording = []
+
+# Function to record audio
+def start_recording():
+    global recording
+    print("Recording started...")
+    recording = []  # Reset the recording list
 
     # Start the audio stream
     stream = sd.InputStream(samplerate=SAMPLE_RATE, channels=CHANNELS)
     stream.start()
 
-    try:
-        while GPIO.input(button_pin) == GPIO.LOW:  # Record while button is pressed
-            data, _ = stream.read(1024)
-            recording.append(data)
-    finally:
-        stream.stop()
-        stream.close()
+    # Record audio chunks while the button is pressed
+    while button.is_pressed:
+        data, _ = stream.read(1024)
+        recording.append(data)
 
-    recording = np.concatenate(recording, axis=0)  # Concatenate audio chunks
-    wav.write(filename, SAMPLE_RATE, recording)
+    stream.stop()
+    stream.close()
     print("Recording finished")
+
+    if recording:
+        recording = np.concatenate(recording, axis=0)  # Concatenate audio chunks
+        wav.write(FILENAME, SAMPLE_RATE, recording)
+    else:
+        print("No audio data recorded.")
 
 # Function to transcribe audio using Whisper API
 def transcribe_audio(filename):
@@ -76,12 +90,13 @@ def transcribe_audio(filename):
             data={"model": "whisper-1"}
         )
     return response.json().get("text", "")
-    
+
 def recipe_header():
     os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
     sleep(10)
-    
+
 def print_recipe(text):
+    display_neopixel()  # Display Neopixel lights before printing
     os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
     sleep(10)
     wrapped_text = wrap_text(text, 32)  # Wrap text to 32 characters per line
@@ -93,26 +108,35 @@ def wrap_text(text, width):
     wrapped_lines = textwrap.fill(text, width)
     return wrapped_lines
 
-# Button callback
-def button_callback(channel):
-    print("Button pressed! Starting recording...")
-    record_audio(FILENAME)
-    text = transcribe_audio(FILENAME)
-    print(f"Transcribed Text: {text}")
-    print_recipe(text)
+# Function to display Neopixel lights
+def display_neopixel():
+    for i in range(num_pixels):
+        pixels[i] = (255, 0, 0)  # Red color
+    pixels.show()
+    sleep(3)
+    pixels.fill((0, 0, 0))  # Turn off the lights
+    pixels.show()
 
-# Setup event detection
-GPIO.add_event_detect(button_pin, GPIO.FALLING, callback=button_callback, bouncetime=300)
+# Button callback
+def button_pressed():
+    print("Button pressed! Starting recording...")
+    start_recording()
+    if len(recording) > 0:
+        text = transcribe_audio(FILENAME)
+        print(f"Transcribed Text: {text}")
+        print_recipe(text)
+    else:
+        print("No audio recorded. Skipping transcription and printing.")
+
+# Attach the button callback
+button.when_pressed = button_pressed
 
 try:
     # Keep the script running
     print("Printer has paper? :", printer.has_paper())
-    #recipe_header()
-    #printer.print(pretty.pformat(demo_recipe))   
-    #printer.feed(3) 
     while True:
-        pass
+        sleep(1)
 except KeyboardInterrupt:
     print("Exiting program")
 finally:
-    GPIO.cleanup()
+    pass  # gpiozero handles GPIO cleanup
