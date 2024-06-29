@@ -128,19 +128,22 @@ def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> s
 
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
-    result = agent.invoke(state)
-    #logger.info(f"Agent {name} invoked with state: {state}")
-    if "output" in result.keys(): # If the agent has an output
-        result = AIMessage(content=result["output"], name=name)
-        return {
-            "messages": [result],
-            "sender": name,
-        }
-    else: # If it routed to another agent
-        return {
-            "sender": name,
-            "next": result["next"]
-        }
+    try:
+        result = agent.invoke(state)
+        #logger.info(f"Agent {name} invoked with state: {state}")
+        if "output" in result.keys(): # If the agent has an output
+            result = AIMessage(content=result["output"], name=name)
+            return {
+                "messages": [result],
+                "sender": name,
+            }
+        else: # If it routed to another agent
+            return {
+                "sender": name,
+                "next": result["next"]
+            }
+    except Exception as e:
+        logger.error(e)
 
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]

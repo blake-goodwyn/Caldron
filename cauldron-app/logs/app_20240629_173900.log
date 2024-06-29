@@ -1,0 +1,57 @@
+2024-06-29 17:39:05,497 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 17:39:05,682 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 17:39:05,682 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 17:39:05,682 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:39:05,683 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 17:39:05,683 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 17:39:05,683 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 17:39:05,684 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 17:39:05,684 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 17:39:05,684 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 17:39:05,685 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 17:39:05,685 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 17:39:05,976 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 17:39:05,977 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 17:39:05,979 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 17:39:05,980 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 17:39:05,983 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 17:39:05,984 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 17:39:05,988 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 17:39:05,989 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 17:39:06,049 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 17:39:17,272 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:39:17,272 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:39:19,835 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:39:21,669 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I want a recipe for banana bread.
+2024-06-29 17:39:28,903 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:39:28,917 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:39:28,962 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:39:28,962 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:39:31,222 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:39:31,243 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:39:31,284 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:39:31,285 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:39:33,412 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:39:33,433 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:39:33,483 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:39:33,495 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:39:35,515 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:39:35,531 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:39:35,572 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:39:35,578 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:39:37,810 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:39:37,820 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:39:37,857 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:39:37,875 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:39:42,090 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content="I have found several banana bread recipes for you to explore:\n\n1. [Sally's Baking Addiction - Best Banana Bread Recipe](https://sallysbakingaddiction.com/best-banana-bread-recipe/)\n2. [Allrecipes - Banana Banana Bread Recipe](https://www.allrecipes.com/recipe/20144/banana-banana-bread/)\n3. [Food Network - Classic Banana Bread Recipe](https://www.foodnetwork.com/recipes/food-network-kitchen/classic-banana-bread-3361704)\n4. [Simply Recipes - Banana Bread Recipe](https://www.simplyrecipes.com/recipes/banana_bread/)\n5. [Natasha's Kitchen - Banana Bread Recipe with Video Tutorial](https://natashaskitchen.com/banana-bread-recipe-video/)\n\nYou can check out these recipes in detail to find the one that suits your preferences.", name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 17:39:44,052 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-29 17:39:44,065 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:39:44,108 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-29 17:39:44,116 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:40:00,236 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 17:40:00,262 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Moist Banana Bread Recipe, Ingredients: [Ingredient(name='very ripe bananas', quantity=3.0, unit=None), Ingredient(name='unsalted butter', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=0.75, unit='cup'), Ingredient(name='large eggs', quantity=2.0, unit=None), Ingredient(name='all-purpose flour', quantity=1.5, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='tsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='vanilla extract', quantity=0.5, unit='tsp'), Ingredient(name='walnuts', quantity=1.0, unit='cup'), Ingredient(name='raisins', quantity=0.5, unit='cup')], Instructions: ['Preheat the oven to 350°F. Grease and flour a bread loaf pan (9.25 long x 5.25 wide x 2.75 deep). Lightly roast walnuts on a skillet, continuously stirring so they won’t burn. Coarsely chop and cool to room temperature.', 'In a mixing bowl, cream together 8 Tbsp softened butter and 3/4 cup sugar (or honey if using honey).', 'Mash bananas with a fork until the consistency of chunky applesauce and add them to the batter along with 2 eggs, mixing until blended.', 'In a separate bowl, whisk together: 1 1/2 cups of flour, 1 tsp of baking soda and 1/2 tsp of salt then add to batter.', 'Add 1/2 tsp of vanilla extract and mix in chopped walnuts and raisins. Pour into prepared loaf pan. Bake at 350˚F for 55-60 min or until a toothpick inserted into the center comes out clean. Let banana bread rest for 10 min before transferring to a wire rack to cool.'], Tags: None, Sources: None
+2024-06-29 17:40:00,291 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:40:00,335 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 17:40:00,366 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:40:02,735 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for "Moist Banana Bread." You can find it in the Pot for further reference.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 17:41:24,405 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

@@ -1,0 +1,87 @@
+2024-06-29 16:46:36,281 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 16:46:36,466 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 16:46:36,466 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 16:46:36,467 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:46:36,467 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 16:46:36,467 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 16:46:36,468 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 16:46:36,468 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 16:46:36,469 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 16:46:36,469 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 16:46:36,469 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 16:46:36,469 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 16:46:36,772 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 16:46:36,772 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 16:46:36,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 16:46:36,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 16:46:36,779 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 16:46:36,779 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 16:46:36,785 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 16:46:36,786 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 16:46:36,846 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 16:46:41,501 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:46:41,504 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:46:44,568 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:46:46,404 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I want a recipe for chocolate chip cookies.
+2024-06-29 16:46:53,174 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 16:46:53,187 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:46:53,210 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 16:46:53,227 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:46:55,744 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for chocolate chip cookies. You can view the recipe at this link: [Best Chocolate Chip Cookies Recipe](https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/).', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 16:47:08,708 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 16:47:08,724 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Chocolate Chip Cookies, Ingredients: [], Instructions: ['Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.', 'Preheat the oven to 350 degrees F (175 degrees C).', 'Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.', 'Beat in eggs, one at a time, then stir in vanilla.', 'Dissolve baking soda in hot water. Add to batter along with salt.', 'Stir in flour, chocolate chips, and walnuts.', 'Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.', 'Bake in the preheated oven until edges are nicely browned, about 10 minutes.', 'Cool on the baking sheets briefly before removing to a wire rack to cool completely.', 'Store in an airtight container or serve immediately and enjoy!'], Tags: [], Sources: ['https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/']
+2024-06-29 16:47:08,727 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:47:08,751 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 16:47:08,761 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:47:11,180 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for "Best Chocolate Chip Cookies." You can find the recipe in the Pot with the ID: e4afaa92-298d-4f3b-8a23-fa797fb05ecf.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 16:47:13,834 - cauldron - DEBUG  - agent_tools.py - get_recipe_from_pot - Getting recipe from pot.
+2024-06-29 16:47:13,835 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:47:13,887 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from pot.
+2024-06-29 16:47:13,903 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:47:18,071 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='I have retrieved the recipe for "Best Chocolate Chip Cookies" from the Pot. Here are the details:\n\n**Ingredients:**\n- Butter\n- White sugar\n- Brown sugar\n- Eggs\n- Vanilla extract\n- Baking soda\n- Hot water\n- Salt\n- All-purpose flour\n- Chocolate chips\n- Walnuts\n\n**Instructions:**\n1. Gather your ingredients, ensuring butter is softened and eggs are at room temperature.\n2. Preheat the oven to 350 degrees F (175 degrees C).\n3. Beat butter, white sugar, and brown sugar until smooth.\n4. Add eggs one at a time, then stir in vanilla.\n5. Dissolve baking soda in hot water and add to the batter with salt.\n6. Stir in flour, chocolate chips, and walnuts.\n7. Drop spoonfuls of dough onto baking sheets.\n8. Bake until edges are browned, about 10 minutes.\n9. Cool on baking sheets before transferring to a wire rack to cool completely.\n10. Store in an airtight container or serve immediately.\n\nYou can find the recipe source [here](https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/).', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-29 16:47:19,919 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-29 16:47:19,934 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:47:19,969 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-29 16:47:19,989 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:47:22,010 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have cleared the Pot of all recipes. If you need any more assistance or have any other recipe requests, feel free to let me know!', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-29 16:47:22,063 - cauldron - DEBUG  - recipe_print_demo.py - button_pressed - Getting foundational recipe from recipe graph.
+2024-06-29 16:47:22,078 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 16:47:22,116 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-29 16:47:22,136 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-29 16:47:22,148 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-29 16:47:33,980 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:47:33,981 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:47:33,992 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:47:33,993 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 16:47:33,993 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 16:47:33,994 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:47:33,994 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:47:34,009 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:47:34,009 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 16:47:34,010 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 16:47:34,010 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:47:34,010 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:47:34,023 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:47:34,024 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 16:47:34,024 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 16:47:34,024 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:47:34,024 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:47:34,035 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:47:34,036 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 16:47:34,036 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 16:47:34,036 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:47:34,037 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:47:34,048 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:47:34,049 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 16:47:34,049 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 16:47:34,050 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:47:34,050 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:47:34,061 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:47:34,061 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 16:47:34,061 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 16:47:34,061 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:47:34,062 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:47:34,077 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:47:34,077 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 16:47:34,078 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 16:47:45,662 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

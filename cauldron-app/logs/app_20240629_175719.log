@@ -1,0 +1,118 @@
+2024-06-29 17:57:24,465 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 17:57:24,648 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 17:57:24,648 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 17:57:24,649 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:57:24,649 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 17:57:24,649 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 17:57:24,650 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 17:57:24,651 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 17:57:24,651 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 17:57:24,651 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 17:57:24,652 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 17:57:24,652 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 17:57:24,943 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 17:57:24,944 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 17:57:24,946 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 17:57:24,947 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 17:57:24,950 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 17:57:24,950 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 17:57:24,952 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 17:57:24,953 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 17:57:25,011 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 17:57:27,274 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:57:27,274 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:57:29,529 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:57:31,673 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I want a recipe for banana bread.
+2024-06-29 17:57:38,461 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:57:38,461 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:57:38,502 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:57:38,518 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:57:40,440 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:57:40,446 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:57:40,503 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:57:40,527 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:57:42,529 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:57:42,535 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:57:42,553 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:57:42,564 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:57:44,678 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:57:44,688 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:57:44,716 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:57:44,722 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:57:46,872 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 17:57:46,887 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:57:46,914 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 17:57:46,923 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:57:51,489 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content="I have found several banana bread recipes for you to explore:\n\n1. [Sally's Baking Addiction - Best Banana Bread Recipe](https://sallysbakingaddiction.com/best-banana-bread-recipe/)\n2. [Allrecipes - Banana Banana Bread Recipe](https://www.allrecipes.com/recipe/20144/banana-banana-bread/)\n3. [Food Network - Classic Banana Bread Recipe](https://www.foodnetwork.com/recipes/food-network-kitchen/classic-banana-bread-3361704)\n4. [Simply Recipes - Banana Bread Recipe](https://www.simplyrecipes.com/recipes/banana_bread/)\n5. [Natasha's Kitchen - Banana Bread Recipe with Video Tutorial](https://natashaskitchen.com/banana-bread-recipe-video/)\n\nYou can check out these recipes in detail to find the one that suits your preferences.", name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 17:57:53,772 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-29 17:57:53,790 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:57:53,855 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-29 17:57:53,866 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:58:10,766 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 17:58:10,785 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Moist Banana Bread Recipe, Ingredients: [Ingredient(name='very ripe bananas', quantity=3.0, unit=None), Ingredient(name='unsalted butter', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=0.75, unit='cup'), Ingredient(name='large eggs', quantity=2.0, unit=None), Ingredient(name='all-purpose flour', quantity=1.5, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='tsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='vanilla extract', quantity=0.5, unit='tsp'), Ingredient(name='walnuts', quantity=1.0, unit='cup'), Ingredient(name='raisins', quantity=0.5, unit='cup')], Instructions: ['Preheat the oven to 350°F. Grease and flour a bread loaf pan (9.25 long x 5.25 wide x 2.75 deep). Lightly roast walnuts on a skillet, continuously stirring so they won’t burn. Coarsely chop and cool to room temperature.', 'In a mixing bowl, cream together 8 Tbsp softened butter and 3/4 cup sugar (or honey if using honey).', 'Mash bananas with a fork until the consistency of chunky applesauce and add them to the batter along with 2 eggs, mixing until blended.', 'In a separate bowl, whisk together: 1 1/2 cups of flour, 1 tsp of baking soda and 1/2 tsp of salt then add to batter.', 'Add 1/2 tsp of vanilla extract and mix in chopped walnuts and raisins. Pour into prepared loaf pan. Bake at 350˚F for 55-60 min or until a toothpick inserted into the center comes out clean. Let banana bread rest for 10 min before transferring to a wire rack to cool.'], Tags: None, Sources: None
+2024-06-29 17:58:10,796 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:58:10,821 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 17:58:10,828 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 17:58:12,770 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for "Moist Banana Bread." You can find it in the Pot for further reference.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 17:58:14,886 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 17:58:14,903 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 17:58:14,935 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:58:14,980 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 17:58:15,010 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 17:58:15,028 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 17:58:17,191 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph for the banana bread recipe has been successfully created.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-29 17:58:19,634 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have compiled a list of banana bread recipes for you to choose from. You can explore them to find the one that best fits your preferences.', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-29 17:58:19,669 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 17:58:19,718 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-29 17:58:19,735 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-29 17:58:19,746 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-29 17:58:19,762 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-29 17:58:19,785 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 17:58:19,836 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 17:58:20,822 - cauldron - ERROR  - recipe_print_demo.py - button_pressed - encoding without a string argument
+2024-06-29 17:58:20,839 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,840 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,856 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,857 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,857 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,858 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,858 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,872 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,873 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,873 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,873 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,873 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,889 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,890 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,890 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,890 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,891 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,903 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,903 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,904 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,904 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,904 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,916 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,917 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,917 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,917 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,918 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,928 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,929 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,929 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,929 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,929 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,945 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,945 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,945 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,946 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,946 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,959 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,959 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,960 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:20,960 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 17:58:20,960 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 17:58:20,972 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 17:58:20,972 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 17:58:20,973 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 17:58:53,098 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

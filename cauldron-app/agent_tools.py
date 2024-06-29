@@ -6,7 +6,7 @@ import json
 from dotenv import load_dotenv
 from recipe_scrapers import scrape_me
 from langchain_core.messages import HumanMessage
-from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, load_pot_from_file, save_pot_to_file, Recipe, Ingredient, RecipeModification, RecipeGraph
+from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_pot_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, load_pot_from_file, save_pot_to_file, Recipe, Ingredient, RecipeModification, RecipeGraph
 from logging_util import logger
 from datetime import datetime
 
@@ -152,13 +152,12 @@ def clear_pot() -> Annotated[str, "Message indicating success or failure."]:
 
 ## Recipe Graph Tools ##
 @tool
-def create_recipe_graph(
-    recipe: Annotated[Recipe, "The representation of the Recipe object of the foundational recipe."],
-) -> Annotated[str, "ID of the newly created foundational recipe node."]:
+def create_recipe_graph() -> Annotated[str, "ID of the newly created foundational recipe node."]:
     """Create a new recipe graph with the provided foundational recipe. Typically used to start a new recipe graph."""
     logger.debug("Creating recipe graph with foundational recipe.")
     recipe_graph = load_graph_from_file(default_graph_file)
-    node_id = recipe_graph.create_recipe_graph(recipe)
+    pot = load_pot_from_file(default_pot_file)
+    node_id = recipe_graph.create_recipe_graph(pot.pop_recipe())
     save_graph_to_file(recipe_graph, default_graph_file)
     return f"Recipe graph created with foundational recipe node ID: {node_id}"
 

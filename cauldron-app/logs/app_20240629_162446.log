@@ -1,0 +1,57 @@
+2024-06-29 16:24:51,617 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 16:24:51,803 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 16:24:51,803 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 16:24:51,803 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:24:51,804 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 16:24:51,804 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 16:24:51,804 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 16:24:51,805 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 16:24:51,805 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 16:24:51,805 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 16:24:51,806 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 16:24:51,806 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 16:24:52,097 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 16:24:52,097 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 16:24:52,100 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 16:24:52,100 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 16:24:52,104 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 16:24:52,104 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 16:24:52,110 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 16:24:52,111 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 16:24:52,170 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 16:24:54,387 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 16:24:54,387 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 16:24:55,547 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 16:24:56,833 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: testing
+2024-06-29 16:25:04,083 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 16:25:04,093 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:25:04,131 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 16:25:04,148 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:25:06,216 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 16:25:06,227 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:25:06,277 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 16:25:06,288 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:25:08,603 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 16:25:08,614 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:25:08,646 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 16:25:08,656 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:25:10,884 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 16:25:10,897 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:25:10,930 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 16:25:10,951 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:25:12,940 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 16:25:12,952 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:25:12,994 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 16:25:13,019 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:25:16,907 - cauldron - INFO   - cauldron_app.py - post - dict_keys(['Tavily'])
+2024-06-29 16:25:16,918 - cauldron - ERROR  - cauldron_app.py - post - 'dict_keys' object is not subscriptable
+2024-06-29 16:25:18,813 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-29 16:25:18,819 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:25:18,869 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-29 16:25:18,880 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 16:25:22,279 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get ingredients: This should be implemented.
+2024-06-29 16:25:22,313 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get name: This should be implemented.
+2024-06-29 16:25:25,129 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-29 16:25:25,135 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 16:25:25,179 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-29 16:25:25,198 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.

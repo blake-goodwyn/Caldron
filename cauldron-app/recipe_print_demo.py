@@ -6,14 +6,14 @@ import serial
 import adafruit_thermal_printer
 from dotenv import load_dotenv
 import numpy as np
-import textwrap
 from cauldron_app import CaldronApp
-from class_defs import Recipe, Ingredient, load_graph_from_file
+from class_defs import Recipe, Ingredient, load_graph_from_file, load_pot_from_file
 from custom_print import printer as pretty
 from time import sleep
 from neopixel_util import *
 from gpiozero import Button
 from logging_util import logger
+import textwrap
 
 # Example recipe
 demo_recipe = Recipe(
@@ -97,16 +97,10 @@ def recipe_header():
     sleep(10)
 
 def print_recipe(text):
-    os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
-    sleep(10)
-    wrapped_text = wrap_text(text, 32)  # Wrap text to 32 characters per line
-    printer.print(wrapped_text)
-    printer.feed(3)
-
-# Function to wrap text for the thermal printer
-def wrap_text(text, width):
-    wrapped_lines = textwrap.fill(text, width)
-    return wrapped_lines
+    try:
+        printer.print(text)
+    finally:
+        printer.feed(3)
 
 # Button callback
 def button_pressed():
@@ -117,19 +111,32 @@ def button_pressed():
     if len(recording) > 0:
         text = transcribe_audio(FILENAME)
         logger.info(f"Transcribed Text: {text}")
+        
+        os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
 
         # Pass to Caldron App
+        highlight_section('Tavily')
         app.post(text)
         while app.printer_wait_flag:
             sleep(0.5)
         
-        logger.debug("Getting foundational recipe from recipe graph.")
         recipe_graph = load_graph_from_file(app.recipe_graph_file)
         recipe = recipe_graph.get_foundational_recipe()
         if (recipe != None):
-            print_recipe(pretty.pformat(recipe))
+            pot = load_pot_from_file(app.recipe_pot_file)
+            recipe = pot.pop_recipe()
+            if (recipe != None):
+                try:
+                    print_recipe(pretty.format(recipe))
+                except Exception as e:
+                    logger.error(e)
+            else:
+                print_recipe(textwrap.fill("Sorry, I couldn't find an appropriate recipe for what you were looking for.", width=32))
         else:
-            print_recipe("Sorry, I couldn't find an appropriate recipe for what you were looking for.")
+            try:
+                print_recipe(pretty.format(recipe))
+            except Exception as e:
+                logger.error(e)
         
     else:
         logger.info("No audio recorded. Skipping transcription and printing.")

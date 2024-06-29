@@ -41,6 +41,9 @@ class CaldronApp():
         self.flow_graph.set_entry_point("Tavily")
         self.chain = self.flow_graph.compile()
 
+    def clear_pot(self):
+        self.recipe_pot_file = fresh_pot()
+
         ## Simple Interaction Thread
     def post(self, i: str):
         self.printer_wait_flag = True
@@ -54,13 +57,17 @@ class CaldronApp():
         ):
             logger.info(s)
             try:
-                highlight_section(s['sender'])
+                if 'Tavily' in s.keys():
+                        highlight_section('Sleuth')
+                elif 'Sleuth' in s.keys():
+                        highlight_section('Spinnaret')
+                elif 'Spinnaret' in s.keys():
+                        highlight_section('Frontman')
             except Exception as e:
                 logger.error(e)
                         
             if 'Frontman' in s.keys():
                 self.printer_wait_flag = False
-                return s['Frontman']['messages'][0].content
         
         self.printer_wait_flag = False
         return None
