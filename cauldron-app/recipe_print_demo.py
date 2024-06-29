@@ -8,12 +8,16 @@ from dotenv import load_dotenv
 import numpy as np
 import textwrap
 from cauldron_app import CaldronApp
-from class_defs import Recipe, Ingredient
+from class_defs import Recipe, Ingredient, load_graph_from_file
 from custom_print import printer as pretty
 from time import sleep
 import board
+import math
+import time
+import threading
 import neopixel
 from gpiozero import Button
+from logging_util import logger
 
 # Example recipe
 demo_recipe = Recipe(
@@ -29,6 +33,9 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # GPIO setup
 button_pin = 24
 button = Button(button_pin, pull_up=True)
+
+#Caldron App
+app = CaldronApp()
 
 # Neopixel setup
 pixel_pin = board.D18
@@ -56,7 +63,7 @@ recording = []
 # Function to record audio
 def start_recording():
     global recording
-    print("Recording started...")
+    logger.info("Recording started...")
     recording = []  # Reset the recording list
 
     # Start the audio stream
@@ -70,13 +77,13 @@ def start_recording():
 
     stream.stop()
     stream.close()
-    print("Recording finished")
+    logger.info("Recording finished")
 
     if recording:
         recording = np.concatenate(recording, axis=0)  # Concatenate audio chunks
         wav.write(FILENAME, SAMPLE_RATE, recording)
     else:
-        print("No audio data recorded.")
+        logger.info("No audio data recorded.")
 
 # Function to transcribe audio using Whisper API
 def transcribe_audio(filename):
@@ -96,11 +103,10 @@ def recipe_header():
     sleep(10)
 
 def print_recipe(text):
-    display_neopixel()  # Display Neopixel lights before printing
     os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
     sleep(10)
     wrapped_text = wrap_text(text, 32)  # Wrap text to 32 characters per line
-    printer.print(wrapped_text)
+    printer.logger.info(wrapped_text)
     printer.feed(3)
 
 # Function to wrap text for the thermal printer
@@ -108,35 +114,48 @@ def wrap_text(text, width):
     wrapped_lines = textwrap.fill(text, width)
     return wrapped_lines
 
-# Function to display Neopixel lights
-def display_neopixel():
-    for i in range(num_pixels):
-        pixels[i] = (255, 0, 0)  # Red color
-    pixels.show()
-    sleep(3)
-    pixels.fill((0, 0, 0))  # Turn off the lights
-    pixels.show()
+waiting_color = (255, 209, 102)  # RGB color (255, 209, 102) -> Orange
+
+def breathing_animation(cycle_duration=1.5, steps=100):
+    """ Displays a breathing animation on the NeoPixel ring """
+    while not button_pressed:  # Continue animation until button is pressed
+        for i in range(steps):
+            brightness = 0.5 + 0.5 * math.sin(i / steps * 2 * math.pi)
+            pixels.fill((int(waiting_color[0] * brightness), int(waiting_color[1] * brightness), int(waiting_color[2] * brightness)))
+            pixels.show()
+            time.sleep(cycle_duration / steps)
 
 # Button callback
 def button_pressed():
-    print("Button pressed! Starting recording...")
+    logger.info("Button pressed! Starting recording...")
     start_recording()
     if len(recording) > 0:
         text = transcribe_audio(FILENAME)
-        print(f"Transcribed Text: {text}")
-        print_recipe(text)
+        logger.info(f"Transcribed Text: {text}")
+
+        # Pass to Caldron App
+        app.post(text)
+        while app.printer_wait_flag:
+            sleep(1)
+        
+        logger.debug("Getting foundational recipe from recipe graph.")
+        recipe_graph = load_graph_from_file(app.recipe_graph_file)
+        recipe = recipe_graph.get_foundational_recipe()
+        print_recipe(pretty(recipe))
     else:
-        print("No audio recorded. Skipping transcription and printing.")
+        logger.info("No audio recorded. Skipping transcription and printing.")
 
 # Attach the button callback
 button.when_pressed = button_pressed
 
 try:
     # Keep the script running
-    print("Printer has paper? :", printer.has_paper())
+    logger.info("Printer has paper? :", printer.has_paper())
+    breathing_thread = threading.Thread(target=breathing_animation)
+    breathing_thread.start()
     while True:
         sleep(1)
 except KeyboardInterrupt:
-    print("Exiting program")
+    logger.info("Exiting program")
 finally:
     pass  # gpiozero handles GPIO cleanup
