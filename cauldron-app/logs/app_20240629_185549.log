@@ -1,0 +1,31 @@
+2024-06-29 18:55:53,740 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 18:55:53,922 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 18:55:53,923 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 18:55:53,923 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 18:55:53,923 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 18:55:53,924 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 18:55:53,924 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 18:55:53,925 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 18:55:53,926 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 18:55:53,926 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 18:55:53,926 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 18:55:53,927 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 18:55:54,217 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 18:55:54,218 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 18:55:54,220 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 18:55:54,221 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 18:55:54,224 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 18:55:54,225 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 18:55:54,227 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 18:55:54,227 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 18:55:54,285 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 18:55:55,179 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:55:55,179 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:55:57,704 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:55:59,434 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I want a recipe for sponge cake.
+2024-06-29 18:56:12,663 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 18:56:12,668 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:56:12,687 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 18:56:12,692 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 18:56:14,156 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program
+2024-06-29 18:56:14,703 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for sponge cake. You can view the recipe by following this link: [Sponge Cake Recipe](https://natashaskitchen.com/easy-sponge-cake-genoise/).', name='Tavily')], 'sender': 'Tavily'}}

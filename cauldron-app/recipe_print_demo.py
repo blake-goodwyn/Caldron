@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import numpy as np
 from cauldron_app import CaldronApp
 from class_defs import Recipe, Ingredient, load_graph_from_file, load_pot_from_file
-from langchain_util import quickTextChain
+from langchain_util import quickResponse
 from custom_print import printer as pretty
 from time import sleep
 from neopixel_util import *
@@ -114,33 +114,36 @@ def button_pressed():
         logger.info(f"Transcribed Text: {text}")
         
         os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
+        sleep(10)
+        msg = quickResponse(text)
+        printer.print(textwrap.fill(msg,width=32))
+        printer.feed(2)
 
-        msg = quickTextChain.invoke({'input': text})
-        printer.print(msg.content)
-
-        # Pass to Caldron App
-        highlight_section('Tavily')
-        app.post(text)
-        while app.printer_wait_flag:
-            sleep(0.5)
-        
-        recipe_graph = load_graph_from_file(app.recipe_graph_file)
-        recipe = recipe_graph.get_foundational_recipe()
-        if (recipe != None):
-            pot = load_pot_from_file(app.recipe_pot_file)
-            recipe = pot.pop_recipe()
+        if text != None:
+            # Pass to Caldron App
+            app.clear_pot()
+            highlight_section('Tavily')
+            app.post(text)
+            while app.printer_wait_flag:
+                sleep(0.5)
+            
+            recipe_graph = load_graph_from_file(app.recipe_graph_file)
+            recipe = recipe_graph.get_foundational_recipe()
             if (recipe != None):
+                pot = load_pot_from_file(app.recipe_pot_file)
+                recipe = pot.pop_recipe()
+                if (recipe != None):
+                    try:
+                        print_recipe(pretty.format(recipe))
+                    except Exception as e:
+                        logger.error(e)
+                else:
+                    print_recipe(textwrap.fill("Sorry, I couldn't find an appropriate recipe for what you were looking for.", width=32))
+            else:
                 try:
                     print_recipe(pretty.format(recipe))
                 except Exception as e:
                     logger.error(e)
-            else:
-                print_recipe(textwrap.fill("Sorry, I couldn't find an appropriate recipe for what you were looking for.", width=32))
-        else:
-            try:
-                print_recipe(pretty.format(recipe))
-            except Exception as e:
-                logger.error(e)
         
     else:
         logger.info("No audio recorded. Skipping transcription and printing.")

@@ -7,7 +7,7 @@ import functools
 from typing import Dict, Any
 from langchain_openai import ChatOpenAI
 from logging_util import logger
-from langchain_util import createAgent, createRouter, agent_node, createBookworm
+from langchain_util import createAgent, agent_node
 from langgraph.graph import END
 from util import db_path, llm_model
 from agent_tools import get_datetime, tavily_search_tool, scrape_recipe_info, generate_recipe, clear_pot, create_recipe_graph, get_recipe, get_recipe_from_pot, examine_pot, add_node, get_foundational_recipe, set_foundational_recipe, get_graph, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, pop_url_from_pot, add_url_to_pot
@@ -37,7 +37,7 @@ prompts_dict = {
         You are Sleuth. Your task is to scrape recipe data from the internet. Some actions may be:\n
         1. Grab URLs from the Pot. Use the pop_url_from_pot tool to retrieve a URL from the Pot.\n
         2. Get recipe information. Use the scrape_recipe_info tool to find information about a specific recipe given its URL.\n
-        3. Generate a recipe. Use the generate_recipe tool to summarize the recipe found and add it to the Pot.\n
+        3. Generate a recipe. Use the generate_recipe tool to summarize the recipe found and add it to the Pot. Ensure that units are included for all ingredients as well as you can.\n
         You MUST use the scrape_recipe_info tool on URLs in the Pot given to you. You will then use generate_recipe with that information. Esnure that you have examined all recipe URLs identified before proceeding. Once all recipes have been assessed, pass your results to the Research\nPostman.
         """,
         "tools": [pop_url_from_pot, scrape_recipe_info, generate_recipe],

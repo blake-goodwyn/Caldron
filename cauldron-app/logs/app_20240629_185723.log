@@ -1,0 +1,149 @@
+2024-06-29 18:57:28,312 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 18:57:28,497 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 18:57:28,497 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 18:57:28,497 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 18:57:28,498 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 18:57:28,498 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 18:57:28,498 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 18:57:28,500 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 18:57:28,500 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 18:57:28,500 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 18:57:28,501 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 18:57:28,501 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 18:57:28,792 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 18:57:28,793 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 18:57:28,795 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 18:57:28,796 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 18:57:28,799 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 18:57:28,800 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 18:57:28,802 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 18:57:28,802 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 18:57:28,860 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 18:57:31,710 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:57:31,710 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:57:34,191 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:57:36,048 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I want a recipe for sponge cake.
+2024-06-29 18:57:58,302 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 18:57:58,328 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:57:58,372 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 18:57:58,381 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 18:58:00,889 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for sponge cake. You can view the recipe by visiting the following link: [Sponge Cake Recipe](https://natashaskitchen.com/easy-sponge-cake-genoise/).', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 18:58:14,126 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 18:58:14,142 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: 4-Ingredient Sponge Cake, Ingredients: [Ingredient(name='large eggs', quantity=6.0, unit='count'), Ingredient(name='granulated sugar', quantity=1.0, unit='cup'), Ingredient(name='all-purpose flour', quantity=1.0, unit='cup'), Ingredient(name='baking powder', quantity=0.5, unit='tsp')], Instructions: ['Preheat Oven to 350˚F. Line bottoms of two 9″ cake pans with parchment paper (do not grease the sides).', 'In the bowl of an electric stand mixer fitted with whisk attachment, beat 6 large eggs for 1 minute on high speed. Gradually add 1 cup sugar and continue beating 8-10 minutes until thick and fluffy.', 'Whisk together 1 cup flour and 1/2 tsp baking powder then sift this mixture into fluffy egg mixture one third at a time. Fold with a spatula with each addition just until incorporated. Scrape spatula from the bottom to catch any pockets of flour and stop mixing when no streaks of flour remain. Do not over-mix or you will deflate the batter.', 'Divide evenly between prepared cake pans. Bake at 350˚F for 23-28 minutes, or until top is golden brown. Remove from pan, cool to room temperature, then slice layers equally in half with a serrated knife.'], Tags: None, Sources: None
+2024-06-29 18:58:14,154 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:58:14,189 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 18:58:14,213 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 18:58:16,693 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for a 4-Ingredient Sponge Cake. It requires 6 large eggs, 1 cup of granulated sugar, 1 cup of all-purpose flour, and 0.5 tsp of baking powder. You can find the detailed instructions for preparing the cake in the recipe.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 18:58:18,735 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 18:58:18,755 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 18:58:18,792 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:58:18,832 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 18:58:18,848 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 18:58:18,865 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 18:58:20,560 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph for the sponge cake has been successfully created.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-29 18:58:23,077 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='Would you like to proceed with this recipe for sponge cake, or do you have any specific preferences or dietary restrictions I should consider before providing a recipe?', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-29 18:58:23,114 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 18:58:23,131 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-29 18:58:23,144 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-29 18:58:23,167 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-29 18:58:23,178 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-29 18:58:23,190 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:58:23,239 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 18:58:24,073 - cauldron - ERROR  - recipe_print_demo.py - button_pressed - encoding without a string argument
+2024-06-29 18:58:24,085 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,086 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,107 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,108 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,124 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:24,141 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,142 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,156 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,156 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,156 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:24,157 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,157 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,169 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,171 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,171 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:24,172 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,172 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,185 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,185 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,185 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:24,186 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,186 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,205 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,207 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,207 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:24,207 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,208 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,220 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,221 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,221 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:24,222 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,222 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,236 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,237 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,237 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:24,238 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:24,238 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:24,253 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:24,253 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:58:24,254 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:58:47,887 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:58:47,887 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:58:50,812 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:58:52,898 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I would like a recipe for blueberry muffins.
+2024-06-29 18:59:13,014 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 18:59:13,031 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:59:13,098 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 18:59:13,109 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 18:59:15,986 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content="I have found a recipe for blueberry muffins on Sally's Baking Addiction website. The recipe is described as extra buttery, soft, and moist with a cinnamon brown sugar streusel on top. You can find the recipe at the following link: [Blueberry Muffins Recipe](https://sallysbakingaddiction.com/blueberry-muffins/).", name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 18:59:36,835 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 18:59:36,846 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Blueberry Muffins, Ingredients: [Ingredient(name='packed light or dark brown sugar', quantity=0.5, unit='cup'), Ingredient(name='chopped walnuts (or pecans)', quantity=0.5, unit='cup'), Ingredient(name='ground cinnamon', quantity=1.0, unit='teaspoon'), Ingredient(name='all-purpose flour (spooned & leveled)', quantity=1.75, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='teaspoon'), Ingredient(name='baking powder', quantity=1.0, unit='teaspoon'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='unsalted butter, softened to room temperature', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=0.5, unit='cup'), Ingredient(name='packed light or dark brown sugar', quantity=0.25, unit='cup'), Ingredient(name='large eggs, at room temperature', quantity=2.0, unit=None), Ingredient(name='sour cream or plain/vanilla yogurt, at room temperature', quantity=0.5, unit='cup'), Ingredient(name='pure vanilla extract', quantity=2.0, unit='teaspoons'), Ingredient(name='milk, at room temperature', quantity=0.25, unit='cup'), Ingredient(name='fresh or frozen blueberries', quantity=1.5, unit='cups')], Instructions: ['Preheat oven to 425°F (218°C). Spray a 12-count muffin pan with nonstick spray or use cupcake liners. Grease/line a second pan with 2 liners because this recipe yields about 14 muffins. Set aside.', 'Mix all of the topping ingredients together. Set aside.', 'Whisk the flour, baking soda, baking powder, and salt together in a large bowl. Set aside.', 'Using a handheld or stand mixer fitted with a paddle or whisk attachment, beat the butter, granulated sugar, and brown sugar together on high speed until smooth and creamy, about 2 minutes. On medium speed, add the eggs one at a time, beating well after each addition. Beat in the sour cream and vanilla extract on medium speed until combined. With the mixer running on low speed, add the dry ingredients and milk into the wet ingredients and beat until no flour pockets remain. Fold in the blueberries.', 'Spoon the batter into liners, filling them all the way to the top. Spoon brown sugar topping on each, gently pressing it down into the surface so it sticks. Bake for 5 minutes at 425 then, keeping the muffins in the oven, reduce the oven temperature to 350°F (177°C). Bake for an additional 18–20 minutes or until a toothpick inserted in the center comes out clean. The total time these muffins take in the oven is about 23–25 minutes, give or take. Allow the muffins to cool for 5 minutes in the muffin pan, then transfer to a wire rack to continue cooling.', 'Muffins stay fresh covered at room temperature for a few days or in the refrigerator for up to 1 week.'], Tags: None, Sources: None
+2024-06-29 18:59:36,855 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:59:36,922 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 18:59:36,938 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 18:59:38,894 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for Blueberry Muffins. You can find the details in the Pot.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 18:59:41,117 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 18:59:41,138 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 18:59:41,178 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:59:41,224 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 18:59:41,242 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 18:59:41,243 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 18:59:43,400 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='I have successfully created a recipe graph for blueberry muffins. If you need any further assistance or modifications, feel free to let me know!', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-29 18:59:45,787 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='Before I proceed, would you like me to include any specific dietary preferences or restrictions in the recipe for blueberry muffins?', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-29 18:59:45,822 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 18:59:45,857 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-29 18:59:45,863 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-29 18:59:45,891 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-29 18:59:45,913 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-29 18:59:45,930 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 18:59:45,980 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 18:59:48,023 - cauldron - ERROR  - recipe_print_demo.py - button_pressed - encoding without a string argument
+2024-06-29 18:59:48,040 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:59:48,041 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:59:48,057 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:59:48,058 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:59:48,059 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:59:48,059 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:59:48,059 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:59:48,076 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:59:48,076 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:59:48,077 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:59:48,077 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:59:48,077 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:59:48,088 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:59:48,089 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:59:48,089 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:59:48,090 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:59:48,090 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:59:48,101 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:59:48,101 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:59:48,101 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 18:59:48,102 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 18:59:48,102 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 18:59:48,121 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 18:59:48,122 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 18:59:48,122 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:00:27,622 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

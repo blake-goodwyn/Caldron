@@ -12,8 +12,8 @@ class CustomPP(pprint.PrettyPrinter):
                     f"update_ingredient={obj.update_ingredient}, add_instruction={obj.add_instruction}, "
                     f"remove_instruction={obj.remove_instruction}, add_tag={obj.add_tag}, remove_tag={obj.remove_tag})", True, False)
         elif isinstance(obj, Recipe):
-            ingredients_str = ", \n".join([f"{ing.name}, {ing.quantity} {ing.unit}" for ing in obj.ingredients])
-            instructions_str = "\n".join(obj.instructions)
+            ingredients_str = textwrap.fill(", \n".join([f"{ing.name}, {ing.quantity} {ing.unit}" for ing in obj.ingredients]), width=32)
+            instructions_str = textwrap.fill("\n".join(obj.instructions), width=32)
             tags_str = ", ".join(obj.tags) if obj.tags else "None"
             sources_str = ''.join(['Sources: ' ,", ".join(obj.sources)]) if obj.sources else ""
             return (''.join([f"Recipe:\n{obj.name}\n\n",

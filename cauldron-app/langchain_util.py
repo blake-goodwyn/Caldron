@@ -12,6 +12,7 @@ from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_community.agent_toolkits.sql.prompt import SQL_FUNCTIONS_SUFFIX, SQL_PREFIX
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
 from langgraph.graph import StateGraph
+from openai import OpenAI
 
 from dotenv import load_dotenv
 import os
@@ -22,19 +23,18 @@ LANGCHAIN_TRACING_V2=True
 LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+client = OpenAI()
 
-quickTextLLM = ChatOpenAI(api_key=OPENAI_API_KEY, model_name="gpt-3.5-turbo")
-quickTextPrompt = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            "You will provide a brief but polite response to the following request for a recipe:\n\n",
-        ),
-        ("human", "{input}"),
-    ]
-)
-
-quickTextChain = quickTextLLM | quickTextPrompt
+def quickResponse(request):
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are the helpful recipe development assistant, Caldron. While a user is waiting for their recipe request, provide a brief, polite message letting the user know that their request is underway. If the request is empty or inappropriate, politely ask to that they make another request"},
+            {"role": "user", "content": request},
+        ],
+    )
+    # Extract the generated text from the response
+    return response.choices[0].message.content
 
 def createAgent(
     name: str,

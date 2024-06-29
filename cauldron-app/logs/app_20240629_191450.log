@@ -1,0 +1,176 @@
+2024-06-29 19:14:55,599 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 19:14:55,781 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 19:14:55,782 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 19:14:55,782 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:14:55,782 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 19:14:55,783 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 19:14:55,783 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 19:14:55,784 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 19:14:55,785 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 19:14:55,785 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 19:14:55,785 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 19:14:55,786 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 19:14:56,076 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 19:14:56,076 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 19:14:56,079 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 19:14:56,079 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 19:14:56,083 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 19:14:56,083 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 19:14:56,085 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 19:14:56,086 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 19:14:56,144 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 19:15:01,851 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:01,852 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:04,688 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:06,748 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I would like a recipe for paella.
+2024-06-29 19:15:22,269 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 19:15:22,279 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 19:15:22,290 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:15:29,019 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 19:15:29,030 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:15:29,062 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 19:15:29,079 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:15:31,695 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for paella on the website "Tastes Better From Scratch." The recipe includes rice, saffron, vegetables, chicken, and seafood cooked in one pan. You can view the recipe by visiting the following link: [Paella Recipe](https://tastesbetterfromscratch.com/paella/).', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 19:15:47,267 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 19:15:47,281 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Spanish Paella, Ingredients: [Ingredient(name='Extra virgin olive Oil', quantity=0.25, unit='cup'), Ingredient(name='Onion', quantity=1.0, unit=None), Ingredient(name='bell pepper', quantity=1.0, unit=None), Ingredient(name='Garlic', quantity=4.0, unit=None), Ingredient(name='roma tomatoes', quantity=3.0, unit=None), Ingredient(name='Bay leaf', quantity=1.0, unit=None), Ingredient(name='paprika', quantity=1.0, unit='teaspoon'), Ingredient(name='saffron threads', quantity=1.0, unit='pinch'), Ingredient(name='Salt', quantity=1.0, unit=None), Ingredient(name='pepper', quantity=1.0, unit=None), Ingredient(name='white wine', quantity=0.25, unit='cup'), Ingredient(name='boneless chicken thighs', quantity=4.0, unit=None), Ingredient(name='fresh chopped parsley', quantity=0.25, unit='cup'), Ingredient(name='Spanish Rice', quantity=2.0, unit='cups'), Ingredient(name='Chicken Broth', quantity=5.0, unit='cups'), Ingredient(name='frozen peas', quantity=0.5, unit='cup'), Ingredient(name='Jumbo Shrimp or prawns', quantity=0.5, unit='lb'), Ingredient(name='Mussels', quantity=0.5, unit='lb'), Ingredient(name='calamari rings', quantity=8.0, unit='oz'), Ingredient(name='Lemons', quantity=1.0, unit=None)], Instructions: ["*Please note, this is my version of Paella Mixta I learned to make while living in Madrid, Spain. I've simplified the recipe as best I could for anyone to be able to make without a special pan or equipment. There are MANY variations to Paella so please be respectful that my authentic recipe may be different from yours!", 'Add olive oil to a skillet over medium heat. Add the onion, bell peppers and garlic and cook until onion is translucent. Add chopped tomato, bay leaf, paprika, saffron salt and pepper. Stir and cook for 5 minutes. Add white wine and cook for 10 minutes. Taste and add salt if needed.', 'Add chicken pieces, 2 tablespoons chopped parsley and rice to the pot. Cook for 1 minute.', 'Pour the broth slowly all around the pan and jiggle the pan to get the rice into an even layer. (Do not stir the mixture going forward!).', "Bring mixture to a boil. Reduce heat to medium low. Give the pan a gentle shake back and forth just once or twice during cooking. (We don't ever stir the rice, so that a crispy crust forms at the bottom, called a socarrat).", 'Cook for about 15-18 minutes (uncovered), then nestle the shrimp, mussels and calamari into the mixture, sprinkle peas on top and continue to cook (without stirring) for about 5 more minutes. Watch for most of the liquid to be absorbed and the rice at the top nearly tender. (If for some reason your rice is still not cooked, add ¼ cup more water or broth and continue cooking).', 'Remove pan from heat and cover pan with a lid or tinfoil. Place a kitchen towel over the lid and allow to rest for 10 minutes.', 'Garnish with fresh parsley and lemon slices. Serve.'], Tags: None, Sources: None
+2024-06-29 19:15:47,298 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:15:47,349 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 19:15:47,370 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:15:49,828 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for Spanish Paella. It includes ingredients like extra virgin olive oil, onion, bell pepper, garlic, saffron threads, chicken thighs, Spanish rice, shrimp, mussels, calamari rings, and more. The instructions involve cooking the ingredients in a skillet and allowing the flavors to blend together to create a delicious paella dish.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 19:15:51,749 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 19:15:51,764 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 19:15:51,807 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:15:51,846 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 19:15:51,862 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 19:15:51,878 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 19:15:53,798 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='I have successfully created a recipe graph for the paella recipe. If you need any further assistance or modifications to the recipe graph, feel free to let me know!', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-29 19:15:56,980 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='Here is the recipe for paella that I have gathered for you:\n\nIngredients:\n- Extra virgin olive oil\n- Onion\n- Bell pepper\n- Garlic\n- Saffron threads\n- Chicken thighs\n- Spanish rice\n- Shrimp\n- Mussels\n- Calamari rings\n\nInstructions:\n1. Heat olive oil in a skillet and sauté onion, bell pepper, and garlic.\n2. Add saffron threads and chicken thighs, cooking until browned.\n3. Stir in Spanish rice and broth, simmer until rice is almost cooked.\n4. Add shrimp, mussels, and calamari rings, cover and cook until seafood is done.\n5. Let it sit for a few minutes before serving.\n\nEnjoy your delicious paella!', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-29 19:15:57,007 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 19:15:57,066 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-29 19:15:57,084 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-29 19:15:57,106 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-29 19:15:57,122 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-29 19:15:57,142 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:15:57,188 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 19:15:59,222 - cauldron - ERROR  - recipe_print_demo.py - button_pressed - encoding without a string argument
+2024-06-29 19:15:59,233 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:59,235 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:59,249 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:59,249 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:15:59,250 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:15:59,250 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:59,250 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:59,266 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:59,266 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:15:59,266 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:15:59,267 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:59,267 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:59,284 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:59,285 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:15:59,285 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:15:59,285 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:59,286 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:59,296 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:59,297 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:15:59,297 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:15:59,297 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:59,298 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:59,309 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:59,309 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:15:59,309 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:15:59,310 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:59,310 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:59,326 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:59,326 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:15:59,326 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:15:59,326 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:15:59,327 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:15:59,340 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:15:59,340 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:15:59,340 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:16:34,462 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:16:34,463 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:16:36,691 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:16:38,082 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: Give me a recipe for sushi.
+2024-06-29 19:16:56,563 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 19:16:56,580 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 19:16:56,596 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:17:02,291 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 19:17:02,317 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:17:02,356 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 19:17:02,373 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:17:04,531 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for sushi that you might like. You can view the recipe by visiting the following link: [Sushi Recipe](https://www.justonecookbook.com/authentic-best-sushi-recipes/).', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 19:17:17,799 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 19:17:17,810 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Sushi Recipes to Make At Home, Ingredients: [Ingredient(name='Dragon Roll', quantity=1.0, unit=None), Ingredient(name='California Roll', quantity=1.0, unit=None), Ingredient(name='Sushi Rolls', quantity=1.0, unit=None), Ingredient(name='Temaki (Cone-Shaped Hand Roll Sushi)', quantity=1.0, unit=None), Ingredient(name='Inari Sushi', quantity=1.0, unit=None), Ingredient(name='Spicy Tuna Rolls', quantity=1.0, unit=None), Ingredient(name='Mosaic Sushi', quantity=1.0, unit=None), Ingredient(name='Futomaki', quantity=1.0, unit=None), Ingredient(name='Otoro Sushi', quantity=1.0, unit=None), Ingredient(name='Temari Sushi (Ball-Shaped Sushi)', quantity=1.0, unit=None), Ingredient(name='Chirashi Sushi', quantity=1.0, unit=None), Ingredient(name='Quick & Easy Chirashi Sushi', quantity=1.0, unit=None), Ingredient(name='Mackerel Pressed Sushi (Saba Oshizushi)', quantity=1.0, unit=None), Ingredient(name='Chirashi Sushi Cake', quantity=1.0, unit=None)], Instructions: ['Select the sushi recipes you want to make from the list above.', 'Follow the detailed instruction in each post (tips and substitutions included).', 'Make and enjoy the authentic sushi recipes at home.', 'Take pictures and share in the comment box below!'], Tags: None, Sources: ['https://www.justonecookbook.com/authentic-best-sushi-recipes/']
+2024-06-29 19:17:17,823 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:17:17,866 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 19:17:17,881 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:17:20,270 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated a summary of the "Best Sushi Recipes to Make At Home." You can find the recipe in the Pot with the ID: 3441ea8f-2e5e-4aaa-81c6-5cbfd4ceae40.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 19:17:22,031 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 19:17:22,047 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 19:17:22,076 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:17:22,109 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 19:17:22,123 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 19:17:22,140 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 19:17:24,018 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='I have successfully created a recipe graph for the sushi recipe. If you need any further assistance or details, feel free to ask!', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-29 19:17:26,045 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='Would you like to know more details about the sushi recipe or need help with anything else?', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-29 19:17:26,087 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 19:17:26,109 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-29 19:17:26,126 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-29 19:17:26,142 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-29 19:17:26,158 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-29 19:17:26,178 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:17:26,189 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 19:17:26,831 - cauldron - ERROR  - recipe_print_demo.py - button_pressed - encoding without a string argument
+2024-06-29 19:17:26,848 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:26,849 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:26,869 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:26,870 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:17:26,870 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:17:26,870 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:26,870 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:26,888 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:26,888 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:17:26,888 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:17:26,889 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:26,889 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:26,904 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:26,905 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:17:26,905 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:17:26,905 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:26,905 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:26,921 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:26,921 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:17:26,921 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:17:26,921 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:26,922 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:26,941 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:26,941 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:17:26,942 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:17:26,942 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:26,942 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:26,960 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:26,960 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:17:26,960 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:17:26,960 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:26,960 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:26,980 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:26,980 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 19:17:26,981 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 19:17:45,330 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 19:17:45,331 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 19:17:45,953 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 19:17:46,815 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: You
+2024-06-29 19:18:01,452 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 19:18:01,468 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 19:18:01,483 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:18:04,065 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='It seems like your message got cut off. Could you please provide more details or let me know how I can assist you today?', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 19:18:06,009 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='How can I assist you today?', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 19:18:07,757 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 19:18:07,783 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 19:18:07,799 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 19:18:07,818 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-29 19:18:07,819 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-29 19:18:07,835 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 19:18:08,269 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program
+2024-06-29 19:18:08,286 - cauldron - ERROR  - langchain_util.py - agent_node - cannot schedule new futures after interpreter shutdown
