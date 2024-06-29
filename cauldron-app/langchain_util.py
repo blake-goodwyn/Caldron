@@ -22,6 +22,20 @@ LANGCHAIN_TRACING_V2=True
 LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+
+quickTextLLM = ChatOpenAI(api_key=OPENAI_API_KEY, model_name="gpt-3.5-turbo")
+quickTextPrompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You will provide a brief but polite response to the following request for a recipe:\n\n",
+        ),
+        ("human", "{input}"),
+    ]
+)
+
+quickTextChain = quickTextLLM | quickTextPrompt
+
 def createAgent(
     name: str,
     system_prompt: str,
@@ -50,38 +64,6 @@ def createAgent(
         )
     return AgentExecutor(name=name, agent=agent, tools=tools)
 
-def createBookworm(
-        name: str, 
-        system_prompt: str, 
-        llm_model: str, 
-        db_path: str, 
-        verbose=False
-):
-    assert type(llm_model) == str, "Model must be a string"
-    #assert type(prompt) == str, "Prompt must be a string"
-
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            SystemMessage(str(SQL_PREFIX)),
-            SystemMessage(str(system_prompt)),
-            MessagesPlaceholder(variable_name="messages"),
-            MessagesPlaceholder(variable_name="agent_scratchpad"),
-            AIMessage(SQL_FUNCTIONS_SUFFIX)
-        ]
-    )
-
-    llm = ChatOpenAI(model=llm_model, temperature=0)
-    db = SQLDatabase.from_uri(db_path)
-    toolkit = SQLDatabaseToolkit(llm=llm, db=db)
-    tools = toolkit.get_tools()
-    agent = RunnableAgent(
-            runnable=create_openai_tools_agent(llm, tools, prompt),
-            input_keys_arg=["messages"],
-            return_keys_arg=["output"]
-        )
-    return AgentExecutor(name=name, agent=agent, tools=tools)
-
-def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> str:
     """An LLM-based router."""
     if exit:
         members.append("FINISH")

@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import numpy as np
 from cauldron_app import CaldronApp
 from class_defs import Recipe, Ingredient, load_graph_from_file, load_pot_from_file
+from langchain_util import quickTextChain
 from custom_print import printer as pretty
 from time import sleep
 from neopixel_util import *
@@ -113,6 +114,9 @@ def button_pressed():
         logger.info(f"Transcribed Text: {text}")
         
         os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
+
+        msg = quickTextChain.invoke({'input': text})
+        printer.print(msg.content)
 
         # Pass to Caldron App
         highlight_section('Tavily')
