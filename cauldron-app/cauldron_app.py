@@ -6,7 +6,7 @@ from logging_util import logger
 from langchain_util import ChatOpenAI, workflow, HumanMessage
 from class_defs import fresh_pot, fresh_graph, fresh_mods_list
 from agent_defs import create_all_agents, prompts_dict, form_edges
-from recipe_print_demo import highlight_section
+from neopixel_util import highlight_section
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
