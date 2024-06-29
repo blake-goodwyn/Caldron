@@ -41,7 +41,7 @@ prompts_dict = {
         4. Examine short-term memory. Use the examine_pot tool to view all recipes and URLs in the Pot or get_recipe_from_pot to examine a specific recipe.\n\n
         You MUST use the scrape_recipe_info tool on URLs in the Pot given to you. You will then use generate_recipe with that information. Esnure that you have examined all recipe URLs identified before proceeding. Once all recipes have been assessed, pass your results to the Research\nPostman.
         """,
-        "tools": [pop_url_from_pot, scrape_recipe_info, generate_recipe, get_recipe_from_pot, examine_pot],
+        "tools": [pop_url_from_pot, scrape_recipe_info, generate_recipe],
         "tool_choice": {"type": "function", "function": {"name": "generate_recipe"}}
     },
     "Spinnaret": {
@@ -62,7 +62,7 @@ prompts_dict = {
 
         Always ensure that the Recipe Graph has a foundational recipe set and is up-to-date with the most recent changes to the recipe. If you are unsure about a change, ask the Caldron\nPostman for clarification.
         """,
-        "tools": [create_recipe_graph, add_node, get_recipe, get_foundational_recipe, set_foundational_recipe, get_graph, get_recipe_from_pot, examine_pot],
+        "tools": [create_recipe_graph, add_node, set_foundational_recipe, get_recipe_from_pot],
     },
 }
 

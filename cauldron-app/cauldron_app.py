@@ -6,6 +6,7 @@ from logging_util import logger
 from langchain_util import ChatOpenAI, workflow, HumanMessage
 from class_defs import fresh_pot, fresh_graph, fresh_mods_list
 from agent_defs import create_all_agents, prompts_dict, form_edges
+from recipe_print_demo import highlight_section
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
@@ -13,7 +14,7 @@ warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Tr
 
 class CaldronApp():
     
-    def __init__(self, db_path, llm_model, defs=prompts_dict, verbose=False):
+    def __init__(self, llm_model, db_path=None, defs=prompts_dict, verbose=False):
         
         logger.info("Initializing Caldron Application")
 
@@ -37,7 +38,7 @@ class CaldronApp():
 
         form_edges(self.flow_graph)
 
-        self.flow_graph.set_entry_point("Caldron\nPostman")
+        self.flow_graph.set_entry_point("Tavily")
         self.chain = self.flow_graph.compile()
 
         ## Simple Interaction Thread
@@ -52,9 +53,14 @@ class CaldronApp():
             {"recursion_limit": 50}
         ):
             logger.info(s)
+            try:
+                highlight_section(s['sender'])
+            except Exception as e:
+                logger.error(e)
+                        
             if 'Frontman' in s.keys():
                 self.printer_wait_flag = False
-                return ['Frontman']['messages'][0].content
+                return s['Frontman']['messages'][0].content
         
         self.printer_wait_flag = False
         return None

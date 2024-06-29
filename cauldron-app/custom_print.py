@@ -16,7 +16,6 @@ class CustomPP(pprint.PrettyPrinter):
             tags_str = ", ".join(obj.tags) if obj.tags else "None"
             sources_str = ", ".join(obj.sources) if obj.sources else "None"
             return (f"Recipe: {obj.name}\n"
-                    f"id: {obj._id}\n"
                     f"Ingredients:\n{ingredients_str}\n\n"
                     f"Instructions:\n{instructions_str}\n\n"
                     f"Tags: {tags_str}\n"

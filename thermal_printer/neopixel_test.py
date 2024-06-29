@@ -9,12 +9,6 @@ LED_PIN = board.D18 # GPIO 18 (PWM)
 # Create the NeoPixel object
 pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, brightness=0.2, auto_write=False)
 
-def color_wipe(color, wait_ms=50):
-    """Wipe color across display a pixel at a time."""
-    for i in range(LED_COUNT):
-        pixels[i] = color
-        pixels.show()
-        time.sleep(wait_ms / 1000.0)
 
 def theater_chase(color, wait_ms=50, iterations=10):
     """Movie theater light style chaser animation."""
@@ -51,14 +45,10 @@ def rainbow_cycle(wait_ms=20, iterations=5):
 
 if __name__ == "__main__":
     try:
+        pixels.fill((0,0,0))
         while True:
-            color_wipe((255,0,0))
-            color_wipe((0, 255, 0))  # Green
-            color_wipe((0, 0, 255))  # Blue
-            theater_chase((255, 0, 0))  # Red theater chase
-            theater_chase((0, 255, 0))  # Green theater chase
-            theater_chase((0, 0, 255))  # Blue theater chase
-            rainbow_cycle()  # Rainbow cycle
+            pixels[5] = (255,0,0)
+            pixels.show()
     except KeyboardInterrupt:
         pixels.fill((0, 0, 0))
         pixels.show()

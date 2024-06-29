@@ -1,0 +1,61 @@
+2024-06-29 15:44:28,125 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 15:44:28,307 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 15:44:28,307 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 15:44:28,308 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 15:44:28,308 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 15:44:28,308 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 15:44:28,309 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 15:44:28,309 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 15:44:28,309 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 15:44:28,310 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 15:44:28,310 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 15:44:28,310 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 15:44:28,604 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 15:44:28,604 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 15:44:28,607 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 15:44:28,607 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 15:44:28,611 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 15:44:28,611 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 15:44:28,618 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 15:44:28,619 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 15:44:28,679 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-06-29 15:44:33,507 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 15:44:33,511 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 15:44:36,445 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 15:44:46,091 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I'd like a recipe for chocolate chip cookies.
+2024-06-29 15:44:49,880 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-29 15:44:49,880 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 15:44:49,881 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-29 15:44:49,881 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 15:44:50,943 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for chocolate chip cookies on Allrecipes. I have added the URL to the Pot for further examination.', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-29 15:44:57,652 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-29 15:44:57,652 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Chocolate Chip Cookies, Ingredients: [Ingredient(name='butter', quantity=1.0, unit='cup'), Ingredient(name='white sugar', quantity=1.0, unit='cup'), Ingredient(name='brown sugar', quantity=1.0, unit='cup'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='vanilla', quantity=1.0, unit='tsp'), Ingredient(name='baking soda', quantity=1.0, unit='tsp'), Ingredient(name='hot water', quantity=2.0, unit='tbsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='flour', quantity=3.0, unit='cups'), Ingredient(name='chocolate chips', quantity=2.0, unit='cups'), Ingredient(name='walnuts', quantity=1.0, unit='cup')], Instructions: ['Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.', 'Preheat the oven to 350 degrees F (175 degrees C).', 'Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.', 'Beat in eggs, one at a time, then stir in vanilla.', 'Dissolve baking soda in hot water. Add to batter along with salt.', 'Stir in flour, chocolate chips, and walnuts.', 'Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.', 'Bake in the preheated oven until edges are nicely browned, about 10 minutes.', 'Cool on the baking sheets briefly before removing to a wire rack to cool completely.', 'Store in an airtight container or serve immediately and enjoy!'], Tags: None, Sources: None
+2024-06-29 15:44:57,653 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 15:44:57,653 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-29 15:44:57,653 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 15:44:59,023 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for "Best Chocolate Chip Cookies" and added it to the Pot. You can view the recipe with the ID: 665fc5ce-1c07-48a1-8d04-23399dd72d12. \n\nIf you need more recipes or information, feel free to ask!', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-29 15:45:00,244 - cauldron - DEBUG  - agent_tools.py - get_recipe_from_pot - Getting recipe from pot.
+2024-06-29 15:45:00,245 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 15:45:00,246 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from pot.
+2024-06-29 15:45:00,248 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 15:45:04,266 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='I have retrieved the recipe for "Best Chocolate Chip Cookies" from the Pot:\n\n### Ingredients:\n- 1 cup butter\n- 1 cup white sugar\n- 1 cup brown sugar\n- 2 eggs\n- 1 tsp vanilla\n- 1 tsp baking soda\n- 2 tbsp hot water\n- 0.5 tsp salt\n- 3 cups flour\n- 2 cups chocolate chips\n- 1 cup walnuts\n\n### Instructions:\n1. Gather your ingredients, ensuring butter is softened and eggs are at room temperature.\n2. Preheat the oven to 350°F (175°C).\n3. Beat butter, white sugar, and brown sugar in a large bowl until smooth.\n4. Beat in eggs one at a time, then stir in vanilla.\n5. Dissolve baking soda in hot water and add to the batter along with salt.\n6. Stir in flour, chocolate chips, and walnuts.\n7. Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.\n8. Bake in the preheated oven for about 10 minutes until edges are nicely browned.\n9. Cool briefly on the baking sheets before transferring to a wire rack to cool completely.\n10. Store in an airtight container or serve immediately.\n\nIf you\'d like to proceed with this recipe, let me know!', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-29 15:45:05,174 - cauldron - DEBUG  - agent_tools.py - clear_pot - Clearing pot.
+2024-06-29 15:45:05,175 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-29 15:45:05,175 - cauldron - DEBUG  - class_defs.py - clear_pot - Clearing pot.
+2024-06-29 15:45:05,176 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 15:45:06,322 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='The recipe for "Best Chocolate Chip Cookies" has been provided. If you have any specific preferences or dietary restrictions for the recipe, please let me know so I can assist you further.', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-29 15:45:06,332 - cauldron - DEBUG  - recipe_print_demo.py - button_pressed - Getting foundational recipe from recipe graph.
+2024-06-29 15:45:06,332 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-29 15:45:06,333 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-29 15:45:06,333 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-29 15:45:06,333 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-29 15:45:17,884 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 15:45:17,885 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 15:45:17,897 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 15:45:17,898 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 15:45:17,898 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-06-29 15:45:17,898 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-06-29 15:45:17,899 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-06-29 15:45:17,918 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-06-29 15:45:17,918 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-06-29 15:45:17,918 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.

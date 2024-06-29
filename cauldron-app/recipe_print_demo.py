@@ -35,7 +35,7 @@ button_pin = 24
 button = Button(button_pin, pull_up=True)
 
 #Caldron App
-app = CaldronApp()
+app = CaldronApp('gpt-3.5-turbo')
 
 # Neopixel setup
 pixel_pin = board.D18
@@ -56,6 +56,10 @@ printer.underline = None
 SAMPLE_RATE = 44100  # Sample rate
 CHANNELS = 1  # Number of audio channels
 FILENAME = "recording.wav"  # Filename for the recorded audio
+
+#Global Idle Flag
+global _idle_flag
+_idle_flag = True
 
 # Initialize recording list
 recording = []
@@ -106,7 +110,7 @@ def print_recipe(text):
     os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
     sleep(10)
     wrapped_text = wrap_text(text, 32)  # Wrap text to 32 characters per line
-    printer.logger.info(wrapped_text)
+    printer.print(wrapped_text)
     printer.feed(3)
 
 # Function to wrap text for the thermal printer
@@ -114,20 +118,59 @@ def wrap_text(text, width):
     wrapped_lines = textwrap.fill(text, width)
     return wrapped_lines
 
-waiting_color = (255, 209, 102)  # RGB color (255, 209, 102) -> Orange
+waiting_color = (255, 178, 0)
 
-def breathing_animation(cycle_duration=1.5, steps=100):
-    """ Displays a breathing animation on the NeoPixel ring """
-    while not button_pressed:  # Continue animation until button is pressed
-        for i in range(steps):
-            brightness = 0.5 + 0.5 * math.sin(i / steps * 2 * math.pi)
-            pixels.fill((int(waiting_color[0] * brightness), int(waiting_color[1] * brightness), int(waiting_color[2] * brightness)))
-            pixels.show()
-            time.sleep(cycle_duration / steps)
+def color_wipe(max_brightness=0.2, wait_ms=1500):
+    """ Smoothly wipe brightness across the NeoPixel ring """
+    steps = int(wait_ms / 100)  # Number of steps to achieve smooth transition
+    brightness_step = max_brightness / steps
+    
+    for i in range(steps + 1):
+        current_brightness = brightness_step * i
+        pixels.fill((int(waiting_color[0] * current_brightness), 
+                     int(waiting_color[1] * current_brightness), 
+                     int(waiting_color[2] * current_brightness)))
+        pixels.show()
+        time.sleep(wait_ms / (steps * 1000))  # Adjust to keep the same total time
+        
+    # Decreasing brightness
+    for i in range(steps, -1, -1):
+        current_brightness = brightness_step * i
+        pixels.fill((int(waiting_color[0] * current_brightness), 
+                     int(waiting_color[1] * current_brightness), 
+                     int(waiting_color[2] * current_brightness)))
+        pixels.show()
+        time.sleep(wait_ms / (steps * 1000))  # Adjust to keep the same total time
+    
+    pixels.fill((0, 0, 0))  # Turn off all pixels after animation
+    pixels.show()
+
+def clear_ring():
+    pixels.fill((0, 0, 0))  # Turn off all pixels after animation
+    pixels.show()
+    
+def highlight_section(agent):
+    
+    agent_locs = {
+        'Tavily': [20, 21, 22],
+        'Frontman': [5,6,7],
+        'Spinnaret': [10,11,12],
+        'Sleuth': [15,16,17]
+    }
+    
+    clear_ring()
+    if agent in agent_locs.keys():
+        for i in agent_locs[agent]:
+            pixels[i] = waiting_color
+        pixels.show()
+    
+    
 
 # Button callback
 def button_pressed():
     logger.info("Button pressed! Starting recording...")
+    global _idle_flag 
+    _idle_flag = False
     start_recording()
     if len(recording) > 0:
         text = transcribe_audio(FILENAME)
@@ -136,25 +179,30 @@ def button_pressed():
         # Pass to Caldron App
         app.post(text)
         while app.printer_wait_flag:
-            sleep(1)
+            sleep(0.5)
         
         logger.debug("Getting foundational recipe from recipe graph.")
         recipe_graph = load_graph_from_file(app.recipe_graph_file)
         recipe = recipe_graph.get_foundational_recipe()
-        print_recipe(pretty(recipe))
+        if (recipe != None):
+            print_recipe(pretty.pformat(recipe))
+        else:
+            print_recipe("Sorry, I couldn't find an appropriate recipe for what you were looking for.")
+        
     else:
         logger.info("No audio recorded. Skipping transcription and printing.")
+    
+    _idle_flag = True
 
 # Attach the button callback
 button.when_pressed = button_pressed
 
 try:
     # Keep the script running
-    logger.info("Printer has paper? :", printer.has_paper())
-    breathing_thread = threading.Thread(target=breathing_animation)
-    breathing_thread.start()
+    logger.info(''.join(["Printer has paper? :", str(printer.has_paper())]))
     while True:
-        sleep(1)
+        while _idle_flag:
+            color_wipe()
 except KeyboardInterrupt:
     logger.info("Exiting program")
 finally:
