@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 import sounddevice as sd
 import scipy.io.wavfile as wav
-from time import sleep
+from time import sleep, time
 import keyboard
 from rpi_app_request import app_request
 

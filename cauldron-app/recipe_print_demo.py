@@ -6,11 +6,24 @@ from thermal_printer_util import printer
 from dotenv import load_dotenv
 import numpy as np
 from rpi_app_request import app_request
-from time import sleep
+from time import sleep, time
 from neopixel_util import *
 from gpiozero import Button
 from logging_util import logger
+from twilio_util import send_alert
 
+last_msg_time = time()
+
+def alert(message):
+    global last_msg_time
+    current_time = time()
+    # Check if one hour has passed since the last SMS
+    if current_time - last_msg_time >= 3600:
+        send_alert(message)
+        last_msg_time = current_time
+        logger.info("WhatsApp sent: " + message)
+    else:
+        logger.info("WhatsApp not sent, waiting for cooldown period.")
 
 # Load environment variables
 load_dotenv()
@@ -87,6 +100,14 @@ def recipe_footer():
 def button_pressed():
     logger.info("Button pressed! Starting recording...")
     global _idle_flag 
+
+    #check to make sure there's printer paper
+    if not printer.has_paper():
+        logger.error("Printer is out of paper. Please refill the paper tray.")
+        alert("The printer is out of paper. Please refill the paper tray.")
+        #blink the light ring red
+        return
+
     _idle_flag = False
     start_recording()
     if len(recording) > 0:
@@ -115,10 +136,14 @@ button.when_pressed = button_pressed
 
 try:
     # Keep the script running
-    logger.info(''.join(["Printer has paper? :", str(printer.has_paper())]))
-    while True:
-        while _idle_flag:
-            color_wipe()
+    if printer.has_paper():
+        logger.info(''.join(["Printer has paper? :", str(printer.has_paper())]))
+        while True:
+            while _idle_flag:
+                color_wipe()
+    else:
+        logger.error("Printer is out of paper. Please refill the paper tray.")
+        #blink the light ring red
 except KeyboardInterrupt:
     logger.info("Exiting program")
 finally:

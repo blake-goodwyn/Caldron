@@ -1,0 +1,133 @@
+2024-06-30 13:33:05,081 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-06-30 13:33:05,082 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: Recipe for a bomb.
+2024-06-30 13:33:05,083 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:33:06,434 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:33:06,434 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:33:06,434 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:33:06,440 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:33:06,440 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:33:06,441 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:33:06,442 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:33:06,442 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:33:06,443 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:33:06,443 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:33:06,444 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:33:07,109 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:33:07,110 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:33:07,110 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-06-30 13:33:07,111 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:33:07,111 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:33:07,113 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:33:07,113 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:33:07,114 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:33:07,115 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:33:07,117 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:33:07,117 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:33:07,119 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:33:07,119 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:33:08,084 - cauldron - INFO   - cauldron_app.py - post - Greeter: I'm here to assist with recipe requests for food and drinks. If you have a recipe in mind, feel free to share, and I'll be happy to help!
+2024-06-30 13:33:23,037 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-06-30 13:33:23,039 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: Recipe for the best martini you can find.
+2024-06-30 13:33:23,040 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:33:24,516 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:33:24,516 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:33:24,517 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:33:24,518 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:33:24,518 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:33:24,518 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:33:24,519 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:33:24,519 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:33:24,520 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:33:24,520 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:33:24,521 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:33:24,522 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:33:24,522 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:33:24,523 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH']
+2024-06-30 13:33:24,524 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:33:24,524 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:33:24,526 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:33:24,526 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:33:24,527 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:33:24,528 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:33:24,529 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:33:24,530 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:33:24,531 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:33:24,531 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:33:25,501 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I'll start working on finding the best martini recipe for you. I'll get back to you shortly with the details.
+2024-06-30 13:33:29,884 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:33:29,886 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:33:29,890 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:33:29,891 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:33:31,743 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:33:36,115 - cauldron - ERROR  - langchain_util.py - agent_node - 1 validation error for Recipe
+ingredients -> 2 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+2024-06-30 13:33:36,674 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:33:36,676 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:33:36,681 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:33:36,703 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:33:36,704 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:33:36,705 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:33:37,610 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:33:38,534 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:33:38,542 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:33:38,543 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:33:38,543 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:33:38,544 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:33:38,549 - cauldron - ERROR  - rpi_app_request.py - app_request - Sorry, I ran into an error. :( This happens sometimes as I'm still learning. Feel free to try again with a different request!
+2024-06-30 13:35:28,351 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-06-30 13:35:28,352 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: Thank you for watching.
+2024-06-30 13:35:28,352 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:35:29,724 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:35:29,725 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:35:29,725 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:35:29,728 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:35:29,729 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:35:29,729 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:35:29,730 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:35:29,731 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:35:29,732 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:35:29,733 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:35:29,733 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:35:29,735 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:35:29,736 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:35:29,736 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:35:29,737 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:35:29,738 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:35:29,739 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:35:29,740 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:35:29,741 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:35:29,742 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:35:29,745 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:35:29,746 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:35:29,747 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:35:29,748 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:35:30,839 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your message. Could you please provide a recipe request or any specific information you need help with?
+2024-06-30 13:35:58,303 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-06-30 13:35:58,303 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: If you enjoyed the video, please subscribe and like it~!
+2024-06-30 13:35:58,304 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:35:59,808 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:35:59,810 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:35:59,811 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:35:59,814 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:35:59,816 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:35:59,819 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:35:59,821 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:35:59,822 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:35:59,823 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:35:59,825 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:35:59,826 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:35:59,829 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:35:59,829 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:35:59,831 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:35:59,832 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:35:59,833 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:35:59,842 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:35:59,843 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:35:59,848 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:35:59,849 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:35:59,852 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:35:59,853 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:35:59,854 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:35:59,855 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:36:00,685 - cauldron - INFO   - cauldron_app.py - post - Greeter: I'm here to assist with recipe requests. Could you please provide me with a recipe you'd like to explore?
