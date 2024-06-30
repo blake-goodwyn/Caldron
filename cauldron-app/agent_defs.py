@@ -7,12 +7,26 @@ import functools
 from typing import Dict, Any
 from langchain_openai import ChatOpenAI
 from logging_util import logger
-from langchain_util import createAgent, agent_node
+from langchain_util import createAgent, createRouter, agent_node
 from langgraph.graph import END
 from util import db_path, llm_model
 from agent_tools import get_datetime, tavily_search_tool, scrape_recipe_info, generate_recipe, clear_pot, create_recipe_graph, get_recipe, get_recipe_from_pot, examine_pot, add_node, get_foundational_recipe, set_foundational_recipe, get_graph, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, pop_url_from_pot, add_url_to_pot
 
 prompts_dict = {
+    "Greeter": {
+        "type": "agent",
+        "label": "Greeter",
+        "prompt": "You are the helpful recipe development assistant, Caldron. Typically, you are given a user request for a recipe. If the request is appropriate, provide a brief, polite message letting the user know that their request is underway. If the request is empty or inappropriate, politely ask to that they make another request",
+        "tools": [get_datetime]
+    },
+    "Validator": {
+        "type": "supervisor",
+        "label": "Validator",
+        "prompt": """
+        You are the validator. Your task is to ensure that the user's request is appropriate. If the request is appropriate, pass it to the Tavily. If the request is inappropriate, pass the request along to FINISH.
+        """,
+        "members":["Tavily"]
+    },
     "Frontman": {
         "type": "agent",
         "label": "User\nRep",
@@ -54,6 +68,7 @@ prompts_dict = {
 }
 
 direct_edges = [
+    ("Greeter", "Validator"),
     ("Tavily", "Sleuth"),
     ("Sleuth", "Spinnaret"),
     ("Spinnaret", "Frontman"),
@@ -67,14 +82,10 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
     for name, d in prompts_dict.items():
         if d["type"] == "supervisor":
             logger.info(f"Creating supervisor agent: {name}")
-            if name == "Caldron\nPostman":
+            if name == "Validator":
                 agent = createRouter(name, d["prompt"], llm, members=d["members"], exit=True)
             else:
                 agent = createRouter(name, d["prompt"], llm, members=d["members"])
-
-        elif d["type"] == "sql":
-            logger.info(f"Creating SQL agent: {name}")
-            agent = createBookworm(name, d["prompt"], llm_model, db_path, verbose=True)
 
         elif d["type"] == "agent":
             logger.info(f"Creating agent: {name}")
@@ -92,4 +103,13 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
 def form_edges(flow_graph):
     for source, target in direct_edges:
         flow_graph.add_edge(source, target)
-    return direct_edges
+
+def create_conditional_edges(flow_graph): 
+    flow_graph.add_conditional_edges(
+        "Validator",
+        lambda x: x["next"],
+        {
+            "Tavily": "Tavily", 
+            "FINISH": END,
+        },
+    )

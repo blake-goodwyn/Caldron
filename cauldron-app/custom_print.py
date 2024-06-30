@@ -3,7 +3,7 @@ from class_defs import RecipeGraph, Recipe, Ingredient, RecipeModification, Mods
 import textwrap
 
 class CustomPP(pprint.PrettyPrinter):
-    def format(self, obj):
+    def format(self, obj, context, maxlevels, level):
         if isinstance(obj, Ingredient):
             return (f"Ingredient(name={obj.name}, quantity={obj.quantity}, unit={obj.unit})", True, False)
         elif isinstance(obj, RecipeModification):
@@ -12,21 +12,20 @@ class CustomPP(pprint.PrettyPrinter):
                     f"update_ingredient={obj.update_ingredient}, add_instruction={obj.add_instruction}, "
                     f"remove_instruction={obj.remove_instruction}, add_tag={obj.add_tag}, remove_tag={obj.remove_tag})", True, False)
         elif isinstance(obj, Recipe):
-            ingredients_str = textwrap.fill(", \n".join([f"{ing.name}, {ing.quantity} {ing.unit}" for ing in obj.ingredients]), width=32)
-            instructions_str = textwrap.fill("\n".join(obj.instructions), width=32)
-            tags_str = ", ".join(obj.tags) if obj.tags else "None"
-            sources_str = ''.join(['Sources: ' ,", ".join(obj.sources)]) if obj.sources else ""
-            return (''.join([f"Recipe:\n{obj.name}\n\n",
+            ingredients_str = ", \n".join([f"{ing.name}, {ing.quantity} {ing.unit}" for ing in obj.ingredients])
+            instructions_str = "\n".join([f"{i+1}. {instr}" if not instr.strip().startswith(f"{i+1}.") else instr 
+                                          for i, instr in enumerate(obj.instructions)])
+            sources_str = ", ".join(obj.sources) if obj.sources else "None"
+            return (f"Recipe: {obj.name}\n"
                     f"Ingredients:\n{ingredients_str}\n\n"
                     f"Instructions:\n{instructions_str}\n\n"
-                    f"{sources_str}"]), True, False)
+                    f"Sources: {sources_str}", True, False)
         elif isinstance(obj, RecipeGraph):
             return (f"RecipeGraph(size={obj.get_graph_size()}, foundational_recipe_node={obj.foundational_recipe_node})", True, False)
         elif isinstance(obj, ModsList):
             mods_list_str = "\n".join([f"{mod._id}: Priority {mod.priority}" for mod in obj.get_mods_list()])
             return (f"ModsList:\n{mods_list_str}", True, False)
-        elif isinstance(obj, str):
-            return (textwrap.fill(obj, width=32), True, False)
-        return super().pformat(obj)
-    
-printer = CustomPP(width=32)
+        return super().format(obj, context, maxlevels, level)
+
+printer = CustomPP()
+wrapper = textwrap.TextWrapper(width=32,break_long_words=False,replace_whitespace=False)

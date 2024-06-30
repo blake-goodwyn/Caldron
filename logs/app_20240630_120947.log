@@ -1,0 +1,43 @@
+2024-06-30 12:09:51,354 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 12:09:52,502 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 12:09:52,503 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 12:09:52,503 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:09:52,504 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 12:09:52,504 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 12:09:52,509 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 12:09:52,510 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 12:09:52,510 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 12:09:52,511 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 12:09:52,512 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 12:09:52,512 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 12:09:53,147 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 12:09:53,147 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 12:09:53,148 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-06-30 12:09:53,149 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 12:09:53,149 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 12:09:53,150 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 12:09:53,150 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 12:09:53,152 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 12:09:53,152 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 12:09:53,154 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 12:09:53,155 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 12:09:53,156 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 12:09:53,156 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 12:10:02,834 - cauldron - INFO   - cauldron_app.py - post - {'Greeter': {'messages': [AIMessage(content='Thank you for your request. I will start working on the recipe for chocolate chip cookies.', name='Greeter')], 'sender': 'Greeter'}}
+2024-06-30 12:10:03,537 - cauldron - INFO   - cauldron_app.py - post - {'Validator': {'sender': 'Validator', 'next': 'Tavily'}}
+2024-06-30 12:10:07,568 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:10:07,569 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:10:07,571 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:10:07,572 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:10:08,511 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for chocolate chip cookies on Allrecipes. The URL has been added to the Pot for further examination.', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 12:10:08,511 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:10:12,891 - cauldron - ERROR  - langchain_util.py - agent_node - Error code: 500 - {'error': {'message': 'The model produced invalid content. Consider modifying your prompt if you are seeing this error persistently.', 'type': 'model_error', 'param': None, 'code': None}}
+2024-06-30 12:10:13,510 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:10:13,511 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 12:10:13,515 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:10:13,520 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 12:10:13,521 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:10:13,522 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 12:10:14,201 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph for chocolate chip cookies has been successfully created.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 12:10:14,202 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:10:15,780 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have completed the recipe for chocolate chip cookies. Is there anything else you would like to know or add to the recipe?', name='Frontman')], 'sender': 'Frontman'}}

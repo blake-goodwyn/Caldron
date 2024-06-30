@@ -1,0 +1,183 @@
+2024-06-30 11:57:20,927 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 11:57:22,229 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 11:57:22,229 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 11:57:22,230 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:22,231 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 11:57:22,231 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 11:57:22,232 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:57:22,234 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 11:57:22,235 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 11:57:22,235 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 11:57:22,236 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 11:57:22,237 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 11:57:22,977 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 11:57:22,978 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 11:57:22,979 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 11:57:22,979 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 11:57:22,982 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 11:57:22,982 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 11:57:22,985 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 11:57:22,985 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 11:57:37,775 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 11:57:37,775 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:37,777 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 11:57:37,777 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:37,788 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 11:57:37,789 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:37,795 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 11:57:37,795 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:37,807 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 11:57:37,807 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:37,816 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 11:57:37,817 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:37,826 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 11:57:37,827 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:37,836 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 11:57:37,836 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:37,846 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 11:57:37,847 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:37,856 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 11:57:37,856 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:38,595 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have added multiple chocolate chip cookies recipes to the Pot for further examination.', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 11:57:38,595 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:57:39,471 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 11:57:39,471 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:39,478 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 11:57:39,478 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:41,181 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.verybestbaking.com/toll-house/recipes/original-nestle-toll-house-chocolate-chip-cookies/.
+2024-06-30 11:57:45,336 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 11:57:45,337 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Original Nestle Toll House Chocolate Chip Cookies, Ingredients: [Ingredient(name='all-purpose flour', quantity=2.25, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='tsp'), Ingredient(name='salt', quantity=1.0, unit='tsp'), Ingredient(name='butter', quantity=1.0, unit='cup'), Ingredient(name='granulated sugar', quantity=3.4, unit='cups'), Ingredient(name='packed brown sugar', quantity=1.5, unit='cups'), Ingredient(name='vanilla extract', quantity=1.0, unit='tsp'), Ingredient(name='large eggs', quantity=4.0, unit=None), Ingredient(name='Nestle Toll House Semi-Sweet Chocolate Morsels', quantity=2.0, unit='cups'), Ingredient(name='chopped nuts', quantity=1.0, unit='cup')], Instructions: ['Preheat oven to 375°F.', 'Combine flour, baking soda, and salt in a small bowl.', 'Beat butter, granulated sugar, brown sugar, and vanilla extract in a large mixer bowl until creamy.', 'Add eggs one at a time, beating well after each addition.', 'Gradually beat in the flour'], Tags: None, Sources: None
+2024-06-30 11:57:45,339 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:45,340 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 11:57:45,341 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:57:46,290 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for "Original Nestle Toll House Chocolate Chip Cookies" and added it to the Pot for further processing.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 11:57:46,291 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:57:46,874 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:57:46,875 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 11:57:46,877 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:46,886 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 11:57:46,886 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:57:46,887 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:57:47,964 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: 48efeca1-1fb4-47f6-9f63-923c6f7e8e7b.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 11:57:47,966 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:57:48,926 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have gathered a recipe for chocolate chip cookies. Would you like to proceed with this recipe, or do you need any modifications or alternatives?', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-30 12:00:08,261 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:00:08,262 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:08,263 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:00:08,263 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:00:08,272 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:00:08,272 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:08,280 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:00:08,281 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:00:08,292 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:00:08,293 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:08,301 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:00:08,302 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:00:08,313 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:00:08,313 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:08,321 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:00:08,321 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:00:08,333 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:00:08,334 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:08,343 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:00:08,344 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:00:09,173 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have added multiple chicken curry recipe URLs to the Pot for further examination.', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 12:00:09,174 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:00:09,910 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 12:00:09,910 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:09,923 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 12:00:09,924 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:00:21,190 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 12:00:21,191 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Chicken Curry Recipe, Ingredients: [Ingredient(name='chicken', quantity=0.5, unit='kg'), Ingredient(name='oil', quantity=2.0, unit='tablespoons'), Ingredient(name='onions', quantity=1.0, unit='cup'), Ingredient(name='green chilies', quantity=2.0, unit=None), Ingredient(name='ginger garlic paste', quantity=1.0, unit='tablespoon'), Ingredient(name='tomatoes', quantity=0.5, unit='cup'), Ingredient(name='yogurt', quantity=0.25, unit='cup'), Ingredient(name='salt', quantity=0.75, unit='teaspoon'), Ingredient(name='hot water', quantity=1.0, unit='cup'), Ingredient(name='coriander leaves', quantity=2.0, unit='tablespoons'), Ingredient(name='turmeric powder', quantity=0.25, unit='teaspoon'), Ingredient(name='Kashmiri red chili powder', quantity=1.0, unit='teaspoon'), Ingredient(name='garam masala', quantity=1.0, unit='teaspoon'), Ingredient(name='coriander powder', quantity=1.0, unit='teaspoon'), Ingredient(name='bay leaf', quantity=1.0, unit=None), Ingredient(name='cloves', quantity=4.0, unit=None), Ingredient(name='cinnamon', quantity=2.0, unit='inch'), Ingredient(name='green cardamom', quantity=3.0, unit=None)], Instructions: ['Preparation', 'On a medium flame, heat oil in a deep pan. Add the whole spices - bay leaf, cinnamon, cloves & green cardamoms.', 'Stir in the chopped onions and chilies. Saute until deep golden in color, for 7 to 8 mins.', 'Add ginger garlic paste and saute till you get a nice aroma, for about a minute.', 'Then add tomatoes, turmeric and salt. Mix well and cook until the tomatoes turn soft & mushy.', 'Turn down the heat to low, Stir in the yogurt (or cashew paste), red chili powder, garam masala & coriander powder.', 'Cook on low heat, until the mixture smells good and aromatic.', 'Add chicken and coriander leaves. Fry on a medium heat till the chicken turns white or pale in color. This takes around 3 mins.', 'Cover and cook on a low heat for 3 to 4 minutes. This step is very important as the chicken absorbs all the flavors of the spices.', 'Meanwhile in a separate pot, heat up 1 cup water. Using cold water most times toughens the chicken so it is good to use hot water.', 'How to make Chicken Curry', 'Pour hot water just enough (about ½ cup) to make a thick gravy. As you cook, chicken lets out plenty of moisture, depending on that add more water. Check the pictures in the post for consistency.', 'Cover and cook on a medium flame till the chicken is soft cooked and the curry/gravy turns thick. When the chicken is cooked completely it will fall off the bone easily.', 'Taste the curry & add more salt if needed. You can also add another ½ tsp garam masala at this stage if you feel it is less in flavors.', 'Lastly garnish with coriander leaves, cover and off the heat. Serve chicken curry with butter naan or jeera rice.'], Tags: ['Indian cuisine', 'Chicken curry'], Sources: None
+2024-06-30 12:00:21,197 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:21,198 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 12:00:21,199 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:00:21,875 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='The "Chicken Curry Recipe" has been successfully generated and added to the Pot.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 12:00:21,876 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:00:22,510 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:00:22,511 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 12:00:22,518 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:00:22,528 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 12:00:22,529 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:00:22,530 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 12:00:23,877 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: 578eef78-37a8-4d36-bd6c-5fa7ea38ce8f.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 12:00:23,878 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:00:24,758 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have added multiple chicken curry recipe URLs to the Pot for further examination.', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-30 12:02:24,189 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:02:24,190 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:02:24,191 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:02:24,192 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:02:25,384 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found a recipe for easy desserts with 5 ingredients or less. You can check it out here: [Easy Desserts with 5 Ingredients or Less](https://www.tasteofhome.com/collection/easy-desserts-with-5-ingredients-or-less/).', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 12:02:25,386 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:02:26,403 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 12:02:26,403 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:02:26,411 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 12:02:26,412 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:02:28,329 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get name: argument of type 'NoneType' is not iterable
+2024-06-30 12:02:29,567 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 12:02:29,568 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:02:29,572 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 12:02:29,573 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:02:36,676 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 12:02:36,677 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Easy chicken curry, Ingredients: [Ingredient(name='boneless chicken thighs', quantity=500.0, unit='g'), Ingredient(name='plain yogurt', quantity=2.0, unit='tbsp'), Ingredient(name='spices (coriander, cumin, cardamom, chilli, turmeric or Garam Masala)', quantity=1.0, unit='tbsp'), Ingredient(name='onion', quantity=1.0, unit=None), Ingredient(name='garlic cloves', quantity=4.0, unit=None), Ingredient(name='ginger', quantity=1.0, unit='tsp'), Ingredient(name='spices (coriander, cumin, cardamom, chilli, turmeric or Garam Masala)', quantity=1.0, unit='tbsp'), Ingredient(name='tomato Passata (or chopped/crushed tomatoes)', quantity=1.0, unit='cup'), Ingredient(name='salt', quantity=1.0, unit='tsp'), Ingredient(name='pepper', quantity=0.5, unit='tsp'), Ingredient(name='sugar', quantity=1.0, unit='pinch'), Ingredient(name='cream', quantity=1.0, unit='cup')], Instructions: ['Chop the chicken into bite-size chunks and marinate with yogurt, half of the spices, salt, and pepper.', 'Brown the marinated chicken in a pan.', 'Cook onion, garlic, and ginger in the pan.', 'Add spices, tomatoes, salt, pepper, and sugar to the pan.', 'Simmer the sauce and add the chicken and cream.', 'Simmer until the sauce thickens and the chicken is cooked through.', 'Serve with yogurt, coriander, rice, and bread.'], Tags: ['curry', 'chicken'], Sources: None
+2024-06-30 12:02:36,680 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:02:36,691 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 12:02:36,692 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:02:37,648 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated the recipe for "Easy Chicken Curry." You can find the details in the Pot. Let me know if you need more recipes or information.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 12:02:37,649 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:02:38,253 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:02:38,253 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 12:02:38,260 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:02:38,269 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 12:02:38,269 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:02:38,270 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 12:02:39,407 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: 90d68dda-9e0e-426e-b4f1-e997e9bf29ba.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 12:02:39,411 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:02:40,512 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have summarized the information provided by the other agents. If you have any preferences or specific requirements for the recipe, please let me know so we can tailor the suggestions accordingly.', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-30 12:03:51,067 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:03:51,068 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:51,069 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:03:51,069 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:03:51,080 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:03:51,081 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:51,090 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:03:51,090 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:03:51,105 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:03:51,105 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:51,116 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:03:51,117 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:03:51,127 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:03:51,128 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:51,138 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:03:51,138 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:03:51,151 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:03:51,152 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:51,159 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:03:51,160 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:03:51,849 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have added relevant URLs about channel registration to the Pot for further examination.', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 12:03:51,850 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:03:52,650 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 12:03:52,651 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:52,661 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 12:03:52,661 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:03:54,453 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://support.google.com/youtube/answer/1646861?hl=ja.
+2024-06-30 12:03:55,827 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 12:03:55,827 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Channel Registration, Ingredients: [], Instructions: [], Tags: None, Sources: ['https://support.google.com/youtube/answer/1646861?hl=ja']
+2024-06-30 12:03:55,828 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:55,832 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 12:03:55,833 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:03:56,624 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated a summary of the information regarding channel registration. The summary has been added to the Pot for further processing.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 12:03:56,625 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:03:57,228 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:03:57,228 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 12:03:57,238 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:03:57,245 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 12:03:57,246 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:03:57,246 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 12:03:58,529 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='I have successfully created a recipe graph with the foundational recipe node ID: 7a999ee1-d4c8-426c-9fe0-0eaba0bc44fd.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 12:03:58,531 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:03:59,342 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have processed the request for channel registration. If you have any specific preferences or requirements for the channel, please let me know.', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-30 12:07:12,951 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:07:12,952 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:07:12,953 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:07:12,954 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.

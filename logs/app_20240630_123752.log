@@ -1,0 +1,50 @@
+2024-06-30 12:38:12,215 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 12:38:13,519 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 12:38:13,520 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 12:38:13,520 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:38:13,521 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 12:38:13,522 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 12:38:13,527 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 12:38:13,527 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 12:38:13,528 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 12:38:13,528 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 12:38:13,529 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 12:38:13,530 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 12:38:14,230 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 12:38:14,231 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 12:38:14,232 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-06-30 12:38:14,232 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 12:38:14,232 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 12:38:14,234 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 12:38:14,234 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 12:38:14,236 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 12:38:14,236 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 12:38:14,238 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 12:38:14,239 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 12:38:14,240 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 12:38:14,240 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 12:38:19,052 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 12:38:19,053 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:38:19,054 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 12:38:19,055 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:38:19,932 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:38:26,352 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 12:38:26,353 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Homemade Brownies, Ingredients: [Ingredient(name='granulated sugar', quantity=1.5, unit='cups'), Ingredient(name='all-purpose flour', quantity=0.75, unit='cup'), Ingredient(name='cocoa powder', quantity=0.67, unit='cup'), Ingredient(name='powdered sugar', quantity=0.5, unit='cup'), Ingredient(name='dark chocolate chips', quantity=0.5, unit='cup'), Ingredient(name='sea salt', quantity=0.75, unit='teaspoons'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='canola oil or extra-virgin olive oil', quantity=0.5, unit='cup'), Ingredient(name='water', quantity=2.0, unit='tablespoons'), Ingredient(name='vanilla', quantity=0.5, unit='teaspoon')], Instructions: ['Preheat the oven to 325°F. Lightly spray an 8x8 baking dish (not a 9x9 dish or your brownies will overcook) with cooking spray and line it with parchment paper. Spray the parchment paper.', 'In a medium bowl, combine the sugar, flour, cocoa powder, powdered sugar, chocolate chips, and salt.', 'In a large bowl, whisk together the eggs, olive oil, water, and vanilla.', 'Sprinkle the dry mix over the wet mix and stir until just combined.', "Pour the batter into the prepared pan (it'll be thick - that's ok) and use a spatula to smooth the top. Bake for 40 to 48 minutes, or until a toothpick comes out with only a few crumbs attached (note: it's better to pull the brownies out early than to leave them in too long). Cool completely before slicing. Store in an airtight container at room temperature for up to 3 days. These also freeze well!"], Tags: ['brownies'], Sources: ['https://www.loveandlemons.com/brownies-recipe/']
+2024-06-30 12:38:26,357 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:38:26,363 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 12:38:26,363 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 12:38:27,116 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:38:28,013 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:38:28,014 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 12:38:28,016 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:38:28,030 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 12:38:28,031 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 12:38:28,032 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 12:38:29,007 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 12:38:29,859 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 12:38:29,878 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 12:38:29,880 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 12:38:29,882 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 12:38:29,884 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 12:38:29,888 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 12:38:29,892 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.

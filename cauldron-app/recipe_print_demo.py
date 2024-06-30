@@ -2,26 +2,15 @@ import sounddevice as sd
 import scipy.io.wavfile as wav
 import requests
 import os
-import serial
-import adafruit_thermal_printer
+from thermal_printer_util import printer
 from dotenv import load_dotenv
 import numpy as np
-from cauldron_app import CaldronApp
-from class_defs import Recipe, Ingredient, load_graph_from_file, load_pot_from_file
-from langchain_util import quickResponse
-from custom_print import printer as pretty
+from rpi_app_request import app_request
 from time import sleep
 from neopixel_util import *
 from gpiozero import Button
 from logging_util import logger
-import textwrap
 
-# Example recipe
-demo_recipe = Recipe(
-    name="Chocolate Chip Cookies",
-    ingredients=[Ingredient(name="cookies", quantity=6, unit="unit")],
-    instructions=["Make them."]
-)
 
 # Load environment variables
 load_dotenv()
@@ -31,24 +20,12 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 button_pin = 24
 button = Button(button_pin, pull_up=True)
 
-#Caldron App
-app = CaldronApp('gpt-3.5-turbo')
-
-# Thermal printer setup (adjust to your specific setup)
-uart = serial.Serial("/dev/serial0", baudrate=9600, timeout=3000)
-ThermalPrinter = adafruit_thermal_printer.get_printer_class(2.69)
-printer = ThermalPrinter(uart)
-header_img = 'CALDRON_RECIPE_HEADER.bmp'
-printer.size = adafruit_thermal_printer.SIZE_SMALL
-printer.justify = adafruit_thermal_printer.JUSTIFY_LEFT
-printer.underline = None
-
 # Audio recording parameters
 SAMPLE_RATE = 44100  # Sample rate
 CHANNELS = 1  # Number of audio channels
 FILENAME = "recording.wav"  # Filename for the recorded audio
 
-#Global Idle Flag
+# Global Idle Flag
 global _idle_flag
 _idle_flag = True
 
@@ -58,6 +35,11 @@ recording = []
 # Function to record audio
 def start_recording():
     global recording
+    global _idle_flag
+    if not _idle_flag:
+        logger.info("Recording aborted, _idle_flag is False")
+        return
+    
     logger.info("Recording started...")
     recording = []  # Reset the recording list
 
@@ -97,11 +79,9 @@ def recipe_header():
     os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
     sleep(10)
 
-def print_recipe(text):
-    try:
-        printer.print(text)
-    finally:
-        printer.feed(3)
+def recipe_footer():
+    os.system("lp -o orientation-requested=3 RECIPE_FOOTER.bmp")
+    sleep(10)
 
 # Button callback
 def button_pressed():
@@ -113,37 +93,17 @@ def button_pressed():
         text = transcribe_audio(FILENAME)
         logger.info(f"Transcribed Text: {text}")
         
-        os.system("lp -o orientation-requested=3 CALDRON_RECIPE_HEADER.bmp")
-        sleep(10)
-        msg = quickResponse(text)
-        printer.print(textwrap.fill(msg,width=32))
-        printer.feed(2)
+        recipe_header()
 
         if text != None:
             # Pass to Caldron App
-            app.clear_pot()
             highlight_section('Tavily')
-            app.post(text)
-            while app.printer_wait_flag:
-                sleep(0.5)
-            
-            recipe_graph = load_graph_from_file(app.recipe_graph_file)
-            recipe = recipe_graph.get_foundational_recipe()
-            if (recipe != None):
-                pot = load_pot_from_file(app.recipe_pot_file)
-                recipe = pot.pop_recipe()
-                if (recipe != None):
-                    try:
-                        print_recipe(pretty.format(recipe))
-                    except Exception as e:
-                        logger.error(e)
-                else:
-                    print_recipe(textwrap.fill("Sorry, I couldn't find an appropriate recipe for what you were looking for.", width=32))
-            else:
-                try:
-                    print_recipe(pretty.format(recipe))
-                except Exception as e:
-                    logger.error(e)
+            try:
+                app_request(text)
+            except Exception as e:
+                logger.error(e)
+
+        recipe_footer()
         
     else:
         logger.info("No audio recorded. Skipping transcription and printing.")

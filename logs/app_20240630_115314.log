@@ -1,0 +1,71 @@
+2024-06-30 11:53:19,478 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 11:53:20,911 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 11:53:20,912 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 11:53:20,912 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:53:20,913 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 11:53:20,914 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 11:53:20,914 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:53:20,915 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 11:53:20,916 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 11:53:20,916 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 11:53:20,917 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 11:53:20,918 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 11:53:21,691 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 11:53:21,691 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 11:53:21,693 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 11:53:21,693 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 11:53:21,695 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 11:53:21,696 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 11:53:21,697 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 11:53:21,697 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 11:53:34,732 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='How can I assist you today?', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 11:53:34,733 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:53:35,410 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 11:53:35,411 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:53:35,416 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 11:53:35,417 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:53:36,303 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content="I couldn't find any URLs in the Pot at the moment. If you have any URLs to scrape for recipe information, please provide them, and I'll be happy to help.", name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 11:53:36,303 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:53:37,315 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:53:37,315 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 11:53:37,323 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:53:37,324 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 11:53:37,325 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:53:37,325 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:53:38,608 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: fc581c57-53a6-48f7-8af6-50a75bbf2bba.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 11:53:38,609 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:53:39,266 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='I have not received any specific requests or information from you. How can I assist you today?', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-30 11:54:17,039 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='Hello! How can I assist you today?', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 11:54:17,040 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:54:17,645 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 11:54:17,646 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:54:17,647 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 11:54:17,647 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:54:18,496 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content="I couldn't find any URLs in the Pot at the moment. Is there anything else you need help with?", name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 11:54:18,497 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:54:19,059 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:54:19,060 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 11:54:19,066 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:54:19,067 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 11:54:19,067 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:54:19,068 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:54:20,133 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: fa6b216d-c027-40fb-9821-96a549c0cb83. If you need any further assistance or modifications, feel free to let me know!', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 11:54:20,134 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:54:20,920 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='It seems like there was no specific request or information provided in the conversation. Is there anything specific you would like assistance with today?', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-30 11:54:30,329 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='How can I assist you today?', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 11:54:30,330 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:54:30,956 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 11:54:30,956 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:54:30,957 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 11:54:30,957 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:54:31,892 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content="I couldn't find any URLs in the Pot at the moment. If you have any URLs to scrape for recipe information, please provide them, and I'll be happy to help.", name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 11:54:31,893 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:54:32,769 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:54:32,769 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 11:54:32,777 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:54:32,779 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 11:54:32,780 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:54:32,780 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:54:33,771 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: 298b11bf-0aa6-476b-9325-411d3f556f90. If you need any further assistance or modifications, feel free to let me know.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 11:54:33,772 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:54:34,553 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='It seems like there was a pause in the conversation. How can I assist you further with recipe development or any other queries you may have?', name='Frontman')], 'sender': 'Frontman'}}

@@ -1,0 +1,725 @@
+2024-06-30 13:12:09,654 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:12:11,045 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:12:11,045 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:12:11,046 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:11,047 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:12:11,048 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:12:11,053 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:12:11,054 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:12:11,054 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:12:11,055 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:12:11,056 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:12:11,057 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:12:11,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:12:11,776 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:12:11,776 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-06-30 13:12:11,777 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:12:11,778 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:12:11,779 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:12:11,779 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:12:11,781 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:12:11,781 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:12:11,784 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:12:11,784 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:12:11,785 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:12:11,786 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:12:18,760 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:12:18,761 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:18,763 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:12:18,763 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:18,773 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:12:18,773 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:18,775 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:12:18,775 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:18,786 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:12:18,787 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:18,794 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:12:18,794 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:18,805 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:12:18,806 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:18,812 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:12:18,812 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:18,823 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:12:18,824 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:18,833 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:12:18,833 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:21,013 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:12:21,740 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 13:12:21,741 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:21,755 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 13:12:21,756 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:30,415 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:12:30,416 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Ground Beef Taco Recipe, Ingredients: [Ingredient(name='ground beef chuck', quantity=2.0, unit='lbs'), Ingredient(name='Rotel Tomatoes with Green Chilis', quantity=20.0, unit='oz'), Ingredient(name='chili powder', quantity=1.0, unit='tsp'), Ingredient(name='kosher salt', quantity=1.0, unit='tsp'), Ingredient(name='yellow corn tortillas', quantity=20.0, unit=None), Ingredient(name='iceberg lettuce', quantity=0.5, unit=None), Ingredient(name='sour cream', quantity=0.67, unit='cup'), Ingredient(name='limes', quantity=2.0, unit=None), Ingredient(name='Cilantro sprigs', quantity=0.25, unit=None)], Instructions: ['Heat a large non-stick skillet over med-high heat. Add 2 lbs ground beef and cook, stirring occasionally until cooked through (5 minutes). Use a spoon to skim off and discard most of the excess fat, leaving about 2-3 Tbsp in the pan.', 'Add 2 cans of tomatoes, 1 tsp chili powder and 1 tsp salt. Continue to cook until beef is fully cooked and sauce slightly reduced and most of the tomato liquid has evaporated (7 to 10 minutes).', 'Before serving, on a dry large non-stick pan over medium/high heat, toast both sides of tortillas just until hot and barely starting to turn golden (15-30 seconds per side). Remove to a plate and cover loosely with foil to keep warm.', 'To serve, place a heaping spoonful of beef over each tortilla, top with lettuce, mango salsa, sprigs of cilantro, sour cream and a sprinkle of chili powder if desired. Squeeze fresh lime juice just before eating.'], Tags: [], Sources: ['https://natashaskitchen.com/beef-tacos/']
+2024-06-30 13:12:30,421 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:30,423 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:12:30,423 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:31,787 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:12:32,403 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:12:32,404 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:12:32,407 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:32,416 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:12:32,417 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:12:32,418 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:12:33,347 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:12:34,903 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:12:34,925 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:12:34,927 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:12:34,929 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:12:34,932 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:12:34,938 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:12:34,943 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:12:52,380 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:12:53,818 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:12:53,819 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:12:53,819 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:12:53,821 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:12:53,821 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:12:53,822 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:12:53,823 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:12:53,824 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:12:53,824 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:12:53,825 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:12:53,826 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:12:53,828 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:12:53,829 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:12:53,830 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH']
+2024-06-30 13:12:53,830 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:12:53,831 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:12:53,833 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:12:53,834 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:12:53,836 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:12:53,837 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:12:53,839 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:12:53,840 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:12:53,842 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:12:53,842 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:13:00,930 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:00,931 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:00,933 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:00,934 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:00,943 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:00,943 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:00,951 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:00,951 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:00,963 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:00,964 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:00,971 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:00,972 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:00,983 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:00,984 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:00,992 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:00,993 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:01,002 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:01,003 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:01,011 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:01,012 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:02,035 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:13:02,971 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 13:13:02,974 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:02,993 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 13:13:02,996 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:09,855 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:13:09,857 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Classic Pancakes, Ingredients: [Ingredient(name='egg', quantity=1.0, unit=None), Ingredient(name='Gold Medal™ all-purpose flour or whole wheat flour', quantity=1.0, unit='cup'), Ingredient(name='sugar', quantity=1.0, unit='tablespoon'), Ingredient(name='baking powder', quantity=3.0, unit='teaspoons'), Ingredient(name='salt', quantity=0.25, unit='teaspoon'), Ingredient(name='milk', quantity=0.75, unit='cup'), Ingredient(name='vegetable oil or melted butter', quantity=2.0, unit='tablespoons')], Instructions: ['In medium bowl, beat egg with wire whisk until fluffy. Stir in remaining ingredients just until flour is moistened (batter will be slightly lumpy); do not overmix or pancakes will be tough. For thinner pancakes, stir in additional 1 to 2 tablespoons milk.', 'Heat griddle or skillet over medium-high heat (375°F). (To test griddle, sprinkle with a few drops of water. If bubbles jump around, heat is just right.) Brush with vegetable oil if necessary (or spray with cooking spray before heating).', 'For each pancake, pour slightly less than 1/4 cup batter onto griddle. Cook 2 to 3 minutes or until bubbly on top and dry around edges. Turn; cook other side until golden brown.'], Tags: [], Sources: ['https://www.bettycrocker.com/recipes/classic-pancakes/77a89da1-fd56-494b-874a-55f9195c1413']
+2024-06-30 13:13:09,868 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:09,873 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:13:09,876 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:10,897 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:13:11,444 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:13:11,446 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:13:11,451 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:11,475 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:13:11,477 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:13:11,480 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:13:12,990 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:13:14,909 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:13:14,923 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:13:14,925 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:13:14,926 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:13:14,928 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:13:14,930 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:14,933 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:13:33,510 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:13:34,833 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:13:34,833 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:13:34,834 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:34,835 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:13:34,836 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:13:34,837 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:13:34,838 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:13:34,838 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:13:34,839 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:13:34,840 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:13:34,841 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:13:34,843 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:13:34,843 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:13:34,844 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:13:34,845 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:13:34,846 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:13:34,849 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:13:34,850 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:13:34,852 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:13:34,853 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:13:34,855 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:13:34,858 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:13:34,860 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:13:34,860 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:13:41,382 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:41,384 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:41,386 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:41,387 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:41,399 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:41,400 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:41,409 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:41,410 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:41,423 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:41,424 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:41,431 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:41,432 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:41,444 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:41,445 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:41,455 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:41,456 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:41,472 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:13:41,473 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:41,480 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:13:41,482 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:42,362 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:13:42,997 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 13:13:42,999 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:43,018 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 13:13:43,021 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:53,279 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:13:53,281 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: 25-Minute Mixed Vegetable Stir Fry, Ingredients: [Ingredient(name='soy sauce', quantity=0.5, unit='cup'), Ingredient(name='vegetable stock', quantity=0.5, unit='cup'), Ingredient(name='sesame oil', quantity=1.0, unit='teaspoon'), Ingredient(name='rice vinegar', quantity=0.5, unit='tablespoon'), Ingredient(name='garlic', quantity=2.0, unit=None), Ingredient(name='ginger', quantity=1.0, unit='teaspoon'), Ingredient(name='sugar or honey', quantity=1.0, unit='tablespoon'), Ingredient(name='cornstarch', quantity=1.0, unit='tablespoon'), Ingredient(name='red pepper flakes', quantity=1.0, unit='pinch'), Ingredient(name='neutral oil', quantity=1.0, unit='tablespoon'), Ingredient(name='yellow onion', quantity=0.5, unit='cup'), Ingredient(name='mushrooms', quantity=8.0, unit='ounces'), Ingredient(name='carrots', quantity=0.5, unit='cup'), Ingredient(name='snow or snap peas', quantity=8.0, unit='ounces'), Ingredient(name='broccoli florets', quantity=1.0, unit='cup'), Ingredient(name='red or yellow bell pepper', quantity=1.0, unit=None), Ingredient(name='canned water chestnuts', quantity=8.0, unit='ounces'), Ingredient(name='garlic', quantity=2.0, unit=None), Ingredient(name='ginger', quantity=1.0, unit='teaspoon')], Instructions: ['The Sauce: whisk together the stir fry sauce ingredients and set aside.', 'In a wok or large saute pan, heat oil over medium-high heat. Add the sliced onion and mushrooms, let cook for 2-3 minutes.', 'Add carrots, sugar snap peas (wait if using snow peas), and broccoli. Cook for 2 minutes.', 'Add bell pepper, water chestnuts, garlic, and ginger (snow peas here, if using instead of snap peas). Cook for 1-2 minutes, then stir in the sauce and allow it to simmer until thick and the vegetables are tender, about 2-3 minutes.', 'Serve over rice or noodles. Garnish with green onions, cilantro, bean sprouts, a squeeze of lime, or sesame seeds as desired.'], Tags: [], Sources: ['https://www.forkinthekitchen.com/vegetable-stir-fry/']
+2024-06-30 13:13:53,286 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:53,288 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:13:53,289 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:13:54,556 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:13:55,261 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:13:55,263 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:13:55,269 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:55,292 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:13:55,294 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:13:55,297 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:13:56,569 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:13:57,612 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:13:57,630 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:13:57,631 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:13:57,633 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:13:57,635 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:13:57,638 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:13:57,641 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:14:13,975 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:14:15,267 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:14:15,268 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:14:15,269 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:14:15,270 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:14:15,271 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:14:15,272 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:14:15,273 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:14:15,273 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:14:15,274 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:14:15,275 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:14:15,276 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:14:15,277 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:14:15,278 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:14:15,280 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:14:15,281 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:14:15,281 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:14:15,283 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:14:15,284 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:14:15,287 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:14:15,288 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:14:15,290 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:14:15,291 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:14:15,293 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:14:15,293 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:14:22,284 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:14:22,285 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:14:22,287 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:14:22,287 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:14:23,509 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:14:30,737 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:14:30,738 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Chocolate Chip Cookies, Ingredients: [Ingredient(name='butter', quantity=1.0, unit='cup'), Ingredient(name='white sugar', quantity=1.0, unit='cup'), Ingredient(name='brown sugar', quantity=1.0, unit='cup'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='vanilla', quantity=1.0, unit='teaspoon'), Ingredient(name='baking soda', quantity=1.0, unit='teaspoon'), Ingredient(name='hot water', quantity=2.0, unit='teaspoons'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='flour', quantity=2.25, unit='cups'), Ingredient(name='chocolate chips', quantity=2.0, unit='cups'), Ingredient(name='walnuts', quantity=1.0, unit='cup')], Instructions: ['Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.', 'Preheat the oven to 350 degrees F (175 degrees C).', 'Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.', 'Beat in eggs, one at a time, then stir in vanilla.', 'Dissolve baking soda in hot water. Add to batter along with salt.', 'Stir in flour, chocolate chips, and walnuts.', 'Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.', 'Bake in the preheated oven until edges are nicely browned, about 10 minutes.', 'Cool on the baking sheets briefly before removing to a wire rack to cool completely.', 'Store in an airtight container or serve immediately and enjoy!'], Tags: ['chocolate chip cookies'], Sources: ['https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/']
+2024-06-30 13:14:30,742 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:14:30,744 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:14:30,745 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:14:31,538 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:14:32,511 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:14:32,512 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:14:32,514 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:14:32,521 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:14:32,522 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:14:32,523 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:14:33,837 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:14:34,656 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:14:34,676 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:14:34,678 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:14:34,680 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:14:34,683 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:14:34,687 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:14:34,692 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:14:56,315 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:14:57,535 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:14:57,536 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:14:57,537 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:14:57,538 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:14:57,539 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:14:57,540 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:14:57,541 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:14:57,541 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:14:57,542 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:14:57,543 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:14:57,544 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:14:57,546 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:14:57,546 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:14:57,548 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:14:57,549 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:14:57,549 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:14:57,552 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:14:57,553 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:14:57,555 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:14:57,556 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:14:57,558 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:14:57,559 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:14:57,560 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:14:57,561 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:15:03,045 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:15:03,047 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:15:03,052 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:15:03,054 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:15:04,401 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:15:05,219 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 13:15:05,221 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:15:05,244 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 13:15:05,246 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:15:11,492 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:15:11,493 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: My best Grilled Cheese Sandwich, Ingredients: [Ingredient(name='sourdough bread', quantity=2.0, unit='slices'), Ingredient(name='SALTED butter', quantity=30.0, unit='g'), Ingredient(name='vintage cheddar cheese or gruyere', quantity=1.3, unit='cup'), Ingredient(name='mozzarella', quantity=30.0, unit='g')], Instructions: ['Butter bread - Slather both sides of each piece of bread with the butter (yes, all 4 sides!).', 'Light toast - Heat a heavy-based skillet or frying pan over medium low heat (no oil or butter). Place both pieces of bread in the skillet and lightly toast for 1 minute to warm it through and create a light crust. (When we flip, this gives the cheese a head start).', 'Pile on cheese - Flip one slice of bread, then pile on the cheddar cheese followed by the mozzarella. Place the other slice of bread on top, with the hot toasted side in contact with the cheese.', "Cook 3 minutes - Cook for 3 minutes or until the bread is evenly golden and crisp, pressing down lightly with a spatula every now and then. If it's browning too quickly, remove remove from the stove to cool down a bit and lower heat.", 'Flip, 3 minutes - Turn the sandwich over, and cook the other side for 3 minutes or until the bread is golden and the cheese is melted.', 'Devour - Transfer to cutting board. Cut in half in one swift motion. Admire cheese pull. Devour.'], Tags: ['grilled cheese', 'sandwich'], Sources: ['https://www.recipetineats.com/grilled-cheese-sandwich/']
+2024-06-30 13:15:11,500 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:15:11,503 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:15:11,504 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:15:12,696 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:15:13,773 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:15:13,776 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:15:13,781 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:15:13,808 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:15:13,810 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:15:13,812 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:15:15,176 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:15:16,112 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:15:16,122 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:15:16,123 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:15:16,124 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:15:16,125 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:15:16,126 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:15:16,128 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:15:43,596 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:15:44,835 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:15:44,836 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:15:44,837 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:15:44,838 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:15:44,839 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:15:44,840 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:15:44,841 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:15:44,841 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:15:44,842 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:15:44,843 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:15:44,844 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:15:44,846 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:15:44,847 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:15:44,848 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:15:44,849 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:15:44,850 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:15:44,851 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:15:44,852 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:15:44,854 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:15:44,855 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:15:44,857 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:15:44,858 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:15:44,859 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:15:44,860 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:15:52,895 - cauldron - ERROR  - langchain_util.py - agent_node - Error code: 400 - {'error': {'message': "Invalid 'messages[5].tool_calls[0].function.name': string does not match pattern. Expected a string that matches the pattern '^[a-zA-Z0-9_-]+$'.", 'type': 'invalid_request_error', 'param': 'messages[5].tool_calls[0].function.name', 'code': 'invalid_value'}}
+2024-06-30 13:15:54,204 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 13:15:54,206 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:15:54,212 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 13:15:54,214 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:15:55,409 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:15:56,193 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:15:56,195 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:15:56,200 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:15:56,206 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:15:56,208 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:15:56,209 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:15:57,264 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:15:59,629 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:15:59,639 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:15:59,640 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:15:59,641 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:15:59,642 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:16:23,650 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:16:24,984 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:16:24,985 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:16:24,986 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:16:24,987 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:16:24,988 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:16:24,988 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:16:24,990 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:16:24,990 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:16:24,991 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:16:24,992 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:16:24,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:16:24,994 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:16:24,995 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:16:24,997 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:16:24,998 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:16:24,999 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:16:25,001 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:16:25,001 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:16:25,003 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:16:25,004 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:16:25,006 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:16:25,006 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:16:25,008 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:16:25,009 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:16:30,325 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:16:30,327 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:16:30,332 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:16:30,334 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:16:31,571 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:16:42,369 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:16:42,370 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Classic, Hearty Beef Stew, Ingredients: [Ingredient(name='beef', quantity=3.0, unit='pounds'), Ingredient(name='salt', quantity=1.0, unit='teaspoon'), Ingredient(name='black pepper', quantity=1.0, unit='teaspoon'), Ingredient(name='all-purpose flour', quantity=1.5, unit='cups'), Ingredient(name='paprika', quantity=1.5, unit='teaspoons'), Ingredient(name='vegetable oil', quantity=2.0, unit='tablespoons'), Ingredient(name='onion', quantity=1.0, unit='large'), Ingredient(name='garlic', quantity=3.0, unit='cloves'), Ingredient(name='tomato paste', quantity=2.0, unit='tablespoons'), Ingredient(name='red wine', quantity=1.5, unit='cups'), Ingredient(name='thyme', quantity=1.0, unit='teaspoon'), Ingredient(name='rosemary', quantity=1.0, unit='teaspoon'), Ingredient(name='herbes de Provence', quantity=1.0, unit='teaspoon'), Ingredient(name='bay leaves', quantity=2.0, unit=None), Ingredient(name='beef broth', quantity=4.0, unit='cups'), Ingredient(name='Worcestershire sauce', quantity=2.0, unit='tablespoons'), Ingredient(name='carrots', quantity=4.0, unit=None), Ingredient(name='potatoes', quantity=4.0, unit=None), Ingredient(name='peas', quantity=1.0, unit='cup')], Instructions: ['Gather all ingredients and preheat the oven to 350 degrees F (175 degrees C).', 'Season beef with salt and pepper in a large bowl. Add flour and paprika and toss until evenly coated.', 'Heat oil in a Dutch oven over medium-high heat. Working in batches, sear beef in hot oil, stirring occasionally, until well-browned, 10 to 11 minutes per batch. Transfer beef to a plate and leave drippings in the pot.', 'Add onion to drippings; season with salt and pepper. Cook and stir until onion begins to caramelize, about 10 minutes. Add garlic and stir until fragrant, about 30 seconds.', 'Stir in tomato paste; cook until it turns brown and begins to caramelize and stick to the bottom of the pan.', 'Pour in red wine and bring to a boil while scraping the browned bits of food off the bottom of the pan with a wooden spoon. Cook until wine is almost evaporated, about 3 minutes.', 'Add thyme, rosemary, herbes de Provence, and bay leaves. Stir in broth and Worcestershire sauce; bring to a boil.', 'Return beef to the pot, then remove from heat and cover with the lid.', 'Braise stew in the preheated oven until beef is almost tender, about 1 hour 30 minutes. Remove from the oven.', 'Add carrots, potatoes, and more beef broth if needed. Cover the pot and return to the oven to braise until beef and vegetables are tender, about 30 minutes more.', 'Discard bay leaves. Stir in peas, rosemary, and thyme. Serve hot.'], Tags: [], Sources: ['https://www.allrecipes.com/recipe/281995/classic-hearty-beef-stew/']
+2024-06-30 13:16:42,379 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:16:42,387 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:16:42,388 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:16:43,211 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:16:43,955 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:16:43,957 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:16:43,962 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:16:43,985 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:16:43,987 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:16:43,990 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:16:45,447 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:16:46,122 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:16:46,142 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:16:46,145 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:16:46,147 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:16:46,150 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:16:46,154 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:16:46,158 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:17:02,701 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:17:04,186 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:17:04,187 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:17:04,188 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:17:04,190 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:17:04,191 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:17:04,191 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:17:04,193 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:17:04,194 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:17:04,194 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:17:04,196 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:17:04,196 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:17:04,198 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:17:04,199 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:17:04,200 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:17:04,201 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:17:04,202 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:17:04,204 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:17:04,205 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:17:04,207 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:17:04,208 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:17:04,210 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:17:04,211 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:17:04,213 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:17:04,213 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:17:11,467 - cauldron - ERROR  - langchain_util.py - agent_node - Error code: 400 - {'error': {'message': "Invalid 'messages[5].tool_calls[0].function.name': string does not match pattern. Expected a string that matches the pattern '^[a-zA-Z0-9_-]+$'.", 'type': 'invalid_request_error', 'param': 'messages[5].tool_calls[0].function.name', 'code': 'invalid_value'}}
+2024-06-30 13:17:12,303 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 13:17:12,305 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:17:12,311 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 13:17:12,313 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:17:13,595 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:17:14,228 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:17:14,230 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:17:14,236 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:17:14,241 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:17:14,243 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:17:14,246 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:17:14,947 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:17:17,641 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:17:17,664 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:17:17,667 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:17:17,671 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:17:17,674 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:17:31,500 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:17:32,801 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:17:32,802 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:17:32,803 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:17:32,804 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:17:32,805 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:17:32,806 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:17:32,807 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:17:32,807 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:17:32,808 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:17:32,809 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:17:32,810 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:17:32,811 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:17:32,812 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:17:32,813 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:17:32,813 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:17:32,814 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:17:32,818 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:17:32,819 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:17:32,820 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:17:32,821 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:17:32,823 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:17:32,824 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:17:32,826 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:17:32,826 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:17:38,045 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:17:38,046 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:17:38,048 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:17:38,049 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:17:39,395 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:17:44,175 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:17:44,176 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Indian Chicken Curry, Ingredients: [], Instructions: ['Heat olive oil in a skillet over medium heat. Sauté onion until lightly browned.', 'Stir in garlic, curry powder, cinnamon, paprika, bay leaf, ginger, sugar, and salt. Continue stirring for 2 minutes.', 'Add chicken pieces, tomato paste, yogurt, and coconut milk. Bring to a boil, reduce heat, and simmer for 20 to 25 minutes.', 'Remove bay leaf, and stir in lemon juice and cayenne pepper. Simmer 5 more minutes.', 'Serve hot and enjoy!'], Tags: None, Sources: ['https://www.allrecipes.com/recipe/46822/indian-chicken-curry-ii/']
+2024-06-30 13:17:44,179 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:17:44,187 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:17:44,188 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:17:44,926 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:17:45,838 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:17:45,839 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:17:45,844 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:17:45,862 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:17:45,864 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:17:45,866 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:17:47,163 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:17:47,951 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:17:47,964 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:17:47,965 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:17:47,967 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:17:47,968 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:17:47,971 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:17:47,973 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:18:11,043 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:18:12,375 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:18:12,376 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:18:12,377 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:18:12,378 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:18:12,379 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:18:12,380 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:18:12,381 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:18:12,382 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:18:12,382 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:18:12,384 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:18:12,384 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:18:12,386 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:18:12,387 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:18:12,388 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:18:12,389 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:18:12,390 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:18:12,392 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:18:12,393 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:18:12,395 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:18:12,396 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:18:12,398 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:18:12,399 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:18:12,400 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:18:12,401 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:18:17,935 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-06-30 13:18:17,937 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:18:17,942 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-06-30 13:18:17,945 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:18:19,129 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:18:25,761 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 13:18:25,761 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Damn Oven Baked Salmon, Ingredients: [Ingredient(name='salmon filets', quantity=2.0, unit='6oz'), Ingredient(name='paprika', quantity=1.0, unit='tsp'), Ingredient(name='garlic powder', quantity=0.5, unit='tsp'), Ingredient(name='kosher salt', quantity=0.5, unit='tsp'), Ingredient(name='black pepper', quantity=0.5, unit='tsp'), Ingredient(name='butter', quantity=1.0, unit='tbs')], Instructions: ['Preheat oven to 450°F.', 'Line a baking sheet with aluminum foil and spray with cooking spray.', 'Place salmon filets on pan, skin-side down, and brush with melted butter. (Melt the butter in a small dish in the microwave for about 30 seconds).', 'Generously add all the seasoning to the salmon.', 'Bake at 450°F for 12-16 minutes, or until internal temperature in thickest part of salmon registers 145°F on an instant-read thermometer.', 'Serve with lemon slices and fresh dill as garnish.'], Tags: [], Sources: ['https://recipeteacher.com/best-damn-oven-baked-salmon/']
+2024-06-30 13:18:25,764 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:18:25,774 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 13:18:25,774 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:18:26,576 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:18:27,246 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:18:27,247 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:18:27,249 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:18:27,255 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:18:27,256 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 13:18:27,256 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:18:28,187 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 13:18:29,129 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 13:18:29,140 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-06-30 13:18:29,141 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-06-30 13:18:29,142 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-06-30 13:18:29,143 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-06-30 13:18:29,145 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 13:18:29,146 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 13:19:49,391 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:19:50,875 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:19:50,876 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:19:50,876 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:19:50,878 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:19:50,878 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:19:50,879 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:19:50,880 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:19:50,881 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:19:50,881 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:19:50,882 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:19:50,883 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:19:50,885 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:19:50,885 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:19:50,887 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:19:50,888 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:19:50,889 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:19:50,890 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:19:50,891 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:19:50,893 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:19:50,894 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:19:50,897 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:19:50,898 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:19:50,900 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:19:50,900 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:20:39,831 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:20:41,473 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:20:41,474 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:20:41,474 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:20:41,476 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:20:41,476 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:20:41,477 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:20:41,478 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:20:41,479 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:20:41,479 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:20:41,480 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:20:41,481 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:20:41,482 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:20:41,483 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:20:41,484 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:20:41,485 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:20:41,485 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:20:41,487 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:20:41,487 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:20:41,489 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:20:41,490 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:20:41,492 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:20:41,493 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:20:41,495 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:20:41,496 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:21:53,154 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:21:54,613 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:21:54,613 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:21:54,614 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:21:54,615 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:21:54,616 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:21:54,616 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:21:54,617 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:21:54,618 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:21:54,619 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:21:54,620 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:21:54,620 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:21:54,622 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:21:54,622 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:21:54,623 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:21:54,624 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:21:54,625 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:21:54,627 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:21:54,627 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:21:54,629 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:21:54,629 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:21:54,631 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:21:54,632 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:21:54,633 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:21:54,634 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:22:36,253 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:22:37,978 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:22:37,979 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:22:37,980 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:22:37,982 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:22:37,983 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:22:37,984 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:22:37,985 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:22:37,986 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:22:37,986 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:22:37,988 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:22:37,988 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:22:37,990 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:22:37,991 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:22:37,992 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:22:37,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:22:37,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:22:37,996 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:22:37,997 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:22:38,000 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:22:38,001 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:22:38,004 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:22:38,005 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:22:38,006 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:22:38,007 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:23:49,687 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:23:51,795 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:23:51,795 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:23:51,796 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:23:51,797 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:23:51,798 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:23:51,798 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:23:51,799 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:23:51,800 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:23:51,801 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:23:51,802 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:23:51,802 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:23:51,804 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:23:51,805 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:23:51,806 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:23:51,808 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:23:51,809 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:23:51,811 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:23:51,811 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:23:51,813 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:23:51,814 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:23:51,816 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:23:51,816 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:23:51,818 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:23:51,818 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:24:51,656 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:24:53,061 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:24:53,061 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:24:53,062 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:24:53,063 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:24:53,064 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:24:53,064 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:24:53,066 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:24:53,066 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:24:53,067 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:24:53,068 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:24:53,069 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:24:53,070 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:24:53,071 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:24:53,072 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:24:53,073 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:24:53,074 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:24:53,076 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:24:53,076 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:24:53,078 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:24:53,079 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:24:53,082 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:24:53,083 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:24:53,085 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:24:53,085 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:26:14,315 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:26:15,823 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:26:15,824 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:26:15,824 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:26:15,826 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:26:15,826 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:26:15,827 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:26:15,828 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:26:15,828 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:26:15,829 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:26:15,830 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:26:15,831 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:26:15,832 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:26:15,833 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:26:15,833 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH', 'FINISH']
+2024-06-30 13:26:15,834 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:26:15,835 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:26:15,839 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:26:15,840 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:26:15,842 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:26:15,843 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:26:15,846 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:26:15,847 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:26:15,848 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:26:15,849 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.

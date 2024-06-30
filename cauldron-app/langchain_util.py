@@ -25,11 +25,11 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI()
 
-def quickResponse(request):
+def finalCheck(request):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are the helpful recipe development assistant, Caldron. While a user is waiting for their recipe request, provide a brief, polite message letting the user know that their request is underway. If the request is empty or inappropriate, politely ask to that they make another request"},
+            {"role": "system", "content": "You are to review the text of a recipe before it is sent to the user. Revise the recipe as needed to make sure that it is concise, appropriate, and free of errors. Keep the same format.\n\n"},
             {"role": "user", "content": request},
         ],
     )
@@ -64,6 +64,51 @@ def createAgent(
         )
     return AgentExecutor(name=name, agent=agent, tools=tools)
 
+    """An LLM-based router."""
+    if exit:
+        members.append("FINISH")
+    route_fx = {
+        "name": "route",
+        "description": "Select the next role.",
+        "parameters": {
+            "title": "routeSchema",
+            "type": "object",
+            "properties": {
+                "next": {
+                    "title": "Next",
+                    "anyOf": [
+                        {"enum": members},
+                    ],
+                },
+                "sender": {
+                    "title": "Sender",
+                    "anyOf": [
+                        {"string": name},
+                    ]
+                }
+            },
+            "required": ["next", "sender"],
+        },
+    }
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", system_prompt),
+            MessagesPlaceholder(variable_name="messages"),
+            (
+                "system",
+                "Given the conversation above, who should act next?"
+                " Or should we FINISH? Select one of: {options}",
+            )
+        ]
+    ).partial(options=str(members), team_members=", ".join(members))
+    logger.debug(f"Router options: {members}");
+    return (
+        prompt
+        | llm.bind_functions(functions=[route_fx], function_call="route")
+        | JsonOutputFunctionsParser()
+    )
+
+def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> str:
     """An LLM-based router."""
     if exit:
         members.append("FINISH")

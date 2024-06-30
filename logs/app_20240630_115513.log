@@ -1,0 +1,49 @@
+2024-06-30 11:55:25,214 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 11:55:26,512 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 11:55:26,513 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 11:55:26,513 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:55:26,514 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 11:55:26,514 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 11:55:26,515 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:55:26,516 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 11:55:26,516 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 11:55:26,517 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 11:55:26,517 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 11:55:26,518 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 11:55:27,213 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 11:55:27,213 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 11:55:27,215 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 11:55:27,215 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 11:55:27,217 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 11:55:27,217 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 11:55:27,219 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 11:55:27,219 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 11:55:37,204 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content="It seems like you haven't provided any specific request or question. How can I assist you today?", name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 11:55:37,204 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:55:37,845 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 11:55:37,845 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:55:37,847 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 11:55:37,847 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:55:39,897 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.example.com/recipe1.
+2024-06-30 11:55:41,621 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-06-30 11:55:41,622 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Example Recipe, Ingredients: [Ingredient(name='Ingredient1', quantity=2.0, unit='cups'), Ingredient(name='Ingredient2', quantity=1.0, unit='cup')], Instructions: ['Step 1: Instruction 1', 'Step 2: Instruction 2'], Tags: ['Tag1', 'Tag2'], Sources: ['https://www.example.com/recipe1']
+2024-06-30 11:55:41,623 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:55:41,624 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-06-30 11:55:41,625 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 11:55:42,608 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='The recipe "Example Recipe" has been successfully generated and added to the Pot. I will now proceed to check for more URLs in the Pot.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-06-30 11:55:42,609 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:55:43,509 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:55:43,509 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-06-30 11:55:43,511 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:55:43,517 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-06-30 11:55:43,517 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-06-30 11:55:43,518 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 11:55:44,286 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: a07936b7-5190-4d6b-a477-e2e33d871cbc.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-06-30 11:55:44,287 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:55:44,980 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content='It appears that there was no specific input or request provided. How can I assist you further?', name='Frontman')], 'sender': 'Frontman'}}
+2024-06-30 11:57:06,474 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='How can I assist you today?', name='Tavily')], 'sender': 'Tavily'}}
+2024-06-30 11:57:06,475 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-06-30 11:57:07,056 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-06-30 11:57:07,057 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-06-30 11:57:07,058 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-06-30 11:57:07,058 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.

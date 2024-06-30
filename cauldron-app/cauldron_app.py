@@ -3,10 +3,13 @@
 ### IMPORTS ###
 import warnings
 from logging_util import logger
-from langchain_util import ChatOpenAI, workflow, HumanMessage
-from class_defs import fresh_pot, fresh_graph, fresh_mods_list
-from agent_defs import create_all_agents, prompts_dict, form_edges
-from neopixel_util import highlight_section
+from langchain_util import ChatOpenAI, workflow, HumanMessage, finalCheck
+from class_defs import fresh_pot, fresh_graph, fresh_mods_list, load_graph_from_file, load_pot_from_file
+from agent_defs import create_all_agents, prompts_dict, form_edges, create_conditional_edges
+from custom_print import printer as pretty
+from custom_print import wrapper
+#from neopixel_util import highlight_section
+#from thermal_printer_util import printer
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
@@ -37,8 +40,9 @@ class CaldronApp():
             self.flow_graph.add_node(node_name, node)
 
         form_edges(self.flow_graph)
+        create_conditional_edges(self.flow_graph)
 
-        self.flow_graph.set_entry_point("Tavily")
+        self.flow_graph.set_entry_point("Greeter")
         self.chain = self.flow_graph.compile()
 
     def clear_pot(self):
@@ -55,18 +59,51 @@ class CaldronApp():
             },
             {"recursion_limit": 50}
         ):
-            logger.info(s)
+            #logger.info(s)
             try:
-                if 'Tavily' in s.keys():
-                        highlight_section('Sleuth')
+                if 'Greeter' in s.keys():
+                    print()
+                    logger.info(f"Greeter: {s['Greeter']['messages'][0].content}")
+                    print(s['Greeter']['messages'][0].content)
+                    #printer.print(wrapper.fill(s['Greeter']['messages'][0].content))
+                    print()
+                elif 'Tavily' in s.keys():
+                    highlight_section('Sleuth')
                 elif 'Sleuth' in s.keys():
-                        highlight_section('Spinnaret')
+                    highlight_section('Spinnaret')
                 elif 'Spinnaret' in s.keys():
-                        highlight_section('Frontman')
+                    highlight_section('Frontman')
             except Exception as e:
                 logger.error(e)
                         
             if 'Frontman' in s.keys():
+
+                recipe_graph = load_graph_from_file(self.recipe_graph_file)
+                recipe = recipe_graph.get_foundational_recipe()
+                if (recipe != None):
+                    pot = load_pot_from_file(self.recipe_pot_file)
+                    recipe = pot.pop_recipe()
+                    if (recipe != None):
+                        try:
+                            out = finalCheck(pretty.pformat(recipe))
+                            logger.info(f"Recipe Text:\n\n {out}")
+                            print(wrapper.fill(out))
+                            #printer.print(wrapper.fill(out))
+                        except Exception as e:
+                            logger.error(e)
+                    else:
+                        logger.info("Sorry, I couldn't find an appropriate recipe for what you were looking for.")
+                        print(wrapper.fill("Sorry, I couldn't find an appropriate recipe for what you were looking for."))
+                        #printer.print(wrapper.fill(out))
+                else:
+                    try:
+                        out = finalCheck(pretty.pformat(recipe))
+                        logger.info(f"Recipe Text:\n\n {out}")
+                        print(wrapper.fill(out))
+                        #printer.print(wrapper.fill(out))
+                    except Exception as e:
+                        logger.error(e)
+                
                 self.printer_wait_flag = False
         
         self.printer_wait_flag = False

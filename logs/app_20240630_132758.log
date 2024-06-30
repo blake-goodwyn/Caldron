@@ -1,0 +1,56 @@
+2024-06-30 13:30:00,302 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-06-30 13:30:00,302 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: You
+2024-06-30 13:30:00,303 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:30:01,537 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:30:01,537 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:30:01,538 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:30:01,543 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:30:01,544 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:30:01,544 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:30:01,545 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:30:01,545 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:30:01,546 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:30:01,547 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:30:01,547 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:30:02,242 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:30:02,242 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:30:02,243 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-06-30 13:30:02,244 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:30:02,244 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:30:02,245 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:30:02,246 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:30:02,247 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:30:02,248 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:30:02,250 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:30:02,251 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:30:02,252 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:30:02,252 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:30:03,214 - cauldron - INFO   - cauldron_app.py - post - Greeter: I'm here to help! Could you please provide more details or a specific request?
+2024-06-30 13:30:14,426 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-06-30 13:30:14,427 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: 
+2024-06-30 13:30:14,428 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-30 13:30:15,765 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-30 13:30:15,765 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-30 13:30:15,766 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-30 13:30:15,767 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-30 13:30:15,767 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-30 13:30:15,768 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-30 13:30:15,768 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-30 13:30:15,769 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-30 13:30:15,769 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-30 13:30:15,770 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-30 13:30:15,771 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-06-30 13:30:15,773 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-06-30 13:30:15,773 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-06-30 13:30:15,774 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH', 'FINISH']
+2024-06-30 13:30:15,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-06-30 13:30:15,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-30 13:30:15,777 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-30 13:30:15,777 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-30 13:30:15,778 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-30 13:30:15,779 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-30 13:30:15,780 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-30 13:30:15,781 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-30 13:30:15,782 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-30 13:30:15,782 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-30 13:30:16,599 - cauldron - INFO   - cauldron_app.py - post - Greeter: I'm sorry, but it seems like your request is empty. Could you please provide more information or make another request?

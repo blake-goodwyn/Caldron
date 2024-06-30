@@ -69,7 +69,7 @@ class Recipe(BaseModel):
     ingredients: List[Ingredient] = Field(description="List of ingredients required for the recipe")
     instructions: List[str] = Field(description="List of instructions to prepare the recipe")
     tags: List[str] = Field(default=None, description="List of tags for the recipe")
-    sources: List[str] = Field(default=None, description="List of sources for the recipe")
+    sources: List[str] = Field(description="URLs of sources for the recipe")
 
     # Private attribute
     _id: str = PrivateAttr(default=str(uuid.uuid4()))
