@@ -11,14 +11,16 @@ from neopixel_util import *
 from gpiozero import Button
 from logging_util import logger
 from twilio_util import send_alert
+from cauldron_app import CaldronApp
 
-last_msg_time = time()
+last_msg_time = None
+app = CaldronApp("gpt-3.5-turbo", verbose=True)
 
 def alert(message):
     global last_msg_time
-    current_time = time()
+    current_time = time.time()
     # Check if one hour has passed since the last SMS
-    if current_time - last_msg_time >= 3600:
+    if (last_msg_time == None) or current_time - last_msg_time >= 3600:
         send_alert(message)
         last_msg_time = current_time
         logger.info("WhatsApp sent: " + message)
@@ -31,7 +33,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # GPIO setup
 button_pin = 24
-button = Button(button_pin, pull_up=True)
+button = Button(button_pin, pull_up=True, bounce_time=0.5)
 
 # Audio recording parameters
 SAMPLE_RATE = 44100  # Sample rate
@@ -49,9 +51,6 @@ recording = []
 def start_recording():
     global recording
     global _idle_flag
-    if not _idle_flag:
-        logger.info("Recording aborted, _idle_flag is False")
-        return
     
     logger.info("Recording started...")
     recording = []  # Reset the recording list
@@ -98,29 +97,31 @@ def recipe_footer():
 
 # Button callback
 def button_pressed():
-    logger.info("Button pressed! Starting recording...")
-    global _idle_flag 
-
-    #check to make sure there's printer paper
-    if not printer.has_paper():
-        logger.error("Printer is out of paper. Please refill the paper tray.")
-        alert("The printer is out of paper. Please refill the paper tray.")
-        #blink the light ring red
-        return
-
-    _idle_flag = False
+    logger.info("Button pressed!")
+    global _idle_flag
+        
+    logger.info("Starting recording...")
     start_recording()
+    _idle_flag = False
+    
+    ##CORE APP FUNCTION
     if len(recording) > 0:
         text = transcribe_audio(FILENAME)
         logger.info(f"Transcribed Text: {text}")
+        
+        #check to make sure there's printer paper
+        if not printer.has_paper():
+            logger.error("Printer is out of paper. Please refill the paper tray.")
+            alert("The printer is out of paper. Please refill the paper tray.")
+            #blink the light ring red
+            return
         
         recipe_header()
 
         if text != None:
             # Pass to Caldron App
-            highlight_section('Tavily')
             try:
-                app_request(text)
+                app_request(app, text)
             except Exception as e:
                 logger.error(e)
 
@@ -141,6 +142,7 @@ try:
         while True:
             while _idle_flag:
                 color_wipe()
+                sleep(0.25)
     else:
         logger.error("Printer is out of paper. Please refill the paper tray.")
         #blink the light ring red

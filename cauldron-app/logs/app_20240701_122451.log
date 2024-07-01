@@ -1,0 +1,87 @@
+2024-07-01 12:24:57,293 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:25:10,690 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:25:10,695 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:25:13,212 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:25:14,688 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I'd like a recipe for blueberry muffins.
+2024-07-01 12:25:24,766 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:25:24,776 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: I'd like a recipe for blueberry muffins.
+2024-07-01 12:25:24,787 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:25:25,044 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:25:25,055 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:25:25,065 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:25:25,100 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:25:25,111 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:25:25,123 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:25:25,166 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:25:25,182 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:25:25,194 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:25:25,227 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:25:25,238 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:25:39,023 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:25:39,034 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:25:39,041 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:25:39,053 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:25:39,064 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:25:39,088 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:25:39,098 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:25:39,138 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:25:39,148 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:25:39,195 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:25:39,206 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:25:39,230 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:25:39,235 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:25:42,768 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I will start working on a recipe for blueberry muffins. I'll get back to you shortly with the details.
+2024-07-01 12:25:53,824 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 12:25:53,830 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:25:53,863 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 12:25:53,879 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:26:23,912 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 12:26:23,930 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Blueberry Muffins, Ingredients: [Ingredient(name='packed light or dark brown sugar', quantity=0.5, unit='cup'), Ingredient(name='chopped walnuts (or pecans)', quantity=0.5, unit='cup'), Ingredient(name='ground cinnamon', quantity=1.0, unit='teaspoon'), Ingredient(name='all-purpose flour (spooned & leveled)', quantity=1.75, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='teaspoon'), Ingredient(name='baking powder', quantity=1.0, unit='teaspoon'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='unsalted butter, softened to room temperature', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=0.5, unit='cup'), Ingredient(name='packed light or dark brown sugar', quantity=0.25, unit='cup'), Ingredient(name='large eggs, at room temperature', quantity=2.0, unit=None), Ingredient(name='sour cream or plain/vanilla yogurt, at room temperature', quantity=0.5, unit='cup'), Ingredient(name='pure vanilla extract', quantity=2.0, unit='teaspoons'), Ingredient(name='milk, at room temperature', quantity=0.25, unit='cup'), Ingredient(name='fresh or frozen blueberries', quantity=1.5, unit='cups')], Instructions: ['Preheat oven to 425°F (218°C). Spray a 12-count muffin pan with nonstick spray or use cupcake liners. Grease/line a second pan with 2 liners because this recipe yields about 14 muffins. Set aside.', 'Mix all of the topping ingredients together. Set aside.', 'Whisk the flour, baking soda, baking powder, and salt together in a large bowl. Set aside.', 'Using a handheld or stand mixer fitted with a paddle or whisk attachment, beat the butter, granulated sugar, and brown sugar together on high speed until smooth and creamy, about 2 minutes. On medium speed, add the eggs one at a time, beating well after each addition. Beat in the sour cream and vanilla extract on medium speed until combined. With the mixer running on low speed, add the dry ingredients and milk into the wet ingredients and beat until no flour pockets remain. Fold in the blueberries.', 'Spoon the batter into liners, filling them all the way to the top. Spoon brown sugar topping on each, gently pressing it down into the surface so it sticks. Bake for 5 minutes at 425 then, keeping the muffins in the oven, reduce the oven temperature to 350°F (177°C). Bake for an additional 18–20 minutes or until a toothpick inserted in the center comes out clean. The total time these muffins take in the oven is about 23–25 minutes, give or take. Allow the muffins to cool for 5 minutes in the muffin pan, then transfer to a wire rack to continue cooling.', 'Muffins stay fresh covered at room temperature for a few days or in the refrigerator for up to 1 week.'], Tags: None, Sources: ['https://sallysbakingaddiction.com/blueberry-muffins/']
+2024-07-01 12:26:23,951 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:26:23,991 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 12:26:23,997 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:26:27,847 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:26:27,861 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:26:27,901 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:26:27,957 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:26:27,973 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:26:27,994 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:26:33,056 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:26:33,103 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 12:26:33,124 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 12:26:33,140 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 12:26:33,160 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 12:26:33,168 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:26:33,168 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:26:38,335 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Blueberry Muffins
+
+Ingredients:
+- 1/2 cup packed light or dark brown sugar
+- 1/2 cup chopped walnuts (or pecans)
+- 1 teaspoon ground cinnamon
+- 1 3/4 cups all-purpose flour, spooned & leveled
+- 1 teaspoon baking soda
+- 1 teaspoon baking powder
+- 1/2 teaspoon salt
+- 1/2 cup unsalted butter, softened
+- 1/2 cup granulated sugar
+- 1/4 cup packed light or dark brown sugar
+- 2 large eggs, at room temperature
+- 1/2 cup sour cream or plain/vanilla yogurt, at room temperature
+- 2 teaspoons pure vanilla extract
+- 1/4 cup milk, at room temperature
+- 1 1/2 cups fresh or frozen blueberries
+
+Instructions:
+1. Preheat the oven to 425°F (218°C). Grease a 12-count muffin pan or use cupcake liners. Prepare a second pan with 2 liners for extra muffins. 
+2. Combine all topping ingredients and set aside.
+3. In a large bowl, whisk the flour, baking soda, baking powder, and salt together.
+4. Using a mixer, beat the butter, granulated sugar, and brown sugar until creamy. Add eggs one at a time, then mix in sour cream and vanilla extract. Gradually mix in dry ingredients and milk until combined. Fold in blueberries.
+5. Fill muffin liners to the top, sprinkle with brown sugar topping, and bake at 425°F for 5 minutes. Reduce the heat to 350°F and bake for an additional 18-20 minutes, until a toothpick inserted comes out clean. Cool for 5 minutes before transferring to a wire rack. 
+6. Store muffins covered at room temperature for a few days or in the refrigerator for up to 1 week. 
+
+Source: https://sallysbakingaddiction.com/blueberry-muffins/
+2024-07-01 12:27:49,497 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:28:41,078 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

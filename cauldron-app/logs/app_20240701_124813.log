@@ -1,0 +1,62 @@
+2024-07-01 12:48:17,952 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:48:18,133 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:48:18,133 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:48:18,133 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:48:18,134 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:48:18,134 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:48:18,134 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:48:18,136 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:48:18,136 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:48:18,136 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:48:18,137 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:48:18,137 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:48:18,430 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:48:18,430 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:48:18,431 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:48:18,432 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:48:18,432 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:48:18,438 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:48:18,438 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:48:18,441 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:48:18,441 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:48:18,445 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:48:18,446 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:48:18,449 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:48:18,449 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:48:18,491 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:48:35,052 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:35,056 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:35,056 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:35,057 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:35,061 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:35,061 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:35,061 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:35,066 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:35,066 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:35,067 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:35,071 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:35,071 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:35,072 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:35,076 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:35,076 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:35,077 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:35,080 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:35,081 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:35,081 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:35,085 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:35,086 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:45,496 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:45,501 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:45,502 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:45,502 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:45,506 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:45,507 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:45,507 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:45,511 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:45,512 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:45,512 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:45,516 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:45,517 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 12:48:45,517 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:48:45,521 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording aborted, _idle_flag is False
+2024-07-01 12:48:45,522 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.

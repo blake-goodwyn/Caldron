@@ -1,0 +1,40 @@
+2024-07-01 12:29:08,454 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:29:28,855 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:29:28,859 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:29:30,821 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:29:32,607 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I want a recipe for banana bread.
+2024-07-01 12:29:42,690 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:29:42,701 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: I want a recipe for banana bread.
+2024-07-01 12:29:42,711 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:29:42,991 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:29:43,002 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:29:43,012 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:29:43,053 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:29:43,063 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:29:43,076 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:29:43,111 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:29:43,122 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:29:43,133 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:29:43,175 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:29:43,185 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:29:56,864 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:29:56,875 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:29:56,887 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:29:56,898 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:29:56,909 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:29:56,933 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:29:56,944 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:29:56,979 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:29:56,990 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:29:57,036 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:29:57,047 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:29:57,070 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:29:57,081 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:30:00,526 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I will start working on a banana bread recipe for you.
+2024-07-01 12:30:09,591 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program
+2024-07-01 12:30:10,317 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 12:30:10,317 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:30:10,317 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 12:30:10,317 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:30:10,552 - cauldron - ERROR  - langchain_util.py - agent_node - cannot schedule new futures after interpreter shutdown
+2024-07-01 12:30:10,578 - cauldron - ERROR  - rpi_app_request.py - app_request - Sorry, I ran into an error. :( This happens sometimes as I'm still learning. Feel free to try again with a different request!

@@ -1,0 +1,159 @@
+2024-06-29 19:21:16,281 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-06-29 19:21:16,463 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-06-29 19:21:16,464 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-06-29 19:21:16,464 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-06-29 19:21:16,464 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-06-29 19:21:16,465 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-06-29 19:21:16,465 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-06-29 19:21:16,465 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-06-29 19:21:16,466 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-06-29 19:21:16,466 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-06-29 19:21:16,466 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-06-29 19:21:16,467 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-06-29 19:21:16,757 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-06-29 19:21:16,758 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-06-29 19:21:16,760 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-06-29 19:21:16,761 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-06-29 19:21:16,764 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-06-29 19:21:16,765 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-06-29 19:21:16,767 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-06-29 19:21:16,767 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-06-29 19:21:16,825 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 10:21:26,362 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:21:26,362 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:21:28,169 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:21:29,314 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: Testing, one, two, three.
+2024-07-01 10:21:44,387 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 10:21:44,397 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 10:21:44,408 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:21:51,919 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 10:21:51,930 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:21:51,970 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 10:21:51,980 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:21:53,973 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 10:21:53,983 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:21:54,015 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 10:21:54,027 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:21:56,218 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 10:21:56,229 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:21:56,266 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 10:21:56,282 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:21:58,352 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 10:21:58,364 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:21:58,396 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 10:21:58,408 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:00,726 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 10:22:00,727 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:00,760 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 10:22:00,775 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:05,291 - cauldron - INFO   - cauldron_app.py - post - {'Tavily': {'messages': [AIMessage(content='I have found some relevant recipes for easy pasta dishes. The URLs have been added to the Pot for further examination. Here are the URLs:\n\n1. [Taste of Home - 30 Pasta Dinners Ready in 30 Minutes](https://www.tasteofhome.com/collection/30-pasta-dinners-ready-in-30-minutes/)\n2. [Allrecipes - Quick and Easy Pasta Recipes with Few Ingredients](https://www.allrecipes.com/quick-and-easy-pasta-recipes-with-few-ingredients-8604189)\n3. [RecipeTin Eats - Quick Easy Pasta Recipes](https://www.recipetineats.com/quick-easy-pasta-recipes/)\n4. [Food Network - Easy Pasta Recipes](https://www.foodnetwork.com/recipes/photos/easy-pasta-recipes)\n5. [The Pasta Project - Quick Pasta Recipes](https://www.the-pasta-project.com/quick-pasta-recipes/)\n\nThese recipes should provide a variety of options for easy pasta meals.', name='Tavily')], 'sender': 'Tavily'}}
+2024-07-01 10:22:07,258 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 10:22:07,268 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:07,313 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 10:22:07,324 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:12,133 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to scrape recipe: recipe-scrapers exception: No Recipe Schema found at https://www.the-pasta-project.com/quick-pasta-recipes/.
+2024-07-01 10:22:15,110 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 10:22:15,124 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Quick Pasta Recipes, Ingredients: [], Instructions: [], Tags: None, Sources: ['https://www.the-pasta-project.com/quick-pasta-recipes/']
+2024-07-01 10:22:15,145 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:15,197 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 10:22:15,213 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:17,807 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 10:22:17,823 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:17,857 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 10:22:17,862 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:22,480 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get ingredients: This should be implemented.
+2024-07-01 10:22:22,496 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get instructions: This should be implemented.
+2024-07-01 10:22:22,513 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get name: This should be implemented.
+2024-07-01 10:22:25,378 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 10:22:25,402 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Easy Pasta Recipes, Ingredients: [], Instructions: [], Tags: None, Sources: ['https://www.foodnetwork.com/recipes/photos/easy-pasta-recipes']
+2024-07-01 10:22:25,423 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:25,450 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 10:22:25,469 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:28,008 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 10:22:28,024 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:28,057 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 10:22:28,073 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:40,314 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 10:22:40,324 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:40,374 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 10:22:40,397 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:47,581 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get instructions: This should be implemented.
+2024-07-01 10:22:47,602 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get name: This should be implemented.
+2024-07-01 10:22:51,594 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 10:22:51,622 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Quick and Easy Pasta Recipes with Few Ingredients, Ingredients: [], Instructions: [], Tags: None, Sources: ['https://www.allrecipes.com/quick-and-easy-pasta-recipes-with-few-ingredients-8604189']
+2024-07-01 10:22:51,633 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:51,673 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 10:22:51,684 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:22:54,745 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 10:22:54,764 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:22:54,797 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 10:22:54,814 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:23:02,671 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get ingredients: This should be implemented.
+2024-07-01 10:23:02,707 - cauldron - ERROR  - agent_tools.py - scrape_recipe_info - Failed to get name: This should be implemented.
+2024-07-01 10:23:06,596 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 10:23:06,622 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: 30 Pasta Dinners Ready in 30 Minutes, Ingredients: [], Instructions: [], Tags: None, Sources: ['https://www.tasteofhome.com/collection/30-pasta-dinners-ready-in-30-minutes/']
+2024-07-01 10:23:06,646 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:23:06,716 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 10:23:06,727 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 10:23:10,205 - cauldron - INFO   - cauldron_app.py - post - {'Sleuth': {'messages': [AIMessage(content='I have generated a summary for the "30 Pasta Dinners Ready in 30 Minutes" from the provided URL. The recipe has been added to the Pot for further analysis.\n\nI have now examined all the URLs in the Pot and generated summaries for the respective recipes. The results are ready to be passed to the Research Postman for further processing.', name='Sleuth')], 'sender': 'Sleuth'}}
+2024-07-01 10:23:12,080 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 10:23:12,102 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 10:23:12,130 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:23:12,176 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 10:23:12,192 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 10:23:12,213 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 10:23:14,531 - cauldron - INFO   - cauldron_app.py - post - {'Spinnaret': {'messages': [AIMessage(content='The recipe graph has been successfully created with the foundational recipe node ID: 6ef62a22-4fa6-4455-ac62-01e532fdbef1.', name='Spinnaret')], 'sender': 'Spinnaret'}}
+2024-07-01 10:23:16,783 - cauldron - INFO   - cauldron_app.py - post - {'Frontman': {'messages': [AIMessage(content="I have gathered a variety of easy pasta recipes from different sources for you to explore. Would you like to try any of these recipes, or do you have any specific preferences for the type of pasta dish you're looking for?", name='Frontman')], 'sender': 'Frontman'}}
+2024-07-01 10:23:16,816 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 10:23:16,854 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 10:23:16,868 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 10:23:16,879 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 10:23:16,901 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 10:23:16,918 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 10:23:16,961 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 10:23:16,988 - cauldron - ERROR  - recipe_print_demo.py - button_pressed - encoding without a string argument
+2024-07-01 10:23:17,019 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,020 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,033 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,034 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,034 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,034 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,036 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,049 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,050 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,050 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,050 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,051 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,072 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,073 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,074 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,074 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,075 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,088 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,089 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,090 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,090 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,091 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,105 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,105 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,106 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,106 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,107 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,117 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,118 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,118 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,118 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,119 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,134 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,134 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,135 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,135 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,135 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,148 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,149 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,149 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 10:23:17,149 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 10:23:17,149 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 10:23:17,161 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 10:23:17,161 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 10:23:17,162 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.

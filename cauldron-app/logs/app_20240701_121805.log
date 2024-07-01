@@ -1,0 +1,89 @@
+2024-07-01 12:18:10,530 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:18:14,973 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:18:14,977 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:18:17,373 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:18:19,346 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I'd like a recipe for chocolate chip cookies.
+2024-07-01 12:18:29,425 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:18:29,436 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: I'd like a recipe for chocolate chip cookies.
+2024-07-01 12:18:29,455 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:18:29,741 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:18:29,747 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:18:29,757 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:18:29,792 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:18:29,803 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:18:29,814 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:18:29,851 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:18:29,862 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:18:29,873 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:18:29,913 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:18:29,925 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:18:44,553 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:18:44,564 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:18:44,565 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:18:44,577 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:18:44,587 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:18:44,616 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:18:44,627 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:18:44,661 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:18:44,672 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:18:44,723 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:18:44,734 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:18:44,757 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:18:44,768 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:18:48,433 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I'll start working on a delicious chocolate chip cookie recipe for you. I'll get back to you shortly with the details.
+2024-07-01 12:18:55,948 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 12:18:55,959 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:18:56,018 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 12:18:56,031 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:18:58,457 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-07-01 12:19:12,103 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 12:19:12,114 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Best Chocolate Chip Cookies, Ingredients: [Ingredient(name='butter', quantity=1.0, unit='cup'), Ingredient(name='white sugar', quantity=0.5, unit='cup'), Ingredient(name='brown sugar', quantity=0.5, unit='cup'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='vanilla', quantity=1.0, unit='tsp'), Ingredient(name='baking soda', quantity=1.0, unit='tsp'), Ingredient(name='hot water', quantity=2.0, unit='tbsp'), Ingredient(name='salt', quantity=0.5, unit='tsp'), Ingredient(name='flour', quantity=2.5, unit='cups'), Ingredient(name='chocolate chips', quantity=2.0, unit='cups'), Ingredient(name='walnuts', quantity=1.0, unit='cup')], Instructions: ['Gather your ingredients, making sure your butter is softened, and your eggs are room temperature.', 'Preheat the oven to 350 degrees F (175 degrees C).', 'Beat butter, white sugar, and brown sugar with an electric mixer in a large bowl until smooth.', 'Beat in eggs, one at a time, then stir in vanilla.', 'Dissolve baking soda in hot water. Add to batter along with salt.', 'Stir in flour, chocolate chips, and walnuts.', 'Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.', 'Bake in the preheated oven until edges are nicely browned, about 10 minutes.', 'Cool on the baking sheets briefly before removing to a wire rack to cool completely.', 'Store in an airtight container or serve immediately and enjoy!'], Tags: None, Sources: ['https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/']
+2024-07-01 12:19:12,131 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:19:12,180 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 12:19:12,217 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:19:14,901 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-07-01 12:19:16,773 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:19:16,792 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:19:16,813 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:19:16,830 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:19:16,846 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:19:16,867 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:19:18,974 - cauldron - ERROR  - cauldron_app.py - post - name 'highlight_section' is not defined
+2024-07-01 12:19:21,295 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:19:21,348 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 12:19:21,364 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 12:19:21,380 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 12:19:21,411 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 12:19:21,434 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:19:21,475 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:19:24,866 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: Best Chocolate Chip Cookies
+
+Ingredients:
+- 1 cup butter, softened
+- 1/2 cup white sugar
+- 1/2 cup brown sugar
+- 2 eggs
+- 1 tsp vanilla extract
+- 1 tsp baking soda
+- 2 tbsp hot water
+- 1/2 tsp salt
+- 2 1/2 cups all-purpose flour
+- 2 cups chocolate chips
+- 1 cup walnuts
+
+Instructions:
+1. Preheat the oven to 350°F (175°C).
+2. In a large bowl, cream together butter, white sugar, and brown sugar until smooth.
+3. Beat in eggs one at a time, then stir in vanilla extract.
+4. Dissolve baking soda in hot water. Add to the batter along with salt.
+5. Stir in flour, chocolate chips, and walnuts.
+6. Drop spoonfuls of dough 2 inches apart onto ungreased baking sheets.
+7. Bake for about 10 minutes until edges are nicely browned.
+8. Cool on baking sheets briefly before transferring to a wire rack to cool completely.
+9. Store in an airtight container or serve immediately.
+
+Source: https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/
+2024-07-01 12:19:34,970 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:20:07,420 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

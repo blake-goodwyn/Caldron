@@ -1,0 +1,37 @@
+2024-07-01 13:37:14,139 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 13:37:14,318 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:37:14,318 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:37:14,319 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:37:14,319 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 13:37:14,319 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 13:37:14,320 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 13:37:14,321 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 13:37:14,321 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 13:37:14,321 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 13:37:14,322 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 13:37:14,322 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 13:37:14,613 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 13:37:14,614 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 13:37:14,614 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 13:37:14,615 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 13:37:14,615 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 13:37:14,621 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 13:37:14,621 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 13:37:14,624 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 13:37:14,624 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 13:37:14,628 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 13:37:14,628 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 13:37:14,630 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 13:37:14,631 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 13:37:14,672 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 13:37:21,207 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:37:21,211 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 13:37:22,250 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 13:37:23,279 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: This is a test.
+2024-07-01 13:37:33,320 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 13:37:33,333 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: This is a test.
+2024-07-01 13:37:33,344 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:37:33,356 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:37:33,366 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:37:37,032 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for reaching out. Could you please provide a recipe request or let me know how I can assist you today?
+2024-07-01 13:37:51,096 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...

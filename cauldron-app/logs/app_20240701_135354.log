@@ -1,0 +1,27 @@
+2024-07-01 13:53:59,033 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 13:53:59,211 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:53:59,211 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:53:59,211 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:53:59,212 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 13:53:59,212 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 13:53:59,212 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 13:53:59,214 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 13:53:59,214 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 13:53:59,214 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 13:53:59,215 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 13:53:59,215 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 13:53:59,508 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 13:53:59,509 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 13:53:59,510 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 13:53:59,510 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 13:53:59,510 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 13:53:59,516 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 13:53:59,517 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 13:53:59,519 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 13:53:59,519 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 13:53:59,523 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 13:53:59,524 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 13:53:59,527 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 13:53:59,527 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 13:53:59,569 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 13:54:21,503 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

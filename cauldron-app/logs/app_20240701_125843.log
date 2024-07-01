@@ -1,0 +1,196 @@
+2024-07-01 12:58:47,490 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:58:47,670 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:58:47,670 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:58:47,671 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:58:47,671 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:58:47,671 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:58:47,672 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:58:47,672 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:58:47,672 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:58:47,673 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:58:47,673 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:58:47,673 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:58:47,967 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:58:47,968 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:58:47,969 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:58:47,969 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:58:47,969 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:58:47,975 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:58:47,975 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:58:47,978 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:58:47,978 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:58:47,982 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:58:47,983 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:58:47,986 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:58:47,986 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:58:48,029 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:58:51,297 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:58:51,300 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:58:52,270 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:58:53,362 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: This is a test.
+2024-07-01 12:59:03,440 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:59:03,450 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: This is a test.
+2024-07-01 12:59:03,461 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:59:03,477 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:59:03,488 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:59:07,403 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for reaching out. Could you please provide a recipe request or let me know how I can assist you today?
+2024-07-01 12:59:28,229 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:59:28,232 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:59:29,157 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:59:30,794 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: This is a test.
+2024-07-01 12:59:40,838 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:59:40,849 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: This is a test.
+2024-07-01 12:59:40,854 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:59:40,860 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:59:40,871 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:59:43,348 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for reaching out. Could you please provide a recipe request or let me know how I can assist you today?
+2024-07-01 13:00:15,378 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:00:15,382 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 13:00:19,062 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 13:00:20,939 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: Blake, find me wires, please.
+2024-07-01 13:00:31,008 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 13:00:31,021 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: Blake, find me wires, please.
+2024-07-01 13:00:31,032 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:00:31,044 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:00:31,055 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:00:33,812 - cauldron - INFO   - cauldron_app.py - post - Greeter: I'm here to help with recipe requests. Could you please provide me with a recipe you'd like to explore or create?
+2024-07-01 13:00:51,014 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:00:51,018 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 13:00:53,029 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 13:00:54,578 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: अब दो शिप्स
+2024-07-01 13:01:04,641 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 13:01:04,652 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: अब दो शिप्स
+2024-07-01 13:01:04,669 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:01:04,684 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:01:04,694 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:01:08,806 - cauldron - INFO   - cauldron_app.py - post - Greeter: क्या आप एक रेसिपी का अनुरोध कर रहे हैं? यदि हां, तो कृपया रेसिपी का विवरण दें। यदि नहीं, तो कृपया एक अन्य अनुरोध करें। धन्यवाद।
+2024-07-01 13:10:24,746 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:10:24,750 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 13:10:25,729 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 13:10:26,607 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: This is a test.
+2024-07-01 13:10:36,648 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 13:10:36,661 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: This is a test.
+2024-07-01 13:10:36,662 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:10:36,668 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:10:36,679 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:10:39,035 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for reaching out. Could you please provide a recipe request or let me know how I can assist you today?
+2024-07-01 13:14:11,300 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:14:11,304 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 13:14:12,969 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 13:14:14,115 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: a recipe for blueberry muffins.
+2024-07-01 13:14:24,162 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 13:14:24,175 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: a recipe for blueberry muffins.
+2024-07-01 13:14:24,185 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:14:24,198 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:14:24,209 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:14:26,575 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I'm on it. I'll provide you with a delicious blueberry muffin recipe shortly.
+2024-07-01 13:14:36,103 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 13:14:36,109 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:14:36,153 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 13:14:36,159 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:15:06,737 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 13:15:06,764 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Blueberry Muffins, Ingredients: [Ingredient(name='packed light or dark brown sugar', quantity=0.5, unit='cup'), Ingredient(name='chopped walnuts (or pecans)', quantity=0.5, unit='cup'), Ingredient(name='ground cinnamon', quantity=1.0, unit='teaspoon'), Ingredient(name='all-purpose flour (spooned & leveled)', quantity=1.75, unit='cups'), Ingredient(name='baking soda', quantity=1.0, unit='teaspoon'), Ingredient(name='baking powder', quantity=1.0, unit='teaspoon'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='unsalted butter, softened to room temperature', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=0.5, unit='cup'), Ingredient(name='packed light or dark brown sugar', quantity=0.25, unit='cup'), Ingredient(name='large eggs, at room temperature', quantity=2.0, unit=None), Ingredient(name='sour cream or plain/vanilla yogurt, at room temperature', quantity=0.5, unit='cup'), Ingredient(name='pure vanilla extract', quantity=2.0, unit='teaspoons'), Ingredient(name='milk, at room temperature', quantity=0.25, unit='cup'), Ingredient(name='fresh or frozen blueberries', quantity=1.5, unit='cups')], Instructions: ['Preheat oven to 425°F (218°C). Spray a 12-count muffin pan with nonstick spray or use cupcake liners. Grease/line a second pan with 2 liners because this recipe yields about 14 muffins. Set aside.', 'Mix all of the topping ingredients together. Set aside.', 'Whisk the flour, baking soda, baking powder, and salt together in a large bowl. Set aside.', 'Using a handheld or stand mixer fitted with a paddle or whisk attachment, beat the butter, granulated sugar, and brown sugar together on high speed until smooth and creamy, about 2 minutes. On medium speed, add the eggs one at a time, beating well after each addition. Beat in the sour cream and vanilla extract on medium speed until combined. With the mixer running on low speed, add the dry ingredients and milk into the wet ingredients and beat until no flour pockets remain. Fold in the blueberries.', 'Spoon the batter into liners, filling them all the way to the top. Spoon brown sugar topping on each, gently pressing it down into the surface so it sticks. Bake for 5 minutes at 425 then, keeping the muffins in the oven, reduce the oven temperature to 350°F (177°C). Bake for an additional 18–20 minutes or until a toothpick inserted in the center comes out clean. The total time these muffins take in the oven is about 23–25 minutes, give or take. Allow the muffins to cool for 5 minutes in the muffin pan, then transfer to a wire rack to continue cooling.', 'Muffins stay fresh covered at room temperature for a few days or in the refrigerator for up to 1 week.'], Tags: None, Sources: ['https://sallysbakingaddiction.com/blueberry-muffins/']
+2024-07-01 13:15:06,785 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:15:06,840 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 13:15:06,861 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:15:10,816 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 13:15:10,832 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 13:15:10,855 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:15:10,884 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 13:15:10,900 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 13:15:10,928 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 13:15:15,114 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 13:15:15,158 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 13:15:15,169 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 13:15:15,190 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 13:15:15,221 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 13:15:15,245 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:15:15,296 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 13:15:23,492 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: Blueberry Muffins
+Ingredients:
+- 0.5 cup packed light or dark brown sugar
+- 0.5 cup chopped walnuts or pecans
+- 1.0 teaspoon ground cinnamon
+- 1.75 cups all-purpose flour
+- 1.0 teaspoon baking soda
+- 1.0 teaspoon baking powder
+- 0.5 teaspoon salt
+- 0.5 cup unsalted butter, softened
+- 0.5 cup granulated sugar
+- 0.25 cup packed light or dark brown sugar
+- 2 large eggs, at room temperature
+- 0.5 cup sour cream or plain/vanilla yogurt
+- 2.0 teaspoons pure vanilla extract
+- 0.25 cup milk, at room temperature
+- 1.5 cups fresh or frozen blueberries
+
+Instructions:
+1. Preheat oven to 425°F (218°C). Grease a 12-count muffin pan or use cupcake liners. Prepare a second pan with 2 liners for the remaining batter. Set aside.
+2. Combine all topping ingredients and set aside.
+3. In a large bowl, whisk together flour, baking soda, baking powder, and salt. Set aside.
+4. Using a mixer, beat butter, granulated sugar, and brown sugar until creamy. Add eggs one at a time, then mix in sour cream/yogurt and vanilla. Gradually add dry ingredients and milk, mixing until combined. Gently fold in blueberries.
+5. Fill muffin liners to the top, sprinkle topping, and bake at 425°F for 5 minutes, then reduce heat to 350°F and bake for 18–20 minutes. Check for doneness with a toothpick. Cool in pan for 5 minutes, then transfer to a wire rack.
+6. Store muffins covered at room temperature for a few days or in the refrigerator for up to 1 week.
+
+Source: https://sallysbakingaddiction.com/blueberry-muffins/
+2024-07-01 13:16:43,229 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:16:43,233 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 13:16:44,637 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 13:16:45,761 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: recipe for baklava.
+2024-07-01 13:16:55,808 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 13:16:55,821 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: recipe for baklava.
+2024-07-01 13:16:55,822 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:16:55,822 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:16:55,833 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:16:58,070 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I will start working on the recipe for baklava.
+2024-07-01 13:17:07,389 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 13:17:07,406 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:17:07,442 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 13:17:07,448 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:17:26,767 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 13:17:26,783 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Greek Baklava, Ingredients: [Ingredient(name='phyllo dough', quantity=1.0, unit='package'), Ingredient(name='nuts', quantity=2.0, unit='cups'), Ingredient(name='cinnamon', quantity=1.0, unit='teaspoon'), Ingredient(name='butter', quantity=1.0, unit='cup'), Ingredient(name='sugar', quantity=1.0, unit='cup'), Ingredient(name='water', quantity=1.0, unit='cup'), Ingredient(name='vanilla extract', quantity=1.0, unit='teaspoon'), Ingredient(name='honey', quantity=1.0, unit='cup')], Instructions: ['Gather all ingredients.', 'Preheat the oven to 350 degrees F(175 degrees C). Butter the bottoms and sides of a 9x13-inch pan.', 'Chop nuts and toss with cinnamon. Set aside.', 'Unroll phyllo dough. Cut whole stack in half to fit pan. Cover phyllo with a dampened cloth to keep from drying out as you work. Place two sheets of dough in pan, butter thoroughly. Repeat until you have 8 sheets layered.', 'Sprinkle 2 to 3 tablespoons of nut mixture on top. Top with two sheets of dough, butter, nuts, layering as you go. The top layer should be about 6 to 8 sheets deep.', 'Using a sharp knife cut into diamond or square shapes all the way to the bottom of the pan. You may cut into 4 long rows then make diagonal cuts. Bake for about 50 minutes until baklava is golden and crisp.', 'Make sauce while baklava is baking. Boil sugar and water until sugar is melted. Add vanilla and honey. Simmer for about 20 minutes.', 'Remove baklava from the oven and immediately spoon sauce over it. Let cool.', 'Serve in cupcake papers. This freezes well. Leave it uncovered as it gets soggy if it is wrapped up.', 'Enjoy!'], Tags: None, Sources: ['https://www.allrecipes.com/recipe/9454/greek-baklava/']
+2024-07-01 13:17:26,801 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:17:26,866 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 13:17:26,883 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:17:30,672 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 13:17:30,688 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 13:17:30,733 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:17:30,780 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 13:17:30,811 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 13:17:30,843 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 13:17:35,100 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 13:17:35,137 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 13:17:35,148 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 13:17:35,163 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 13:17:35,186 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 13:17:35,206 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 13:17:35,253 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 13:17:38,855 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: Greek Baklava
+
+Ingredients:
+- Phyllo dough, 1 package
+- Nuts, 2 cups
+- Cinnamon, 1 teaspoon
+- Butter, 1 cup
+- Sugar, 1 cup
+- Water, 1 cup
+- Vanilla extract, 1 teaspoon
+- Honey, 1 cup
+
+Instructions:
+1. Preheat the oven to 350°F (175°C) and butter a 9x13-inch pan.
+2. Chop nuts and mix with cinnamon.
+3. Layer phyllo sheets and butter in the pan, alternating with nut mixture.
+4. Cut into shapes before baking and bake for 50 minutes until golden and crisp.
+5. Simmer sugar and water, then add vanilla and honey to make the sauce.
+6. Once baked, pour the sauce over baklava and let cool.
+7. Serve in cupcake papers and enjoy!
+
+Source: https://www.allrecipes.com/recipe/9454/greek-baklava/
+2024-07-01 13:31:30,187 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:31:30,191 - cauldron - ERROR  - recipe_print_demo.py - button_pressed - Printer is out of paper. Please refill the paper tray.
+2024-07-01 13:31:30,191 - cauldron - INFO   - recipe_print_demo.py - alert - WhatsApp not sent, waiting for cooldown period.

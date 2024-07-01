@@ -1,0 +1,84 @@
+2024-07-01 12:20:17,848 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:20:21,128 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:20:21,133 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:20:23,012 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:20:24,123 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I like a recipe for banana bread.
+2024-07-01 12:20:34,178 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:20:34,188 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: I like a recipe for banana bread.
+2024-07-01 12:20:34,199 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:20:34,482 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:20:34,493 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:20:34,503 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:20:34,534 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:20:34,545 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:20:34,561 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:20:34,598 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:20:34,599 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:20:34,609 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:20:34,641 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:20:34,651 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:20:48,787 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:20:48,797 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:20:48,809 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:20:48,816 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:20:48,827 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:20:48,850 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:20:48,850 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:20:48,880 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:20:48,896 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:20:48,942 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:20:48,953 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:20:48,977 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:20:48,987 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:20:52,208 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I'll start working on a delicious banana bread recipe for you.
+2024-07-01 12:20:58,975 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 12:20:58,988 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:20:59,017 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 12:20:59,025 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:21:15,141 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 12:21:15,167 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: My Favorite Banana Bread, Ingredients: [Ingredient(name='all-purpose flour', quantity=250.0, unit='g'), Ingredient(name='baking soda', quantity=1.0, unit=None), Ingredient(name='salt', quantity=0.25, unit='tsp'), Ingredient(name='ground cinnamon', quantity=0.5, unit='tsp'), Ingredient(name='unsalted butter', quantity=113.0, unit='g'), Ingredient(name='light or dark brown sugar', quantity=150.0, unit='g'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='plain yogurt or sour cream', quantity=80.0, unit='g'), Ingredient(name='mashed bananas', quantity=460.0, unit='g'), Ingredient(name='pure vanilla extract', quantity=1.0, unit='tsp'), Ingredient(name='chopped pecans or walnuts', quantity=100.0, unit='g')], Instructions: ['Adjust the oven rack to the lower third position and preheat the oven to 350°F (177°C). Grease a metal 9×5-inch loaf pan with nonstick spray. Set aside.', 'Whisk the flour, baking soda, salt, and cinnamon together in a medium bowl. Set aside.', 'Using a handheld or stand mixer, beat the butter and brown sugar until smooth and creamy. Add eggs one at a time, then beat in yogurt, mashed bananas, and vanilla extract.', 'Slowly beat the dry ingredients into the wet ingredients until no flour pockets remain. Fold in nuts if using.', 'Pour the batter into the prepared pan and bake for 60–65 minutes, covering with foil halfway through. Check for doneness with a toothpick.', 'Cool in the pan for 1 hour, then transfer to a wire rack to cool completely before slicing and serving.', 'Store at room temperature for 2 days or in the refrigerator for up to 1 week. Best enjoyed on day 2 after flavors have settled.'], Tags: None, Sources: ['https://sallysbakingaddiction.com/best-banana-bread-recipe/']
+2024-07-01 12:21:15,173 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:21:15,224 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 12:21:15,235 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:21:19,110 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:21:19,121 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:21:19,154 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:21:19,211 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:21:19,227 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:21:19,243 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:21:23,318 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:21:23,364 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 12:21:23,381 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 12:21:23,408 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 12:21:23,424 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 12:21:23,442 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:21:23,474 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:21:29,483 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: My Favorite Banana Bread
+
+Ingredients:
+- 250.0 g all-purpose flour
+- 1.0 tsp baking soda
+- 0.25 tsp salt
+- 0.5 tsp ground cinnamon
+- 113.0 g unsalted butter
+- 150.0 g light or dark brown sugar
+- 2 eggs
+- 80.0 g plain yogurt or sour cream
+- 460.0 g mashed bananas
+- 1.0 tsp pure vanilla extract
+- 100.0 g chopped pecans or walnuts
+
+Instructions:
+1. Preheat the oven to 350°F (177°C) and grease a 9x5-inch loaf pan.
+2. In a bowl, whisk together flour, baking soda, salt, and cinnamon.
+3. Using a mixer, cream butter and brown sugar. Add eggs one at a time, then mix in yogurt, bananas, and vanilla.
+4. Gradually mix dry ingredients into wet ingredients, then fold in nuts.
+5. Pour batter into the pan and bake for 60-65 minutes, covering with foil halfway through. Check with a toothpick.
+6. Allow to cool in the pan for 1 hour, then transfer to a wire rack to cool completely before slicing.
+7. Store at room temperature for up to 2 days or refrigerate for up to 1 week. Flavors enhance on day 2.
+
+Source: https://sallysbakingaddiction.com/best-banana-bread-recipe/
+2024-07-01 12:22:26,246 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:24:53,099 - cauldron - INFO   - recipe_print_demo.py - <module> - Exiting program

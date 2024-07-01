@@ -1,0 +1,93 @@
+2024-07-01 14:00:28,802 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 14:00:28,982 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 14:00:28,982 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 14:00:28,982 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:00:28,983 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 14:00:28,983 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 14:00:28,983 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 14:00:28,985 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 14:00:28,985 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 14:00:28,985 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 14:00:28,985 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 14:00:28,986 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 14:00:29,280 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 14:00:29,280 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 14:00:29,281 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 14:00:29,282 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 14:00:29,282 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 14:00:29,288 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 14:00:29,288 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 14:00:29,291 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 14:00:29,291 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 14:00:29,294 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 14:00:29,295 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 14:00:29,297 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 14:00:29,298 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 14:00:29,341 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 14:00:31,748 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 14:00:31,748 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 14:00:31,748 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 14:00:32,694 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 14:00:33,936 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: This is a test.
+2024-07-01 14:00:44,012 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 14:00:44,022 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: This is a test.
+2024-07-01 14:00:44,033 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 14:00:44,044 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 14:00:44,055 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:00:47,894 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for reaching out. Could you please provide a recipe request or let me know how I can assist you today?
+2024-07-01 14:01:01,865 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 14:01:01,865 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 14:01:01,866 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 14:01:01,880 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 14:01:01,881 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 14:01:01,882 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
+2024-07-01 14:01:22,166 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 14:01:22,167 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 14:01:22,167 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 14:01:25,612 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 14:01:27,606 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: Show me how to make a quesadilla.
+2024-07-01 14:01:37,695 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 14:01:37,708 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: Show me how to make a quesadilla.
+2024-07-01 14:01:37,719 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 14:01:37,732 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 14:01:37,743 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:01:40,232 - cauldron - INFO   - cauldron_app.py - post - Greeter: I'll get started on that quesadilla recipe for you!
+2024-07-01 14:01:48,767 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 14:01:48,773 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 14:01:48,806 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 14:01:48,817 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:01:52,936 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 14:01:52,948 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 14:01:52,980 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 14:01:52,990 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:02:11,129 - cauldron - ERROR  - langchain_util.py - agent_node - 9 validation errors for Recipe
+ingredients -> 3 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 4 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 5 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 6 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 7 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 8 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 9 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 10 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 11 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+2024-07-01 14:02:13,152 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 14:02:13,195 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 14:02:13,195 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 14:02:13,196 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 14:02:13,196 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 14:02:13,196 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 14:02:19,607 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 14:02:19,653 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 14:02:19,664 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 14:02:19,684 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 14:02:19,705 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 14:02:19,802 - cauldron - ERROR  - rpi_app_request.py - app_request - Sorry, I ran into an error. :( This happens sometimes as I'm still learning. Feel free to try again with a different request!

@@ -1,0 +1,38 @@
+2024-07-01 13:54:33,494 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 13:54:33,672 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:54:33,673 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:54:33,673 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:54:33,673 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 13:54:33,674 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 13:54:33,674 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 13:54:33,675 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 13:54:33,676 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 13:54:33,676 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 13:54:33,703 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 13:54:33,704 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 13:54:33,992 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 13:54:33,993 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 13:54:33,994 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 13:54:33,994 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 13:54:33,995 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 13:54:34,000 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 13:54:34,001 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 13:54:34,003 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 13:54:34,004 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 13:54:34,008 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 13:54:34,008 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 13:54:34,011 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 13:54:34,012 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 13:54:34,054 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 13:54:36,424 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 13:54:36,427 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 13:54:36,427 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 13:54:37,333 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 13:54:38,510 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: This is a test.
+2024-07-01 13:54:48,572 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 13:54:48,583 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: This is a test.
+2024-07-01 13:54:48,593 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 13:54:48,612 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 13:54:48,626 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 13:54:52,120 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for reaching out. Could you please provide a recipe request or let me know how I can assist you today?
+2024-07-01 13:54:57,065 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...

@@ -8,8 +8,8 @@ from class_defs import fresh_pot, fresh_graph, fresh_mods_list, load_graph_from_
 from agent_defs import create_all_agents, prompts_dict, form_edges, create_conditional_edges
 from custom_print import printer as pretty
 from custom_print import wrapper
-#from neopixel_util import highlight_section
-#from thermal_printer_util import printer
+from neopixel_util import highlight_section
+from thermal_printer_util import printer
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
 
@@ -62,11 +62,11 @@ class CaldronApp():
             #logger.info(s)
             try:
                 if 'Greeter' in s.keys():
-                    print()
+                    highlight_section('Tavily')
                     logger.info(f"Greeter: {s['Greeter']['messages'][0].content}")
-                    print(s['Greeter']['messages'][0].content)
-                    #printer.print(wrapper.fill(s['Greeter']['messages'][0].content))
-                    print()
+                    #print(s['Greeter']['messages'][0].content)
+                    printer.print(wrapper.fill(s['Greeter']['messages'][0].content))
+                    printer.feed(3)
                 elif 'Tavily' in s.keys():
                     highlight_section('Sleuth')
                 elif 'Sleuth' in s.keys():
@@ -87,20 +87,21 @@ class CaldronApp():
                         try:
                             out = finalCheck(pretty.pformat(recipe))
                             logger.info(f"Recipe Text:\n\n {out}")
-                            print(wrapper.fill(out))
-                            #printer.print(wrapper.fill(out))
+                            #print(wrapper.fill(out))
+                            printer.print(wrapper.fill(out))
+                            printer.feed(1)
                         except Exception as e:
                             logger.error(e)
                     else:
                         logger.info("Sorry, I couldn't find an appropriate recipe for what you were looking for.")
-                        print(wrapper.fill("Sorry, I couldn't find an appropriate recipe for what you were looking for."))
-                        #printer.print(wrapper.fill(out))
+                        #print(wrapper.fill("Sorry, I couldn't find an appropriate recipe for what you were looking for."))
+                        printer.print(wrapper.fill(out))
                 else:
                     try:
                         out = finalCheck(pretty.pformat(recipe))
                         logger.info(f"Recipe Text:\n\n {out}")
-                        print(wrapper.fill(out))
-                        #printer.print(wrapper.fill(out))
+                        #print(wrapper.fill(out))
+                        printer.print(wrapper.fill(out))
                     except Exception as e:
                         logger.error(e)
                 

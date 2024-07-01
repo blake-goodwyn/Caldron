@@ -1,0 +1,205 @@
+2024-07-01 14:03:39,107 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 14:03:39,287 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 14:03:39,287 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 14:03:39,288 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:03:39,288 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 14:03:39,288 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 14:03:39,289 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 14:03:39,290 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 14:03:39,290 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 14:03:39,291 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 14:03:39,291 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 14:03:39,291 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 14:03:39,583 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 14:03:39,584 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 14:03:39,585 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 14:03:39,585 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 14:03:39,585 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 14:03:39,591 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 14:03:39,591 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 14:03:39,594 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 14:03:39,594 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 14:03:39,598 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 14:03:39,599 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 14:03:39,601 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 14:03:39,601 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 14:03:39,641 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 14:03:53,461 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 14:03:53,462 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 14:03:53,462 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 14:03:55,317 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 14:03:56,842 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: me a recipe for a quesadilla.
+2024-07-01 14:04:06,888 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 14:04:06,899 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: me a recipe for a quesadilla.
+2024-07-01 14:04:06,909 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 14:04:06,920 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 14:04:06,937 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:04:10,449 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I will work on providing you with a delicious quesadilla recipe.
+2024-07-01 14:04:20,105 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 14:04:20,105 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 14:04:20,127 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 14:04:20,143 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 14:04:41,028 - cauldron - ERROR  - langchain_util.py - agent_node - 9 validation errors for Recipe
+ingredients -> 3 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 4 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 5 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 6 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 7 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 8 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 9 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 10 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+ingredients -> 11 -> quantity
+  none is not an allowed value (type=type_error.none.not_allowed)
+2024-07-01 14:04:43,252 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 14:04:43,271 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 14:04:43,291 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 14:04:43,338 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 14:04:43,355 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 14:04:43,372 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 14:04:50,937 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 14:04:50,986 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 14:04:50,997 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 14:04:51,028 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 14:04:51,056 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 14:04:51,176 - cauldron - ERROR  - rpi_app_request.py - app_request - Sorry, I ran into an error. :( This happens sometimes as I'm still learning. Feel free to try again with a different request!
+2024-07-01 15:47:54,697 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 15:47:54,698 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 15:47:54,698 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 15:47:56,500 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 15:47:57,659 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: Like a recipe for banana bread.
+2024-07-01 15:48:07,701 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 15:48:07,719 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: Like a recipe for banana bread.
+2024-07-01 15:48:07,735 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 15:48:07,751 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 15:48:07,762 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:48:10,470 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I will start working on a banana bread recipe for you. If you have any specific preferences or dietary restrictions, feel free to let me know!
+2024-07-01 15:48:22,141 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:48:22,158 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:48:22,198 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:48:22,215 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:48:38,596 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 15:48:38,607 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: My Favorite Banana Bread, Ingredients: [Ingredient(name='all-purpose flour', quantity=250.0, unit='g'), Ingredient(name='baking soda', quantity=1.0, unit=None), Ingredient(name='salt', quantity=0.25, unit=None), Ingredient(name='ground cinnamon', quantity=0.5, unit=None), Ingredient(name='unsalted butter', quantity=113.0, unit='g'), Ingredient(name='light or dark brown sugar', quantity=150.0, unit='g'), Ingredient(name='eggs', quantity=2.0, unit=None), Ingredient(name='plain yogurt or sour cream', quantity=80.0, unit='g'), Ingredient(name='mashed bananas', quantity=460.0, unit='g'), Ingredient(name='pure vanilla extract', quantity=1.0, unit=None), Ingredient(name='chopped pecans or walnuts', quantity=100.0, unit='g')], Instructions: ['Adjust the oven rack to the lower third position and preheat the oven to 350°F (177°C). Grease a metal 9×5-inch loaf pan with nonstick spray. Set aside.', 'Whisk the flour, baking soda, salt, and cinnamon together in a medium bowl. Set aside.', 'Beat the butter and brown sugar together until smooth and creamy. Add eggs one at a time, then beat in the yogurt, mashed bananas, and vanilla extract until combined.', 'Slowly beat the dry ingredients into the wet ingredients until no flour pockets remain. Fold in the nuts, if using.', 'Pour the batter into the prepared pan and bake for 60–65 minutes, covering with foil halfway through. Check for doneness with a toothpick.', 'Cool in the pan on a wire rack for 1 hour, then remove from pan and cool completely before slicing and serving.', 'Store at room temperature for 2 days or in the refrigerator for up to 1 week. Best enjoyed on day 2 after flavors have settled.'], Tags: None, Sources: ['https://sallysbakingaddiction.com/best-banana-bread-recipe/']
+2024-07-01 15:48:38,653 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:48:38,680 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 15:48:38,696 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:48:42,543 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 15:48:42,554 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 15:48:42,602 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:48:42,644 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 15:48:42,665 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 15:48:42,695 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 15:48:47,054 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 15:48:47,099 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 15:48:47,114 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 15:48:47,132 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 15:48:47,149 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 15:48:47,157 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:48:47,203 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 15:48:51,811 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: Favorite Banana Bread
+
+Ingredients:
+- 250.0 g all-purpose flour
+- 1.0 tsp baking soda
+- 0.25 tsp salt
+- 0.5 tsp ground cinnamon
+- 113.0 g unsalted butter
+- 150.0 g light or dark brown sugar
+- 2 eggs
+- 80.0 g plain yogurt or sour cream
+- 460.0 g mashed bananas
+- 1.0 tsp pure vanilla extract
+- 100.0 g chopped pecans or walnuts
+
+Instructions:
+1. Preheat the oven to 350°F (177°C) and grease a 9×5-inch loaf pan with nonstick spray.
+2. In a medium bowl, whisk together the flour, baking soda, salt, and cinnamon.
+3. Beat the butter and brown sugar until smooth, then mix in eggs, yogurt, bananas, and vanilla extract.
+4. Gradually add the dry ingredients to the wet ingredients, then fold in the nuts.
+5. Pour the batter into the pan and bake for 60–65 minutes, covering with foil halfway through. Test with a toothpick for doneness.
+6. Allow the bread to cool in the pan on a wire rack for 1 hour before slicing.
+7. Store at room temperature for up to 2 days or in the refrigerator for up to 1 week. Best after flavors settle on day 2.
+
+Source: https://sallysbakingaddiction.com/best-banana-bread-recipe/
+2024-07-01 15:52:29,446 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 15:52:29,447 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 15:52:29,447 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 15:52:31,686 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 15:52:32,878 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I like a recipe for tiramisu.
+2024-07-01 15:52:42,922 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 15:52:42,935 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: I like a recipe for tiramisu.
+2024-07-01 15:52:42,935 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 15:52:42,935 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 15:52:42,946 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:52:45,217 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I'll start working on a delicious tiramisu recipe for you.
+2024-07-01 15:52:53,632 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:52:53,643 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:52:53,677 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:52:53,703 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:52:55,912 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:52:55,935 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:52:55,966 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:52:55,982 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:52:58,161 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:52:58,177 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:52:58,200 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:52:58,216 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:53:00,325 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:53:00,341 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:53:00,388 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:53:00,396 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:53:04,659 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 15:53:04,675 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:53:04,724 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 15:53:04,745 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:53:21,530 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 15:53:21,541 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Classic Tiramisù, Ingredients: [Ingredient(name='egg yolks', quantity=4.0, unit=None), Ingredient(name='granulated sugar', quantity=100.0, unit='grams'), Ingredient(name='heavy cream', quantity=0.75, unit='cup'), Ingredient(name='mascarpone', quantity=227.0, unit='grams'), Ingredient(name='espresso or very strong coffee', quantity=1.75, unit='cups'), Ingredient(name='rum or cognac', quantity=2.0, unit='tablespoons'), Ingredient(name='unsweetened cocoa powder', quantity=2.0, unit='tablespoons'), Ingredient(name='ladyfingers', quantity=24.0, unit=None), Ingredient(name='bittersweet chocolate', quantity=1.0, unit='ounces')], Instructions: ['Prepare the cream: Whip egg yolks and 1/4 cup sugar until pale yellow. Whip cream and remaining 1/4 cup sugar until soft peaks. Add mascarpone and fold into egg yolks. Dip ladyfingers in espresso-rum mixture and layer in a dish. Spread mascarpone mixture over ladyfingers. Repeat layering. Dust with cocoa powder. Chill for at least 4 hours. Top with chocolate before serving.'], Tags: None, Sources: ['https://cooking.nytimes.com/recipes/1018684-classic-tiramisu']
+2024-07-01 15:53:21,564 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:53:21,597 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 15:53:21,608 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:53:25,727 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 15:53:25,737 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 15:53:25,759 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:53:25,798 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 15:53:25,814 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 15:53:25,841 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 15:53:32,313 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 15:53:32,367 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 15:53:32,393 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 15:53:32,398 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 15:53:32,422 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 15:53:32,440 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:53:32,472 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 15:53:36,518 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: Classic Tiramisù
+
+Ingredients:
+- 4 egg yolks 
+- 100 grams granulated sugar 
+- 3/4 cup heavy cream 
+- 227 grams mascarpone 
+- 1 3/4 cups espresso or very strong coffee 
+- 2 tablespoons rum or cognac 
+- 2 tablespoons unsweetened cocoa powder 
+- 24 ladyfingers 
+- 1 ounce bittersweet chocolate
+
+Instructions:
+1. Make the cream: Beat egg yolks and 1/4 cup sugar until pale yellow. Whip cream and the rest of the sugar until soft peaks form. Gently fold in mascarpone. Dip ladyfingers in espresso and rum mixture and layer in a dish. Spread mascarpone mixture over the ladyfingers. Repeat layering. Dust with cocoa powder. Refrigerate for at least 4 hours. Sprinkle grated bittersweet chocolate on top before serving.
+
+Source: https://cooking.nytimes.com/recipes/1018684-classic-tiramisu
+2024-07-01 15:57:53,059 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 15:57:53,059 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 15:57:53,059 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 15:57:53,430 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 15:57:55,232 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: 

@@ -1,0 +1,37 @@
+2024-07-01 12:45:58,282 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:45:58,463 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:45:58,463 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:45:58,463 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:45:58,464 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:45:58,464 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:45:58,464 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:45:58,466 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:45:58,466 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:45:58,466 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:45:58,467 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:45:58,467 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:45:58,761 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:45:58,761 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:45:58,762 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:45:58,763 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:45:58,763 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:45:58,769 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:45:58,769 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:45:58,772 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:45:58,772 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:45:58,775 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:45:58,776 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:45:58,778 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:45:58,779 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:45:58,822 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:46:03,985 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:46:03,988 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:46:05,236 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:46:06,494 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: This is a test?
+2024-07-01 12:46:16,562 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:46:16,573 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: This is a test?
+2024-07-01 12:46:16,583 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:46:16,589 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:46:16,600 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:46:20,210 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for reaching out. It seems like your request is unclear. Could you please provide more details or let me know how I can assist you further?
+2024-07-01 12:46:36,202 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...

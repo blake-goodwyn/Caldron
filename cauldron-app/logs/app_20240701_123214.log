@@ -1,0 +1,85 @@
+2024-07-01 12:32:19,048 - cauldron - INFO   - cauldron_app.py - __init__ - Initializing Caldron Application
+2024-07-01 12:32:19,233 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:32:19,233 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:32:19,233 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:32:19,234 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of RecipeGraph.
+2024-07-01 12:32:19,234 - cauldron - INFO   - class_defs.py - __init__ - Initializing RecipeGraph object.
+2024-07-01 12:32:19,234 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:32:19,235 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of ModsList.
+2024-07-01 12:32:19,236 - cauldron - INFO   - class_defs.py - __init__ - Initializing ModsList object.
+2024-07-01 12:32:19,236 - cauldron - INFO   - class_defs.py - save_to_file - Saving ModsList to file.
+2024-07-01 12:32:19,236 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating all agents.
+2024-07-01 12:32:19,236 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Greeter
+2024-07-01 12:32:19,528 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Greeter created.
+2024-07-01 12:32:19,529 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating supervisor agent: Validator
+2024-07-01 12:32:19,530 - cauldron - DEBUG  - langchain_util.py - createRouter - Router options: ['Tavily', 'FINISH']
+2024-07-01 12:32:19,530 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Validator created.
+2024-07-01 12:32:19,530 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Frontman
+2024-07-01 12:32:19,536 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Frontman created.
+2024-07-01 12:32:19,537 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Tavily
+2024-07-01 12:32:19,539 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Tavily created.
+2024-07-01 12:32:19,539 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Sleuth
+2024-07-01 12:32:19,543 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Sleuth created.
+2024-07-01 12:32:19,543 - cauldron - INFO   - agent_defs.py - create_all_agents - Creating agent: Spinnaret
+2024-07-01 12:32:19,546 - cauldron - INFO   - agent_defs.py - create_all_agents - Agent Spinnaret created.
+2024-07-01 12:32:19,546 - cauldron - INFO   - agent_defs.py - create_all_agents - All agents created.
+2024-07-01 12:32:19,587 - cauldron - INFO   - recipe_print_demo.py - <module> - Printer has paper? :True
+2024-07-01 12:32:24,502 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
+2024-07-01 12:32:24,530 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 12:32:26,609 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 12:32:27,636 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: I want a recipe for baklava
+2024-07-01 12:32:37,700 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 12:32:37,713 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: I want a recipe for baklava
+2024-07-01 12:32:37,724 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 12:32:37,738 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 12:32:37,748 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:32:41,331 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I will start working on a delicious baklava recipe for you.
+2024-07-01 12:32:51,065 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 12:32:51,082 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:32:51,107 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 12:32:51,117 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:33:11,104 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 12:33:11,120 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Greek Baklava, Ingredients: [Ingredient(name='phyllo dough', quantity=1.0, unit='package'), Ingredient(name='nuts', quantity=2.0, unit='cups'), Ingredient(name='cinnamon', quantity=1.0, unit='teaspoon'), Ingredient(name='butter', quantity=1.0, unit='cup'), Ingredient(name='sugar', quantity=1.0, unit='cup'), Ingredient(name='water', quantity=1.0, unit='cup'), Ingredient(name='vanilla extract', quantity=1.0, unit='teaspoon'), Ingredient(name='honey', quantity=1.0, unit='cup')], Instructions: ['Gather all ingredients.', 'Preheat the oven to 350 degrees F(175 degrees C). Butter the bottoms and sides of a 9x13-inch pan.', 'Chop nuts and toss with cinnamon. Set aside.', 'Unroll phyllo dough. Cut whole stack in half to fit pan. Cover phyllo with a dampened cloth to keep from drying out as you work. Place two sheets of dough in pan, butter thoroughly. Repeat until you have 8 sheets layered.', 'Sprinkle 2 to 3 tablespoons of nut mixture on top. Top with two sheets of dough, butter, nuts, layering as you go. The top layer should be about 6 to 8 sheets deep.', 'Using a sharp knife cut into diamond or square shapes all the way to the bottom of the pan. You may cut into 4 long rows then make diagonal cuts. Bake for about 50 minutes until baklava is golden and crisp.', 'Make sauce while baklava is baking. Boil sugar and water until sugar is melted. Add vanilla and honey. Simmer for about 20 minutes.', 'Remove baklava from the oven and immediately spoon sauce over it. Let cool.', 'Serve in cupcake papers. This freezes well. Leave it uncovered as it gets soggy if it is wrapped up.', 'Enjoy!'], Tags: None, Sources: ['https://www.allrecipes.com/recipe/9454/greek-baklava/']
+2024-07-01 12:33:11,142 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:33:11,181 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 12:33:11,193 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 12:33:15,398 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:33:15,415 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:33:15,464 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:33:15,509 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:33:15,525 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 12:33:15,546 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 12:33:19,591 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 12:33:19,600 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 12:33:19,624 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 12:33:19,650 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 12:33:19,675 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 12:33:19,699 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 12:33:19,745 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 12:33:23,955 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: Greek Baklava
+
+Ingredients:
+- 1 package phyllo dough
+- 2 cups nuts
+- 1 teaspoon cinnamon
+- 1 cup butter
+- 1 cup sugar
+- 1 cup water
+- 1 teaspoon vanilla extract
+- 1 cup honey
+
+Instructions:
+1. Preheat the oven to 350 degrees F (175 degrees C). Grease a 9x13-inch pan.
+2. Chop nuts and mix with cinnamon. Set aside.
+3. Layer phyllo dough sheets in the pan, buttering each sheet.
+4. Sprinkle nut mixture over the layered phyllo sheets. Repeat the layering process.
+5. Cut the baklava into diamond or square shapes before baking for about 50 minutes until golden and crisp.
+6. Prepare the sauce by boiling sugar and water, then adding vanilla and honey. Simmer for 20 minutes.
+7. Once baklava is ready, pour the sauce over it and allow it to cool.
+8. Serve in cupcake papers. Refrigerate uncovered to prevent sogginess. 
+9. Enjoy your delicious Greek Baklava!
+
+Source: https://www.allrecipes.com/recipe/9454/greek-baklava/
+2024-07-01 12:34:13,905 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed! Starting recording...
