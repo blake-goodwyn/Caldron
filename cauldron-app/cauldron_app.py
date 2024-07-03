@@ -8,7 +8,7 @@ from class_defs import fresh_pot, fresh_graph, fresh_mods_list, load_graph_from_
 from agent_defs import create_all_agents, prompts_dict, form_edges, create_conditional_edges
 from custom_print import printer as pretty
 from custom_print import wrapper
-from neopixel_util import highlight_section
+from neopixel_util import *
 from thermal_printer_util import printer
 
 warnings.filterwarnings("ignore", message="Parent run .* not found for run .* Treating as a root run.")
@@ -62,11 +62,12 @@ class CaldronApp():
             #logger.info(s)
             try:
                 if 'Greeter' in s.keys():
-                    highlight_section('Tavily')
                     logger.info(f"Greeter: {s['Greeter']['messages'][0].content}")
                     #print(s['Greeter']['messages'][0].content)
                     printer.print(wrapper.fill(s['Greeter']['messages'][0].content))
                     printer.feed(3)
+                elif 'Validator' in s.keys():
+                    highlight_section('Tavily')
                 elif 'Tavily' in s.keys():
                     highlight_section('Sleuth')
                 elif 'Sleuth' in s.keys():
@@ -77,7 +78,7 @@ class CaldronApp():
                 logger.error(e)
                         
             if 'Frontman' in s.keys():
-
+                color_wipe()
                 recipe_graph = load_graph_from_file(self.recipe_graph_file)
                 recipe = recipe_graph.get_foundational_recipe()
                 if (recipe != None):

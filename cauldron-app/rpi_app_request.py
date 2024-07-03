@@ -1,6 +1,7 @@
 from custom_print import wrapper
 from logging_util import logger
 from thermal_printer_util import printer
+from neopixel_util import *
 
 def app_request(app, transcription):
     logger.info("Posting audio to Caldron App")

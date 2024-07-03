@@ -54,6 +54,7 @@ def start_recording():
     
     logger.info("Recording started...")
     recording = []  # Reset the recording list
+    color_wipe()
 
     # Start the audio stream
     stream = sd.InputStream(samplerate=SAMPLE_RATE, channels=CHANNELS)
@@ -125,11 +126,13 @@ def button_pressed():
             except Exception as e:
                 logger.error(e)
 
+        clear_ring()
         recipe_footer()
         
     else:
         logger.info("No audio recorded. Skipping transcription and printing.")
     
+    rotate_brightness()
     _idle_flag = True
 
 # Attach the button callback
@@ -139,10 +142,9 @@ try:
     # Keep the script running
     if printer.has_paper():
         logger.info(''.join(["Printer has paper? :", str(printer.has_paper())]))
+        rotate_brightness()
         while True:
-            while _idle_flag:
-                color_wipe()
-                sleep(0.25)
+            sleep(0.25)
     else:
         logger.error("Printer is out of paper. Please refill the paper tray.")
         #blink the light ring red

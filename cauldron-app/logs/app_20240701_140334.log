@@ -203,3 +203,125 @@ Source: https://cooking.nytimes.com/recipes/1018684-classic-tiramisu
 2024-07-01 15:57:53,059 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
 2024-07-01 15:57:53,430 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
 2024-07-01 15:57:55,232 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: 
+2024-07-01 15:58:05,328 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 15:58:05,344 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: 
+2024-07-01 15:58:05,360 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 15:58:05,376 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 15:58:05,392 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:58:08,049 - cauldron - INFO   - cauldron_app.py - post - Greeter: I'm sorry, but it seems like your request is empty. Could you please provide more information or make another request?
+2024-07-01 15:58:37,009 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 15:58:37,010 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 15:58:37,010 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 15:58:38,509 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 15:58:39,506 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Transcribed Text: Lemon cake
+2024-07-01 15:58:49,554 - cauldron - INFO   - rpi_app_request.py - app_request - Posting audio to Caldron App
+2024-07-01 15:58:49,570 - cauldron - INFO   - rpi_app_request.py - app_request - Transcription: Lemon cake
+2024-07-01 15:58:49,586 - cauldron - INFO   - class_defs.py - fresh_instance - Creating a new instance of Pot.
+2024-07-01 15:58:49,602 - cauldron - INFO   - class_defs.py - __init__ - Initializing Pot object.
+2024-07-01 15:58:49,618 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:58:52,312 - cauldron - INFO   - cauldron_app.py - post - Greeter: Thank you for your request! I will start working on a lemon cake recipe for you. If you have any specific preferences or dietary restrictions, feel free to let me know!
+2024-07-01 15:59:03,790 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:59:03,808 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:03,842 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:59:03,853 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:08,598 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:59:08,617 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:08,674 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:59:08,694 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:08,822 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:59:08,833 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:08,872 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:59:08,891 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:09,051 - cauldron - DEBUG  - agent_tools.py - add_url_to_pot - Adding URL to pot.
+2024-07-01 15:59:09,083 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:09,142 - cauldron - DEBUG  - class_defs.py - add_url - Adding URL to pot.
+2024-07-01 15:59:09,155 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:13,665 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 15:59:13,681 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:13,707 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 15:59:13,720 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:29,961 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 15:59:29,973 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Lemon Cake, Ingredients: [Ingredient(name='all-purpose flour', quantity=2.5, unit='cups'), Ingredient(name='baking powder', quantity=1.75, unit='teaspoons'), Ingredient(name='baking soda', quantity=0.5, unit='teaspoon'), Ingredient(name='kosher salt', quantity=0.25, unit='teaspoon'), Ingredient(name='salted butter', quantity=0.5, unit='cup'), Ingredient(name='olive oil', quantity=0.5, unit='cup'), Ingredient(name='granulated sugar', quantity=1.75, unit='cups'), Ingredient(name='eggs', quantity=3.0, unit=None), Ingredient(name='vanilla extract', quantity=2.0, unit='teaspoons'), Ingredient(name='buttermilk', quantity=1.0, unit='cup'), Ingredient(name='lemon zest', quantity=2.0, unit='tablespoons'), Ingredient(name='fresh lemon juice', quantity=0.33, unit='cup'), Ingredient(name='Nonstick baking spray with flour', quantity=1.0, unit=None), Ingredient(name='salted butter', quantity=1.0, unit='cup'), Ingredient(name='cream cheese', quantity=4.0, unit='ounces'), Ingredient(name="confectioner's sugar", quantity=5.5, unit='cups'), Ingredient(name='fresh lemon juice', quantity=3.0, unit='tablespoons'), Ingredient(name='yellow food coloring', quantity=3.0, unit='drops'), Ingredient(name='White chocolate curls', quantity=1.0, unit=None), Ingredient(name='edible flowers', quantity=1.0, unit=None)], Instructions: ['Preheat the oven to 350º.', 'Whisk together the flour, baking powder, baking soda, and salt in a medium bowl.', 'Whisk together the butter, olive oil, and sugar in a large bowl until combined. Add the eggs and whisk for 1 to 2 minutes, until lightened in color. Add the vanilla, buttermilk, lemon zest and juice, and whisk to combine. Add the flour mixture and whisk to combine.', 'Spray 2 8-inch round cake pans with baking spray with flour. (Alternatively: butter and flour the pans). Divide the batter evenly between the prepared pans. Tap the pans a few times each on a kitchen towel on your countertop to level the surface and remove air bubbles from within the batter.', 'Bake for 28 to 32 minutes or until a toothpick inserted into the center comes out with only a few crumbs. Transfer to a cooling rack. Let cool in the pans for 10 minutes, then turn out onto a cooling rack to cool completely, about 1 1/2 hours.', 'For the frosting: Add the butter, cream cheese, and lemon zest to the bowl of an electric stand mixer fitted with the paddle attachment and beat on medium speed until creamy, about 2 minutes. Add the powdered sugar. Beat on low speed until combined. Increase the speed to medium and beat until smooth, about 1 minute. Scrape down the sides and bottom of the bowl. Add the lemon juice and yellow food coloring, if using. Beat until light and smooth, about 2 more minutes.', 'To assemble: Trim the cake layers to make the tops flat and even, as needed. Place 1 cake layer on a cake plate. Spread 1 cup of buttercream over the top. Top with the second cake layer and spread buttercream all over the top and sides of the cake.', 'Garnish with white chocolate curls, lemon slices, and/or edible flowers, if desired.'], Tags: None, Sources: ['https://www.thepioneerwoman.com/food-cooking/recipes/a39328027/lemon-cake-recipe/']
+2024-07-01 15:59:29,984 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:30,020 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 15:59:30,045 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:34,001 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 15:59:34,012 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:34,056 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 15:59:34,067 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:34,209 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 15:59:34,227 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:34,272 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 15:59:34,302 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:34,433 - cauldron - DEBUG  - agent_tools.py - pop_url_from_pot - Popping URL from pot.
+2024-07-01 15:59:34,455 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:34,530 - cauldron - DEBUG  - class_defs.py - pop_url - Popping URL from pot.
+2024-07-01 15:59:34,558 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 15:59:51,620 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 15:59:51,632 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Lemon Layer Cake with Lemon Cream Cheese Buttercream, Ingredients: [Ingredient(name='all-purpose flour', quantity=3.0, unit='cups'), Ingredient(name='baking powder', quantity=2.5, unit='teaspoons'), Ingredient(name='baking soda', quantity=0.5, unit='teaspoon'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='unsalted butter', quantity=1.0, unit='cup'), Ingredient(name='granulated sugar', quantity=1.75, unit='cups'), Ingredient(name='eggs', quantity=3.0, unit=None), Ingredient(name='pure vanilla extract', quantity=2.0, unit='teaspoons'), Ingredient(name='whole milk', quantity=1.0, unit='cup'), Ingredient(name='lemon zest', quantity=1.0, unit='heaping tablespoon'), Ingredient(name='fresh lemon juice', quantity=0.33, unit='cup'), Ingredient(name='unsalted butter', quantity=1.0, unit='cup'), Ingredient(name='cream cheese', quantity=8.0, unit='ounces'), Ingredient(name='confectioners’ sugar', quantity=4.5, unit='cups'), Ingredient(name='fresh lemon juice', quantity=2.0, unit='tablespoons'), Ingredient(name='pure vanilla extract', quantity=1.0, unit='teaspoon'), Ingredient(name='salt', quantity=1.0, unit='pinch')], Instructions: ['Preheat oven to 350°F (177°C). Grease three 8-inch cake pans, line with parchment paper rounds, then grease the parchment paper.', 'Make the cake: Whisk the flour, baking powder, baking soda, and salt together. Set aside. Beat the butter and sugar together until smooth. Add eggs and vanilla. Mix in dry ingredients and milk, lemon zest, and lemon juice. Pour batter into cake pans and bake for 21-26 minutes. Allow cakes to cool completely.', 'Make the frosting: Beat butter until creamy, add cream cheese and mix. Add confectioners’ sugar, lemon juice, and vanilla extract. Beat until smooth. Adjust consistency if needed with more sugar, lemon juice, or salt.', 'Assemble and decorate: Slice cake layers, layer with frosting, and cover the top and sides with frosting. Refrigerate before slicing. Store leftovers in the refrigerator.'], Tags: None, Sources: ['https://sallysbakingaddiction.com/lemon-cake/']
+2024-07-01 15:59:51,659 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 15:59:51,680 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 15:59:51,698 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 16:00:05,883 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 16:00:05,894 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Lemon Cake - with a secret Fluffy Lemon Frosting, Ingredients: [Ingredient(name='plain / all purpose flour', quantity=2.0, unit='cups'), Ingredient(name='baking powder', quantity=2.5, unit='teaspoons'), Ingredient(name='salt', quantity=0.25, unit='teaspoon'), Ingredient(name='eggs', quantity=4.0, unit=None), Ingredient(name='caster / superfine sugar', quantity=1.5, unit='cups'), Ingredient(name='unsalted butter', quantity=0.5, unit='cup'), Ingredient(name='milk', quantity=1.0, unit='cup'), Ingredient(name='vanilla extract', quantity=3.0, unit='teaspoons'), Ingredient(name='vegetable or canola oil', quantity=3.0, unit='teaspoons'), Ingredient(name='lemon zest', quantity=3.0, unit='tablespoons'), Ingredient(name='lemon juice', quantity=0.33, unit='cup'), Ingredient(name='natural lemon extract (lemon oil)', quantity=0.25, unit='teaspoon'), Ingredient(name='flour', quantity=6.5, unit='tablespoons'), Ingredient(name='milk', quantity=1.33, unit='cups'), Ingredient(name='caster / superfine white sugar', quantity=1.33, unit='cups'), Ingredient(name='unsalted butter', quantity=1.33, unit='cups'), Ingredient(name='lemon zest', quantity=3.0, unit='teaspoons'), Ingredient(name='fresh lemon juice', quantity=4.0, unit='tablespoons')], Instructions: ['Preheat oven to 180°C/350°F. Grease and line cake pans.', 'Combine dry ingredients and set aside.', 'Beat eggs and sugar until tripled in volume and white.', 'Mix in flour and milk alternately.', 'Add lemon zest, juice, and oil to the batter.', 'Bake for 23 minutes or until golden and cooked through.', 'Prepare the secret Fluffy Lemon Frosting by thickening roux, adding milk, and cooling.', 'Cream butter and add roux, lemon zest, and juice to make the frosting.', 'Frost the cake layers and assemble with frosting between layers and on top and sides.'], Tags: None, Sources: ['https://www.recipetineats.com/lemon-cake-with-lemon-frosting/']
+2024-07-01 16:00:05,912 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 16:00:05,948 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 16:00:05,967 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 16:00:20,208 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Generating representation of Recipe object.
+2024-07-01 16:00:20,219 - cauldron - DEBUG  - agent_tools.py - generate_recipe - Name: Lemon Cake, Ingredients: [Ingredient(name='cake flour', quantity=3.0, unit='cups'), Ingredient(name='baking powder', quantity=2.0, unit='teaspoons'), Ingredient(name='baking soda', quantity=0.5, unit='teaspoon'), Ingredient(name='salt', quantity=0.5, unit='teaspoon'), Ingredient(name='buttermilk', quantity=1.0, unit='cup'), Ingredient(name='canola or vegetable oil', quantity=0.25, unit='cup'), Ingredient(name='fresh lemon juice', quantity=0.25, unit='cup'), Ingredient(name='pure vanilla extract', quantity=2.0, unit='teaspoons'), Ingredient(name='unsalted butter', quantity=1.0, unit='cup'), Ingredient(name='granulated sugar', quantity=1.75, unit='cups'), Ingredient(name='lemon zest', quantity=3.0, unit='medium lemons'), Ingredient(name='eggs', quantity=4.0, unit=None), Ingredient(name='cream cheese', quantity=12.0, unit='ounces'), Ingredient(name='unsalted butter', quantity=0.75, unit='cup'), Ingredient(name='powdered sugar', quantity=3.0, unit='cups'), Ingredient(name='fresh lemon juice', quantity=1.5, unit='tablespoons')], Instructions: ['Preheat oven to 350°F. Prepare cake pans with nonstick spray and parchment paper.', 'Whisk dry ingredients and wet ingredients separately.', 'Beat butter and sugar until light and fluffy. Add lemon zest and mix well.', 'Mix in eggs one at a time.', 'Alternate adding dry and wet ingredients to the butter mixture.', 'Divide batter between pans and bake until a toothpick comes out clean.', 'Cool cakes in pans, then transfer to a wire rack to cool completely.', 'Prepare the lemon cream cheese frosting by beating cream cheese and butter, then adding powdered sugar and lemon juice.', 'Level cakes and frost with cream cheese frosting.', 'Assemble the cake by layering and frosting the cakes.'], Tags: None, Sources: ['https://www.livewellbakeoften.com/lemon-cake/']
+2024-07-01 16:00:20,230 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 16:00:20,269 - cauldron - DEBUG  - class_defs.py - add_recipe - Adding recipe to pot.
+2024-07-01 16:00:20,288 - cauldron - INFO   - class_defs.py - save_to_file - Saving Pot to file.
+2024-07-01 16:00:25,849 - cauldron - DEBUG  - agent_tools.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 16:00:25,865 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 16:00:25,917 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 16:00:25,971 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 16:00:25,987 - cauldron - DEBUG  - class_defs.py - create_recipe_graph - Creating recipe graph with foundational recipe.
+2024-07-01 16:00:25,997 - cauldron - INFO   - class_defs.py - save_to_file - Saving RecipeGraph to file.
+2024-07-01 16:00:30,842 - cauldron - INFO   - class_defs.py - load_from_file - Loading RecipeGraph from file.
+2024-07-01 16:00:30,876 - cauldron - DEBUG  - class_defs.py - get_foundational_recipe - Getting foundational recipe from recipe graph.
+2024-07-01 16:00:30,897 - cauldron - DEBUG  - class_defs.py - get_recipe - Getting recipe from recipe graph.
+2024-07-01 16:00:30,906 - cauldron - DEBUG  - class_defs.py - get_graph_size - Getting the number of nodes in the recipe graph.
+2024-07-01 16:00:30,923 - cauldron - DEBUG  - class_defs.py - from_json - Creating Recipe object from JSON string.
+2024-07-01 16:00:30,951 - cauldron - INFO   - class_defs.py - load_from_file - Loading Pot from file.
+2024-07-01 16:00:31,004 - cauldron - DEBUG  - class_defs.py - pop_recipe - Popping recipe from pot.
+2024-07-01 16:00:37,097 - cauldron - INFO   - cauldron_app.py - post - Recipe Text:
+
+ Recipe: Lemon Cake
+
+Ingredients:
+- 3 cups cake flour
+- 2 teaspoons baking powder
+- 1/2 teaspoon baking soda
+- 1/2 teaspoon salt
+- 1 cup buttermilk
+- 1/4 cup canola or vegetable oil
+- 1/4 cup fresh lemon juice
+- 2 teaspoons pure vanilla extract
+- 1 cup unsalted butter
+- 1 3/4 cups granulated sugar
+- Zest of 3 medium lemons
+- 4 eggs
+- 12 ounces cream cheese
+- 3 cups powdered sugar
+- 1 1/2 tablespoons fresh lemon juice
+
+Instructions:
+1. Preheat oven to 350°F. Prepare cake pans with nonstick spray and parchment paper.
+2. Whisk dry and wet ingredients separately.
+3. Beat butter and sugar until light and fluffy. Add lemon zest and mix well.
+4. Mix in eggs one at a time.
+5. Alternate adding dry and wet ingredients to the butter mixture.
+6. Divide batter between pans and bake until a toothpick comes out clean.
+7. Cool cakes in pans, then transfer to a wire rack to cool completely.
+8. Prepare the lemon cream cheese frosting by beating cream cheese and butter, then adding powdered sugar and lemon juice.
+9. Level cakes and frost with cream cheese frosting.
+10. Assemble the cake by layering and frosting the cakes.
+
+Source: https://www.livewellbakeoften.com/lemon-cake/
+2024-07-01 16:01:39,164 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Button pressed!
+2024-07-01 16:01:39,165 - cauldron - INFO   - recipe_print_demo.py - button_pressed - Starting recording...
+2024-07-01 16:01:39,165 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording started...
+2024-07-01 16:01:39,178 - cauldron - INFO   - recipe_print_demo.py - start_recording - Recording finished
+2024-07-01 16:01:39,178 - cauldron - INFO   - recipe_print_demo.py - start_recording - No audio data recorded.
+2024-07-01 16:01:39,178 - cauldron - INFO   - recipe_print_demo.py - button_pressed - No audio recorded. Skipping transcription and printing.
