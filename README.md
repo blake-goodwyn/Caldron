@@ -1,7 +1,3 @@
-# ebakery
+# Caldron
 
-This is a repository for the eBakery project. The intent of the project is to explore future technologies in the craft of baking that help bakers push their craft in meaningful ways.
-
-The following information is stored here:
-* /data - contains collected datasets relevant for exploration
-* /notebook - contains scratchpads for relevant development
+Caldron is an AI-assisted recipe development platform that allows users to generate and quickly iterate on new recipes. Caldron leverages multi-agent generative artificial intelligence tools to quickly iterate a desired foundational recipe from a provided prompt and optionally provided context. Caldron then provides channels for both human and machine sensory feedback to iteratively refine the recipe.
