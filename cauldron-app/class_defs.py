@@ -268,6 +268,16 @@ class ModsList(BaseModel):
                 self.queue[i] = (-new_priority, mod)
                 heapq.heapify(self.queue)
                 break
+
+    def remove_mod(self, mod_id: str) -> bool:
+        """Remove a modification from the queue by its ID."""
+        logger.debug(f"Removing modification {mod_id} from mods list.")
+        original_len = len(self.queue)
+        self.queue = [(pri, mod) for pri, mod in self.queue if mod._id != mod_id]
+        if len(self.queue) < original_len:
+            heapq.heapify(self.queue)
+            return True
+        return False
     
 class Pot(BaseModel):
     """Model for a short-term storage of recipe info."""
