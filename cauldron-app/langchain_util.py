@@ -51,7 +51,6 @@ def createBookworm(
         verbose=False
 ):
     assert type(llm_model) == str, "Model must be a string"
-    #assert type(prompt) == str, "Prompt must be a string"
 
     prompt = ChatPromptTemplate.from_messages(
         [
@@ -76,6 +75,7 @@ def createBookworm(
 
 def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> str:
     """An LLM-based router."""
+    members = list(members)  # avoid mutating the caller's list
     if exit:
         members.append("FINISH")
     route_fx = {
@@ -122,8 +122,7 @@ def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> s
 # Helper function to create a node for a given agent
 def agent_node(state, agent, name):
     result = agent.invoke(state)
-    #logger.info(f"Agent {name} invoked with state: {state}")
-    if "output" in result.keys(): # If the agent has an output
+    if "output" in result.keys():
         result = AIMessage(content=result["output"], name=name)
         return {
             "messages": [result],

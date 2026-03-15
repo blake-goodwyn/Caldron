@@ -31,7 +31,7 @@ prompts_dict = {
         - KnowItAll: Answers general questions about the recipe. Has access to the foundational recipe and the Recipe Graph.\n
         When all tasks are complete and Spinnaret has been called, respond with FINISH. Ensure that all changes are recorded by Spinnaret before completing.
         """,
-        "members":["Research\nPostman", "ModSquad", "Spinnaret", "Frontman", "KnowItAll"] # TODO - "Critic" & "Jimmy"
+        "members": ["Research\nPostman", "ModSquad", "Spinnaret", "Frontman", "KnowItAll"]
     },
     "Research\nPostman": {
         "type": "supervisor",
@@ -43,32 +43,10 @@ prompts_dict = {
         Your task is to coordinate their efforts to ensure seamless recipe information retrieval.\n 
         When a message is received, you may assign tasks to the appropriate agents based on their specializations. Collect and review the results from each agent, giving follow-up tasks as needed and resolving any detected looping issues or requests for additional input. Once all agents have completed their tasks, direct this back to the Caldron\nPostman.
         """,
-        "members": ["Tavily", "Sleuth", "Caldron\nPostman"] #TODO - "Bookworm", "Remy", "HealthNut", "MrKrabs" 
+        "members": ["Tavily", "Sleuth", "Caldron\nPostman"]
     },
-    #"Remy": { TODO
-    #    "type": "agent",
-    #    "prompt": "You are Remy, the Flavor Profiling agent. Your task is to analyze the flavor profiles of the ingredients provided and suggest combinations that enhance the overall taste of the recipe. Once the analysis is complete, forward your results to the relevant nodes (e.g., Nutritional Balancing, Recipe Modification Manager). If you detect a looping issue or need further input, communicate this clearly and concisely.",
-    #    "tools": [get_foundational_recipe, suggest_mod],
-    #},
-    #"HealthNut": { TODO
-    #    "type": "agent",
-    #    "prompt": "You are HealthNut, the Nutritional Analysis agent. Your task is to evaluate the nutritional content of the ingredients provided and ensure the recipe meets specific nutritional guidelines. Make suggestions for ingredient adjustments to achieve a balanced nutrient profile. Format all outputs according to Pydantic standards and forward your results to the relevant nodes (e.g., Flavor Profiling, Recipe Modification Manager). Address any looping issues or additional input needs clearly and concisely.",
-    #    "tools": [get_foundational_recipe, suggest_mod],
-    #},
-    #"MrKrabs": { TODO
-    #    "type": "agent",
-    #    "prompt": "You are Mr. Krabs, the Cost & Sourcing agent. Your task is to assess the cost and availability of the ingredients provided. Analyze market trends, regional availability, and pricing data to suggest the most cost-effective and available options. Ensure all communication follows Pydantic standards and format your output accordingly. Forward your results to the relevant nodes (e.g., Nutritional Balancing, Recipe Modification Manager). Clearly communicate if additional input or a change in direction is needed.",
-    #    "tools": [get_foundational_recipe, suggest_mod],
-    #},
-    #"Critic": { TODO
-    #    "type": "agent",
-    #    "prompt": "You are Critic, the Feedback Interpreter agent. Your task is to interpret feedback from users and other nodes, identifying areas for recipe refinement. Analyze the feedback to suggest actionable changes. Ensure all outputs follow Pydantic standards and format them accordingly. Forward your results to the relevant nodes (e.g., Recipe Modification Manager, Flavor Profiling). Clearly address any looping issues or need for further input.",
-    #    "tools": [suggest_mod],
-    #},
-    #"Bookworm": {
-    #    "type": "sql",
-    #    "prompt": "In the event that a simple statement is received, you may reframe this statement as a question. For example, 'I want to make gluten-free bread with xanthan gum' could be reframed as 'What are common recipes for gluten-free bread with xanthan gum?'"
-    #},
+    # Planned agents: Bookworm (SQL), Remy (Flavor), HealthNut (Nutrition),
+    # MrKrabs (Cost), Critic (Feedback)
     "Tavily": {
         "type": "agent",
         "label": "Web\nSearch",
@@ -134,32 +112,16 @@ prompts_dict = {
         """,
         "tools": [create_recipe_graph, add_node, get_recipe, get_foundational_recipe, set_foundational_recipe, get_graph, get_recipe_from_pot, examine_pot],
     },
-    #"Jimmy": { TODO
-    #    "type": "agent",
-    #    "prompt": "You are the Peripheral Interpreter node for the Caldron application. Your task is to interpret feedback from connected smart devices (e.g., smart ovens, kitchen scales) and provide actionable insights to other nodes. Ensure all outputs follow Pydantic standards and format them accordingly. Forward the insights to the relevant nodes (e.g., Feedback Interpreter, Recipe Modification Manager). Clearly address any looping issues or need for further input.",
-    #    "tools": [suggest_mod],
-    #},
-    #"Glutton": {
-    #    "type": "agent",
-    #    "prompt": "You are Glutton. Your task is to discern YES or NO as a judgement of whether the following item is food or not:",
-    #    "tools": [get_datetime]
-    #}
+    # Planned agents: Jimmy (IoT Peripheral Interpreter), Glutton (Food Validator)
 }
 
 direct_edges = [
-    #("Research\nPostman", "Caldron\nPostman"),
     ("ModSquad", "Caldron\nPostman"),
     ("Spinnaret", "Caldron\nPostman"),
     ("KnowItAll", "Caldron\nPostman"),
-    #("Critic", "Caldron\nPostman"), TODO
-    #("Jimmy", "Caldron\nPostman"),
-    #("Remy", "Research\nPostman"),
-    #("HealthNut", "Research\nPostman"),
-    #("MrKrabs", "Research\nPostman"),
-    #("Bookworm", "Research\nPostman"),
     ("Tavily", "Research\nPostman"),
     ("Sleuth", "Research\nPostman"),
-    ("Frontman", END)
+    ("Frontman", END),
 ]
 
 def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
@@ -180,10 +142,7 @@ def create_all_agents(llm: ChatOpenAI, prompts_dict: Dict[str, Dict[str, Any]]) 
 
         elif d["type"] == "agent":
             logger.info(f"Creating agent: {name}")
-            if "tool_choice" in d:
-                agent = createAgent(name, d["prompt"], llm, d["tools"]) #TODO - add tool_choice
-            else:
-                agent = createAgent(name, d["prompt"], llm, d["tools"])
+            agent = createAgent(name, d["prompt"], llm, d["tools"])
 
         agents[name] = functools.partial(agent_node, agent=agent, name=name)
         logger.info(f"Agent {name} created.")
@@ -212,14 +171,12 @@ def create_conditional_edges(flow_graph):
         "Caldron\nPostman",
         lambda x: x["next"],
         {
-            "Research\nPostman": "Research\nPostman", 
-            #"Critic": "Critic", TODO
-            "ModSquad": "ModSquad", 
-            "Spinnaret": "Spinnaret", 
+            "Research\nPostman": "Research\nPostman",
+            "ModSquad": "ModSquad",
+            "Spinnaret": "Spinnaret",
             "Frontman": "Frontman",
             "KnowItAll": "KnowItAll",
             "FINISH": "Frontman",
-            #"Jimmy": "Jimmy" TODO
         },
     )
 
@@ -227,11 +184,7 @@ def create_conditional_edges(flow_graph):
         "Research\nPostman",
         lambda x: x["next"],
         {
-            #"Remy": "Remy", TODO
-            #"HealthNut": "HealthNut", TODO 
-            #"MrKrabs": "MrKrabs", TODO
             "Caldron\nPostman": "Caldron\nPostman",
-            #"Bookworm": "Bookworm",
             "Tavily": "Tavily",
             "Sleuth": "Sleuth",
         },
