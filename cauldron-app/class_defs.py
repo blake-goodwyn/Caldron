@@ -1,5 +1,5 @@
 import uuid
-import pickle
+import json
 import os
 import ujson
 import networkx as nx
@@ -9,9 +9,9 @@ from logging_util import logger
 from langchain.pydantic_v1 import BaseModel, Field, PrivateAttr
 
 T = TypeVar('T')
-default_mods_list_file = "mods_list.pkl"
-default_graph_file="recipe_graph.pkl"
-default_pot_file="recipe_pot.pkl"
+default_mods_list_file = "mods_list.json"
+default_graph_file = "recipe_graph.json"
+default_pot_file = "recipe_pot.json"
 
 class Ingredient(BaseModel):
     """Model for an ingredient in a recipe."""
@@ -192,6 +192,34 @@ class RecipeGraph:
         logger.debug("Getting recipe graph.")
         return self.graph
 
+    def to_dict(self) -> Dict[str, Any]:
+        """Serialize the recipe graph to a JSON-safe dictionary."""
+        nodes = []
+        for node_id, data in self.graph.nodes(data=True):
+            recipe = data.get('recipe')
+            nodes.append({
+                "node_id": node_id,
+                "recipe": json.loads(recipe.json()) if recipe else None
+            })
+        edges = [{"source": u, "target": v} for u, v in self.graph.edges()]
+        return {
+            "foundational_recipe_node": self.foundational_recipe_node,
+            "nodes": nodes,
+            "edges": edges
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'RecipeGraph':
+        """Deserialize a recipe graph from a dictionary."""
+        graph = cls()
+        for node_data in data.get("nodes", []):
+            recipe = Recipe.parse_obj(node_data["recipe"]) if node_data["recipe"] else None
+            graph.graph.add_node(node_data["node_id"], recipe=recipe)
+        for edge_data in data.get("edges", []):
+            graph.graph.add_edge(edge_data["source"], edge_data["target"])
+        graph.foundational_recipe_node = data.get("foundational_recipe_node")
+        return graph
+
 class ModsList(BaseModel):
     """Model for a list of recipe modifications."""
     queue: List[Tuple[int, RecipeModification]] = Field(default=[], description="Priority queue of recipe modifications")
@@ -319,51 +347,63 @@ class Pot(BaseModel):
         self.urlList = []
 
 # General utility functions
-def save_to_file(obj: T, filename: str) -> None:
-    logger.info(f"Saving {obj.__class__.__name__} to file.")
-    with open(filename, 'wb') as file:
-        pickle.dump(obj, file)
 
-def load_from_file(cls: Type[T], filename: str) -> T:
-    logger.info(f"Loading {cls.__name__} from file.")
+## Graph Wrapper Functions
+def fresh_graph(filename: str = default_graph_file) -> str:
+    logger.info("Creating a new RecipeGraph instance.")
+    graph = RecipeGraph()
+    save_graph_to_file(graph, filename)
+    return filename
+
+def save_graph_to_file(recipe_graph: RecipeGraph, filename: str = default_graph_file) -> None:
+    logger.info("Saving RecipeGraph to file.")
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(recipe_graph.to_dict(), f, indent=2)
+
+def load_graph_from_file(filename: str = default_graph_file) -> RecipeGraph:
+    logger.info("Loading RecipeGraph from file.")
     if os.path.exists(filename):
-        with open(filename, 'rb') as file:
-            return pickle.load(file)
+        with open(filename, 'r', encoding='utf-8') as f:
+            return RecipeGraph.from_dict(json.load(f))
     else:
         raise FileNotFoundError(f"{filename} does not exist.")
 
-def fresh_instance(cls: Type[T], filename: str) -> str:
-    logger.info(f"Creating a new instance of {cls.__name__}.")
-    instance = cls()
-    save_to_file(instance, filename)
+## ModsList Wrapper Functions
+def fresh_mods_list(filename: str = default_mods_list_file) -> str:
+    logger.info("Creating a new ModsList instance.")
+    mods_list = ModsList()
+    save_mods_list_to_file(mods_list, filename)
     return filename
 
-## Graph Wrapper Functions
-def fresh_graph(filename: str=default_graph_file) -> str:
-    return fresh_instance(RecipeGraph, filename)
+def save_mods_list_to_file(mods_list: ModsList, filename: str = default_mods_list_file) -> None:
+    logger.info("Saving ModsList to file.")
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(mods_list.json())
 
-def save_graph_to_file(recipe_graph: RecipeGraph, filename: str=default_graph_file) -> None:
-    save_to_file(recipe_graph, filename)
-
-def load_graph_from_file(filename: str=default_graph_file) -> RecipeGraph:
-    return load_from_file(RecipeGraph, filename)
-
-## ModsList Wrapper Functions
-def fresh_mods_list(filename: str=default_mods_list_file) -> str:
-    return fresh_instance(ModsList, filename)
-
-def save_mods_list_to_file(mods_list: ModsList, filename: str=default_mods_list_file) -> None:
-    save_to_file(mods_list, filename)
-
-def load_mods_list_from_file(filename: str=default_mods_list_file) -> ModsList:
-    return load_from_file(ModsList, filename)
+def load_mods_list_from_file(filename: str = default_mods_list_file) -> ModsList:
+    logger.info("Loading ModsList from file.")
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as f:
+            return ModsList.parse_raw(f.read())
+    else:
+        raise FileNotFoundError(f"{filename} does not exist.")
 
 ## Pot Wrapper Functions
-def fresh_pot(filename: str=default_pot_file) -> str:
-    return fresh_instance(Pot, filename)
+def fresh_pot(filename: str = default_pot_file) -> str:
+    logger.info("Creating a new Pot instance.")
+    pot = Pot()
+    save_pot_to_file(pot, filename)
+    return filename
 
-def save_pot_to_file(pot: Pot, filename: str=default_pot_file) -> None:
-    save_to_file(pot, filename)
+def save_pot_to_file(pot: Pot, filename: str = default_pot_file) -> None:
+    logger.info("Saving Pot to file.")
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write(pot.json())
 
-def load_pot_from_file(filename: str=default_pot_file) -> Pot:
-    return load_from_file(Pot, filename)
+def load_pot_from_file(filename: str = default_pot_file) -> Pot:
+    logger.info("Loading Pot from file.")
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as f:
+            return Pot.parse_raw(f.read())
+    else:
+        raise FileNotFoundError(f"{filename} does not exist.")
