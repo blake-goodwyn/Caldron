@@ -16,23 +16,10 @@ ujson>=5.9.0
 networkx>=3.2
 matplotlib>=3.8
 
-# Database
-sqlalchemy>=2.0
-
 # Web Search & Scraping
 tavily-python>=0.3.0
 recipe-scrapers>=14.55.0
-beautifulsoup4>=4.12
 requests>=2.31
-
-# NLP (used by recipe analysis)
-spacy>=3.7
-nltk>=3.8
 
 # Environment & Config
 python-dotenv>=1.0
-
-# Utilities
-tqdm>=4.66
-numpy>=1.26
-pandas>=2.2
