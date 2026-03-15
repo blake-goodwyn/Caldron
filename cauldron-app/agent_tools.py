@@ -85,7 +85,7 @@ def scrape_recipe_info(
 
     return out
 
-@tool("generate_ingredient", args_schema=Ingredient)
+@tool
 def generate_ingredient(
     name: Annotated[str, "The name of the ingredient."],
     quantity: Annotated[float, "The quantity of the ingredient."],
@@ -97,17 +97,18 @@ def generate_ingredient(
     ingredient = Ingredient(name=name, quantity=quantity, unit=unit)
     return str(ingredient)
 
-@tool("generate_recipe", args_schema=Recipe)
+@tool
 def generate_recipe(
     name: Annotated[str, "The name of the recipe."],
-    ingredients: Annotated[List[Ingredient], "A list of Ingredient objects. Example: [{'name': 'flour', 'quantity': 2, 'unit': 'cups'}, {'name': 'sugar', 'quantity': 1, 'unit': 'cup'}]"],
+    ingredients: Annotated[List[Dict[str, Any]], "A list of ingredient dicts. Example: [{'name': 'flour', 'quantity': 2, 'unit': 'cups'}]"],
     instructions: Annotated[List[str], "A list of recipe instructions."],
     tags: Annotated[List[str], "A list of recipe tags."] = None,
     sources: Annotated[List[str], "A list of web sources, book references, or other inspirations."] = None
 ) -> Annotated[str, "A string representation of the Recipe."]:
     """Generate a representation of a Recipe object and adds it to the Pot."""
     logger.debug("Generating representation of Recipe object.")
-    recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions, tags=tags, sources=sources)
+    parsed_ingredients = [Ingredient(**ing) if isinstance(ing, dict) else ing for ing in ingredients]
+    recipe = Recipe(name=name, ingredients=parsed_ingredients, instructions=instructions, tags=tags, sources=sources)
     with pot_context() as pot:
         pot.add_recipe(recipe)
     return recipe.tiny()
@@ -161,12 +162,13 @@ def clear_pot() -> Annotated[str, "Message indicating success or failure."]:
 ## Recipe Graph Tools ##
 @tool
 def create_recipe_graph(
-    recipe: Annotated[Recipe, "The representation of the Recipe object of the foundational recipe."],
+    recipe: Annotated[Dict[str, Any], "The representation of the Recipe object of the foundational recipe."],
 ) -> Annotated[str, "ID of the newly created foundational recipe node."]:
     """Create a new recipe graph with the provided foundational recipe. Typically used to start a new recipe graph."""
     logger.debug("Creating recipe graph with foundational recipe.")
+    parsed_recipe = Recipe.model_validate(recipe) if isinstance(recipe, dict) else recipe
     with graph_context() as recipe_graph:
-        node_id = recipe_graph.create_recipe_graph(recipe)
+        node_id = recipe_graph.create_recipe_graph(parsed_recipe)
     return f"Recipe graph created with foundational recipe node ID: {node_id}"
 
 @tool
@@ -181,12 +183,12 @@ def get_recipe(
 
 @tool
 def add_node(
-    recipe_str: Annotated[Recipe, "The representation of the Recipe object of the recipe."],
+    recipe_str: Annotated[Dict[str, Any], "The representation of the Recipe object of the recipe."],
 ) -> Annotated[str, "ID of the newly added recipe node."]:
     """Add a new node to the recipe graph with the provided recipe and create an edge from the current foundational recipe."""
     logger.debug("Adding node to recipe graph.")
     with graph_context() as recipe_graph:
-        recipe = Recipe.from_json(recipe_str)
+        recipe = Recipe.model_validate(recipe_str) if isinstance(recipe_str, dict) else recipe_str
         node_id = recipe_graph.add_node(recipe)
     return f"New recipe node added with ID: {node_id}"
 
@@ -238,7 +240,7 @@ def get_graph_size() -> Annotated[str, "The number of nodes in the recipe graph.
 
 ## Modifications List Tools ##
 
-@tool("suggest_modification", args_schema=RecipeModification)
+@tool
 def suggest_mod(
     priority: Annotated[int, "The priority of the modification."],
     add_ingredient: Annotated[Optional[Dict[str, Any]], "The ingredient to add."] = None,

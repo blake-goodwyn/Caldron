@@ -153,7 +153,7 @@ class TestCreateRecipeGraph:
     def test_creates_graph(self, mock_save, mock_load, sample_recipe):
         mock_load.return_value = _make_graph()
         from agent_tools import create_recipe_graph
-        result = create_recipe_graph.invoke({"recipe": sample_recipe.dict()})
+        result = create_recipe_graph.invoke({"recipe": sample_recipe.model_dump()})
         assert "created" in result.lower()
         mock_save.assert_called_once()
 

@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
+from langchain_core.output_parsers.openai_tools import JsonOutputToolsParser
 from logging_util import logger
 
 food_validator_conditional_edges = {
@@ -36,6 +36,6 @@ def createFoodValidator(name, system_prompt, llm: ChatOpenAI) -> str:
     )
     return (
         prompt
-        | llm.bind_functions(functions=[glutton_fx], function_call="discernFood")
-        | JsonOutputFunctionsParser()
+        | llm.bind_tools(tools=[glutton_fx], tool_choice="discernFood")
+        | JsonOutputToolsParser()
     )

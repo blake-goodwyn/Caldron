@@ -5,7 +5,7 @@ from typing import Annotated, Sequence, TypedDict
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, BaseMessage, AIMessage, SystemMessage
-from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
+from langchain_core.output_parsers.openai_tools import JsonOutputToolsParser
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain.agents.agent import RunnableAgent
 from langchain_community.utilities.sql_database import SQLDatabase
@@ -115,8 +115,8 @@ def createRouter(name, system_prompt, llm: ChatOpenAI, members, exit=False) -> s
     logger.debug(f"Router options: {members}");
     return (
         prompt
-        | llm.bind_functions(functions=[route_fx], function_call="route")
-        | JsonOutputFunctionsParser()
+        | llm.bind_tools(tools=[route_fx], tool_choice="route")
+        | JsonOutputToolsParser()
     )
 
 # Helper function to create a node for a given agent

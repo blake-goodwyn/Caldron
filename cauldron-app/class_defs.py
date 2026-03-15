@@ -1,12 +1,11 @@
 import uuid
 import json
 import os
-import ujson
 import networkx as nx
 import heapq
 from typing import List, Dict, Optional, Any, Tuple, Type, TypeVar
 from logging_util import logger
-from langchain.pydantic_v1 import BaseModel, Field, PrivateAttr
+from pydantic import BaseModel, Field, PrivateAttr, ConfigDict
 
 T = TypeVar('T')
 default_mods_list_file = "mods_list.json"
@@ -19,20 +18,17 @@ class Ingredient(BaseModel):
     quantity: float = Field(description="Quantity of the ingredient")
     unit: Optional[str] = Field(description="Unit of measurement for the ingredient")
 
-    class Config:
-        json_loads = ujson.loads
-
     def __str__(self) -> str:
-        return self.json()
+        return self.model_dump_json()
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> str:
         logger.debug("Creating dictionary representation of Ingredient object.")
-        return self.json()
+        return self.model_dump_json()
 
     @classmethod
     def from_json(cls, data: Dict[str, Any]) -> 'Ingredient':
         logger.debug("Creating Ingredient object from JSON string.")
-        return Ingredient.parse_raw(str(data))
+        return Ingredient.model_validate_json(str(data))
 
 class RecipeModification(BaseModel):
     """Model for a modification to a recipe."""
@@ -46,22 +42,19 @@ class RecipeModification(BaseModel):
     remove_tag: Optional[str] = None
 
     # Private attribute
-    _id: str = PrivateAttr(default=str(uuid.uuid4()))
-
-    class Config:
-        json_loads = ujson.loads
+    _id: str = PrivateAttr(default_factory=lambda: str(uuid.uuid4()))
 
     def __str__(self) -> str:
-        return self.json()
+        return self.model_dump_json()
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> str:
         logger.debug("Creating JSON representation of RecipeModification object.")
-        return self.json()
+        return self.model_dump_json()
 
     @classmethod
     def from_json(cls, data: Dict[str, Any]) -> 'RecipeModification':
         logger.debug("Creating RecipeModification object from JSON string.")
-        return RecipeModification.parse_raw(str(data))
+        return RecipeModification.model_validate_json(str(data))
 
 class Recipe(BaseModel):
     """Model for a recipe."""
@@ -72,17 +65,14 @@ class Recipe(BaseModel):
     sources: List[str] = Field(default=None, description="List of sources for the recipe")
 
     # Private attribute
-    _id: str = PrivateAttr(default=str(uuid.uuid4()))
-    
-    class Config:
-        json_loads = ujson.loads
+    _id: str = PrivateAttr(default_factory=lambda: str(uuid.uuid4()))
 
     def __str__(self) -> str:
-        return self.json()
+        return self.model_dump_json()
 
-    def to_json(self) -> Dict[str, Any]:
+    def to_json(self) -> str:
         logger.debug("Creating JSON representation of Recipe object.")
-        return self.json()
+        return self.model_dump_json()
     
     def get_ID(self) -> str:
         return self._id
@@ -96,7 +86,7 @@ class Recipe(BaseModel):
     @classmethod
     def from_json(cls, data: Dict[str, Any]) -> 'Recipe':
         logger.debug("Creating Recipe object from JSON string.")
-        return Recipe.parse_raw(str(data))
+        return Recipe.model_validate_json(str(data))
 
     def apply_modification(self, modification: RecipeModification) -> bool:
         logger.debug("Applying modification to Recipe object.")
@@ -207,7 +197,7 @@ class RecipeGraph:
             recipe = data.get('recipe')
             nodes.append({
                 "node_id": node_id,
-                "recipe": json.loads(recipe.json()) if recipe else None
+                "recipe": json.loads(recipe.model_dump_json()) if recipe else None
             })
         edges = [{"source": u, "target": v} for u, v in self.graph.edges()]
         return {
@@ -221,7 +211,7 @@ class RecipeGraph:
         """Deserialize a recipe graph from a dictionary."""
         graph = cls()
         for node_data in data.get("nodes", []):
-            recipe = Recipe.parse_obj(node_data["recipe"]) if node_data["recipe"] else None
+            recipe = Recipe.model_validate(node_data["recipe"]) if node_data["recipe"] else None
             graph.graph.add_node(node_data["node_id"], recipe=recipe)
         for edge_data in data.get("edges", []):
             graph.graph.add_edge(edge_data["source"], edge_data["target"])
@@ -237,7 +227,7 @@ class ModsList(BaseModel):
         logger.info("Initializing ModsList object.")
 
     def __str__(self) -> str:
-        return self.json()
+        return self.model_dump_json()
         
     def suggest_mod(self, mod: RecipeModification) -> None:
         logger.debug("Suggesting modification to mods list.")
@@ -289,7 +279,7 @@ class Pot(BaseModel):
         logger.info("Initializing Pot object.")
 
     def __str__(self) -> str:
-        return self.json()
+        return self.model_dump_json()
     
     def add_recipe(self, recipe: Recipe) -> None:
         logger.debug("Adding recipe to pot.")
@@ -389,13 +379,13 @@ def fresh_mods_list(filename: str = default_mods_list_file) -> str:
 def save_mods_list_to_file(mods_list: ModsList, filename: str = default_mods_list_file) -> None:
     logger.info("Saving ModsList to file.")
     with open(filename, 'w', encoding='utf-8') as f:
-        f.write(mods_list.json())
+        f.write(mods_list.model_dump_json())
 
 def load_mods_list_from_file(filename: str = default_mods_list_file) -> ModsList:
     logger.info("Loading ModsList from file.")
     if os.path.exists(filename):
         with open(filename, 'r', encoding='utf-8') as f:
-            return ModsList.parse_raw(f.read())
+            return ModsList.model_validate_json(f.read())
     else:
         raise FileNotFoundError(f"{filename} does not exist.")
 
@@ -409,12 +399,12 @@ def fresh_pot(filename: str = default_pot_file) -> str:
 def save_pot_to_file(pot: Pot, filename: str = default_pot_file) -> None:
     logger.info("Saving Pot to file.")
     with open(filename, 'w', encoding='utf-8') as f:
-        f.write(pot.json())
+        f.write(pot.model_dump_json())
 
 def load_pot_from_file(filename: str = default_pot_file) -> Pot:
     logger.info("Loading Pot from file.")
     if os.path.exists(filename):
         with open(filename, 'r', encoding='utf-8') as f:
-            return Pot.parse_raw(f.read())
+            return Pot.model_validate_json(f.read())
     else:
         raise FileNotFoundError(f"{filename} does not exist.")

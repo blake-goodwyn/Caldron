@@ -23,8 +23,8 @@ class TestIngredient:
 
     def test_from_json_roundtrip(self, sample_ingredient):
         from class_defs import Ingredient
-        json_str = sample_ingredient.json()
-        restored = Ingredient.parse_raw(json_str)
+        json_str = sample_ingredient.model_dump_json()
+        restored = Ingredient.model_validate_json(json_str)
         assert restored.name == sample_ingredient.name
         assert restored.quantity == sample_ingredient.quantity
 
@@ -37,8 +37,8 @@ class TestRecipeModification:
 
     def test_serialization_roundtrip(self, sample_modification):
         from class_defs import RecipeModification
-        json_str = sample_modification.json()
-        restored = RecipeModification.parse_raw(json_str)
+        json_str = sample_modification.model_dump_json()
+        restored = RecipeModification.model_validate_json(json_str)
         assert restored.priority == 1
         assert restored.add_ingredient.name == "sugar"
 
@@ -65,8 +65,8 @@ class TestRecipe:
 
     def test_serialization_roundtrip(self, sample_recipe):
         from class_defs import Recipe
-        json_str = sample_recipe.json()
-        restored = Recipe.parse_raw(json_str)
+        json_str = sample_recipe.model_dump_json()
+        restored = Recipe.model_validate_json(json_str)
         assert restored.name == "Test Bread"
         assert len(restored.ingredients) == 1
 
