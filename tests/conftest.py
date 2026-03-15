@@ -8,6 +8,10 @@ import tempfile
 # Add cauldron-app to Python path so tests can import modules
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'cauldron-app'))
 
+# Set dummy API keys so modules that validate at import time don't fail
+os.environ.setdefault("TAVILY_API_KEY", "test-dummy-key")
+os.environ.setdefault("OPENAI_API_KEY", "test-dummy-key")
+
 
 @pytest.fixture
 def temp_dir(tmp_path):
