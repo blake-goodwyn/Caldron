@@ -207,7 +207,7 @@ class ModsList(BaseModel):
         logger.debug("Suggesting modification to mods list.")
         heapq.heappush(self.queue, (-mod.priority, mod))
 
-    def apply_mod(self, recipe_graph: RecipeGraph) -> bool:
+    def apply_mod(self, recipe_graph: RecipeGraph) -> Tuple[Optional[RecipeModification], bool]:
         logger.debug("Applying modification from mods list.")
         if self.queue:
             mod = heapq.heappop(self.queue)[1]
@@ -218,8 +218,9 @@ class ModsList(BaseModel):
                     recipe.new_ID()
                     recipe_graph.add_node(recipe)
                     recipe_graph.set_foundational_recipe(recipe)
-                    return True
-        return False
+                    return (mod, True)
+            return (mod, False)
+        return (None, False)
 
     def get_mods_list(self) -> List[RecipeModification]:
         logger.debug("Getting mods list.")
