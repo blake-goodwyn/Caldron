@@ -1,4 +1,5 @@
 from contextlib import contextmanager
+from contextvars import ContextVar
 from langchain_core.tools import tool
 from typing import Dict, List, Optional, Annotated, Any
 from langchain_community.tools.tavily_search import TavilySearchResults
@@ -6,31 +7,39 @@ import json
 import requests
 from recipe_scrapers import scrape_me
 from langchain_core.messages import HumanMessage
-from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, load_pot_from_file, save_pot_to_file, Recipe, Ingredient, RecipeModification, RecipeGraph
+from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, default_pot_file, load_mods_list_from_file, save_mods_list_to_file, load_pot_from_file, save_pot_to_file, Recipe, Ingredient, RecipeModification, RecipeGraph
 from logging_util import logger
 from datetime import datetime
 
 tavily_search_tool = TavilySearchResults()
 
+# Per-session state file paths (defaults to module-level constants for CLI compatibility)
+_graph_file: ContextVar[str] = ContextVar('_graph_file', default=default_graph_file)
+_mods_file: ContextVar[str] = ContextVar('_mods_file', default=default_mods_list_file)
+_pot_file: ContextVar[str] = ContextVar('_pot_file', default=default_pot_file)
+
 
 # Context managers to reduce duplicated load/save patterns
 @contextmanager
 def pot_context():
-    pot = load_pot_from_file()
+    f = _pot_file.get()
+    pot = load_pot_from_file(f)
     yield pot
-    save_pot_to_file(pot)
+    save_pot_to_file(pot, f)
 
 @contextmanager
 def graph_context():
-    recipe_graph = load_graph_from_file(default_graph_file)
+    f = _graph_file.get()
+    recipe_graph = load_graph_from_file(f)
     yield recipe_graph
-    save_graph_to_file(recipe_graph, default_graph_file)
+    save_graph_to_file(recipe_graph, f)
 
 @contextmanager
 def mods_context():
-    mods_list = load_mods_list_from_file(default_mods_list_file)
+    f = _mods_file.get()
+    mods_list = load_mods_list_from_file(f)
     yield mods_list
-    save_mods_list_to_file(mods_list, default_mods_list_file)
+    save_mods_list_to_file(mods_list, f)
 
 ## Datetime Tool (mainly for dummy use)
 
@@ -177,7 +186,7 @@ def get_recipe(
 ) -> Annotated[str, "String representation of the Recipe object."]:
     """Get the Recipe object at the specified node ID."""
     logger.debug("Getting recipe from recipe graph.")
-    recipe_graph = load_graph_from_file(default_graph_file)
+    recipe_graph = load_graph_from_file(_graph_file.get())
     recipe = recipe_graph.get_recipe(node_id)
     return str(recipe)
 
@@ -198,7 +207,7 @@ def get_node_id(
 ) -> Annotated[Optional[str], "The node ID of the recipe."]:
     """Get the node ID of the foundational recipe."""
     logger.debug("Getting node ID from recipe graph.")
-    recipe_graph = load_graph_from_file(default_graph_file)
+    recipe_graph = load_graph_from_file(_graph_file.get())
     # TODO - see if the given recipe matches any recipe in the graph
     return str(recipe_graph.get_node_id())
 
@@ -206,7 +215,7 @@ def get_node_id(
 def get_foundational_recipe() -> Annotated[str, "String representation of the current foundational recipe."]:
     """Get the current foundational recipe."""
     logger.debug("Getting foundational recipe from recipe graph.")
-    recipe_graph = load_graph_from_file(default_graph_file)
+    recipe_graph = load_graph_from_file(_graph_file.get())
     recipe = recipe_graph.get_foundational_recipe()
     return str(recipe)
 
@@ -225,7 +234,7 @@ def set_foundational_recipe(
 def get_graph() -> Annotated[str, "A representation of the current recipe graph."]:
     """Get a representation of the current recipe graph."""
     logger.debug("Getting recipe graph.")
-    recipe_graph = load_graph_from_file(default_graph_file)
+    recipe_graph = load_graph_from_file(_graph_file.get())
     graph = recipe_graph.get_graph()
     nodes = [(node, data['recipe'].to_json()) for node, data in graph.nodes(data=True)]
     edges = list(graph.edges(data=True))
@@ -235,7 +244,7 @@ def get_graph() -> Annotated[str, "A representation of the current recipe graph.
 def get_graph_size() -> Annotated[str, "The number of nodes in the recipe graph."]:
     """Get the number of nodes in the recipe graph."""
     logger.debug("Getting the number of nodes in the recipe graph.")
-    recipe_graph = load_graph_from_file(default_graph_file)
+    recipe_graph = load_graph_from_file(_graph_file.get())
     return f"Number of nodes in recipe graph: {recipe_graph.get_graph_size()}"
 
 ## Modifications List Tools ##
@@ -276,7 +285,7 @@ def suggest_mod(
 def get_mods_list() -> Annotated[str, "String representation of the current list of suggested modifications."]:
     """Get the current list of suggested modifications."""
     logger.debug("Getting mods list.")
-    mods_list = load_mods_list_from_file(default_mods_list_file)
+    mods_list = load_mods_list_from_file(_mods_file.get())
     current_mods_list = mods_list.get_mods_list()
     return str(current_mods_list)
 
@@ -289,11 +298,12 @@ def apply_mod() -> Annotated[str, "The result of applying the modification."]:
         str: A message describing the result of applying the modification.
     """
     try:
-        recipe_graph = load_graph_from_file(default_graph_file)
-        mods_list = load_mods_list_from_file(default_mods_list_file)
+        gf, mf = _graph_file.get(), _mods_file.get()
+        recipe_graph = load_graph_from_file(gf)
+        mods_list = load_mods_list_from_file(mf)
         mod, success = mods_list.apply_mod(recipe_graph)
-        save_mods_list_to_file(mods_list, default_mods_list_file)
-        save_graph_to_file(recipe_graph, default_graph_file)
+        save_mods_list_to_file(mods_list, mf)
+        save_graph_to_file(recipe_graph, gf)
         if mod is not None and success:
             return f"Modification applied successfully: {mod}"
         elif mod is not None:

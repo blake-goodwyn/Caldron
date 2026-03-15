@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "caldron"
@@ -23,12 +23,16 @@ dependencies = [
     "recipe-scrapers>=14.55.0",
     "requests>=2.31",
     "python-dotenv>=1.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+    "websockets>=14.0",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
     "pytest-cov>=4.0",
+    "httpx>=0.28",
 ]
 voice = [
     "pyaudio>=0.2.14",
@@ -38,7 +42,7 @@ voice = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["cauldron-app*"]
+include = ["cauldron-app*", "api*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

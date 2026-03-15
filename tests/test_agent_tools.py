@@ -408,26 +408,25 @@ class TestApplyModErrors:
 class TestContextManagers:
     def test_pot_context_roundtrip(self, state_dir):
         import os
-        from class_defs import Pot, save_pot_to_file, load_pot_from_file
+        from class_defs import load_pot_from_file
+        import agent_tools
         pot_file = os.path.join(state_dir, "recipe_pot.json")
-        # pot_context calls load/save with default args bound at import time,
-        # so we patch the functions as seen by agent_tools
-        with patch("agent_tools.load_pot_from_file", side_effect=lambda: load_pot_from_file(pot_file)), \
-             patch("agent_tools.save_pot_to_file", side_effect=lambda p: save_pot_to_file(p, pot_file)):
-            import agent_tools
+        token = agent_tools._pot_file.set(pot_file)
+        try:
             with agent_tools.pot_context() as pot:
                 pot.add_url("https://example.com/ctx-test")
-        loaded = load_pot_from_file(pot_file)
-        assert "https://example.com/ctx-test" in loaded.urlList
+            loaded = load_pot_from_file(pot_file)
+            assert "https://example.com/ctx-test" in loaded.urlList
+        finally:
+            agent_tools._pot_file.reset(token)
 
     def test_graph_context_roundtrip(self, state_dir):
         import os
         from class_defs import load_graph_from_file, Recipe, Ingredient
         import agent_tools
         graph_file = os.path.join(state_dir, "recipe_graph.json")
-        original = agent_tools.default_graph_file
+        token = agent_tools._graph_file.set(graph_file)
         try:
-            agent_tools.default_graph_file = graph_file
             with agent_tools.graph_context() as graph:
                 r2 = Recipe(
                     name="Ctx Recipe",
@@ -440,19 +439,18 @@ class TestContextManagers:
             loaded = load_graph_from_file(graph_file)
             assert loaded.get_graph_size() == 2
         finally:
-            agent_tools.default_graph_file = original
+            agent_tools._graph_file.reset(token)
 
     def test_mods_context_roundtrip(self, state_dir):
         import os
         from class_defs import load_mods_list_from_file, RecipeModification
         import agent_tools
         mods_file = os.path.join(state_dir, "mods_list.json")
-        original = agent_tools.default_mods_list_file
+        token = agent_tools._mods_file.set(mods_file)
         try:
-            agent_tools.default_mods_list_file = mods_file
             with agent_tools.mods_context() as mods:
                 mods.suggest_mod(RecipeModification(priority=1, add_tag="ctx"))
             loaded = load_mods_list_from_file(mods_file)
             assert len(loaded.queue) == 1
         finally:
-            agent_tools.default_mods_list_file = original
+            agent_tools._mods_file.reset(token)
