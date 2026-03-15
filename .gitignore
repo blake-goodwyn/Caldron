@@ -46,6 +46,10 @@ MILESTONES.md
 # API session state directories
 sessions/
 
+# Web frontend build artifacts
+web/node_modules/
+web/dist/
+
 # IDE
 .vscode/
 .idea/
