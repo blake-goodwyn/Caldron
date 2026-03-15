@@ -10,10 +10,10 @@ LANGCHAIN_TRACING_V2=True
 LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-food_validator_conditional_edges = [
+food_validator_conditional_edges = {
     "TRUE": "Caldron\nPostman",
     "FALSE": "Frontman",
-]
+}
 
 def createFoodValidator(name, system_prompt, llm: ChatOpenAI) -> str:
     """A LLM-based food-discernment router."""
