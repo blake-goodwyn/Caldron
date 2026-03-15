@@ -118,7 +118,7 @@ class CaldronApp():
                 msq_queue.append(HumanMessage(content=i))
 
         ## Start Threads
-        self.visualize_thread = threading.Thread(target=visualize_graph(self))
-        self.interface_thread = threading.Thread(target=simple_interaction_loop(self))
+        self.visualize_thread = threading.Thread(target=visualize_graph, args=(self,))
+        self.interface_thread = threading.Thread(target=simple_interaction_loop, args=(self,))
         self.visualize_thread.start()
         self.interface_thread.start()
