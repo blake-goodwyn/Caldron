@@ -102,7 +102,7 @@ class Recipe(BaseModel):
         logger.debug("Applying modification to Recipe object.")
         if modification.add_ingredient:
             logger.debug("Adding ingredient to Recipe object.")
-            self.ingredients.append(Ingredient.from_json(modification.add_ingredient))
+            self.ingredients.append(modification.add_ingredient)
             return True
         if modification.remove_ingredient:
             logger.debug("Removing ingredient from Recipe object.")
@@ -112,8 +112,8 @@ class Recipe(BaseModel):
             logger.debug("Updating ingredient in Recipe object.")
             for ing in self.ingredients:
                 if ing.name == modification.update_ingredient.name:
-                    ing.quantity = modification.update_ingredient.quantity if modification.update_ingredient.quantity != None else ing.quantity
-                    ing.unit = modification.update_ingredient.unit if modification.update_ingredient.unit != None else ing.unit
+                    ing.quantity = modification.update_ingredient.quantity if modification.update_ingredient.quantity is not None else ing.quantity
+                    ing.unit = modification.update_ingredient.unit if modification.update_ingredient.unit is not None else ing.unit
             return True
         if modification.add_instruction:
             logger.debug("Adding instruction to Recipe object.")
@@ -121,15 +121,23 @@ class Recipe(BaseModel):
             return True
         if modification.remove_instruction:
             logger.debug("Removing instruction from Recipe object.")
-            self.instructions.remove(modification.remove_instruction)
+            if modification.remove_instruction in self.instructions:
+                self.instructions.remove(modification.remove_instruction)
+            else:
+                logger.warning(f"Instruction not found: {modification.remove_instruction}")
             return True
         if modification.add_tag:
             logger.debug("Adding tag to Recipe object.")
+            if self.tags is None:
+                self.tags = []
             self.tags.append(modification.add_tag)
             return True
         if modification.remove_tag:
             logger.debug("Removing tag from Recipe object.")
-            self.tags.remove(modification.remove_tag)
+            if self.tags and modification.remove_tag in self.tags:
+                self.tags.remove(modification.remove_tag)
+            else:
+                logger.warning(f"Tag not found: {modification.remove_tag}")
             return True
         return False
 
@@ -314,8 +322,11 @@ class Pot(BaseModel):
     
     def add_url(self, url: str) -> None:
         logger.debug("Adding URL to pot.")
-        assert url not in self.urlList, "URL already in pot."
-        assert url.startswith("http"), "Invalid URL."
+        if not url or not url.startswith(("http://", "https://")):
+            raise ValueError(f"Invalid URL: {url}")
+        if url in self.urlList:
+            logger.warning(f"URL already in pot: {url}")
+            return
         self.urlList.append(url)
 
     def remove_url(self, url: str) -> bool:

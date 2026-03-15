@@ -1,7 +1,9 @@
+from contextlib import contextmanager
 from langchain_core.tools import tool
 from typing import Dict, List, Optional, Annotated, Any
 from langchain_community.tools.tavily_search import TavilySearchResults
 import json
+import requests
 from recipe_scrapers import scrape_me
 from langchain_core.messages import HumanMessage
 from class_defs import load_graph_from_file, save_graph_to_file, default_graph_file, default_mods_list_file, load_mods_list_from_file, save_mods_list_to_file, load_pot_from_file, save_pot_to_file, Recipe, Ingredient, RecipeModification, RecipeGraph
@@ -9,6 +11,26 @@ from logging_util import logger
 from datetime import datetime
 
 tavily_search_tool = TavilySearchResults()
+
+
+# Context managers to reduce duplicated load/save patterns
+@contextmanager
+def pot_context():
+    pot = load_pot_from_file()
+    yield pot
+    save_pot_to_file(pot)
+
+@contextmanager
+def graph_context():
+    recipe_graph = load_graph_from_file(default_graph_file)
+    yield recipe_graph
+    save_graph_to_file(recipe_graph, default_graph_file)
+
+@contextmanager
+def mods_context():
+    mods_list = load_mods_list_from_file(default_mods_list_file)
+    yield mods_list
+    save_mods_list_to_file(mods_list, default_mods_list_file)
 
 ## Datetime Tool (mainly for dummy use)
 
@@ -42,29 +64,26 @@ def scrape_recipe_info(
     out["source"] = url
     try:
         scraper = scrape_me(url, wild_mode=True)
-
-        try:
-            ing: List[str] = scraper.ingredients()
-            out["ingredients"] = ing
-        except Exception as e:
-            logger.error(f"Failed to get ingredients: {e}")
-
-        try:
-            inst: List[str] = scraper.instructions_list()
-            out["instructions"] = inst
-        except Exception as e:
-            logger.error(f"Failed to get instructions: {e}")
-
-        try:
-            name: str = scraper.title()
-            out["name"] = name
-        except Exception as e:
-            logger.error(f"Failed to get name: {e}")
-
+    except (requests.RequestException, ConnectionError) as e:
+        logger.error(f"Failed to fetch URL {url}: {e}")
         return out
-    except Exception as e:
-        logger.error(f"Failed to scrape recipe: {e}")
-        return out
+
+    try:
+        out["ingredients"] = scraper.ingredients()
+    except (AttributeError, ValueError) as e:
+        logger.error(f"Failed to get ingredients: {e}")
+
+    try:
+        out["instructions"] = scraper.instructions_list()
+    except (AttributeError, ValueError) as e:
+        logger.error(f"Failed to get instructions: {e}")
+
+    try:
+        out["name"] = scraper.title()
+    except (AttributeError, ValueError) as e:
+        logger.error(f"Failed to get name: {e}")
+
+    return out
 
 @tool("generate_ingredient", args_schema=Ingredient)
 def generate_ingredient(
@@ -88,11 +107,9 @@ def generate_recipe(
 ) -> Annotated[str, "A string representation of the Recipe."]:
     """Generate a representation of a Recipe object and adds it to the Pot."""
     logger.debug("Generating representation of Recipe object.")
-    logger.debug(f"Name: {name}, Ingredients: {ingredients}, Instructions: {instructions}, Tags: {tags}, Sources: {sources}")
     recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions, tags=tags, sources=sources)
-    pot = load_pot_from_file()
-    pot.add_recipe(recipe)
-    save_pot_to_file(pot)
+    with pot_context() as pot:
+        pot.add_recipe(recipe)
     return recipe.tiny()
 
 @tool
@@ -101,12 +118,11 @@ def get_recipe_from_pot(
 ) -> Annotated[str, "String representation of the Recipe object."]:
     """Get the Recipe object with the specified ID from the Pot."""
     logger.debug("Getting recipe from pot.")
-    pot = load_pot_from_file()
-    if recipe_id:
-        out = str(pot.get_recipe(recipe_id))
-    else:
-        out = str(pot.pop_recipe())
-    save_pot_to_file(pot)
+    with pot_context() as pot:
+        if recipe_id:
+            out = str(pot.get_recipe(recipe_id))
+        else:
+            out = str(pot.pop_recipe())
     return out
 
 @tool
@@ -115,18 +131,16 @@ def add_url_to_pot(
 ) -> Annotated[str, "Message indicating success or failure."]:
     """Add a URL to the Pot."""
     logger.debug("Adding URL to pot.")
-    pot = load_pot_from_file()
-    pot.add_url(url)
-    save_pot_to_file(pot)
+    with pot_context() as pot:
+        pot.add_url(url)
     return "URL added to Pot."
 
 @tool
 def pop_url_from_pot() -> Annotated[Optional[str], "The URL popped from the Pot."]:
     """Returns a URL from the Pot."""
     logger.debug("Popping URL from pot.")
-    pot = load_pot_from_file()
-    url = pot.pop_url()
-    save_pot_to_file(pot)
+    with pot_context() as pot:
+        url = pot.pop_url()
     return str(url)
 
 @tool
@@ -140,9 +154,8 @@ def examine_pot() -> Annotated[str, "The string representation of the Pot's cont
 def clear_pot() -> Annotated[str, "Message indicating success or failure."]:
     """Clear the Pot of all recipes."""
     logger.debug("Clearing pot.")
-    pot = load_pot_from_file()
-    pot.clear_pot()
-    save_pot_to_file(pot)
+    with pot_context() as pot:
+        pot.clear_pot()
     return "Pot cleared."
 
 ## Recipe Graph Tools ##
@@ -152,9 +165,8 @@ def create_recipe_graph(
 ) -> Annotated[str, "ID of the newly created foundational recipe node."]:
     """Create a new recipe graph with the provided foundational recipe. Typically used to start a new recipe graph."""
     logger.debug("Creating recipe graph with foundational recipe.")
-    recipe_graph = load_graph_from_file(default_graph_file)
-    node_id = recipe_graph.create_recipe_graph(recipe)
-    save_graph_to_file(recipe_graph, default_graph_file)
+    with graph_context() as recipe_graph:
+        node_id = recipe_graph.create_recipe_graph(recipe)
     return f"Recipe graph created with foundational recipe node ID: {node_id}"
 
 @tool
@@ -173,10 +185,9 @@ def add_node(
 ) -> Annotated[str, "ID of the newly added recipe node."]:
     """Add a new node to the recipe graph with the provided recipe and create an edge from the current foundational recipe."""
     logger.debug("Adding node to recipe graph.")
-    recipe_graph = load_graph_from_file(default_graph_file)
-    recipe = Recipe.from_json(recipe_str)
-    node_id = recipe_graph.add_node(recipe)
-    save_graph_to_file(recipe_graph, default_graph_file)
+    with graph_context() as recipe_graph:
+        recipe = Recipe.from_json(recipe_str)
+        node_id = recipe_graph.add_node(recipe)
     return f"New recipe node added with ID: {node_id}"
 
 @tool
@@ -203,10 +214,9 @@ def set_foundational_recipe(
 ) -> Annotated[str, "Message indicating success or failure."]:
     """Set the recipe with the specified node ID as the foundational recipe."""
     logger.debug("Setting foundational recipe in recipe graph.")
-    recipe_graph = load_graph_from_file(default_graph_file)
-    recipe = recipe_graph.get_recipe(node_id)
-    recipe_graph.set_foundational_recipe(recipe)
-    save_graph_to_file(recipe_graph, default_graph_file)
+    with graph_context() as recipe_graph:
+        recipe = recipe_graph.get_recipe(node_id)
+        recipe_graph.set_foundational_recipe(recipe)
     return f"Foundational recipe set to node ID: {node_id}"
 
 @tool
@@ -243,7 +253,6 @@ def suggest_mod(
     Suggest a modification to be added to the modification list.
     """
     try:
-        mods_list = load_mods_list_from_file(default_mods_list_file)
         modification = RecipeModification(
             priority=priority,
             add_ingredient=add_ingredient,
@@ -254,12 +263,12 @@ def suggest_mod(
             add_tag=add_tag,
             remove_tag=remove_tag
         )
-        mods_list.suggest_mod(modification)
-        save_mods_list_to_file(mods_list, default_mods_list_file)
+        with mods_context() as mods_list:
+            mods_list.suggest_mod(modification)
         return f"Modification suggested successfully. Mod ID: {modification._id}"
-    except Exception as e:
+    except (ValueError, FileNotFoundError) as e:
         logger.error(f"Failed to suggest modification: {e}")
-        return "Failed to suggest modification."
+        return f"Failed to suggest modification: {e}"
 
 @tool
 def get_mods_list() -> Annotated[str, "String representation of the current list of suggested modifications."]:
@@ -289,7 +298,7 @@ def apply_mod() -> Annotated[str, "The result of applying the modification."]:
             return f"Modification failed to apply: {mod}"
         else:
             return "No modifications in queue to apply."
-    except Exception as e:
+    except (ValueError, FileNotFoundError, KeyError) as e:
         logger.error(f"Failed to apply modification: {e}")
         return f"Error applying modification: {e}"
 
@@ -305,10 +314,9 @@ def rank_mod(
     - Larger numerical values indicate lower priority.
     """
     logger.debug("Ranking modification in mods list.")
-    mods_list = load_mods_list_from_file(default_mods_list_file)
-    mods_list.rank_mod(mod_id, new_priority)
-    save_mods_list_to_file(mods_list, default_mods_list_file)
-    updated_mods_list = mods_list.get_mods_list()
+    with mods_context() as mods_list:
+        mods_list.rank_mod(mod_id, new_priority)
+        updated_mods_list = mods_list.get_mods_list()
     return f"Modification reprioritized: {updated_mods_list}"
 
 @tool
@@ -317,24 +325,13 @@ def remove_mod(
 ) -> Annotated[str, "Message indicating whether the modification was successfully removed."]:
     """Remove a modification from the mods list."""
     logger.debug("Removing modification from mods list.")
-    mods_list = load_mods_list_from_file(default_mods_list_file)
-    result = mods_list.remove_mod(mod_id)
-    save_mods_list_to_file(mods_list, default_mods_list_file)
+    with mods_context() as mods_list:
+        result = mods_list.remove_mod(mod_id)
     if not result:
         return f"Failed to remove modification: {mod_id}"
     else:
         return f"Successfully removed modification: {mod_id}"
 
 ## Recipe Analysis Tools ##
-
-## TODO - Analyze nutritional information
-
-## TODO - Analyze recipe complexity
-
-## TODO - Suggest potential ingredient substitutions
-
-## TODO - Suggest potential ingredient add-in's
-
-## TODO - Calculate recipe cost
-
-## TODO - Calculate recipe "trendiness"
+# Planned: nutritional analysis, complexity scoring, ingredient substitutions,
+# add-in suggestions, cost calculation, trendiness scoring
