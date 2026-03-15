@@ -103,7 +103,7 @@ def generate_recipe(
 @tool
 def get_recipe_from_pot(
     recipe_id: Annotated[Optional[str], "The ID of the recipe to retrieve."]
-) -> Annotated[Optional[Recipe], "The Recipe object."]:
+) -> Annotated[str, "String representation of the Recipe object."]:
     """Get the Recipe object with the specified ID from the Pot."""
     logger.debug("Getting recipe from pot.")
     pot = load_pot_from_file()
@@ -165,7 +165,7 @@ def create_recipe_graph(
 @tool
 def get_recipe(
     node_id: Annotated[Optional[str], "The node ID of the recipe to retrieve. If not provided, retrieves the foundational recipe."],
-) -> Annotated[Optional[Recipe], "The Recipe object."]:
+) -> Annotated[str, "String representation of the Recipe object."]:
     """Get the Recipe object at the specified node ID."""
     logger.debug("Getting recipe from recipe graph.")
     recipe_graph = load_graph_from_file(default_graph_file)
@@ -195,7 +195,7 @@ def get_node_id(
     return str(recipe_graph.get_node_id())
 
 @tool
-def get_foundational_recipe() -> Annotated[Optional[Recipe], "The current foundational recipe."]:
+def get_foundational_recipe() -> Annotated[str, "String representation of the current foundational recipe."]:
     """Get the current foundational recipe."""
     logger.debug("Getting foundational recipe from recipe graph.")
     recipe_graph = load_graph_from_file(default_graph_file)
@@ -267,7 +267,7 @@ def suggest_mod(
         return "Failed to suggest modification."
 
 @tool
-def get_mods_list() -> Annotated[List[RecipeModification], "The current list of suggested modifications."]:
+def get_mods_list() -> Annotated[str, "String representation of the current list of suggested modifications."]:
     """Get the current list of suggested modifications."""
     logger.debug("Getting mods list.")
     mods_list = load_mods_list_from_file(default_mods_list_file)
@@ -275,12 +275,12 @@ def get_mods_list() -> Annotated[List[RecipeModification], "The current list of 
     return str(current_mods_list)
 
 @tool
-def apply_mod() -> Annotated[Dict[str, Any], "The result of applying the modification."]:
+def apply_mod() -> Annotated[str, "The result of applying the modification."]:
     """
     Apply a modification from the modification list to the recipe graph.
 
     Returns:
-        dict: The result of applying the modification.
+        str: A message describing the result of applying the modification.
     """
     try:
         recipe_graph = load_graph_from_file(default_graph_file)
@@ -288,19 +288,21 @@ def apply_mod() -> Annotated[Dict[str, Any], "The result of applying the modific
         mod, success = mods_list.apply_mod(recipe_graph)
         save_mods_list_to_file(mods_list, default_mods_list_file)
         save_graph_to_file(recipe_graph, default_graph_file)
-        if mod is not None:
-            return {"modification": mod.to_dict(), "success": success}
+        if mod is not None and success:
+            return f"Modification applied successfully: {mod}"
+        elif mod is not None:
+            return f"Modification failed to apply: {mod}"
         else:
-            return {"error": "No modification was applied."}
+            return "No modifications in queue to apply."
     except Exception as e:
         logger.error(f"Failed to apply modification: {e}")
-        return {"error": str(e)}
+        return f"Error applying modification: {e}"
 
 @tool
 def rank_mod(
     mod_id: Annotated[str, "The ID of the modification to reprioritize."],
     new_priority: Annotated[int, "The new priority for the modification (1 = highest priority, larger numbers = lower priority)."],
-) -> Annotated[List[RecipeModification], "The updated list of modifications."]:
+) -> Annotated[str, "String representation of the updated list of modifications."]:
     """Reprioritize a given modification within the mods list.
 
     The priority ranking options are as follows:
@@ -317,7 +319,7 @@ def rank_mod(
 @tool
 def remove_mod(
     mod_id: Annotated[str, "The ID of the modification to remove."],
-) -> Annotated[bool, "Indicates whether the modification was successfully removed."]:
+) -> Annotated[str, "Message indicating whether the modification was successfully removed."]:
     """Remove a modification from the mods list."""
     logger.debug("Removing modification from mods list.")
     mods_list = load_mods_list_from_file(default_mods_list_file)
