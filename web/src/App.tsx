@@ -77,6 +77,7 @@ export default function App() {
           {/* Tabs */}
           <div className="flex border-b border-caldron-mid/20">
             <button
+              data-testid="tab-recipe"
               onClick={() => setActiveTab('recipe')}
               className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
                 activeTab === 'recipe'
@@ -87,6 +88,7 @@ export default function App() {
               Recipe
             </button>
             <button
+              data-testid="tab-graph"
               onClick={() => setActiveTab('graph')}
               className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
                 activeTab === 'graph'

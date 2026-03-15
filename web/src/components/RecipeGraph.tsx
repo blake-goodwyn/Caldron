@@ -76,14 +76,14 @@ export function RecipeGraph({ graph }: RecipeGraphProps) {
 
   if (!graph || graph.nodes.length === 0) {
     return (
-      <div className="h-full flex items-center justify-center text-caldron-light/30 text-sm">
+      <div data-testid="graph-empty" className="h-full flex items-center justify-center text-caldron-light/30 text-sm">
         Recipe graph will appear here
       </div>
     )
   }
 
   return (
-    <div className="h-full">
+    <div data-testid="recipe-graph" className="h-full">
       <ReactFlow
         nodes={nodes}
         edges={edges}

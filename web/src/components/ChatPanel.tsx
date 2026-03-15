@@ -32,7 +32,7 @@ export function ChatPanel({ messages, activeAgent, connected, onSend }: ChatPane
       <div className="flex items-center justify-between px-4 py-3 border-b border-caldron-mid/20">
         <h2 className="text-caldron-cream font-semibold text-lg">Caldron</h2>
         <div className="flex items-center gap-2">
-          <span className={`h-2 w-2 rounded-full ${connected ? 'bg-green-400' : 'bg-red-400'}`} />
+          <span data-testid="connection-status" className={`h-2 w-2 rounded-full ${connected ? 'bg-green-400' : 'bg-red-400'}`} />
           <span className="text-xs text-caldron-light/50">
             {connected ? 'Connected' : 'Disconnected'}
           </span>
@@ -40,9 +40,9 @@ export function ChatPanel({ messages, activeAgent, connected, onSend }: ChatPane
       </div>
 
       {/* Messages */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto chat-scroll p-4 space-y-3">
+      <div ref={scrollRef} data-testid="chat-messages" className="flex-1 overflow-y-auto chat-scroll p-4 space-y-3">
         {messages.length === 0 && (
-          <div className="flex items-center justify-center h-full text-caldron-light/30 text-sm">
+          <div data-testid="chat-empty" className="flex items-center justify-center h-full text-caldron-light/30 text-sm">
             Start a conversation to develop a recipe
           </div>
         )}
@@ -57,6 +57,7 @@ export function ChatPanel({ messages, activeAgent, connected, onSend }: ChatPane
         <div className="flex gap-2">
           <input
             type="text"
+            data-testid="chat-input"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Describe a recipe idea..."
@@ -65,6 +66,7 @@ export function ChatPanel({ messages, activeAgent, connected, onSend }: ChatPane
           />
           <button
             type="submit"
+            data-testid="chat-send"
             disabled={!connected || !input.trim()}
             className="px-5 py-3 bg-caldron-mid hover:bg-caldron-mid/80 disabled:bg-caldron-mid/30 text-white rounded-xl text-sm font-medium transition-colors"
           >

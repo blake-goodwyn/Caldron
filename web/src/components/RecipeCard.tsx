@@ -7,15 +7,15 @@ interface RecipeCardProps {
 export function RecipeCard({ recipe }: RecipeCardProps) {
   if (!recipe) {
     return (
-      <div className="h-full flex items-center justify-center text-caldron-light/30 text-sm">
+      <div data-testid="recipe-empty" className="h-full flex items-center justify-center text-caldron-light/30 text-sm">
         No recipe yet — start a conversation
       </div>
     )
   }
 
   return (
-    <div className="p-4 space-y-4 overflow-y-auto chat-scroll h-full">
-      <h3 className="text-caldron-cream font-bold text-xl">{recipe.name}</h3>
+    <div data-testid="recipe-card" className="p-4 space-y-4 overflow-y-auto chat-scroll h-full">
+      <h3 data-testid="recipe-name" className="text-caldron-cream font-bold text-xl">{recipe.name}</h3>
 
       {/* Ingredients */}
       {recipe.ingredients?.length > 0 && (
