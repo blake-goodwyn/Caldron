@@ -1,14 +1,7 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
-from dotenv import load_dotenv
-import os
 from logging_util import logger
-
-load_dotenv()
-LANGCHAIN_TRACING_V2=True
-LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 food_validator_conditional_edges = {
     "TRUE": "Caldron\nPostman",

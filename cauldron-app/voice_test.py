@@ -2,15 +2,10 @@ from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 from pyaudio import PyAudio, paInt16
 import wave
-import os
-from dotenv import load_dotenv
 from openai import OpenAI
 import numpy as np
 from collections import deque
-
-# Load environment variables
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+from config import OPENAI_API_KEY
 
 # Initialize OpenAI client
 client = OpenAI(api_key=OPENAI_API_KEY)

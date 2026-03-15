@@ -13,14 +13,7 @@ from langchain_community.agent_toolkits.sql.prompt import SQL_FUNCTIONS_SUFFIX, 
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
 from langgraph.graph import StateGraph
 
-from dotenv import load_dotenv
-import os
 from logging_util import logger
-
-load_dotenv()
-LANGCHAIN_TRACING_V2=True
-LANGCHAIN_API_KEY=os.getenv("LANGCHAIN_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 def createAgent(
     name: str,

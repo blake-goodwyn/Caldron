@@ -1,6 +1,7 @@
 from langchain_util import *
 from pydantic_util import *
+from config import DB_PATH, LLM_MODEL
 
-#Parameter for chains & agents
-db_path = "sqlite:///sql/recipes_0514_1658_views.db"
-llm_model = "gpt-3.5-turbo"
+# Re-export for backward compatibility
+db_path = DB_PATH
+llm_model = LLM_MODEL
