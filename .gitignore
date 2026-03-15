@@ -1,8 +1,51 @@
+# Environment
 .env
-ingredients/ingredients_db.sqlite
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Application state (JSON persistence files)
+*.pkl
+mods_list.json
+recipe_graph.json
+recipe_pot.json
+
+# Logs
+logs/
+
+# Database files
+*.db
+*.sqlite
+*.sqbpro
+
+# Audio artifacts
+*.wav
+
+# Data files (large datasets)
+data/
+
+# Model weights
+SAM_baking/sam_vit_h_4b8939.pth
+SAM_baking/Segment-and-Track-Anything
+
+# Specific large files
 recordings/240314/accelerometer_data_20240314_105834.txt
 recordings/240314/WIN_20240314_11_01_02_Pro.mp4
-SAM_baking/sam_vit_h_4b8939.pth
-output.wav
-SAM_baking/Segment-and-Track-Anything
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Previously tracked entries kept for reference
+ingredients/ingredients_db.sqlite
 sql/recipes.json
+output.wav
