@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "caldron"
+version = "0.1.0"
+description = "AI-assisted recipe development platform"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain>=0.2,<0.3",
+    "langchain-openai>=0.1.8",
+    "langchain-core>=0.2,<0.3",
+    "langchain-community>=0.2,<0.3",
+    "langgraph>=0.1",
+    "openai>=1.28",
+    "pydantic>=2.0,<3.0",
+    "networkx>=3.2",
+    "matplotlib>=3.8",
+    "tavily-python>=0.3.0",
+    "recipe-scrapers>=14.55.0",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.0",
+]
+voice = [
+    "pyaudio>=0.2.14",
+    "pydub>=0.25.1",
+    "numpy>=1.26",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cauldron-app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
