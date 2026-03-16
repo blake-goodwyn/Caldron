@@ -69,10 +69,16 @@ def load_from_huggingface(full: bool = False, limit: int = None) -> list[dict]:
         # Deduplicate, preserve order
         ingredients = list(dict.fromkeys(ingredients))
 
+        # Capture directions for technique extraction
+        directions_raw = row.get("directions", "") or ""
+        # Zappandy uses <extra_id_99> as step delimiter
+        directions = directions_raw.replace("<extra_id_99>", "\n").strip()
+
         if len(ingredients) >= 2:
             recipes.append({
                 "title": title,
                 "ingredients": ingredients,
+                "directions": directions,
             })
 
     logger.info(f"Loaded {len(recipes)} valid recipes")
@@ -96,8 +102,8 @@ def run_pipeline(recipes: list[dict], min_count: int = 3) -> dict:
     save_npz(DATA_DIR / "cooccurrence.npz", cooc)
     save_npz(DATA_DIR / "recipe_ingredient.npz", ri_matrix)
 
-    # Save recipe metadata
-    meta = [{"title": r["title"], "ingredients": r["ingredients"]} for r in recipes]
+    # Save recipe metadata (including directions for technique extraction)
+    meta = [{"title": r["title"], "ingredients": r["ingredients"], "directions": r.get("directions", "")} for r in recipes]
     with open(DATA_DIR / "recipes_meta.json", "w") as f:
         json.dump(meta, f)
 

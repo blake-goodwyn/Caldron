@@ -217,3 +217,77 @@ class CulinaryMLService:
             "food2vec_score": round(f2v_score, 4),
             "source": "food2vec",
         }
+
+    def _load_technique_data(self):
+        """Load technique co-occurrence data from recipes."""
+        if not hasattr(self, '_technique_data') or self._technique_data is None:
+            with self._model_lock:
+                if not hasattr(self, '_technique_data') or self._technique_data is None:
+                    meta_path = self._models_dir / "recipes_meta.json"
+                    if not meta_path.exists():
+                        self._technique_data = {}
+                        return self._technique_data
+
+                    import json as _json
+                    with open(meta_path) as f:
+                        recipes = _json.load(f)
+
+                    # Check if directions exist
+                    has_directions = any(r.get("directions") for r in recipes[:100])
+                    if not has_directions:
+                        self._technique_data = {}
+                        return self._technique_data
+
+                    # Build ingredient → technique counts
+                    from affinity_models import extract_techniques_from_instructions
+                    from collections import Counter
+
+                    ing_tech_counts: dict[str, Counter] = {}
+                    for recipe in recipes:
+                        directions = recipe.get("directions", "")
+                        if not directions:
+                            continue
+                        techniques = extract_techniques_from_instructions(directions)
+                        for ing in recipe.get("ingredients", []):
+                            if ing not in ing_tech_counts:
+                                ing_tech_counts[ing] = Counter()
+                            for tech in techniques:
+                                ing_tech_counts[ing][tech] += 1
+
+                    self._technique_data = ing_tech_counts
+                    logger.info(f"Loaded technique data for {len(ing_tech_counts)} ingredients")
+        return self._technique_data
+
+    def suggest_techniques(
+        self, ingredient: str, n: int = 5
+    ) -> list[dict]:
+        """Suggest cooking techniques for an ingredient.
+
+        Args:
+            ingredient: Ingredient name.
+            n: Number of techniques to suggest.
+
+        Returns:
+            List of {"technique": str, "score": float, "source": str} dicts.
+        """
+        if not self._enabled:
+            return []
+
+        technique_data = self._load_technique_data()
+        if not technique_data:
+            return []
+
+        normalized = self._normalize(ingredient)
+        if not normalized or normalized not in technique_data:
+            return []
+
+        counts = technique_data[normalized]
+        total = sum(counts.values())
+        if total == 0:
+            return []
+
+        ranked = counts.most_common(n)
+        return [
+            {"technique": tech, "score": round(count / total, 4), "source": "technique_cooccurrence"}
+            for tech, count in ranked
+        ]

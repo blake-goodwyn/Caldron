@@ -404,3 +404,20 @@ def get_ingredient_affinity(
         return json.dumps({"error": "ML models not available. Please train models first."})
     result = service.score_affinity(ingredient_a, ingredient_b)
     return json.dumps(result)
+
+
+@tool
+def suggest_techniques_for_ingredient(
+    ingredient: Annotated[str, "The ingredient to find cooking techniques for."],
+    count: Annotated[int, "Number of technique suggestions to return."] = 5,
+) -> Annotated[str, "JSON list of cooking technique suggestions with scores."]:
+    """Suggest cooking techniques for an ingredient based on recipe data.
+    Use when asked 'how should I cook X?', 'what techniques work with X?',
+    or 'should I roast or braise X?'."""
+    service = _get_ml_service()
+    if service is None:
+        return json.dumps({"error": "ML models not available. Please train models first."})
+    results = service.suggest_techniques(ingredient, n=count)
+    if not results:
+        return json.dumps({"message": f"No technique data found for '{ingredient}'."})
+    return json.dumps(results)

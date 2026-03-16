@@ -28,6 +28,8 @@ RELATIONS = [
     "same_technique",    # ingredients that share cooking techniques
     "shares_compound",   # ingredients that share flavor compounds (FlavorDB)
     "variant_of",        # ingredient variants (e.g., butter / unsalted butter)
+    "cooked_by",         # ingredient → technique (directional)
+    "shares_flavor_profile",  # ingredients sharing flavor descriptors
 ]
 
 
@@ -174,6 +176,38 @@ class FoodKnowledgeGraph:
                 added += 1
 
         logger.info(f"Added {added} same_technique triples across {len(technique_ingredients)} techniques")
+
+    def add_cooked_by_triples(self, recipes: list[dict], vocab, min_count: int = 5):
+        """Add cooked_by triples: ingredient → technique (directional).
+
+        Only adds triples where an ingredient-technique pair appears in
+        at least `min_count` recipes.
+        """
+        from affinity_models import extract_techniques_from_instructions
+        from collections import Counter
+
+        pair_counts: Counter = Counter()
+
+        for recipe in recipes:
+            directions = recipe.get("directions", "")
+            if not directions:
+                continue
+            techniques = extract_techniques_from_instructions(directions)
+            ingredients = [
+                ing for ing in recipe["ingredients"]
+                if vocab.encode(ing) is not None
+            ]
+            for ing in ingredients:
+                for tech in techniques:
+                    pair_counts[(ing, tech)] += 1
+
+        added = 0
+        for (ing, tech), count in pair_counts.items():
+            if count >= min_count:
+                self.add_triple(ing, "cooked_by", f"technique:{tech}")
+                added += 1
+
+        logger.info(f"Added {added} cooked_by triples (min_count={min_count})")
 
     def add_compound_triples(self, flavordb: dict[str, list[str]], vocab):
         """Add shares_compound triples from FlavorDB data."""
