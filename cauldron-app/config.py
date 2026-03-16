@@ -28,6 +28,13 @@ MODS_LIST_FILE = os.path.join(STATE_DIR, "mods_list.json")
 RECIPE_GRAPH_FILE = os.path.join(STATE_DIR, "recipe_graph.json")
 RECIPE_POT_FILE = os.path.join(STATE_DIR, "recipe_pot.json")
 
+# --- ML Models ---
+ML_MODELS_DIR = os.getenv(
+    "CALDRON_ML_MODELS_DIR",
+    os.path.join(os.path.dirname(__file__), '..', 'research', 'phase7', 'data')
+)
+ML_ENABLED = os.getenv("CALDRON_ML_ENABLED", "true").lower() == "true"
+
 
 def validate_required_keys() -> None:
     """Validate that all required API keys are set. Call at app startup."""
