@@ -344,6 +344,63 @@ def remove_mod(
     else:
         return f"Successfully removed modification: {mod_id}"
 
-## Recipe Analysis Tools ##
-# Planned: nutritional analysis, complexity scoring, ingredient substitutions,
-# add-in suggestions, cost calculation, trendiness scoring
+## Recipe Analysis Tools (ML-backed) ##
+
+def _get_ml_service():
+    """Get the ML service singleton. Returns None if unavailable."""
+    try:
+        from ml_service import CulinaryMLService
+        service = CulinaryMLService()
+        if not service.available:
+            return None
+        return service
+    except Exception:
+        return None
+
+
+@tool
+def suggest_ingredient_substitution(
+    ingredient: Annotated[str, "The ingredient to find substitutes for."],
+    count: Annotated[int, "Number of substitutions to return."] = 5,
+) -> Annotated[str, "JSON list of substitution suggestions with confidence scores."]:
+    """Find ingredient substitutions using ML embeddings. Use when a user asks
+    'what can I use instead of X?', 'I don't have X', or 'substitute for X'."""
+    service = _get_ml_service()
+    if service is None:
+        return json.dumps({"error": "ML models not available. Please train models first."})
+    results = service.suggest_substitutions(ingredient, n=count)
+    if not results:
+        return json.dumps({"message": f"No substitutions found for '{ingredient}'."})
+    return json.dumps(results)
+
+
+@tool
+def suggest_recipe_completion(
+    ingredients: Annotated[List[str], "Current list of ingredient names in the recipe."],
+    count: Annotated[int, "Number of ingredient suggestions to return."] = 5,
+) -> Annotated[str, "JSON list of suggested ingredients to add, with confidence scores."]:
+    """Suggest ingredients to complete a recipe using collaborative filtering.
+    Use when building a recipe and wondering what's missing, or when asked
+    'what else does this recipe need?' or 'what goes with these ingredients?'."""
+    service = _get_ml_service()
+    if service is None:
+        return json.dumps({"error": "ML models not available. Please train models first."})
+    results = service.complete_recipe(ingredients, n=count)
+    if not results:
+        return json.dumps({"message": "No suggestions found for the given ingredients."})
+    return json.dumps(results)
+
+
+@tool
+def get_ingredient_affinity(
+    ingredient_a: Annotated[str, "First ingredient."],
+    ingredient_b: Annotated[str, "Second ingredient."],
+) -> Annotated[str, "Affinity score and breakdown between two ingredients."]:
+    """Check how well two ingredients pair together. Returns an affinity score
+    from 0 (unrelated) to 1 (strongly paired). Use when asked 'do X and Y
+    go together?' or 'how well does X pair with Y?'."""
+    service = _get_ml_service()
+    if service is None:
+        return json.dumps({"error": "ML models not available. Please train models first."})
+    result = service.score_affinity(ingredient_a, ingredient_b)
+    return json.dumps(result)
