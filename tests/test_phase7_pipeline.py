@@ -389,7 +389,7 @@ class TestCombinedAffinity:
             def similar_ingredients(self, ing, topn=10):
                 return [("butter", 0.7), ("pepper", 0.5)]
 
-        combined = CombinedAffinity(MockF2V(), MockCF(), alpha=0.5)
+        combined = CombinedAffinity(MockF2V(), MockCF(), alpha=0.5, beta=0.5, gamma=0.0)
         score = combined.affinity("garlic", "butter")
         expected = 0.5 * 0.8 + 0.5 * 0.7
         assert abs(score - expected) < 1e-6

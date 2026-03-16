@@ -291,27 +291,88 @@ def build_ingredient_technique_matrix(
     return matrix, ingredient_names, technique_names
 
 
+# ── Compound-based affinity ──────────────────────────────────────────────
+
+class CompoundAffinity:
+    """Flavor compound-based ingredient affinity using FlavorDB data."""
+
+    def __init__(self, flavordb: dict[str, list[str]]):
+        """
+        Args:
+            flavordb: Dict mapping ingredient names to lists of compound names.
+        """
+        self.flavordb = flavordb
+
+    def overlap(self, ing_a: str, ing_b: str) -> float:
+        """Jaccard similarity of flavor compounds between two ingredients."""
+        from data_pipeline import compound_overlap_score
+        return compound_overlap_score(ing_a, ing_b, self.flavordb)
+
+    def shared_compounds(self, ing_a: str, ing_b: str) -> list[str]:
+        """Return the specific compounds shared between two ingredients."""
+        compounds_a = set(self.flavordb.get(ing_a, []))
+        compounds_b = set(self.flavordb.get(ing_b, []))
+        return sorted(compounds_a & compounds_b)
+
+    def most_similar(self, ingredient: str, topn: int = 10) -> list[tuple[str, float]]:
+        """Find ingredients with highest compound overlap."""
+        if ingredient not in self.flavordb:
+            return []
+        scores = []
+        for other in self.flavordb:
+            if other != ingredient:
+                score = self.overlap(ingredient, other)
+                if score > 0:
+                    scores.append((other, score))
+        scores.sort(key=lambda x: -x[1])
+        return scores[:topn]
+
+    @property
+    def coverage(self) -> int:
+        """Number of ingredients with compound data."""
+        return len(self.flavordb)
+
+
 # ── Combined affinity score ──────────────────────────────────────────────
 
 class CombinedAffinity:
-    """Combines food2vec similarity + CF score for ingredient affinity."""
+    """Combines food2vec + CF + optional compound affinity."""
 
-    def __init__(self, food2vec, cf_model: IngredientCF, alpha: float = 0.5):
+    def __init__(
+        self,
+        food2vec,
+        cf_model: IngredientCF,
+        compound_affinity: Optional[CompoundAffinity] = None,
+        alpha: float = 0.4,
+        beta: float = 0.4,
+        gamma: float = 0.2,
+    ):
         """
         Args:
             food2vec: Trained Food2Vec model.
             cf_model: Trained IngredientCF model.
-            alpha: Weight for food2vec (1-alpha for CF).
+            compound_affinity: Optional CompoundAffinity (FlavorDB).
+            alpha: Weight for food2vec.
+            beta: Weight for CF.
+            gamma: Weight for compound overlap (only if compound_affinity provided).
         """
         self.food2vec = food2vec
         self.cf = cf_model
-        self.alpha = alpha
+        self.compound = compound_affinity
+        if compound_affinity is None:
+            # Redistribute gamma weight to food2vec and CF
+            self.alpha = alpha + gamma / 2
+            self.beta = beta + gamma / 2
+            self.gamma = 0.0
+        else:
+            self.alpha = alpha
+            self.beta = beta
+            self.gamma = gamma
 
     def affinity(self, ing_a: str, ing_b: str) -> float:
         """Combined affinity score between two ingredients."""
         f2v_score = self.food2vec.similarity(ing_a, ing_b)
 
-        # Get CF similarity (search through neighbors)
         cf_neighbors = self.cf.similar_ingredients(ing_a, topn=50)
         cf_score = 0.0
         for name, sim in cf_neighbors:
@@ -319,23 +380,37 @@ class CombinedAffinity:
                 cf_score = sim
                 break
 
-        return self.alpha * f2v_score + (1 - self.alpha) * cf_score
+        compound_score = 0.0
+        if self.compound is not None:
+            compound_score = self.compound.overlap(ing_a, ing_b)
+
+        return (self.alpha * f2v_score +
+                self.beta * cf_score +
+                self.gamma * compound_score)
 
     def top_affinities(
         self, ingredient: str, topn: int = 10
     ) -> list[tuple[str, float]]:
-        """Get top affinity scores combining both models."""
-        # Get candidates from both models
+        """Get top affinity scores combining all models."""
         f2v_neighbors = dict(self.food2vec.most_similar(ingredient, topn=30))
         cf_neighbors = dict(self.cf.similar_ingredients(ingredient, topn=30))
 
-        # Union of candidates
+        # Union of candidates from all sources
         all_candidates = set(f2v_neighbors) | set(cf_neighbors)
+        if self.compound is not None:
+            compound_neighbors = dict(self.compound.most_similar(ingredient, topn=30))
+            all_candidates |= set(compound_neighbors)
+        else:
+            compound_neighbors = {}
+
         scores = []
         for candidate in all_candidates:
             f2v = f2v_neighbors.get(candidate, 0.0)
             cf = cf_neighbors.get(candidate, 0.0)
-            combined = self.alpha * f2v + (1 - self.alpha) * cf
+            compound = compound_neighbors.get(candidate, 0.0)
+            combined = (self.alpha * f2v +
+                        self.beta * cf +
+                        self.gamma * compound)
             scores.append((candidate, combined))
 
         scores.sort(key=lambda x: -x[1])
