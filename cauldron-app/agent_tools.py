@@ -421,3 +421,19 @@ def suggest_techniques_for_ingredient(
     if not results:
         return json.dumps({"message": f"No technique data found for '{ingredient}'."})
     return json.dumps(results)
+
+
+@tool
+def explain_ingredient_pairing(
+    ingredient_a: Annotated[str, "First ingredient."],
+    ingredient_b: Annotated[str, "Second ingredient."],
+) -> Annotated[str, "JSON explanation of why two ingredients pair well or not."]:
+    """Explain why two ingredients pair well at a molecular/sensory level.
+    Returns shared flavor compounds, sensory descriptors (sweet, umami, floral),
+    and similarity scores. Use when asked 'why do X and Y go together?',
+    'what makes X and Y a good pairing?', or 'explain the flavor science'."""
+    service = _get_ml_service()
+    if service is None:
+        return json.dumps({"error": "ML models not available. Please train models first."})
+    result = service.explain_pairing(ingredient_a, ingredient_b)
+    return json.dumps(result)

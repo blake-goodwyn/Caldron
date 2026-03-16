@@ -10,7 +10,7 @@ from logging_util import logger
 from langchain_util import createAgent, createRouter, agent_node, createBookworm
 from langgraph.graph import END
 from util import db_path, llm_model
-from agent_tools import tavily_search_tool, scrape_recipe_info, generate_recipe, clear_pot, create_recipe_graph, get_recipe, get_recipe_from_pot, examine_pot, add_node, get_foundational_recipe, set_foundational_recipe, get_graph, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, pop_url_from_pot, add_url_to_pot, suggest_ingredient_substitution, suggest_recipe_completion, get_ingredient_affinity, suggest_techniques_for_ingredient
+from agent_tools import tavily_search_tool, scrape_recipe_info, generate_recipe, clear_pot, create_recipe_graph, get_recipe, get_recipe_from_pot, examine_pot, add_node, get_foundational_recipe, set_foundational_recipe, get_graph, suggest_mod, get_mods_list, apply_mod, rank_mod, remove_mod, pop_url_from_pot, add_url_to_pot, suggest_ingredient_substitution, suggest_recipe_completion, get_ingredient_affinity, suggest_techniques_for_ingredient, explain_ingredient_pairing
 
 prompts_dict = {
     "Frontman": {
@@ -90,7 +90,7 @@ prompts_dict = {
         "type": "agent",
         "label": "Q&A\nExpert",
         "prompt": "You are KnowItAll. Your task is to answer general questions about the recipe and provide culinary intelligence. You have access to the foundational recipe, the Recipe Graph, and ML-backed tools for ingredient analysis. Use get_foundational_recipe to retrieve the current recipe. Use get_graph to retrieve the recipe graph. Use suggest_ingredient_substitution when users ask for ingredient substitutes. Use suggest_recipe_completion when users wonder what ingredients are missing. Use get_ingredient_affinity to check how well two ingredients pair together.",
-        "tools": [get_foundational_recipe, get_graph, get_recipe, suggest_ingredient_substitution, suggest_recipe_completion, get_ingredient_affinity, suggest_techniques_for_ingredient],
+        "tools": [get_foundational_recipe, get_graph, get_recipe, suggest_ingredient_substitution, suggest_recipe_completion, get_ingredient_affinity, suggest_techniques_for_ingredient, explain_ingredient_pairing],
     },
     "Spinnaret": {
         "type": "agent",

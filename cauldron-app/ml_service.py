@@ -291,3 +291,46 @@ class CulinaryMLService:
             {"technique": tech, "score": round(count / total, 4), "source": "technique_cooccurrence"}
             for tech, count in ranked
         ]
+
+    def _load_flavor_profiles(self):
+        """Load ingredient flavor profiles from FlavorDB data."""
+        if not hasattr(self, '_flavor_profiles') or self._flavor_profiles is None:
+            with self._model_lock:
+                if not hasattr(self, '_flavor_profiles') or self._flavor_profiles is None:
+                    profiles_path = self._models_dir / "ingredient_flavor_profiles.json"
+                    if profiles_path.exists():
+                        import json as _json
+                        with open(profiles_path) as f:
+                            profiles_data = _json.load(f)
+                        from affinity_models import FlavorProfileAffinity
+                        self._flavor_profiles = FlavorProfileAffinity(profiles_data)
+                        logger.info(f"Loaded flavor profiles: {self._flavor_profiles.coverage} ingredients")
+                    else:
+                        self._flavor_profiles = None
+        return self._flavor_profiles
+
+    def explain_pairing(self, ing_a: str, ing_b: str) -> dict:
+        """Explain why two ingredients pair well at a molecular/sensory level.
+
+        Returns dict with shared compounds, flavor descriptors, and scores.
+        """
+        if not self._enabled:
+            return {"error": "ML features disabled"}
+
+        fpa = self._load_flavor_profiles()
+        if fpa is None:
+            return {"error": "Flavor profile data not available"}
+
+        a = self._normalize(ing_a)
+        b = self._normalize(ing_b)
+        if not a or not b:
+            return {"error": "Unknown ingredient(s)"}
+
+        explanation = fpa.explain_pairing(a, b)
+
+        # Add overall affinity score if food2vec is available
+        model = self._load_food2vec()
+        if model:
+            explanation["embedding_similarity"] = round(model.similarity(a, b), 4)
+
+        return explanation

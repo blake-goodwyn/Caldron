@@ -50,17 +50,30 @@ def build_flavordb_json(output_path: Path = None) -> dict[str, list[str]]:
     """
     output_path = output_path or (DATA_DIR / "flavordb.json")
 
-    # 1. Fetch molecules CSV: PubChem ID -> common name
+    # 1. Fetch molecules CSV: PubChem ID -> common name + flavor profiles
     molecules_csv = fetch_url(MOLECULES_CSV_URL)
     pubchem_to_name = {}
+    compound_profiles = {}  # compound_name -> set of flavor descriptors
     reader = csv.DictReader(io.StringIO(molecules_csv))
     for row in reader:
         pubchem_id = row.get("pubchem id", "").strip()
         common_name = row.get("common name", "").strip()
+        flavor_profile_str = row.get("flavor profile", "").strip()
         if pubchem_id and common_name:
-            pubchem_to_name[pubchem_id] = common_name.lower()
+            name_lower = common_name.lower()
+            pubchem_to_name[pubchem_id] = name_lower
+            # Parse flavor profile from Python set notation: "{'sweet', 'umami'}"
+            if flavor_profile_str:
+                try:
+                    import ast
+                    profiles = ast.literal_eval(flavor_profile_str)
+                    if isinstance(profiles, set):
+                        compound_profiles[name_lower] = sorted(profiles)
+                except (ValueError, SyntaxError):
+                    pass
 
-    logger.info(f"Loaded {len(pubchem_to_name)} compounds from molecules.csv")
+    logger.info(f"Loaded {len(pubchem_to_name)} compounds, "
+                f"{len(compound_profiles)} with flavor profiles")
 
     # 2. Fetch flavordb CSV: ingredient -> set of PubChem IDs
     flavordb_csv = fetch_url(FLAVORDB_CSV_URL)
@@ -89,12 +102,35 @@ def build_flavordb_json(output_path: Path = None) -> dict[str, list[str]]:
         f"{sum(len(v) for v in ingredient_compounds.values())} total compound links"
     )
 
-    # 3. Save
+    # 3. Build ingredient flavor profiles (aggregate compound profiles)
+    ingredient_profiles = {}
+    for name, compounds in ingredient_compounds.items():
+        descriptors = set()
+        compound_details = {}
+        for compound in compounds:
+            if compound in compound_profiles:
+                profiles = compound_profiles[compound]
+                descriptors.update(profiles)
+                compound_details[compound] = profiles
+        if descriptors:
+            ingredient_profiles[name] = {
+                "descriptors": sorted(descriptors),
+                "compounds_with_profiles": compound_details,
+            }
+
+    logger.info(f"Built flavor profiles for {len(ingredient_profiles)} ingredients")
+
+    # 4. Save
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(ingredient_compounds, f, indent=2, sort_keys=True)
 
-    logger.info(f"Saved to {output_path}")
+    profiles_path = output_path.parent / "ingredient_flavor_profiles.json"
+    with open(profiles_path, "w") as f:
+        json.dump(ingredient_profiles, f, indent=2, sort_keys=True)
+
+    logger.info(f"Saved compounds to {output_path}")
+    logger.info(f"Saved flavor profiles to {profiles_path}")
     return ingredient_compounds
 
 
@@ -103,9 +139,13 @@ if __name__ == "__main__":
     result = build_flavordb_json()
     print(f"\nFlavorDB: {len(result)} ingredients")
 
-    # Show sample
-    samples = ["tomato", "basil", "garlic", "chocolate", "cinnamon"]
-    for s in samples:
-        if s in result:
-            compounds = result[s][:5]
-            print(f"  {s}: {', '.join(compounds)} ({len(result[s])} total)")
+    # Show sample with flavor profiles
+    profiles_path = DATA_DIR / "ingredient_flavor_profiles.json"
+    if profiles_path.exists():
+        with open(profiles_path) as f:
+            profiles = json.load(f)
+        samples = ["tomato", "basil", "garlic", "chocolate", "cinnamon"]
+        for s in samples:
+            if s in profiles:
+                descs = profiles[s]["descriptors"][:8]
+                print(f"  {s}: {', '.join(descs)} ({len(profiles[s]['descriptors'])} descriptors)")

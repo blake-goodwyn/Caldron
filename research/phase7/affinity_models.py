@@ -333,6 +333,78 @@ class CompoundAffinity:
         return len(self.flavordb)
 
 
+# ── Flavor profile affinity ──────────────────────────────────────────────
+
+class FlavorProfileAffinity:
+    """Flavor profile-based ingredient affinity using sensory descriptors.
+
+    Uses aggregated compound flavor profiles (sweet, umami, floral, etc.)
+    to explain why ingredients pair well at a sensory level.
+    """
+
+    def __init__(self, profiles: dict[str, dict]):
+        """
+        Args:
+            profiles: Dict mapping ingredient names to
+                      {"descriptors": [...], "compounds_with_profiles": {...}}
+        """
+        self.profiles = profiles
+
+    def descriptor_overlap(self, ing_a: str, ing_b: str) -> float:
+        """Jaccard similarity of flavor descriptor sets."""
+        descs_a = set(self.profiles.get(ing_a, {}).get("descriptors", []))
+        descs_b = set(self.profiles.get(ing_b, {}).get("descriptors", []))
+        if not descs_a or not descs_b:
+            return 0.0
+        return len(descs_a & descs_b) / len(descs_a | descs_b)
+
+    def explain_pairing(self, ing_a: str, ing_b: str) -> dict:
+        """Explain why two ingredients pair well at a molecular/sensory level.
+
+        Returns:
+            Dict with shared_descriptors, shared_compounds, compound_details,
+            and descriptor_score.
+        """
+        profile_a = self.profiles.get(ing_a, {})
+        profile_b = self.profiles.get(ing_b, {})
+
+        descs_a = set(profile_a.get("descriptors", []))
+        descs_b = set(profile_b.get("descriptors", []))
+        shared_descriptors = sorted(descs_a & descs_b)
+
+        # Find compounds shared between both ingredients that have profiles
+        compounds_a = set(profile_a.get("compounds_with_profiles", {}).keys())
+        compounds_b = set(profile_b.get("compounds_with_profiles", {}).keys())
+        shared_compounds = sorted(compounds_a & compounds_b)
+
+        # Detail the flavor notes of shared compounds
+        compound_details = {}
+        for compound in shared_compounds[:10]:  # Limit for readability
+            profiles_a = profile_a["compounds_with_profiles"].get(compound, [])
+            profiles_b = profile_b["compounds_with_profiles"].get(compound, [])
+            compound_details[compound] = sorted(set(profiles_a) | set(profiles_b))
+
+        return {
+            "shared_descriptors": shared_descriptors,
+            "shared_compounds": shared_compounds,
+            "compound_details": compound_details,
+            "descriptor_score": round(self.descriptor_overlap(ing_a, ing_b), 4),
+            "n_shared_descriptors": len(shared_descriptors),
+            "n_shared_compounds": len(shared_compounds),
+        }
+
+    def ingredients_with_profile(self, descriptor: str) -> list[str]:
+        """Find all ingredients matching a flavor descriptor."""
+        return sorted(
+            name for name, data in self.profiles.items()
+            if descriptor in data.get("descriptors", [])
+        )
+
+    @property
+    def coverage(self) -> int:
+        return len(self.profiles)
+
+
 # ── Combined affinity score ──────────────────────────────────────────────
 
 class CombinedAffinity:
