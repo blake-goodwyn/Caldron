@@ -43,11 +43,13 @@ FRACTIONS = {"½": 0.5, "⅓": 0.33, "⅔": 0.67, "¼": 0.25, "¾": 0.75,
              "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875}
 
 
-def normalize_ingredient(raw: str) -> str:
+def normalize_ingredient(raw: str, canonical_map=None) -> str:
     """Normalize an ingredient string to a canonical name.
 
     Strips quantities, units, preparation instructions, and punctuation.
+    Optionally applies a CanonicalMap for synonym collapse and noise removal.
     Returns lowercased, whitespace-collapsed ingredient name.
+    Returns empty string if the ingredient is blocked or is a compound dish.
     """
     text = raw.lower().strip()
 
@@ -68,7 +70,15 @@ def normalize_ingredient(raw: str) -> str:
     # Tokenize and remove unit/descriptor words
     tokens = [t for t in text.split() if t not in UNITS and len(t) > 1]
 
-    return " ".join(tokens).strip()
+    result = " ".join(tokens).strip()
+
+    # Apply canonical map if provided
+    if canonical_map is not None and result:
+        from vocab_canonicalize import canonicalize
+        mapped = canonicalize(result, canonical_map)
+        return mapped if mapped is not None else ""
+
+    return result
 
 
 # ── RecipeNLG parser ─────────────────────────────────────────────────────

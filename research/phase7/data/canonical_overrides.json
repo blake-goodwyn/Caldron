@@ -1,0 +1,31 @@
+{
+  "synonyms": {
+    "oleo": "margarine",
+    "oleomargarine": "margarine",
+    "comino": "cumin",
+    "coriander leaves": "cilantro",
+    "lite cream cheese": "cream cheese",
+    "light cream cheese": "cream cheese",
+    "confectioners sugar": "powdered sugar",
+    "icing sugar": "powdered sugar",
+    "realemon": "lemon juice",
+    "realime": "lime juice"
+  },
+  "blocklist": [
+    "amounts",
+    "containers",
+    "new",
+    "pink",
+    "regular",
+    "skinless",
+    "boneless",
+    "flat",
+    "round"
+  ],
+  "compound_dishes": [
+    "hot buttered noodles",
+    "broken spaghetti",
+    "hot mashed potatoes",
+    "herb seasoned stuffing mix"
+  ]
+}
